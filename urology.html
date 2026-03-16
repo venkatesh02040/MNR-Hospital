@@ -253,7 +253,8 @@
             gap: 7px;
             background: linear-gradient(135deg, var(--teal), var(--teal-light));
             color: #fff !important;
-            padding: 13px 26px;            border-radius: 50px;
+            padding: 13px 26px;
+            border-radius: 50px;
             font-size: 14px;
             font-weight: 600;
             text-decoration: none;
@@ -295,7 +296,7 @@
             inset: 0;
             z-index: 998;
             background: var(--navy);
-            padding: 90px 28px 40px;
+            padding: 118px 28px 40px;
             transform: translateX(100%);
             transition: transform .38s cubic-bezier(.77, 0, .175, 1);
             overflow-y: auto;
@@ -1238,7 +1239,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-             
+
             opacity: 0;
             pointer-events: none;
             transition: all .3s;
@@ -1327,19 +1328,23 @@
                 padding: 36px 24px;
             }
         }
+
+        @media (max-width: 480px) {
+            .nav-wrap {
+                padding: 0px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <!-- NAVBAR -->
-    <nav id="navbar">
+    <nav style="padding: 16px;" id="navbar">
         <div class="nav-wrap">
             <a href="index.html" class="nav-logo">
-                <div class="logo-icon"><i data-lucide="hospital"></i></div>
                 <div>
-                    <div class="logo-name">MNR Hospital</div>
-                    <div class="logo-sub">Advanced Healthcare</div>
+                    <img width="250px" src="/MNR-logo.png" alt="logo">
                 </div>
             </a>
 
@@ -1691,10 +1696,8 @@
 
             <div class="f-brand">
                 <a href="index.html" class="nav-logo" style="text-decoration:none">
-                    <div class="logo-icon"><i data-lucide="hospital"></i></div>
                     <div>
-                        <div class="logo-name" style="color:#fff">MNR Hospital</div>
-                        <div class="logo-sub" style="color:var(--teal-light)">Advanced Healthcare</div>
+                        <img width="250px" src="/MNR-logo-white.png" alt="logo">
                     </div>
                 </a>
                 <p>MNR Hospital is committed to delivering compassionate, expert, and affordable healthcare to every
