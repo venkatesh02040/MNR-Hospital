@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Departments | MNR Medicity</title>
+    <title>Departments | MNR Hospital</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700&family=DM+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet" />
@@ -12,8 +12,8 @@
     <style>
         :root {
             --navy: #0a1f3c;
-            --teal: #0e7c7b;
-            --teal-light: #13a8a7;
+            --teal: #0b79aa;
+            --teal-light: #0b79aa;
             --gold: #c8992a;
             --gold-light: #e8b93e;
             --cream: #f8f4ee;
@@ -24,189 +24,545 @@
             --shadow-strong: 0 16px 60px rgba(10, 31, 60, .18);
         }
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'DM Sans', sans-serif; color: var(--text); background: #fff; overflow-x: hidden; }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background: #fff;
+            overflow-x: hidden;
+        }
 
         /* ── NAVBAR ── */
         nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: rgba(255,255,255,.97); backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(10,31,60,.08);
-            box-shadow: 0 2px 20px rgba(10,31,60,.06); transition: all .35s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, .97);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(10, 31, 60, .08);
+            box-shadow: 0 2px 20px rgba(10, 31, 60, .08);
+            transition: all .35s ease;
         }
-        nav.scrolled { background: rgba(10,31,60,.97); border-bottom-color: transparent; }
-        nav.scrolled .logo-name, nav.scrolled .nav-link, nav.scrolled .drop-btn { color: #fff !important; }
-        nav.scrolled .logo-sub { color: var(--teal-light) !important; }
-        nav.scrolled .hamburger span { background: #fff; }
+
+        nav.scrolled {
+            background: rgba(10, 31, 60, .97);
+            border-bottom-color: transparent;
+        }
+
+        nav.scrolled .logo-name,
+        nav.scrolled .nav-link,
+        nav.scrolled .drop-btn {
+            color: #fff !important;
+        }
+
+        nav.scrolled .logo-sub {
+            color: var(--teal-light) !important;
+        }
+
+        nav.scrolled .hamburger span {
+            background: #fff;
+        }
 
         .nav-wrap {
-            max-width: 1300px; margin: 0 auto;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 28px; height: 72px;
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            height: 72px;
         }
-        .nav-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            text-decoration: none;
+        }
+
         .logo-icon {
-            width: 44px; height: 44px; border-radius: 11px;
+            width: 44px;
+            height: 44px;
+            border-radius: 11px;
             background: linear-gradient(135deg, var(--teal), var(--navy));
-            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
-        .logo-icon svg { color: #fff; width: 22px; height: 22px; }
-        .logo-name { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 700; color: var(--navy); line-height: 1.1; }
-        .logo-sub { font-size: 10px; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
 
-        .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+        .logo-icon svg {
+            color: #fff;
+            width: 22px;
+            height: 22px;
+        }
+
+        .logo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.1;
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            color: var(--teal);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            list-style: none;
+        }
+
         .nav-link {
-            font-size: 14px; font-weight: 500; color: var(--navy);
-            padding: 8px 13px; border-radius: 8px; text-decoration: none; transition: all .2s;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 13px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all .2s;
         }
-        .nav-link:hover, .nav-link.active { background: rgba(14,124,123,.09); color: var(--teal); }
 
-        .drop { position: relative; }
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--teal);
+        }
+
+        .drop {
+            position: relative;
+        }
+
         .drop-btn {
-            display: flex; align-items: center; gap: 5px;
-            font-size: 14px; font-weight: 500; color: var(--navy);
-            padding: 8px 13px; border-radius: 8px;
-            background: none; border: none; cursor: pointer; transition: all .2s; user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 13px;
+            border-radius: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all .2s;
+            user-select: none;
         }
-        .drop-btn svg { width: 13px; height: 13px; transition: transform .3s; }
-        .drop.open .drop-btn { background: rgba(14,124,123,.09); color: var(--teal); }
-        .drop.open .drop-btn svg { transform: rotate(180deg); }
-        nav.scrolled .drop.open .drop-btn { color: var(--teal-light) !important; }
 
-        .drop-menu::before { content: ''; position: absolute; top: -16px; left: 0; right: 0; height: 16px; }
+        .drop-btn svg {
+            width: 13px;
+            height: 13px;
+            transition: transform .3s;
+        }
+
+        .drop.open .drop-btn {
+            color: var(--teal);
+        }
+
+        .drop.open .drop-btn svg {
+            transform: rotate(180deg);
+        }
+
+        nav.scrolled .drop.open .drop-btn {
+            color: var(--teal-light) !important;
+        }
+
+        .drop-menu::before {
+            content: '';
+            position: absolute;
+            top: -16px;
+            left: 0;
+            right: 0;
+            height: 16px;
+        }
+
         .drop-menu {
-            position: absolute; top: calc(100% + 8px); left: 50%;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
             transform: translateX(-50%) translateY(6px);
-            background: #fff; border-radius: 16px; box-shadow: var(--shadow-strong);
-            padding: 8px; min-width: 220px;
-            opacity: 0; visibility: hidden; pointer-events: none;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: var(--shadow-strong);
+            padding: 8px;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
             transition: opacity .22s ease, transform .22s ease, visibility .22s;
-            border: 1px solid rgba(10,31,60,.07); z-index: 200;
+            border: 1px solid rgba(10, 31, 60, .08);
+            z-index: 200;
         }
-        .drop.open .drop-menu { opacity: 1; visibility: visible; pointer-events: all; transform: translateX(-50%) translateY(0); }
+
+        .drop.open .drop-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0);
+        }
+
         .drop-item {
-            display: flex; align-items: center; gap: 10px;
-            padding: 10px 14px; border-radius: 9px; color: var(--text);
-            font-size: 14px; text-decoration: none; transition: all .18s; white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 9px;
+            color: var(--text);
+            font-size: 14px;
+            text-decoration: none;
+            transition: all .18s;
+            white-space: nowrap;
         }
-        .drop-item svg { width: 16px; height: 16px; color: var(--teal); flex-shrink: 0; }
-        .drop-item:hover { background: var(--gray-light); color: var(--teal); }
+
+        .drop-item svg {
+            width: 16px;
+            height: 16px;
+            color: var(--teal);
+            flex-shrink: 0;
+        }
+
+        .drop-item:hover {
+            background: var(--gray-light);
+            color: var(--teal);
+        }
 
         .nav-cta {
-            display: inline-flex; align-items: center; gap: 7px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
             background: linear-gradient(135deg, var(--teal), var(--teal-light));
-            color: #fff !important; padding: 9px 20px; border-radius: 50px;
-            font-size: 14px; font-weight: 600; text-decoration: none;
-            box-shadow: 0 4px 14px rgba(14,124,123,.35); transition: all .25s;
+            color: #fff !important;
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all .25s;
         }
-        .nav-cta svg { width: 15px; height: 15px; }
-        .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(14,124,123,.45); }
 
-        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 6px; }
-        .hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: all .3s; display: block; }
+        .nav-cta svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(14, 124, 123, .45);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 6px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--navy);
+            border-radius: 2px;
+            transition: all .3s;
+            display: block;
+        }
 
         /* ── MOBILE NAV ── */
         .mob-nav {
-            display: none; position: fixed; inset: 0; z-index: 998;
-            background: var(--navy); padding: 90px 28px 40px;
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 998;
+            background: var(--navy);
+            padding: 90px 28px 40px;
             transform: translateX(100%);
-            transition: transform .38s cubic-bezier(.77,0,.175,1); overflow-y: auto;
+            transition: transform .38s cubic-bezier(.77, 0, .175, 1);
+            overflow-y: auto;
         }
-        .mob-nav.open { transform: translateX(0); }
+
+        .mob-nav.open {
+            transform: translateX(0);
+        }
+
         .mob-link {
-            display: flex; align-items: center; gap: 10px; color: #fff;
-            font-size: 17px; font-weight: 500; padding: 15px 0;
-            border-bottom: 1px solid rgba(255,255,255,.08); text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            font-size: 17px;
+            font-weight: 500;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            text-decoration: none;
         }
-        .mob-link svg { width: 18px; height: 18px; color: var(--teal-light); }
-        .mob-sub { padding-left: 28px; }
-        .mob-sub .mob-link { font-size: 15px; color: rgba(255,255,255,.68); }
+
+        .mob-link svg {
+            width: 18px;
+            height: 18px;
+            color: var(--teal-light);
+        }
+
+        .mob-sub {
+            padding-left: 28px;
+        }
+
+        .mob-sub .mob-link {
+            font-size: 15px;
+            color: rgba(255, 255, 255, .68);
+        }
+
         .mob-cta {
-            display: flex; align-items: center; justify-content: center; gap: 9px;
-            margin-top: 28px; background: var(--teal); color: #fff;
-            padding: 15px; border-radius: 50px; font-weight: 600; font-size: 15px; text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            margin-top: 28px;
+            background: var(--teal);
+            color: #fff;
+            padding: 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
         }
-        .mob-cta svg { width: 17px; height: 17px; }
+
+        .mob-cta svg {
+            width: 17px;
+            height: 17px;
+        }
 
         /* ── SHARED ── */
-        .si { max-width: 1300px; margin: 0 auto; }
-        .s-tag {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
-            color: var(--teal); margin-bottom: 12px;
+        .si {
+            max-width: 1300px;
+            margin: 0 auto;
         }
-        .s-tag::before { content: ''; width: 22px; height: 2px; background: var(--teal); border-radius: 2px; }
+
+        .s-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 12px;
+        }
+
+        .s-tag::before {
+            content: '';
+            width: 22px;
+            height: 2px;
+            background: var(--teal);
+            border-radius: 2px;
+        }
+
         .s-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(26px, 3.6vw, 42px); font-weight: 700;
-            color: var(--navy); line-height: 1.2; margin-bottom: 14px;
+            font-size: clamp(26px, 3.6vw, 42px);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 14px;
         }
-        .s-title em { font-style: normal; color: var(--teal); }
-        .s-desc { font-size: 15px; color: var(--gray-mid); line-height: 1.78; }
+
+        .s-title em {
+            font-style: normal;
+            color: var(--teal);
+        }
+
+        .s-desc {
+            font-size: 15px;
+            color: var(--gray-mid);
+            line-height: 1.78;
+        }
 
         .btn-primary {
-            display: inline-flex; align-items: center; gap: 9px;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
             background: linear-gradient(135deg, var(--teal), var(--teal-light));
-            color: #fff; padding: 13px 26px; border-radius: 50px;
-            font-weight: 600; font-size: 14px; text-decoration: none;
-            box-shadow: 0 6px 22px rgba(14,124,123,.40); transition: all .3s;
+            color: #fff;
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all .3s;
         }
-        .btn-primary svg { width: 16px; height: 16px; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(14,124,123,.50); }
 
-        .fade-up { opacity: 0; transform: translateY(28px); transition: all .65s cubic-bezier(.25,.46,.45,.94); }
-        .fade-up.in { opacity: 1; transform: translateY(0); }
-        .fade-up:nth-child(2) { transition-delay: .08s }
-        .fade-up:nth-child(3) { transition-delay: .16s }
-        .fade-up:nth-child(4) { transition-delay: .24s }
-        .fade-up:nth-child(5) { transition-delay: .32s }
-        .fade-up:nth-child(6) { transition-delay: .40s }
-        .fade-up:nth-child(7) { transition-delay: .48s }
+        .btn-primary svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: all .65s cubic-bezier(.25, .46, .45, .94);
+        }
+
+        .fade-up.in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-up:nth-child(2) {
+            transition-delay: .08s
+        }
+
+        .fade-up:nth-child(3) {
+            transition-delay: .16s
+        }
+
+        .fade-up:nth-child(4) {
+            transition-delay: .24s
+        }
+
+        .fade-up:nth-child(5) {
+            transition-delay: .32s
+        }
+
+        .fade-up:nth-child(6) {
+            transition-delay: .40s
+        }
+
+        .fade-up:nth-child(7) {
+            transition-delay: .48s
+        }
 
         /* ── PAGE HERO ── */
         .page-hero {
             margin-top: 72px;
             background: linear-gradient(135deg, #061529 0%, #0a2540 50%, #0d3d6b 100%);
-            padding: 90px 28px 100px; position: relative; overflow: hidden;
+            padding: 90px 28px 100px;
+            position: relative;
+            overflow: hidden;
         }
+
         .page-hero::before {
-            content: ''; position: absolute; top: -40%; right: -8%;
-            width: 600px; height: 600px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(14,124,123,.22) 0%, transparent 70%); pointer-events: none;
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -8%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(14, 124, 123, .22) 0%, transparent 70%);
+            pointer-events: none;
         }
+
         .page-hero::after {
-            content: ''; position: absolute; bottom: -30%; left: -5%;
-            width: 400px; height: 400px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(200,153,42,.10) 0%, transparent 70%); pointer-events: none;
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(200, 153, 42, .10) 0%, transparent 70%);
+            pointer-events: none;
         }
+
         .hero-grid-overlay {
-            position: absolute; inset: 0; opacity: .035; pointer-events: none;
-            background-image: linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px);
+            position: absolute;
+            inset: 0;
+            opacity: .035;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(255, 255, 255, .6) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .6) 1px, transparent 1px);
             background-size: 55px 55px;
         }
-        .page-hero-inner { max-width: 1300px; margin: 0 auto; position: relative; z-index: 2; }
-        .breadcrumb {
-            display: flex; align-items: center; gap: 8px;
-            font-size: 13px; color: rgba(255,255,255,.50); margin-bottom: 22px;
+
+        .page-hero-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
-        .breadcrumb a { color: rgba(255,255,255,.50); text-decoration: none; transition: color .2s; }
-        .breadcrumb a:hover { color: var(--teal-light); }
-        .breadcrumb svg { width: 13px; height: 13px; }
-        .breadcrumb span { color: rgba(255,255,255,.9); }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, .50);
+            margin-bottom: 22px;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, .50);
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--teal-light);
+        }
+
+        .breadcrumb svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        .breadcrumb span {
+            color: rgba(255, 255, 255, .9);
+        }
+
         .page-hero-inner h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(34px, 5vw, 64px); font-weight: 700;
-            color: #fff; line-height: 1.12; margin-bottom: 20px; max-width: 700px;
+            font-size: clamp(34px, 5vw, 64px);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.12;
+            margin-bottom: 20px;
+            max-width: 700px;
         }
-        .page-hero-inner h1 em { font-style: normal; color: var(--gold-light); }
-        .page-hero-inner > div > p { font-size: 17px; color: rgba(255,255,255,.68); line-height: 1.75; max-width: 560px; }
+
+        .page-hero-inner h1 em {
+            font-style: normal;
+            color: var(--gold-light);
+        }
+
+        .page-hero-inner>div>p {
+            font-size: 17px;
+            color: rgba(255, 255, 255, .68);
+            line-height: 1.75;
+            max-width: 560px;
+        }
 
 
 
         /* ── DEPARTMENTS GRID ── */
-        .depts-sec { padding: 72px 28px 90px; background: var(--gray-light); }
+        .depts-sec {
+            padding: 72px 28px 90px;
+            background: var(--gray-light);
+        }
 
         .dept-grid {
             display: grid;
@@ -220,287 +576,663 @@
             background: #fff;
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 2px 18px rgba(10,31,60,.07);
-            transition: all .35s cubic-bezier(.25,.46,.45,.94);
+            transition: all .35s cubic-bezier(.25, .46, .45, .94);
             cursor: pointer;
             position: relative;
-            border: 1.5px solid rgba(10,31,60,.06);
-        }
-        .dept-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 55px rgba(10,31,60,.14);
-            border-color: transparent;
+            border: 1.5px solid rgba(10, 31, 60, .08);
+            height: 580px;
         }
 
         /* Top image strip */
         .dept-img {
-            height: 200px;
+            height: 250px;
             position: relative;
             overflow: hidden;
         }
+
         .dept-img img {
-            width: 100%; height: 100%; object-fit: cover;
-            display: block; transition: transform .5s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .5s ease;
         }
-        .dept-card:hover .dept-img img { transform: scale(1.07); }
+
+        .dept-card:hover .dept-img img {
+            transform: scale(1.08);
+        }
+
         .dept-img-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to bottom, rgba(10,31,60,.08) 0%, rgba(10,31,60,.55) 100%);
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(10, 31, 60, .08) 0%, rgba(10, 31, 60, .55) 100%);
         }
 
         /* Floating icon badge on image */
         .dept-icon-badge {
             position: absolute;
-            bottom: -28px;
+            bottom: 20px;
             left: 28px;
-            width: 56px; height: 56px;
+            width: 56px;
+            height: 56px;
             border-radius: 17px;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 8px 24px rgba(10,31,60,.20);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(10, 31, 60, .20);
             border: 3px solid #fff;
             transition: transform .3s;
             z-index: 2;
         }
-        .dept-card:hover .dept-icon-badge { transform: scale(1.08) rotate(-4deg); }
-        .dept-icon-badge svg { width: 26px; height: 26px; color: #fff; }
+
+        .dept-card:hover .dept-icon-badge {
+            transform: scale(1.08) rotate(-4deg);
+        }
+
+        .dept-icon-badge svg {
+            width: 26px;
+            height: 26px;
+            color: #fff;
+        }
 
         /* Dept tag on image */
         .dept-img-tag {
             position: absolute;
-            top: 16px; right: 16px;
-            background: rgba(255,255,255,.18);
+            top: 16px;
+            right: 16px;
+            background: rgba(255, 255, 255, .18);
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,.28);
+            border: 1px solid rgba(255, 255, 255, .28);
             border-radius: 50px;
             padding: 5px 12px;
-            font-size: 11px; font-weight: 600;
-            color: #fff; letter-spacing: 1px; text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         /* Card body */
         .dept-body {
-            padding: 44px 28px 28px;
+            padding: 28px;
         }
+
         .dept-body h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 20px; font-weight: 700;
-            color: var(--navy); margin-bottom: 8px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 8px;
         }
+
         .dept-body .dept-tagline {
-            font-size: 13px; color: var(--teal);
-            font-weight: 600; margin-bottom: 12px;
+            font-size: 13px;
+            color: var(--teal);
+            font-weight: 600;
+            margin-bottom: 12px;
             letter-spacing: .3px;
         }
+
         .dept-body p {
-            font-size: 14px; color: var(--gray-mid);
-            line-height: 1.76; margin-bottom: 20px;
+            font-size: 14px;
+            color: var(--gray-mid);
+            line-height: 1.76;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         /* Services chips */
         .dept-services {
-            display: flex; flex-wrap: wrap; gap: 7px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
             margin-bottom: 22px;
         }
+
         .svc-chip {
-            font-size: 11px; font-weight: 600;
-            padding: 4px 11px; border-radius: 50px;
-            background: rgba(14,124,123,.08); color: var(--teal);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 11px;
+            border-radius: 50px;
+            background: rgba(14, 124, 123, .08);
+            color: var(--teal);
             transition: all .2s;
         }
+
         .dept-card:hover .svc-chip {
-            background: rgba(14,124,123,.14);
+            background: rgba(14, 124, 123, .14);
         }
 
         /* Card footer */
         .dept-foot {
-            display: flex; align-items: center; justify-content: space-between;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             padding-top: 18px;
-            border-top: 1px solid rgba(10,31,60,.07);
+            border-top: 1px solid rgba(10, 31, 60, .08);
         }
+
         .dept-foot {
             justify-content: flex-end;
         }
 
         .dept-link {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-size: 13px; font-weight: 600; color: #fff;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
             background: linear-gradient(135deg, var(--teal), var(--teal-light));
-            padding: 9px 20px; border-radius: 50px;
+            padding: 13px 26px;
+            border-radius: 50px;
             text-decoration: none;
-            box-shadow: 0 4px 14px rgba(14,124,123,.30);
+            box-shadow: 0 4px 14px rgba(14, 124, 123, .30);
             transition: all .25s;
         }
-        .dept-link svg { width: 14px; height: 14px; transition: transform .2s; }
-        .dept-card:hover .dept-link { box-shadow: 0 6px 20px rgba(14,124,123,.45); transform: translateY(-1px); }
-        .dept-card:hover .dept-link svg { transform: translateX(2px); }
+
+        .dept-link svg {
+            width: 14px;
+            height: 14px;
+            transition: transform .2s;
+        }
+
+        .dept-card:hover .dept-link {
+            box-shadow: 0 6px 20px rgba(14, 124, 123, .45);
+            transform: translateY(-1px);
+        }
+
+        .dept-card:hover .dept-link svg {
+            transform: translateX(2px);
+        }
 
         /* Colored accent per department — left border on hover */
         .dept-card::after {
             content: '';
             position: absolute;
-            bottom: 0; left: 0; right: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
             height: 3px;
             border-radius: 0 0 24px 24px;
             opacity: 0;
             transition: opacity .3s;
         }
-        .dept-card:hover::after { opacity: 1; }
 
-        .dept-card[data-dept="cardiology"]::after    { background: linear-gradient(90deg, #e74c3c, #ff6b6b); }
-        .dept-card[data-dept="pulmonology"]::after   { background: linear-gradient(90deg, #3498db, #74b9ff); }
-        .dept-card[data-dept="gynecology"]::after    { background: linear-gradient(90deg, #e84393, #fd79a8); }
-        .dept-card[data-dept="neurology"]::after     { background: linear-gradient(90deg, #9b59b6, #c39bd3); }
-        .dept-card[data-dept="urology"]::after       { background: linear-gradient(90deg, #2980b9, #5dade2); }
-        .dept-card[data-dept="gastrology"]::after    { background: linear-gradient(90deg, #f39c12, #f8c471); }
-        .dept-card[data-dept="pediatrics"]::after    { background: linear-gradient(90deg, #27ae60, #58d68d); }
+        .dept-card:hover::after {
+            opacity: 1;
+        }
+
+        .dept-card[data-dept="cardiology"]::after {
+            background: linear-gradient(90deg, #e74c3c, #ff6b6b);
+        }
+
+        .dept-card[data-dept="pulmonology"]::after {
+            background: linear-gradient(90deg, #3498db, #74b9ff);
+        }
+
+        .dept-card[data-dept="gynecology"]::after {
+            background: linear-gradient(90deg, #e84393, #fd79a8);
+        }
+
+        .dept-card[data-dept="neurology"]::after {
+            background: linear-gradient(90deg, #9b59b6, #c39bd3);
+        }
+
+        .dept-card[data-dept="urology"]::after {
+            background: linear-gradient(90deg, #2980b9, #5dade2);
+        }
+
+        .dept-card[data-dept="gastrology"]::after {
+            background: linear-gradient(90deg, #f39c12, #f8c471);
+        }
+
+        .dept-card[data-dept="pediatrics"]::after {
+            background: linear-gradient(90deg, #27ae60, #58d68d);
+        }
 
         /* Icon badge colors per dept */
-        .dept-card[data-dept="cardiology"]   .dept-icon-badge { background: linear-gradient(135deg, #c0392b, #e74c3c); }
-        .dept-card[data-dept="pulmonology"]  .dept-icon-badge { background: linear-gradient(135deg, #2471a3, #3498db); }
-        .dept-card[data-dept="gynecology"]   .dept-icon-badge { background: linear-gradient(135deg, #c0396b, #e84393); }
-        .dept-card[data-dept="neurology"]    .dept-icon-badge { background: linear-gradient(135deg, #7d3c98, #9b59b6); }
-        .dept-card[data-dept="urology"]      .dept-icon-badge { background: linear-gradient(135deg, #1f618d, #2980b9); }
-        .dept-card[data-dept="gastrology"]   .dept-icon-badge { background: linear-gradient(135deg, #d68910, #f39c12); }
-        .dept-card[data-dept="pediatrics"]   .dept-icon-badge { background: linear-gradient(135deg, #1d8348, #27ae60); }
+        .dept-card[data-dept="cardiology"] .dept-icon-badge {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+        }
+
+        .dept-card[data-dept="pulmonology"] .dept-icon-badge {
+            background: linear-gradient(135deg, #2471a3, #3498db);
+        }
+
+        .dept-card[data-dept="gynecology"] .dept-icon-badge {
+            background: linear-gradient(135deg, #c0396b, #e84393);
+        }
+
+        .dept-card[data-dept="neurology"] .dept-icon-badge {
+            background: linear-gradient(135deg, #7d3c98, #9b59b6);
+        }
+
+        .dept-card[data-dept="urology"] .dept-icon-badge {
+            background: linear-gradient(135deg, #1f618d, #2980b9);
+        }
+
+        .dept-card[data-dept="gastrology"] .dept-icon-badge {
+            background: linear-gradient(135deg, #d68910, #f39c12);
+        }
+
+        .dept-card[data-dept="pediatrics"] .dept-icon-badge {
+            background: linear-gradient(135deg, #1d8348, #27ae60);
+        }
 
         /* ── FEATURE HIGHLIGHT STRIP ── */
         .highlight-strip {
             background: #fff;
             padding: 60px 28px;
         }
+
         .highlight-inner {
-            max-width: 1300px; margin: 0 auto;
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
         }
+
         .h-cell {
-            padding: 32px 28px; text-align: center;
-            border-right: 1px solid rgba(10,31,60,.07);
+            padding: 32px 28px;
+            text-align: center;
+            border-right: 1px solid rgba(10, 31, 60, .08);
             transition: all .3s;
         }
-        .h-cell:last-child { border-right: none; }
-        .h-cell:hover { background: var(--gray-light); }
-        .h-ico {
-            width: 52px; height: 52px; border-radius: 16px; margin: 0 auto 16px;
-            background: linear-gradient(135deg, var(--teal), var(--teal-light));
-            display: flex; align-items: center; justify-content: center;
+
+        .h-cell:last-child {
+            border-right: none;
         }
-        .h-ico svg { width: 22px; height: 22px; color: #fff; }
+
+        .h-cell:hover {
+            background: var(--gray-light);
+        }
+
+        .h-ico {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            margin: 0 auto 16px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .h-ico svg {
+            width: 22px;
+            height: 22px;
+            color: #fff;
+        }
+
         .h-cell .big {
             font-family: 'Playfair Display', serif;
-            font-size: 36px; font-weight: 700; color: var(--navy); line-height: 1;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1;
         }
-        .h-cell .big span { color: var(--teal); }
-        .h-cell p { font-size: 13px; color: var(--gray-mid); margin-top: 6px; font-weight: 500; }
+
+        .h-cell .big span {
+            color: var(--teal);
+        }
+
+        .h-cell p {
+            font-size: 13px;
+            color: var(--gray-mid);
+            margin-top: 6px;
+            font-weight: 500;
+        }
 
         /* ── CALL TO ACTION ── */
-        .dept-cta-sec { padding: 80px 28px; background: var(--cream); }
+        .dept-cta-sec {
+            padding: 80px 28px;
+            background: var(--cream);
+        }
+
         .dept-cta-box {
-            max-width: 1300px; margin: 0 auto;
+            max-width: 1300px;
+            margin: 0 auto;
             background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
-            border-radius: 28px; padding: 64px 60px;
-            display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center;
-            position: relative; overflow: hidden;
+            border-radius: 28px;
+            padding: 64px 60px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
         }
+
         .dept-cta-box::before {
-            content: ''; position: absolute; right: -60px; top: -60px;
-            width: 300px; height: 300px; border-radius: 50%;
-            background: rgba(255,255,255,.07); pointer-events: none;
+            content: '';
+            position: absolute;
+            right: -60px;
+            top: -60px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .08);
+            pointer-events: none;
         }
+
         .dept-cta-box h2 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(22px,3vw,36px); color: #fff; margin-bottom: 12px;
+            font-size: clamp(22px, 3vw, 36px);
+            color: #fff;
+            margin-bottom: 12px;
         }
-        .dept-cta-box > div:first-child p {
-            font-size: 15px; color: rgba(255,255,255,.80); line-height: 1.75; max-width: 480px;
+
+        .dept-cta-box>div:first-child p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, .80);
+            line-height: 1.75;
+            max-width: 480px;
         }
-        .cta-btns { display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; position: relative; z-index: 2; }
+
+        .cta-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+
         .btn-white {
-            display: inline-flex; align-items: center; gap: 9px;
-            background: #fff; color: var(--teal); padding: 13px 26px; border-radius: 50px;
-            font-weight: 700; font-size: 14px; text-decoration: none;
-            box-shadow: 0 6px 18px rgba(0,0,0,.15); transition: all .3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: #fff;
+            color: var(--teal);
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .15);
+            transition: all .3s;
         }
-        .btn-white svg { width: 16px; height: 16px; }
-        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,.22); }
+
+        .btn-white svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, .22);
+        }
+
         .btn-ghost-w {
-            display: inline-flex; align-items: center; gap: 9px;
-            border: 1.5px solid rgba(255,255,255,.45); color: #fff; padding: 13px 26px; border-radius: 50px;
-            font-weight: 500; font-size: 14px; text-decoration: none; transition: all .3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            border: 1.5px solid rgba(255, 255, 255, .45);
+            color: #fff;
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all .3s;
         }
-        .btn-ghost-w svg { width: 16px; height: 16px; }
-        .btn-ghost-w:hover { border-color: #fff; background: rgba(255,255,255,.10); }
+
+        .btn-ghost-w svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .btn-ghost-w:hover {
+            border-color: #fff;
+            background: rgba(255, 255, 255, .10);
+        }
 
         /* ── FOOTER ── */
-        footer { background: var(--navy); padding: 66px 28px 0; }
+        footer {
+            background: var(--navy);
+            padding: 66px 28px 0;
+        }
+
         .f-grid {
-            max-width: 1300px; margin: 0 auto;
-            display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 46px; padding-bottom: 50px;
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 46px;
+            padding-bottom: 50px;
         }
-        .f-brand p { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,.52); margin: 17px 0 20px; }
-        .f-socials { display: flex; gap: 9px; }
+
+        .f-brand p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, .52);
+            margin: 17px 0 20px;
+        }
+
+        .f-socials {
+            display: flex;
+            gap: 9px;
+        }
+
         .f-socials a {
-            width: 36px; height: 36px; border-radius: 9px;
-            background: rgba(255,255,255,.07); color: rgba(255,255,255,.60);
-            display: flex; align-items: center; justify-content: center;
-            text-decoration: none; transition: all .2s;
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: rgba(255, 255, 255, .08);
+            color: rgba(255, 255, 255, .60);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all .2s;
         }
-        .f-socials a:hover { background: var(--teal); color: #fff; }
-        .f-socials a svg { width: 15px; height: 15px; }
-        .f-col h4 { color: #fff; font-size: 15px; font-weight: 600; margin-bottom: 17px; }
-        .f-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-        .f-col ul a { color: rgba(255,255,255,.52); text-decoration: none; font-size: 14px; transition: color .2s; }
-        .f-col ul a:hover { color: var(--teal-light); }
-        .f-cr { display: flex; gap: 11px; margin-bottom: 13px; }
-        .f-cr svg { width: 15px; height: 15px; color: var(--teal-light); margin-top: 2px; flex-shrink: 0; }
-        .f-cr p { font-size: 13px; color: rgba(255,255,255,.52); line-height: 1.65; }
-        .f-cr a { color: inherit; text-decoration: none; }
+
+        .f-socials a:hover {
+            background: var(--teal);
+            color: #fff;
+        }
+
+        .f-socials a svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .f-col h4 {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 17px;
+        }
+
+        .f-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .f-col ul a {
+            color: rgba(255, 255, 255, .52);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color .2s;
+        }
+
+        .f-col ul a:hover {
+            color: var(--teal-light);
+        }
+
+        .f-cr {
+            display: flex;
+            gap: 11px;
+            margin-bottom: 13px;
+        }
+
+        .f-cr svg {
+            width: 15px;
+            height: 15px;
+            color: var(--teal-light);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .f-cr p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .52);
+            line-height: 1.65;
+        }
+
+        .f-cr a {
+            color: inherit;
+            text-decoration: none;
+        }
+
         .f-bottom {
-            max-width: 1300px; margin: 0 auto;
-            border-top: 1px solid rgba(255,255,255,.07); padding: 22px 0;
-            display: flex; justify-content: space-between; align-items: center;
-            flex-wrap: wrap; gap: 12px; font-size: 13px; color: rgba(255,255,255,.32);
+            max-width: 1300px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            padding: 22px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, .32);
         }
-        .f-bottom a { color: rgba(255,255,255,.42); text-decoration: none; }
-        .f-bottom a:hover { color: var(--teal-light); }
-        .f-blinks { display: flex; gap: 20px; }
+
+        .f-bottom a {
+            color: rgba(255, 255, 255, .42);
+            text-decoration: none;
+        }
+
+        .f-bottom a:hover {
+            color: var(--teal-light);
+        }
+
+
 
         .scroll-top {
-            position: fixed; bottom: 26px; right: 26px; z-index: 999;
-            width: 46px; height: 46px; border-radius: 50%;
-            background: var(--teal); color: #fff; border: none; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 6px 18px rgba(14,124,123,.40);
-            opacity: 0; pointer-events: none; transition: all .3s;
+            position: fixed;
+            bottom: 26px;
+            right: 26px;
+            z-index: 999;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--teal);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            opacity: 0;
+            pointer-events: none;
+            transition: all .3s;
         }
-        .scroll-top svg { width: 18px; height: 18px; }
-        .scroll-top.visible { opacity: 1; pointer-events: all; }
-        .scroll-top:hover { transform: translateY(-3px); }
+
+        .scroll-top svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+        }
 
         /* ── RESPONSIVE ── */
         @media (max-width:1024px) {
-            .dept-grid { grid-template-columns: repeat(2, 1fr); }
-            .highlight-inner { grid-template-columns: repeat(2, 1fr); }
-            .h-cell { border-bottom: 1px solid rgba(10,31,60,.07); }
-            .f-grid { grid-template-columns: 1fr 1fr; }
-            .dept-cta-box { grid-template-columns: 1fr; padding: 44px 36px; }
-            .cta-btns { flex-direction: row; flex-wrap: wrap; }
+            .dept-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .highlight-inner {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .h-cell {
+                border-bottom: 1px solid rgba(10, 31, 60, .08);
+            }
+
+            .f-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .dept-cta-box {
+                grid-template-columns: 1fr;
+                padding: 44px 36px;
+            }
+
+            .cta-btns {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
         }
+
         @media (max-width:1000px) {
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
-            .mob-nav { display: block; }
-            .page-hero { padding: 60px 20px 72px; }
-            .depts-sec { padding: 50px 20px 70px; }
-            .dept-grid { grid-template-columns: 1fr; }
-            .filter-inner { padding: 12px 20px; }
-            .highlight-inner { grid-template-columns: repeat(2, 1fr); }
-            .f-grid { grid-template-columns: 1fr; gap: 30px; }
-            .dept-cta-box { padding: 36px 28px; }
-            .highlight-strip { padding: 40px 20px; }
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mob-nav {
+                display: block;
+            }
+
+            .page-hero {
+                padding: 60px 20px 72px;
+            }
+
+            .depts-sec {
+                padding: 50px 20px 70px;
+            }
+
+            .dept-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-inner {
+                padding: 12px 20px;
+            }
+
+            .highlight-inner {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .f-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .dept-cta-box {
+                padding: 36px 28px;
+            }
+
+            .highlight-strip {
+                padding: 40px 20px;
+            }
         }
+
         @media (max-width:480px) {
-            .highlight-inner { grid-template-columns: 1fr 1fr; }
+            .highlight-inner {
+                grid-template-columns: 1fr 1fr;
+            }
         }
     </style>
 </head>
@@ -513,23 +1245,31 @@
             <a href="index.html" class="nav-logo">
                 <div class="logo-icon"><i data-lucide="hospital"></i></div>
                 <div>
-                    <div class="logo-name">MNR Medicity</div>
+                    <div class="logo-name">MNR Hospital</div>
                     <div class="logo-sub">Advanced Healthcare</div>
                 </div>
             </a>
+
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="about.html" class="nav-link">About Us</a></li>
                 <li class="drop">
                     <button class="drop-btn">Departments <i data-lucide="chevron-down"></i></button>
                     <div class="drop-menu">
-                        <a href="#cardiology"   class="drop-item"><i data-lucide="heart-pulse"></i> Cardiology</a>
-                        <a href="#pulmonology"  class="drop-item"><i data-lucide="wind"></i> Pulmonology</a>
-                        <a href="#gynecology"   class="drop-item"><i data-lucide="baby"></i> Gynecology</a>
-                        <a href="#neurology"    class="drop-item"><i data-lucide="brain"></i> Neurology</a>
-                        <a href="#urology"      class="drop-item"><i data-lucide="activity"></i> Urology</a>
-                        <a href="#gastrology"   class="drop-item"><i data-lucide="stethoscope"></i> Gastroenterology</a>
-                        <a href="#pediatrics"   class="drop-item"><i data-lucide="smile"></i> Pediatrics</a>
+                        <a href="cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i>
+                            Cardiology</a>
+                        <a href="pulmonology.html" class="drop-item"><i data-lucide="wind"></i>
+                            Pulmonology</a>
+                        <a href="gynecology.html" class="drop-item"><i data-lucide="baby"></i>
+                            Gynecology</a>
+                        <a href="neurology.html" class="drop-item"><i data-lucide="brain"></i> Neurology</a>
+                        <a href="urology.html" class="drop-item"><i data-lucide="activity"></i> Urology</a>
+                        <a href="gastroenterology.html" class="drop-item"><i data-lucide="stethoscope"></i>
+                            Gastroenterology</a>
+                        <a href="pediatrics.html" class="drop-item"><i data-lucide="smile"></i>
+                            Pediatrics</a>
+                        <a href="departments.html" class="drop-item"><i data-lucide="chevron-right"></i>
+                            View All</a>
                     </div>
                 </li>
                 <li><a href="doctors.html" class="nav-link">Doctors</a></li>
@@ -537,15 +1277,19 @@
                 <li class="drop">
                     <button class="drop-btn">More <i data-lucide="chevron-down"></i></button>
                     <div class="drop-menu">
-                        <a href="blogs.html"    class="drop-item"><i data-lucide="newspaper"></i> Blogs</a>
-                        <a href="gallery.html"  class="drop-item"><i data-lucide="image"></i> Gallery</a>
-                        <a href="careers.html"  class="drop-item"><i data-lucide="briefcase"></i> Careers</a>
+                        <a href="blogs.html" class="drop-item"><i data-lucide="newspaper"></i> Blogs</a>
+                        <a href="gallery.html" class="drop-item"><i data-lucide="image"></i> Gallery</a>
+                        <a href="careers.html" class="drop-item"><i data-lucide="briefcase"></i> Careers</a>
                         <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a>
                     </div>
                 </li>
-                <li><a href="contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a></li>
+                <li><a href="contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
+                </li>
             </ul>
-            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+
+            <button class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
@@ -555,21 +1299,23 @@
         <a href="about.html" class="mob-link"><i data-lucide="info"></i> About Us</a>
         <span class="mob-link" style="cursor:pointer"><i data-lucide="layout-grid"></i> Departments</span>
         <div class="mob-sub">
-            <a href="#cardiology"  class="mob-link"><i data-lucide="heart-pulse"></i> Cardiology</a>
-            <a href="#pulmonology" class="mob-link"><i data-lucide="wind"></i> Pulmonology</a>
-            <a href="#gynecology"  class="mob-link"><i data-lucide="baby"></i> Gynecology</a>
-            <a href="#neurology"   class="mob-link"><i data-lucide="brain"></i> Neurology</a>
-            <a href="#urology"     class="mob-link"><i data-lucide="activity"></i> Urology</a>
-            <a href="#gastrology"  class="mob-link"><i data-lucide="stethoscope"></i> Gastroenterology</a>
-            <a href="#pediatrics"  class="mob-link"><i data-lucide="smile"></i> Pediatrics</a>
+            <a href="cardiology.html" class="mob-link"><i data-lucide="heart-pulse"></i> Cardiology</a>
+            <a href="pulmonology.html" class="mob-link"><i data-lucide="wind"></i> Pulmonology</a>
+            <a href="gynecology.html" class="mob-link"><i data-lucide="baby"></i> Gynecology</a>
+            <a href="neurology.html" class="mob-link"><i data-lucide="brain"></i> Neurology</a>
+            <a href="urology.html" class="mob-link"><i data-lucide="activity"></i> Urology</a>
+            <a href="gastroenterology.html" class="mob-link"><i data-lucide="stethoscope"></i>
+                Gastroenterology</a>
+            <a href="pediatrics.html" class="mob-link"><i data-lucide="smile"></i> Pediatrics</a>
+            <a href="departments.html" class="mob-link"><i data-lucide="chevron-right"></i> View All</a>
         </div>
         <a href="doctors.html" class="mob-link"><i data-lucide="user-round"></i> Doctors</a>
         <a href="contact.html" class="mob-link"><i data-lucide="phone"></i> Contact Us</a>
         <span class="mob-link" style="cursor:pointer"><i data-lucide="more-horizontal"></i> More</span>
         <div class="mob-sub">
-            <a href="blogs.html"    class="mob-link"><i data-lucide="newspaper"></i> Blogs</a>
-            <a href="gallery.html"  class="mob-link"><i data-lucide="image"></i> Gallery</a>
-            <a href="careers.html"  class="mob-link"><i data-lucide="briefcase"></i> Careers</a>
+            <a href="blogs.html" class="mob-link"><i data-lucide="newspaper"></i> Blogs</a>
+            <a href="gallery.html" class="mob-link"><i data-lucide="image"></i> Gallery</a>
+            <a href="careers.html" class="mob-link"><i data-lucide="briefcase"></i> Careers</a>
             <a href="insurance.html" class="mob-link"><i data-lucide="shield-check"></i> Insurance</a>
         </div>
         <a href="contact.html" class="mob-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
@@ -586,7 +1332,8 @@
             </div>
             <h1>Expert Care Across <em>Every</em><br>Medical Specialty</h1>
             <div>
-                <p>From cardiology to pediatrics — MNR Medicity houses 7 world-class departments under one roof, each led by senior specialists and supported by the latest medical technology.</p>
+                <p>From cardiology to pediatrics — MNR Hospital houses 7 world-class departments under one roof, each
+                    led by senior specialists and supported by the latest medical technology.</p>
             </div>
         </div>
     </div>
@@ -603,7 +1350,7 @@
             </div>
             <div class="h-cell">
                 <div class="h-ico"><i data-lucide="layout-grid"></i></div>
-                <div class="big">7</div>
+                <div class="big">7<span>+</span></div>
                 <p>Medical Departments</p>
             </div>
             <div class="h-cell">
@@ -625,7 +1372,9 @@
             <div style="text-align:center; margin-bottom: 48px;">
                 <span class="s-tag">Our Departments</span>
                 <h2 class="s-title" style="margin: 0 auto;">Specialized Care for <em>Every Need</em></h2>
-                <p class="s-desc" style="margin: 12px auto 0; max-width:520px">Each department at MNR Medicity operates with dedicated specialists, modern equipment, and a singular focus on outstanding patient outcomes.</p>
+                <p class="s-desc" style="margin: 12px auto 0; max-width:520px">Each department at MNR Hospital operates
+                    with dedicated specialists, modern equipment, and a singular focus on outstanding patient outcomes.
+                </p>
             </div>
 
             <div class="dept-grid">
@@ -633,7 +1382,8 @@
                 <!-- CARDIOLOGY -->
                 <div class="dept-card fade-up" data-dept="cardiology" id="cardiology">
                     <div class="dept-img">
-                        <img src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=600&h=300&fit=crop&crop=center" alt="Cardiology" />
+                        <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=600&h=300&fit=crop&crop=center"
+                            alt="Cardiology" />
                         <div class="dept-img-overlay"></div>
                         <div class="dept-img-tag">Cardiology</div>
                         <div class="dept-icon-badge"><i data-lucide="heart-pulse"></i></div>
@@ -641,7 +1391,9 @@
                     <div class="dept-body">
                         <h3>Cardiology</h3>
                         <div class="dept-tagline">Heart & Vascular Care</div>
-                        <p>Comprehensive cardiac care from early diagnosis to complex interventions. Our cardiologists manage coronary artery disease, heart failure, arrhythmias, and congenital defects with precision and compassion.</p>
+                        <p>Comprehensive cardiac care from early diagnosis to complex interventions. Our cardiologists
+                            manage coronary artery disease, heart failure, arrhythmias, and congenital defects with
+                            precision and compassion.</p>
                         <div class="dept-services">
                             <span class="svc-chip">ECG & Echo</span>
                             <span class="svc-chip">Angioplasty</span>
@@ -658,7 +1410,8 @@
                 <!-- PULMONOLOGY -->
                 <div class="dept-card fade-up" data-dept="pulmonology" id="pulmonology">
                     <div class="dept-img">
-                        <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=600&h=300&fit=crop&crop=center" alt="Pulmonology" />
+                        <img src="https://images.unsplash.com/photo-1737967067462-a73d93647fcc?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Pulmonology" />
                         <div class="dept-img-overlay"></div>
                         <div class="dept-img-tag">Pulmonology</div>
                         <div class="dept-icon-badge"><i data-lucide="wind"></i></div>
@@ -666,7 +1419,8 @@
                     <div class="dept-body">
                         <h3>Pulmonology</h3>
                         <div class="dept-tagline">Lung & Respiratory Health</div>
-                        <p>Expert diagnosis and treatment of respiratory conditions including asthma, COPD, sleep apnea, and lung infections. Our pulmonologists use the latest pulmonary function tests and bronchoscopy techniques.</p>
+                        <p>Expert diagnosis and treatment of respiratory conditions including asthma, COPD, sleep apnea,
+                            and lung infections. Our pulmonologists use the latest pulmonary function tests.</p>
                         <div class="dept-services">
                             <span class="svc-chip">Spirometry</span>
                             <span class="svc-chip">Bronchoscopy</span>
@@ -683,7 +1437,8 @@
                 <!-- GYNECOLOGY -->
                 <div class="dept-card fade-up" data-dept="gynecology" id="gynecology">
                     <div class="dept-img">
-                        <img src="https://images.unsplash.com/photo-1609822880951-9ea6fb6cb7c0?w=600&h=300&fit=crop&crop=center" alt="Gynecology" />
+                        <img src="https://images.unsplash.com/photo-1654931800911-7a9cfb3b7c17?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Gynecology" />
                         <div class="dept-img-overlay"></div>
                         <div class="dept-img-tag">Gynecology</div>
                         <div class="dept-icon-badge"><i data-lucide="baby"></i></div>
@@ -691,7 +1446,9 @@
                     <div class="dept-body">
                         <h3>Gynecology & Obstetrics</h3>
                         <div class="dept-tagline">Women's Health & Maternity</div>
-                        <p>Complete women's healthcare — from routine gynecological consultations and fertility support to high-risk pregnancies and neonatal care. Our Level III NICU ensures the best start for every newborn.</p>
+                        <p>Complete women's healthcare — from routine gynecological consultations and fertility support
+                            to high-risk pregnancies and neonatal care. Our Level III NICU ensures the best start for
+                            every newborn.</p>
                         <div class="dept-services">
                             <span class="svc-chip">Antenatal Care</span>
                             <span class="svc-chip">Laparoscopy</span>
@@ -708,7 +1465,8 @@
                 <!-- NEUROLOGY -->
                 <div class="dept-card fade-up" data-dept="neurology" id="neurology">
                     <div class="dept-img">
-                        <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&h=300&fit=crop&crop=center" alt="Neurology" />
+                        <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&h=300&fit=crop&crop=center"
+                            alt="Neurology" />
                         <div class="dept-img-overlay"></div>
                         <div class="dept-img-tag">Neurology</div>
                         <div class="dept-icon-badge"><i data-lucide="brain"></i></div>
@@ -716,7 +1474,9 @@
                     <div class="dept-body">
                         <h3>Neurology & Neurosurgery</h3>
                         <div class="dept-tagline">Brain, Spine & Nerve Care</div>
-                        <p>Advanced care for conditions of the brain, spinal cord, and nervous system. From epilepsy and stroke management to complex neurosurgical interventions, our team provides rapid and accurate treatment.</p>
+                        <p>Advanced care for conditions of the brain, spinal cord, and nervous system. From epilepsy and
+                            stroke management to complex neurosurgical interventions, our team provides rapid and
+                            accurate treatment.</p>
                         <div class="dept-services">
                             <span class="svc-chip">EEG / EMG</span>
                             <span class="svc-chip">Stroke Unit</span>
@@ -733,7 +1493,8 @@
                 <!-- UROLOGY -->
                 <div class="dept-card fade-up" data-dept="urology" id="urology">
                     <div class="dept-img">
-                        <img src="https://images.unsplash.com/photo-1631217868264-e6b6dbe49688?w=600&h=300&fit=crop&crop=center" alt="Urology" />
+                        <img src="https://images.unsplash.com/photo-1559757175-053139280de2?q=80&w=1631&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Urology" />
                         <div class="dept-img-overlay"></div>
                         <div class="dept-img-tag">Urology</div>
                         <div class="dept-icon-badge"><i data-lucide="activity"></i></div>
@@ -741,7 +1502,9 @@
                     <div class="dept-body">
                         <h3>Urology</h3>
                         <div class="dept-tagline">Urinary & Reproductive Health</div>
-                        <p>Comprehensive urological care for men and women covering kidney stones, prostate conditions, bladder disorders, and urinary tract infections. We offer both medical and minimally invasive surgical solutions.</p>
+                        <p>Comprehensive urological care for men and women covering kidney stones, prostate conditions,
+                            bladder disorders, and urinary tract infections. We offer both medical and minimally
+                            invasive surgical solutions.</p>
                         <div class="dept-services">
                             <span class="svc-chip">Kidney Stone Laser</span>
                             <span class="svc-chip">TURP</span>
@@ -758,7 +1521,8 @@
                 <!-- GASTROENTEROLOGY -->
                 <div class="dept-card fade-up" data-dept="gastrology" id="gastrology">
                     <div class="dept-img">
-                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&h=300&fit=crop&crop=center" alt="Gastroenterology" />
+                        <img src="https://images.unsplash.com/photo-1743767587835-7a80fe384236?q=80&w=1655&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Gastroenterology" />
                         <div class="dept-img-overlay"></div>
                         <div class="dept-img-tag">Gastroenterology</div>
                         <div class="dept-icon-badge"><i data-lucide="stethoscope"></i></div>
@@ -766,7 +1530,9 @@
                     <div class="dept-body">
                         <h3>Gastroenterology</h3>
                         <div class="dept-tagline">Digestive System & Liver Care</div>
-                        <p>Specialized diagnosis and treatment of disorders affecting the digestive tract, liver, and pancreas. Our gastroenterologists use cutting-edge endoscopic techniques for accurate, minimally invasive care.</p>
+                        <p>Specialized diagnosis and treatment of disorders affecting the digestive tract, liver, and
+                            pancreas. Our gastroenterologists use cutting-edge endoscopic techniques for accurate,
+                            minimally invasive care.</p>
                         <div class="dept-services">
                             <span class="svc-chip">Endoscopy</span>
                             <span class="svc-chip">Colonoscopy</span>
@@ -775,7 +1541,8 @@
                             <span class="svc-chip">IBD Clinic</span>
                         </div>
                         <div class="dept-foot">
-                            <a href="gastroenterology.html" class="dept-link">Know More <i data-lucide="arrow-right"></i></a>
+                            <a href="gastroenterology.html" class="dept-link">Know More <i
+                                    data-lucide="arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -783,7 +1550,8 @@
                 <!-- PEDIATRICS -->
                 <div class="dept-card fade-up" data-dept="pediatrics" id="pediatrics">
                     <div class="dept-img">
-                        <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=600&h=300&fit=crop&crop=center" alt="Pediatrics" />
+                        <img src="https://images.unsplash.com/photo-1708687045030-26702e62fc65?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Pediatrics" />
                         <div class="dept-img-overlay"></div>
                         <div class="dept-img-tag">Pediatrics</div>
                         <div class="dept-icon-badge"><i data-lucide="smile"></i></div>
@@ -791,7 +1559,9 @@
                     <div class="dept-body">
                         <h3>Pediatrics</h3>
                         <div class="dept-tagline">Children's Health & Newborn Care</div>
-                        <p>Dedicated child-friendly care from birth through adolescence. Our pediatric team specialises in neonatal health, childhood infections, developmental disorders, and preventive vaccination programs.</p>
+                        <p>Dedicated child-friendly care from birth through adolescence. Our pediatric team specialises
+                            in neonatal health, childhood infections, developmental disorders, and preventive
+                            vaccination programs.</p>
                         <div class="dept-services">
                             <span class="svc-chip">Neonatal Care</span>
                             <span class="svc-chip">Immunisation</span>
@@ -814,7 +1584,8 @@
         <div class="dept-cta-box">
             <div style="position:relative;z-index:2">
                 <h2>Not Sure Which Department You Need?</h2>
-                <p>Our care coordinators are available 24/7 to guide you to the right specialist — quickly and without the confusion. Just call or book online.</p>
+                <p>Our care coordinators are available 24/7 to guide you to the right specialist — quickly and without
+                    the confusion. Just call or book online.</p>
             </div>
             <div class="cta-btns">
                 <a href="contact.html" class="btn-white"><i data-lucide="calendar-check"></i> Book Appointment</a>
@@ -826,23 +1597,25 @@
     <!-- FOOTER -->
     <footer>
         <div class="f-grid">
+
             <div class="f-brand">
                 <a href="index.html" class="nav-logo" style="text-decoration:none">
                     <div class="logo-icon"><i data-lucide="hospital"></i></div>
                     <div>
-                        <div class="logo-name" style="color:#fff">MNR Medicity</div>
+                        <div class="logo-name" style="color:#fff">MNR Hospital</div>
                         <div class="logo-sub" style="color:var(--teal-light)">Advanced Healthcare</div>
                     </div>
                 </a>
-                <p>MNR Medicity is committed to delivering compassionate, expert, and affordable healthcare to every patient across Mangalore and Coastal Karnataka.</p>
+                <p>MNR Hospital is committed to delivering compassionate, expert, and affordable healthcare to every
+                    patient across Mangalore and Coastal Karnataka.</p>
                 <div class="f-socials">
-                    <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
                     <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
-                    <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
-                    <a href="#" aria-label="Youtube"><i data-lucide="youtube"></i></a>
+                    <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
                     <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                    <a href="#" aria-label="Youtube"><i data-lucide="youtube"></i></a>
                 </div>
             </div>
+
             <div class="f-col">
                 <h4>Quick Links</h4>
                 <ul>
@@ -853,47 +1626,60 @@
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </div>
+
             <div class="f-col">
                 <h4>Departments</h4>
                 <ul>
-                    <li><a href="#cardiology">Cardiology</a></li>
-                    <li><a href="#pulmonology">Pulmonology</a></li>
-                    <li><a href="#gynecology">Gynecology</a></li>
-                    <li><a href="#neurology">Neurology</a></li>
-                    <li><a href="#urology">Urology</a></li>
-                    <li><a href="#gastrology">Gastroenterology</a></li>
-                    <li><a href="#pediatrics">Pediatrics</a></li>
+                    <li><a href="cardiology.html">Cardiology</a></li>
+                    <li><a href="pulmonology.html">Pulmonology</a></li>
+                    <li><a href="gynecology.html">Gynecology</a></li>
+                    <li><a href="neurology.html">Neurology</a></li>
+                    <li><a href="urology.html">Urology</a></li>
+                    <li><a href="gastroenterology.html">Gastroenterology</a></li>
+                    <li><a href="pediatrics.html">Pediatrics</a></li>
                 </ul>
             </div>
+
             <div class="f-col">
                 <h4>Contact Information</h4>
-                <div class="f-cr"><i data-lucide="map-pin"></i>
-                    <p>MNR Medicity Campus Kolambe, Behind Bajpe Proper, Karnataka 574142</p>
-                </div>
-                <div class="f-cr"><i data-lucide="phone"></i>
-                    <p><a href="tel:9876543210">9876543210</a></p>
+                <a href="https://maps.app.goo.gl/PgNGSG4DAPqkmZ1C6" target="_blank"
+                    style="text-decoration: none; color: inherit;">
+                    <div class="f-cr">
+                        <i data-lucide="map-pin"></i>
+                        <p>MNR medicity Campus Kolambe, Behind Bajpe Proper, Karnataka 574142</p>
+                    </div>
+                </a>
+                <div class="f-cr">
+                    <i data-lucide="phone"></i>
+                    <p><a href="tel:9876543210">+91 9876543210</a></p>
                 </div>
                 <div class="f-cr"><i data-lucide="mail"></i>
-                    <p><a href="/cdn-cgi/l/email-protection#6c05020a032c01021e010908050f051815420f0301"><span class="__cf_email__" data-cfemail="a7cec9c1c8e7cac9d5cac2c3cec4ced3de89c4c8ca">[email&#160;protected]</span></a></p>
+                    <p><a href="mailto:info@mnrmedicity.com">info@mnrmedicity.com</a></p>
                 </div>
-                <div class="f-cr"><i data-lucide="clock"></i>
-                    <p>OPD: Mon–Sat 8:00 AM – 8:00 PM<br>Emergency: 24/7</p>
-                </div>
+                <a href="contact.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div class="f-cr">
+                        <i data-lucide="clock"></i>
+                        <p>Emergency Services : 24/7</p>
+                    </div>
+                </a>
             </div>
+
         </div>
         <div class="f-bottom">
-            <span>&copy; 2025 MNR Medicity. All rights reserved.</span>
-            <div class="f-blinks">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Sitemap</a>
-            </div>
+            <span>&copy;
+                <script>document.write(new Date().getFullYear())</script> MNR Hospital. All rights reserved.
+            </span>
+            <span class="f-blinks">
+                Designed and Developed by <a href="http://thinkb.agency/" target="_blank" style="font-weight: 800;">
+                    thinkB</a>
+            </span>
         </div>
     </footer>
 
     <button class="scroll-top" id="scrollTop"><i data-lucide="chevron-up"></i></button>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
         lucide.createIcons();
 
         // Navbar scroll
@@ -943,4 +1729,5 @@
 
     </script>
 </body>
+
 </html>

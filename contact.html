@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us | MNR Medicity</title>
+    <title>Contact Us | MNR Hospital</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700&family=DM+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet" />
@@ -12,8 +12,8 @@
     <style>
         :root {
             --navy: #0a1f3c;
-            --teal: #0e7c7b;
-            --teal-light: #13a8a7;
+            --teal: #0b79aa;
+            --teal-light: #0b79aa;
             --gold: #c8992a;
             --gold-light: #e8b93e;
             --cream: #f8f4ee;
@@ -53,7 +53,7 @@
             background: rgba(255, 255, 255, .97);
             backdrop-filter: blur(14px);
             border-bottom: 1px solid rgba(10, 31, 60, .08);
-            box-shadow: 0 2px 20px rgba(10, 31, 60, .06);
+            box-shadow: 0 2px 20px rgba(10, 31, 60, .08);
             transition: all .35s ease;
         }
 
@@ -145,7 +145,6 @@
 
         .nav-link:hover,
         .nav-link.active {
-            background: rgba(14, 124, 123, .09);
             color: var(--teal);
         }
 
@@ -176,7 +175,6 @@
         }
 
         .drop.open .drop-btn {
-            background: rgba(14, 124, 123, .09);
             color: var(--teal);
         }
 
@@ -211,7 +209,7 @@
             visibility: hidden;
             pointer-events: none;
             transition: opacity .22s ease, transform .22s ease, visibility .22s;
-            border: 1px solid rgba(10, 31, 60, .07);
+            border: 1px solid rgba(10, 31, 60, .08);
             z-index: 200;
         }
 
@@ -253,12 +251,11 @@
             gap: 7px;
             background: linear-gradient(135deg, var(--teal), var(--teal-light));
             color: #fff !important;
-            padding: 9px 20px;
+            padding: 13px 26px;
             border-radius: 50px;
             font-size: 14px;
             font-weight: 600;
             text-decoration: none;
-            box-shadow: 0 4px 14px rgba(14, 124, 123, .35);
             transition: all .25s;
         }
 
@@ -406,7 +403,7 @@
         }
 
         .fade-up:nth-child(2) {
-            transition-delay: .07s
+            transition-delay: .08s
         }
 
         .fade-up:nth-child(3) {
@@ -537,7 +534,7 @@
 
         .q-card {
             padding: 32px 28px;
-            border-right: 1px solid rgba(255, 255, 255, .07);
+            border-right: 1px solid rgba(255, 255, 255, .08);
             position: relative;
             overflow: hidden;
             transition: background .3s;
@@ -640,9 +637,9 @@
         /* ── CONTACT FORM ── */
         .form-wrap {
             background: #fff;
+            border: 1.5px solid rgba(10, 31, 60, .05);
             border-radius: 28px;
             padding: 48px 44px;
-            box-shadow: var(--shadow);
         }
 
         .form-header {
@@ -849,39 +846,7 @@
         .time-slots input[type="radio"]:checked+label {
             border-color: var(--teal);
             color: var(--teal);
-            background: rgba(14, 124, 123, .07);
-        }
-
-        /* Consent checkbox */
-        .check-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 11px;
-        }
-
-        .check-row input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            border-radius: 5px;
-            accent-color: var(--teal);
-            cursor: pointer;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-
-        .check-row span {
-            font-size: 13px;
-            color: var(--gray-mid);
-            line-height: 1.6;
-        }
-
-        .check-row span a {
-            color: var(--teal);
-            text-decoration: none;
-        }
-
-        .check-row span a:hover {
-            text-decoration: underline;
+            background: rgba(14, 124, 123, .08);
         }
 
         .btn-submit {
@@ -898,7 +863,6 @@
             font-weight: 700;
             border: none;
             cursor: pointer;
-            box-shadow: 0 6px 22px rgba(14, 124, 123, .40);
             transition: all .3s;
             width: 100%;
             margin-top: 26px;
@@ -912,7 +876,6 @@
 
         .btn-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(14, 124, 123, .50);
         }
 
         .btn-submit:hover svg {
@@ -982,7 +945,7 @@
         }
 
         .btn-reset:hover {
-            background: rgba(14, 124, 123, .07);
+            background: rgba(14, 124, 123, .08);
         }
 
         /* ── INFO PANEL ── */
@@ -996,7 +959,6 @@
             background: #fff;
             border-radius: 22px;
             padding: 30px 28px;
-            box-shadow: 0 2px 18px rgba(10, 31, 60, .06);
             border: 1.5px solid rgba(10, 31, 60, .05);
         }
 
@@ -1021,7 +983,7 @@
             align-items: flex-start;
             gap: 14px;
             padding: 13px 0;
-            border-bottom: 1px solid rgba(10, 31, 60, .06);
+            border-bottom: 1px solid rgba(10, 31, 60, .08);
         }
 
         .contact-row:last-child {
@@ -1088,7 +1050,7 @@
         }
 
         .opd-table tr {
-            border-bottom: 1px solid rgba(10, 31, 60, .06);
+            border-bottom: 1px solid rgba(10, 31, 60, .08);
         }
 
         .opd-table tr:last-child {
@@ -1124,7 +1086,7 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(231, 76, 60, .08);
+            background: rgb(62 64 133 / 8%);
             color: #c0392b;
             font-size: 12px;
             font-weight: 700;
@@ -1293,7 +1255,7 @@
         .faq-item {
             background: #fff;
             border-radius: 18px;
-            border: 1.5px solid rgba(10, 31, 60, .07);
+            border: 1.5px solid rgba(10, 31, 60, .08);
             overflow: hidden;
             transition: box-shadow .3s;
         }
@@ -1394,7 +1356,7 @@
             width: 36px;
             height: 36px;
             border-radius: 9px;
-            background: rgba(255, 255, 255, .07);
+            background: rgba(255, 255, 255, .08);
             color: rgba(255, 255, 255, .60);
             display: flex;
             align-items: center;
@@ -1466,7 +1428,7 @@
         .f-bottom {
             max-width: 1300px;
             margin: 0 auto;
-            border-top: 1px solid rgba(255, 255, 255, .07);
+            border-top: 1px solid rgba(255, 255, 255, .08);
             padding: 22px 0;
             display: flex;
             justify-content: space-between;
@@ -1486,10 +1448,7 @@
             color: var(--teal-light);
         }
 
-        .f-blinks {
-            display: flex;
-            gap: 20px;
-        }
+
 
         .scroll-top {
             position: fixed;
@@ -1506,7 +1465,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 18px rgba(14, 124, 123, .40);
+
             opacity: 0;
             pointer-events: none;
             transition: all .3s;
@@ -1540,7 +1499,7 @@
             }
 
             .q-card {
-                border-bottom: 1px solid rgba(255, 255, 255, .07);
+                border-bottom: 1px solid rgba(255, 255, 255, .08);
             }
 
             .q-card:nth-child(2) {
@@ -1609,6 +1568,12 @@
                 border-right: none;
             }
         }
+
+        @media (max-width:350px) {
+            .btn-submit {
+                font-size: 11.4px;
+            }
+        }
     </style>
 </head>
 
@@ -1620,24 +1585,31 @@
             <a href="index.html" class="nav-logo">
                 <div class="logo-icon"><i data-lucide="hospital"></i></div>
                 <div>
-                    <div class="logo-name">MNR Medicity</div>
+                    <div class="logo-name">MNR Hospital</div>
                     <div class="logo-sub">Advanced Healthcare</div>
                 </div>
             </a>
+
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="about.html" class="nav-link">About Us</a></li>
                 <li class="drop">
                     <button class="drop-btn">Departments <i data-lucide="chevron-down"></i></button>
                     <div class="drop-menu">
-                        <a href="cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i> Cardiology</a>
-                        <a href="pulmonology.html" class="drop-item"><i data-lucide="wind"></i> Pulmonology</a>
-                        <a href="gynecology.html" class="drop-item"><i data-lucide="baby"></i> Gynecology</a>
+                        <a href="cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i>
+                            Cardiology</a>
+                        <a href="pulmonology.html" class="drop-item"><i data-lucide="wind"></i>
+                            Pulmonology</a>
+                        <a href="gynecology.html" class="drop-item"><i data-lucide="baby"></i>
+                            Gynecology</a>
                         <a href="neurology.html" class="drop-item"><i data-lucide="brain"></i> Neurology</a>
                         <a href="urology.html" class="drop-item"><i data-lucide="activity"></i> Urology</a>
                         <a href="gastroenterology.html" class="drop-item"><i data-lucide="stethoscope"></i>
                             Gastroenterology</a>
-                        <a href="pediatrics.html" class="drop-item"><i data-lucide="smile"></i> Pediatrics</a>
+                        <a href="pediatrics.html" class="drop-item"><i data-lucide="smile"></i>
+                            Pediatrics</a>
+                        <a href="departments.html" class="drop-item"><i data-lucide="chevron-right"></i>
+                            View All</a>
                     </div>
                 </li>
                 <li><a href="doctors.html" class="nav-link">Doctors</a></li>
@@ -1654,7 +1626,10 @@
                 <li><a href="contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
                 </li>
             </ul>
-            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+
+            <button class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
@@ -1669,8 +1644,10 @@
             <a href="gynecology.html" class="mob-link"><i data-lucide="baby"></i> Gynecology</a>
             <a href="neurology.html" class="mob-link"><i data-lucide="brain"></i> Neurology</a>
             <a href="urology.html" class="mob-link"><i data-lucide="activity"></i> Urology</a>
-            <a href="gastroenterology.html" class="mob-link"><i data-lucide="stethoscope"></i> Gastroenterology</a>
+            <a href="gastroenterology.html" class="mob-link"><i data-lucide="stethoscope"></i>
+                Gastroenterology</a>
             <a href="pediatrics.html" class="mob-link"><i data-lucide="smile"></i> Pediatrics</a>
+            <a href="departments.html" class="mob-link"><i data-lucide="chevron-right"></i> View All</a>
         </div>
         <a href="doctors.html" class="mob-link"><i data-lucide="user-round"></i> Doctors</a>
         <a href="contact.html" class="mob-link"><i data-lucide="phone"></i> Contact Us</a>
@@ -1704,8 +1681,8 @@
             <div class="q-card fade-up">
                 <div class="q-ico"><i data-lucide="phone-call"></i></div>
                 <div class="q-label">Call Us</div>
-                <div class="q-val"><a href="tel:9876543210">9876543210</a></div>
-                <div class="q-sub">Mon – Sat, 8AM – 8PM</div>
+                <div class="q-val"><a href="tel:9876543210">+91 9876543210</a></div>
+                <div class="q-sub">24/7 Services</div>
             </div>
             <div class="q-card fade-up">
                 <div class="q-ico"><i data-lucide="mail"></i></div>
@@ -1713,12 +1690,18 @@
                 <div class="q-val"><a href="mailto:info@mnrmedicity.com">info@mnrmedicity.com</a></div>
                 <div class="q-sub">Reply within 24 hours</div>
             </div>
-            <div class="q-card fade-up">
-                <div class="q-ico"><i data-lucide="map-pin"></i></div>
+            <a style="text-decoration: none;" href="https://maps.app.goo.gl/PgNGSG4DAPqkmZ1C6" class="q-card fade-up" target="_blank" rel="noopener"
+                aria-label="Visit MNR Medicity Campus, Kolambe, Behind Bajpe, Karnataka on Google Maps">
+
+                <div class="q-ico">
+                    <i data-lucide="map-pin" aria-hidden="true"></i>
+                </div>
+
                 <div class="q-label">Visit Us</div>
                 <div class="q-val">MNR Medicity Campus</div>
                 <div class="q-sub">Kolambe, Behind Bajpe, Karnataka 574142</div>
-            </div>
+
+            </a>
             <div class="q-card fade-up">
                 <div class="q-ico"><i data-lucide="siren"></i></div>
                 <div class="q-label">Emergency</div>
@@ -1840,19 +1823,12 @@
                                     placeholder="Briefly describe your symptoms or reason for the visit…"></textarea>
                             </div>
 
-                            <!-- Consent -->
-                            <div class="check-row">
-                                <input type="checkbox" id="consent" />
-                                <span>I agree to the <a href="#">Privacy Policy</a> and consent to MNR Medicity
-                                    contacting me regarding this appointment request.</span>
-                            </div>
                             <span class="err-msg" id="consentErr"
                                 style="display:none;font-size:11px;color:#e74c3c;margin-top:6px;">You must agree to
                                 continue</span>
 
                             <button type="submit" class="btn-submit" id="submitBtn">
-                                <i data-lucide="calendar-check"></i> Send Appointment Request <i
-                                    data-lucide="arrow-right"></i>
+                                <i data-lucide="calendar-check"></i>Book Appointment<i data-lucide="arrow-right"></i>
                             </button>
                         </form>
                     </div>
@@ -1861,7 +1837,7 @@
                     <div class="form-success" id="formSuccess">
                         <div class="success-ico"><i data-lucide="check"></i></div>
                         <h3>Request Sent!</h3>
-                        <p>Thank you. Our team will call you within 2 hours to confirm your appointment at MNR Medicity.
+                        <p>Thank you. Our team will call you within 2 hours to confirm your appointment at MNR Hospital.
                         </p>
                         <button class="btn-reset" id="resetBtn"><i data-lucide="rotate-ccw"></i> Submit Another
                             Request</button>
@@ -1878,14 +1854,15 @@
                             <div class="c-ico"><i data-lucide="phone-call"></i></div>
                             <div>
                                 <div class="c-label">Main Line</div>
-                                <div class="c-val"><a href="tel:9876543210">9876543210</a></div>
+                                <div class="c-val"><a href="tel:9876543210">+91 9876543210</a></div>
                             </div>
                         </div>
                         <div class="contact-row">
                             <div class="c-ico"><i data-lucide="phone-forwarded"></i></div>
                             <div>
                                 <div class="c-label">Emergency / Casualty</div>
-                                <div class="c-val"><a href="tel:9876543210">9876543210</a> &nbsp;·&nbsp; 24 / 7</div>
+                                <div class="c-val"><a href="tel:9876543210">+91 9876543210</a> &nbsp;·&nbsp; 24 / 7
+                                </div>
                             </div>
                         </div>
                         <div class="contact-row">
@@ -1899,7 +1876,15 @@
                             <div class="c-ico"><i data-lucide="map-pin"></i></div>
                             <div>
                                 <div class="c-label">Address</div>
-                                <div class="c-val">MNR Medicity Campus Kolambe,<br>Behind Bajpe Proper, Karnataka 574142
+                                <div class="c-val">
+                                    <a href="https://maps.app.goo.gl/PgNGSG4DAPqkmZ1C6" target="_blank" rel="noopener"
+                                        aria-label="Open MNR Medicity Campus location in Google Maps"
+                                        style="text-decoration:none; color:inherit;">
+
+                                        MNR Medicity Campus Kolambe,<br>
+                                        Behind Bajpe Proper, Karnataka 574142
+
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -1909,7 +1894,7 @@
                     <div class="info-block fade-up">
                         <h3><i data-lucide="share-2"></i> Follow Us</h3>
                         <p style="font-size:13px;color:var(--gray-mid);margin-bottom:16px;line-height:1.65">Stay
-                            connected for health tips, updates, and patient stories from MNR Medicity.</p>
+                            connected for health tips, updates, and patient stories from MNR Hospital.</p>
                         <div class="social-links">
                             <a href="#" class="soc-btn ig"><i data-lucide="instagram"></i></a>
                             <a href="#" class="soc-btn fb"><i data-lucide="facebook"></i></a>
@@ -1927,9 +1912,9 @@
     <div class="map-sec">
         <div class="map-wrap">
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1944.063663707912!2d74.9099614!3d12.9637033!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba356fca8ca05c3%3A0xf36b998ea2d366c8!2sPana%20Pre-University%20College!5e0!3m2!1sen!2sin!4v1773220117150!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1944.083663707912!2d74.9099614!3d12.9637033!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba356fca8ca05c3%3A0xf36b998ea2d366c8!2sPana%20Pre-University%20College!5e0!3m2!1sen!2sin!4v1773220117150!5m2!1sen!2sin"
                 allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                title="MNR Medicity Location">
+                title="MNR Hospital Location">
             </iframe>
         </div>
     </div>
@@ -1941,7 +1926,7 @@
                 <span class="s-tag">FAQs</span>
                 <h2 class="s-title">Frequently Asked <em>Questions</em></h2>
                 <p style="font-size:15px;color:var(--gray-mid);line-height:1.75">Quick answers to the most common
-                    questions patients ask before visiting MNR Medicity.</p>
+                    questions patients ask before visiting MNR Hospital.</p>
             </div>
             <div class="faq-grid">
 
@@ -1971,7 +1956,7 @@
 
                 <div class="faq-item fade-up">
                     <div class="faq-q">
-                        <span>Does MNR Medicity accept insurance?</span>
+                        <span>Does MNR Hospital accept insurance?</span>
                         <div class="faq-icon"><i data-lucide="plus"></i></div>
                     </div>
                     <div class="faq-a">
@@ -1983,7 +1968,7 @@
 
                 <div class="faq-item fade-up">
                     <div class="faq-q">
-                        <span>How do I reach MNR Medicity from Mangalore city?</span>
+                        <span>How do I reach MNR Hospital from Mangalore city?</span>
                         <div class="faq-icon"><i data-lucide="plus"></i></div>
                     </div>
                     <div class="faq-a">
@@ -2007,7 +1992,7 @@
 
                 <div class="faq-item fade-up">
                     <div class="faq-q">
-                        <span>Can I get a second opinion at MNR Medicity?</span>
+                        <span>Can I get a second opinion at MNR Hospital?</span>
                         <div class="faq-icon"><i data-lucide="plus"></i></div>
                     </div>
                     <div class="faq-a">
@@ -2024,24 +2009,25 @@
     <!-- FOOTER -->
     <footer>
         <div class="f-grid">
+
             <div class="f-brand">
                 <a href="index.html" class="nav-logo" style="text-decoration:none">
                     <div class="logo-icon"><i data-lucide="hospital"></i></div>
                     <div>
-                        <div class="logo-name" style="color:#fff">MNR Medicity</div>
+                        <div class="logo-name" style="color:#fff">MNR Hospital</div>
                         <div class="logo-sub" style="color:var(--teal-light)">Advanced Healthcare</div>
                     </div>
                 </a>
-                <p>MNR Medicity is committed to delivering compassionate, expert, and affordable healthcare to every
+                <p>MNR Hospital is committed to delivering compassionate, expert, and affordable healthcare to every
                     patient across Mangalore and Coastal Karnataka.</p>
                 <div class="f-socials">
-                    <a href="#"><i data-lucide="facebook"></i></a>
-                    <a href="#"><i data-lucide="instagram"></i></a>
-                    <a href="#"><i data-lucide="twitter"></i></a>
-                    <a href="#"><i data-lucide="youtube"></i></a>
-                    <a href="#"><i data-lucide="linkedin"></i></a>
+                    <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                    <a href="#" aria-label="Youtube"><i data-lucide="youtube"></i></a>
                 </div>
             </div>
+
             <div class="f-col">
                 <h4>Quick Links</h4>
                 <ul>
@@ -2052,6 +2038,7 @@
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </div>
+
             <div class="f-col">
                 <h4>Departments</h4>
                 <ul>
@@ -2064,26 +2051,40 @@
                     <li><a href="pediatrics.html">Pediatrics</a></li>
                 </ul>
             </div>
+
             <div class="f-col">
                 <h4>Contact Information</h4>
-                <div class="f-cr"><i data-lucide="map-pin"></i>
-                    <p>MNR Medicity Campus Kolambe, Behind Bajpe Proper, Karnataka 574142</p>
-                </div>
-                <div class="f-cr"><i data-lucide="phone"></i>
-                    <p><a href="tel:9876543210">9876543210</a></p>
+                <a href="https://maps.app.goo.gl/PgNGSG4DAPqkmZ1C6" target="_blank"
+                    style="text-decoration: none; color: inherit;">
+                    <div class="f-cr">
+                        <i data-lucide="map-pin"></i>
+                        <p>MNR medicity Campus Kolambe, Behind Bajpe Proper, Karnataka 574142</p>
+                    </div>
+                </a>
+                <div class="f-cr">
+                    <i data-lucide="phone"></i>
+                    <p><a href="tel:9876543210">+91 9876543210</a></p>
                 </div>
                 <div class="f-cr"><i data-lucide="mail"></i>
                     <p><a href="mailto:info@mnrmedicity.com">info@mnrmedicity.com</a></p>
                 </div>
-                <div class="f-cr"><i data-lucide="clock"></i>
-                    <p>OPD: Mon–Sat 8:00 AM – 8:00 PM<br>Emergency: 24/7</p>
-                </div>
+                <a href="contact.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div class="f-cr">
+                        <i data-lucide="clock"></i>
+                        <p>Emergency Services : 24/7</p>
+                    </div>
+                </a>
             </div>
+
         </div>
         <div class="f-bottom">
-            <span>&copy; 2025 MNR Medicity. All rights reserved.</span>
-            <div class="f-blinks"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Sitemap</a>
-            </div>
+            <span>&copy;
+                <script>document.write(new Date().getFullYear())</script> MNR Hospital. All rights reserved.
+            </span>
+            <span class="f-blinks">
+                Designed and Developed by <a href="http://thinkb.agency/" target="_blank" style="font-weight: 800;">
+                    thinkB</a>
+            </span>
         </div>
     </footer>
 
@@ -2130,7 +2131,7 @@
         // Fade-up observer
         var obs = new IntersectionObserver(function (entries) {
             entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-        }, { threshold: 0.07 });
+        }, { threshold: 0.08 });
         document.querySelectorAll('.fade-up').forEach(function (el) { obs.observe(el); });
 
         // Set min date to today

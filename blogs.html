@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Health Blogs | MNR Medicity</title>
+    <title>Health Blogs | MNR Hospital</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700&family=DM+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet" />
@@ -12,8 +12,8 @@
     <style>
         :root {
             --navy: #0a1f3c;
-            --teal: #0e7c7b;
-            --teal-light: #13a8a7;
+            --teal: #0b79aa;
+            --teal-light: #0b79aa;
             --gold: #c8992a;
             --gold-light: #e8b93e;
             --cream: #f8f4ee;
@@ -53,7 +53,7 @@
             background: rgba(255, 255, 255, .97);
             backdrop-filter: blur(14px);
             border-bottom: 1px solid rgba(10, 31, 60, .08);
-            box-shadow: 0 2px 20px rgba(10, 31, 60, .06);
+            box-shadow: 0 2px 20px rgba(10, 31, 60, .08);
             transition: all .35s ease;
         }
 
@@ -145,7 +145,6 @@
 
         .nav-link:hover,
         .nav-link.active {
-            background: rgba(14, 124, 123, .09);
             color: var(--teal);
         }
 
@@ -176,7 +175,6 @@
         }
 
         .drop.open .drop-btn {
-            background: rgba(14, 124, 123, .09);
             color: var(--teal);
         }
 
@@ -211,7 +209,7 @@
             visibility: hidden;
             pointer-events: none;
             transition: opacity .22s ease, transform .22s ease, visibility .22s;
-            border: 1px solid rgba(10, 31, 60, .07);
+            border: 1px solid rgba(10, 31, 60, .08);
             z-index: 200;
         }
 
@@ -253,12 +251,10 @@
             gap: 7px;
             background: linear-gradient(135deg, var(--teal), var(--teal-light));
             color: #fff !important;
-            padding: 9px 20px;
-            border-radius: 50px;
+            padding: 13px 26px;            border-radius: 50px;
             font-size: 14px;
             font-weight: 600;
             text-decoration: none;
-            box-shadow: 0 4px 14px rgba(14, 124, 123, .35);
             transition: all .25s;
         }
 
@@ -387,7 +383,7 @@
         }
 
         .fade-up:nth-child(2) {
-            transition-delay: .07s
+            transition-delay: .08s
         }
 
         .fade-up:nth-child(3) {
@@ -518,7 +514,7 @@
             overflow: hidden;
             box-shadow: var(--shadow-strong);
             background: #fff;
-            border: 1.5px solid rgba(10, 31, 60, .06);
+            border: 1.5px solid rgba(10, 31, 60, .08);
             transition: transform .4s ease, box-shadow .4s ease;
         }
 
@@ -528,7 +524,6 @@
         }
 
         .feat-img {
-            height: 460px;
             position: relative;
             overflow: hidden;
         }
@@ -820,21 +815,14 @@
             background: #fff;
             border-radius: 22px;
             overflow: hidden;
-            border: 1.5px solid rgba(10, 31, 60, .07);
-            box-shadow: 0 2px 16px rgba(10, 31, 60, .06);
+            border: 1.5px solid rgba(10, 31, 60, .08);
             transition: all .35s cubic-bezier(.25, .46, .45, .94);
             display: flex;
             flex-direction: column;
         }
 
-        .blog-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-strong);
-            border-color: transparent;
-        }
-
         .card-img {
-            height: 220px;
+            height: 250px;
             position: relative;
             overflow: hidden;
             background: var(--gray-light);
@@ -849,7 +837,7 @@
         }
 
         .blog-card:hover .card-img img {
-            transform: scale(1.06);
+            transform: scale(1.08);
         }
 
         .card-img-overlay {
@@ -932,7 +920,7 @@
             align-items: center;
             justify-content: space-between;
             padding-top: 16px;
-            border-top: 1px solid rgba(10, 31, 60, .07);
+            border-top: 1px solid rgba(10, 31, 60, .08);
         }
 
         .card-author {
@@ -1012,7 +1000,7 @@
         }
 
         .cat-wellness {
-            background: linear-gradient(135deg, #0e7c7b, #13a8a7);
+            background: linear-gradient(135deg, #0b79aa, #0b79aa);
         }
 
         /* ── NO RESULTS ── */
@@ -1082,7 +1070,7 @@
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            background: rgba(200, 153, 42, .07);
+            background: rgba(200, 153, 42, .08);
             pointer-events: none;
         }
 
@@ -1188,7 +1176,7 @@
             width: 36px;
             height: 36px;
             border-radius: 9px;
-            background: rgba(255, 255, 255, .07);
+            background: rgba(255, 255, 255, .08);
             color: rgba(255, 255, 255, .60);
             display: flex;
             align-items: center;
@@ -1260,7 +1248,7 @@
         .f-bottom {
             max-width: 1300px;
             margin: 0 auto;
-            border-top: 1px solid rgba(255, 255, 255, .07);
+            border-top: 1px solid rgba(255, 255, 255, .08);
             padding: 22px 0;
             display: flex;
             justify-content: space-between;
@@ -1280,10 +1268,7 @@
             color: var(--teal-light);
         }
 
-        .f-blinks {
-            display: flex;
-            gap: 20px;
-        }
+ 
 
         .scroll-top {
             position: fixed;
@@ -1300,7 +1285,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 18px rgba(14, 124, 123, .40);
+             
             opacity: 0;
             pointer-events: none;
             transition: all .3s;
@@ -1400,24 +1385,31 @@
             <a href="index.html" class="nav-logo">
                 <div class="logo-icon"><i data-lucide="hospital"></i></div>
                 <div>
-                    <div class="logo-name">MNR Medicity</div>
+                    <div class="logo-name">MNR Hospital</div>
                     <div class="logo-sub">Advanced Healthcare</div>
                 </div>
             </a>
+
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="about.html" class="nav-link">About Us</a></li>
                 <li class="drop">
                     <button class="drop-btn">Departments <i data-lucide="chevron-down"></i></button>
                     <div class="drop-menu">
-                        <a href="cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i> Cardiology</a>
-                        <a href="pulmonology.html" class="drop-item"><i data-lucide="wind"></i> Pulmonology</a>
-                        <a href="gynecology.html" class="drop-item"><i data-lucide="baby"></i> Gynecology</a>
+                        <a href="cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i>
+                            Cardiology</a>
+                        <a href="pulmonology.html" class="drop-item"><i data-lucide="wind"></i>
+                            Pulmonology</a>
+                        <a href="gynecology.html" class="drop-item"><i data-lucide="baby"></i>
+                            Gynecology</a>
                         <a href="neurology.html" class="drop-item"><i data-lucide="brain"></i> Neurology</a>
                         <a href="urology.html" class="drop-item"><i data-lucide="activity"></i> Urology</a>
                         <a href="gastroenterology.html" class="drop-item"><i data-lucide="stethoscope"></i>
                             Gastroenterology</a>
-                        <a href="pediatrics.html" class="drop-item"><i data-lucide="smile"></i> Pediatrics</a>
+                        <a href="pediatrics.html" class="drop-item"><i data-lucide="smile"></i>
+                            Pediatrics</a>
+                        <a href="departments.html" class="drop-item"><i data-lucide="chevron-right"></i>
+                            View All</a>
                     </div>
                 </li>
                 <li><a href="doctors.html" class="nav-link">Doctors</a></li>
@@ -1434,7 +1426,10 @@
                 <li><a href="contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
                 </li>
             </ul>
-            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+
+            <button class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
@@ -1449,8 +1444,10 @@
             <a href="gynecology.html" class="mob-link"><i data-lucide="baby"></i> Gynecology</a>
             <a href="neurology.html" class="mob-link"><i data-lucide="brain"></i> Neurology</a>
             <a href="urology.html" class="mob-link"><i data-lucide="activity"></i> Urology</a>
-            <a href="gastroenterology.html" class="mob-link"><i data-lucide="stethoscope"></i> Gastroenterology</a>
+            <a href="gastroenterology.html" class="mob-link"><i data-lucide="stethoscope"></i>
+                Gastroenterology</a>
             <a href="pediatrics.html" class="mob-link"><i data-lucide="smile"></i> Pediatrics</a>
+            <a href="departments.html" class="mob-link"><i data-lucide="chevron-right"></i> View All</a>
         </div>
         <a href="doctors.html" class="mob-link"><i data-lucide="user-round"></i> Doctors</a>
         <a href="contact.html" class="mob-link"><i data-lucide="phone"></i> Contact Us</a>
@@ -1473,7 +1470,7 @@
                 <span>Health Blogs</span>
             </div>
             <h1>Insights from Our<br><em>Medical Experts</em></h1>
-            <p class="hero-sub">Trusted health articles written by MNR Medicity's specialists — covering heart health,
+            <p class="hero-sub">Trusted health articles written by MNR Hospital's specialists — covering heart health,
                 women's wellness, child care, and much more.</p>
         </div>
     </div>
@@ -1800,7 +1797,7 @@
                             <div class="card-author">
                                 <div class="card-author-av"><img
                                         src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=60&h=60&fit=crop&crop=faces"
-                                        alt="MNR Medicity" /></div>
+                                        alt="MNR Hospital" /></div>
                                 <span class="card-author-name">MNR Medical Team</span>
                             </div>
                             <span class="btn-card-read">Read More <i data-lucide="arrow-right"></i></span>
@@ -1826,7 +1823,7 @@
                 <span class="s-tag" style="color:var(--gold-light)">Stay Informed</span>
                 <h2>Get Health Tips Delivered to<br>Your <em>Inbox</em></h2>
                 <p>Join 12,000+ readers who receive our monthly health newsletter — expert articles, wellness guides,
-                    and updates from MNR Medicity's doctors.</p>
+                    and updates from MNR Hospital's doctors.</p>
             </div>
             <div class="nl-form">
                 <input type="email" class="nl-input" placeholder="Enter your email address" id="nlEmail" />
@@ -1838,24 +1835,25 @@
     <!-- FOOTER -->
     <footer>
         <div class="f-grid">
+
             <div class="f-brand">
                 <a href="index.html" class="nav-logo" style="text-decoration:none">
                     <div class="logo-icon"><i data-lucide="hospital"></i></div>
                     <div>
-                        <div class="logo-name" style="color:#fff">MNR Medicity</div>
+                        <div class="logo-name" style="color:#fff">MNR Hospital</div>
                         <div class="logo-sub" style="color:var(--teal-light)">Advanced Healthcare</div>
                     </div>
                 </a>
-                <p>MNR Medicity is committed to delivering compassionate, expert, and affordable healthcare to every
+                <p>MNR Hospital is committed to delivering compassionate, expert, and affordable healthcare to every
                     patient across Mangalore and Coastal Karnataka.</p>
                 <div class="f-socials">
-                    <a href="#"><i data-lucide="facebook"></i></a>
-                    <a href="#"><i data-lucide="instagram"></i></a>
-                    <a href="#"><i data-lucide="twitter"></i></a>
-                    <a href="#"><i data-lucide="youtube"></i></a>
-                    <a href="#"><i data-lucide="linkedin"></i></a>
+                    <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                    <a href="#" aria-label="Youtube"><i data-lucide="youtube"></i></a>
                 </div>
             </div>
+
             <div class="f-col">
                 <h4>Quick Links</h4>
                 <ul>
@@ -1866,6 +1864,7 @@
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </div>
+
             <div class="f-col">
                 <h4>Departments</h4>
                 <ul>
@@ -1878,26 +1877,40 @@
                     <li><a href="pediatrics.html">Pediatrics</a></li>
                 </ul>
             </div>
+
             <div class="f-col">
                 <h4>Contact Information</h4>
-                <div class="f-cr"><i data-lucide="map-pin"></i>
-                    <p>MNR Medicity Campus Kolambe, Behind Bajpe Proper, Karnataka 574142</p>
-                </div>
-                <div class="f-cr"><i data-lucide="phone"></i>
-                    <p><a href="tel:9876543210">9876543210</a></p>
+                <a href="https://maps.app.goo.gl/PgNGSG4DAPqkmZ1C6" target="_blank"
+                    style="text-decoration: none; color: inherit;">
+                    <div class="f-cr">
+                        <i data-lucide="map-pin"></i>
+                        <p>MNR medicity Campus Kolambe, Behind Bajpe Proper, Karnataka 574142</p>
+                    </div>
+                </a>
+                <div class="f-cr">
+                    <i data-lucide="phone"></i>
+                    <p><a href="tel:9876543210">+91 9876543210</a></p>
                 </div>
                 <div class="f-cr"><i data-lucide="mail"></i>
                     <p><a href="mailto:info@mnrmedicity.com">info@mnrmedicity.com</a></p>
                 </div>
-                <div class="f-cr"><i data-lucide="clock"></i>
-                    <p>OPD: Mon–Sat 8:00 AM – 8:00 PM<br>Emergency: 24/7</p>
-                </div>
+                <a href="contact.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div class="f-cr">
+                        <i data-lucide="clock"></i>
+                        <p>Emergency Services : 24/7</p>
+                    </div>
+                </a>
             </div>
+
         </div>
         <div class="f-bottom">
-            <span>&copy; 2025 MNR Medicity. All rights reserved.</span>
-            <div class="f-blinks"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Sitemap</a>
-            </div>
+            <span>&copy;
+                <script>document.write(new Date().getFullYear())</script> MNR Hospital. All rights reserved.
+            </span>
+            <span class="f-blinks">
+                Designed and Developed by <a href="http://thinkb.agency/" target="_blank" style="font-weight: 800;">
+                    thinkB</a>
+            </span>
         </div>
     </footer>
 
@@ -1917,7 +1930,7 @@
         ham.addEventListener('click', function () { mob.classList.toggle('open'); document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : ''; });
         mob.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { mob.classList.remove('open'); document.body.style.overflow = ''; }); });
         scrollBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-        var obs = new IntersectionObserver(function (entries) { entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } }); }, { threshold: 0.07 });
+        var obs = new IntersectionObserver(function (entries) { entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } }); }, { threshold: 0.08 });
         document.querySelectorAll('.fade-up').forEach(function (el) { obs.observe(el); });
 
         // Filter + search

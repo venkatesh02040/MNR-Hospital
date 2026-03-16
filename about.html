@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About Us | MNR Medicity</title>
+    <title>About Us | MNR Hospital</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700&family=DM+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet" />
@@ -12,8 +12,8 @@
     <style>
         :root {
             --navy: #0a1f3c;
-            --teal: #0e7c7b;
-            --teal-light: #13a8a7;
+            --teal: #0b79aa;
+            --teal-light: #0b79aa;
             --gold: #c8992a;
             --gold-light: #e8b93e;
             --cream: #f8f4ee;
@@ -53,7 +53,7 @@
             background: rgba(255, 255, 255, .97);
             backdrop-filter: blur(14px);
             border-bottom: 1px solid rgba(10, 31, 60, .08);
-            box-shadow: 0 2px 20px rgba(10, 31, 60, .06);
+            box-shadow: 0 2px 20px rgba(10, 31, 60, .08);
             transition: all .35s ease;
         }
 
@@ -145,7 +145,6 @@
 
         .nav-link:hover,
         .nav-link.active {
-            background: rgba(14, 124, 123, .09);
             color: var(--teal);
         }
 
@@ -176,7 +175,6 @@
         }
 
         .drop.open .drop-btn {
-            background: rgba(14, 124, 123, .09);
             color: var(--teal);
         }
 
@@ -211,7 +209,7 @@
             visibility: hidden;
             pointer-events: none;
             transition: opacity .22s ease, transform .22s ease, visibility .22s;
-            border: 1px solid rgba(10, 31, 60, .07);
+            border: 1px solid rgba(10, 31, 60, .08);
             z-index: 200;
         }
 
@@ -253,12 +251,11 @@
             gap: 7px;
             background: linear-gradient(135deg, var(--teal), var(--teal-light));
             color: #fff !important;
-            padding: 9px 20px;
+            padding: 13px 26px;
             border-radius: 50px;
             font-size: 14px;
             font-weight: 600;
             text-decoration: none;
-            box-shadow: 0 4px 14px rgba(14, 124, 123, .35);
             transition: all .25s;
         }
 
@@ -412,7 +409,6 @@
             font-weight: 600;
             font-size: 14px;
             text-decoration: none;
-            box-shadow: 0 6px 22px rgba(14, 124, 123, .40);
             transition: all .3s;
         }
 
@@ -423,7 +419,6 @@
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(14, 124, 123, .50);
         }
 
         .btn-outline {
@@ -593,7 +588,7 @@
         .num-cell {
             padding: 32px 24px;
             text-align: center;
-            border-right: 1px solid rgba(10, 31, 60, .07);
+            border-right: 1px solid rgba(10, 31, 60, .08);
             border-bottom: 3px solid transparent;
             transition: all .3s;
         }
@@ -1061,7 +1056,7 @@
             padding: 22px;
             background: #fff;
             border-radius: 16px;
-            box-shadow: 0 2px 18px rgba(10, 31, 60, .06);
+            box-shadow: 0 2px 18px rgba(10, 31, 60, .08);
             transition: all .3s;
             border-left: 3px solid transparent;
         }
@@ -1178,19 +1173,14 @@
 
         .lead-card {
             background: #fff;
+            border: 1.5px solid rgba(10, 31, 60, .05);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 2px 18px rgba(10, 31, 60, .07);
             transition: all .3s;
         }
 
-        .lead-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow);
-        }
-
         .lead-ph {
-            height: 220px;
+            height: 250px;
             overflow: hidden;
             background: var(--gray-light);
             position: relative;
@@ -1240,33 +1230,22 @@
             margin-bottom: 14px;
         }
 
-        .lead-socials {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .lead-socials a {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            background: var(--gray-light);
-            color: var(--gray-mid);
-            display: flex;
+        .btn-sm {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all .2s;
-        }
-
-        .lead-socials a:hover {
-            background: var(--teal);
+            gap: 6px;
+            padding: 8px 18px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
             color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
         }
 
-        .lead-socials a svg {
-            width: 14px;
-            height: 14px;
+        .btn-sm svg {
+            width: 13px;
+            height: 13px;
         }
 
         /* ── COMMUNITY ── */
@@ -1327,7 +1306,7 @@
         }
 
         .comm-card {
-            background: rgba(255, 255, 255, .06);
+            background: rgba(255, 255, 255, .08);
             border: 1px solid rgba(255, 255, 255, .10);
             border-radius: 20px;
             padding: 28px 24px;
@@ -1406,7 +1385,7 @@
             background: #fff;
             border-radius: 12px;
             padding: 13px 20px;
-            box-shadow: 0 2px 14px rgba(10, 31, 60, .07);
+            box-shadow: 0 2px 14px rgba(10, 31, 60, .08);
             font-family: 'Playfair Display', serif;
             font-size: 14px;
             font-weight: 700;
@@ -1453,7 +1432,7 @@
             width: 300px;
             height: 300px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, .07);
+            background: rgba(255, 255, 255, .08);
             pointer-events: none;
         }
 
@@ -1560,7 +1539,7 @@
             width: 36px;
             height: 36px;
             border-radius: 9px;
-            background: rgba(255, 255, 255, .07);
+            background: rgba(255, 255, 255, .08);
             color: rgba(255, 255, 255, .60);
             display: flex;
             align-items: center;
@@ -1632,7 +1611,7 @@
         .f-bottom {
             max-width: 1300px;
             margin: 0 auto;
-            border-top: 1px solid rgba(255, 255, 255, .07);
+            border-top: 1px solid rgba(255, 255, 255, .08);
             padding: 22px 0;
             display: flex;
             justify-content: space-between;
@@ -1652,10 +1631,7 @@
             color: var(--teal-light);
         }
 
-        .f-blinks {
-            display: flex;
-            gap: 20px;
-        }
+
 
         .scroll-top {
             position: fixed;
@@ -1672,7 +1648,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 18px rgba(14, 124, 123, .40);
+
             opacity: 0;
             pointer-events: none;
             transition: all .3s;
@@ -1824,28 +1800,31 @@
             <a href="index.html" class="nav-logo">
                 <div class="logo-icon"><i data-lucide="hospital"></i></div>
                 <div>
-                    <div class="logo-name">MNR Medicity</div>
+                    <div class="logo-name">MNR Hospital</div>
                     <div class="logo-sub">Advanced Healthcare</div>
                 </div>
             </a>
+
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="about.html" class="nav-link active">About Us</a></li>
                 <li class="drop">
                     <button class="drop-btn">Departments <i data-lucide="chevron-down"></i></button>
                     <div class="drop-menu">
-                        <a href="departments.html#cardiology" class="drop-item"><i data-lucide="heart-pulse"></i>
+                        <a href="cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i>
                             Cardiology</a>
-                        <a href="departments.html#pulmonology" class="drop-item"><i data-lucide="wind"></i>
+                        <a href="pulmonology.html" class="drop-item"><i data-lucide="wind"></i>
                             Pulmonology</a>
-                        <a href="departments.html#gynecology" class="drop-item"><i data-lucide="baby"></i>
+                        <a href="gynecology.html" class="drop-item"><i data-lucide="baby"></i>
                             Gynecology</a>
-                        <a href="departments.html#neurology" class="drop-item"><i data-lucide="brain"></i> Neurology</a>
-                        <a href="departments.html#urology" class="drop-item"><i data-lucide="activity"></i> Urology</a>
-                        <a href="departments.html#gastrology" class="drop-item"><i data-lucide="stethoscope"></i>
+                        <a href="neurology.html" class="drop-item"><i data-lucide="brain"></i> Neurology</a>
+                        <a href="urology.html" class="drop-item"><i data-lucide="activity"></i> Urology</a>
+                        <a href="gastroenterology.html" class="drop-item"><i data-lucide="stethoscope"></i>
                             Gastroenterology</a>
-                        <a href="departments.html#pediatrics" class="drop-item"><i data-lucide="smile"></i>
+                        <a href="pediatrics.html" class="drop-item"><i data-lucide="smile"></i>
                             Pediatrics</a>
+                        <a href="departments.html" class="drop-item"><i data-lucide="chevron-right"></i>
+                            View All</a>
                     </div>
                 </li>
                 <li><a href="doctors.html" class="nav-link">Doctors</a></li>
@@ -1862,7 +1841,10 @@
                 <li><a href="contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
                 </li>
             </ul>
-            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+
+            <button class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
@@ -1872,14 +1854,15 @@
         <a href="about.html" class="mob-link"><i data-lucide="info"></i> About Us</a>
         <span class="mob-link" style="cursor:pointer"><i data-lucide="layout-grid"></i> Departments</span>
         <div class="mob-sub">
-            <a href="departments.html#cardiology" class="mob-link"><i data-lucide="heart-pulse"></i> Cardiology</a>
-            <a href="departments.html#pulmonology" class="mob-link"><i data-lucide="wind"></i> Pulmonology</a>
-            <a href="departments.html#gynecology" class="mob-link"><i data-lucide="baby"></i> Gynecology</a>
-            <a href="departments.html#neurology" class="mob-link"><i data-lucide="brain"></i> Neurology</a>
-            <a href="departments.html#urology" class="mob-link"><i data-lucide="activity"></i> Urology</a>
-            <a href="departments.html#gastrology" class="mob-link"><i data-lucide="stethoscope"></i>
+            <a href="cardiology.html" class="mob-link"><i data-lucide="heart-pulse"></i> Cardiology</a>
+            <a href="pulmonology.html" class="mob-link"><i data-lucide="wind"></i> Pulmonology</a>
+            <a href="gynecology.html" class="mob-link"><i data-lucide="baby"></i> Gynecology</a>
+            <a href="neurology.html" class="mob-link"><i data-lucide="brain"></i> Neurology</a>
+            <a href="urology.html" class="mob-link"><i data-lucide="activity"></i> Urology</a>
+            <a href="gastroenterology.html" class="mob-link"><i data-lucide="stethoscope"></i>
                 Gastroenterology</a>
-            <a href="departments.html#pediatrics" class="mob-link"><i data-lucide="smile"></i> Pediatrics</a>
+            <a href="pediatrics.html" class="mob-link"><i data-lucide="smile"></i> Pediatrics</a>
+            <a href="departments.html" class="mob-link"><i data-lucide="chevron-right"></i> View All</a>
         </div>
         <a href="doctors.html" class="mob-link"><i data-lucide="user-round"></i> Doctors</a>
         <a href="contact.html" class="mob-link"><i data-lucide="phone"></i> Contact Us</a>
@@ -1903,7 +1886,8 @@
                 <span>About Us</span>
             </div>
             <h1>Built for <em>Today.</em><br>Designed for Every Patient.</h1>
-            <p style="color: #ffffffb8;">MNR Medicity is a modern, full-scale multi-specialty hospital built with one purpose — to bring expert,
+            <p style="color: #ffffffb8;">MNR Hospital is a modern, full-scale multi-specialty hospital built with one
+                purpose — to bring expert,
                 compassionate, and accessible healthcare to every family in Coastal Karnataka.</p>
         </div>
     </div>
@@ -1916,11 +1900,11 @@
                 <p>Expert Specialists</p>
             </div>
             <div class="num-cell">
-                <div class="big">7</div>
+                <div class="big">7<span>+</span></div>
                 <p>Medical Departments</p>
             </div>
             <div class="num-cell">
-                <div class="big">200<span>+</span></div>
+                <div class="big">500<span>+</span></div>
                 <p>Hospital Beds</p>
             </div>
             <div class="num-cell">
@@ -1937,7 +1921,7 @@
                 <div class="intro-img-wrap fade-up">
                     <div class="intro-img">
                         <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=700&h=500&fit=crop&crop=center"
-                            alt="MNR Medicity Hospital" />
+                            alt="MNR Hospital Hospital" />
                     </div>
                     <div class="i-badge">
                         <div class="ib-ico"><i data-lucide="badge-check"></i></div>
@@ -1951,12 +1935,12 @@
                 <div class="intro-text fade-up">
                     <span class="s-tag">Who We Are</span>
                     <h2 class="s-title">A New Standard of <em>Healthcare</em><br>for Coastal Karnataka</h2>
-                    <p class="body">MNR Medicity is a purpose-built, NABH-accredited multi-specialty hospital at
+                    <p class="body">MNR Hospital is a purpose-built, NABH-accredited multi-specialty hospital at
                         Kolambe, Bajpe — minutes from Mangalore International Airport. We were built with a clear goal:
                         to eliminate the need for patients across Mangalore, Udupi, and Kasaragod to travel to distant
                         cities for quality care.</p>
                     <p class="body">From state-of-the-art operation theatres and advanced diagnostic imaging to a
-                        dedicated Level III NICU and round-the-clock emergency services — every inch of MNR Medicity is
+                        dedicated Level III NICU and round-the-clock emergency services — every inch of MNR Hospital is
                         designed around the patient experience.</p>
                     <div class="check-list">
                         <div class="check-item">
@@ -1999,11 +1983,11 @@
                 <div class="founder-card fade-up">
                     <div class="founder-photo">
                         <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=500&h=520&fit=crop&crop=faces,top"
-                            alt="Dr. M. N. Rao — Founder, MNR Medicity" />
+                            alt="Dr. M. N. Rao — Founder, MNR Hospital" />
                     </div>
                     <div class="founder-card-info">
                         <h3>Dr. M. N. Rao</h3>
-                        <div class="role">Founder &amp; Chairman, MNR Medicity</div>
+                        <div class="role">Founder &amp; Chairman, MNR Hospital</div>
                         <div class="quals">
                             <span class="qual-tag">MBBS</span>
                             <span class="qual-tag">MD</span>
@@ -2015,14 +1999,14 @@
                 <div class="fade-up">
                     <h2 class="s-title">A Doctor's Dream,<br>Built for <em>Every Patient</em></h2>
                     <p class="pull-quote">"I have seen too many patients from our region travel hours to cities just to
-                        get the care they deserve. MNR Medicity exists to change that — permanently."</p>
+                        get the care they deserve. MNR Hospital exists to change that — permanently."</p>
                     <p class="founder-bio">Dr. M. N. Rao is a respected physician with over three decades of clinical
                         practice across Coastal Karnataka. After years of witnessing the healthcare gap in the region
-                        firsthand, he channelled his experience and conviction into founding MNR Medicity — a hospital
+                        firsthand, he channelled his experience and conviction into founding MNR Hospital — a hospital
                         that does not compromise on quality, technology, or compassion.</p>
                     <p class="founder-bio">His approach to medicine has always been simple: treat every patient the way
                         you would treat your own family. That philosophy is embedded into every policy, every protocol,
-                        and every person at MNR Medicity.</p>
+                        and every person at MNR Hospital.</p>
                     <div class="founder-pills">
                         <div class="f-pill"><i data-lucide="stethoscope"></i> 30+ Years in Clinical Practice</div>
                         <div class="f-pill"><i data-lucide="map-pin"></i> Rooted in Coastal Karnataka</div>
@@ -2043,7 +2027,7 @@
                 <span class="s-tag">Our Foundation</span>
                 <h2 class="s-title" style="margin:0 auto">Mission, Vision &amp; <em>Values</em></h2>
                 <p class="s-desc" style="margin:12px auto 0;max-width:520px">The principles that shape every care
-                    decision and every interaction at MNR Medicity.</p>
+                    decision and every interaction at MNR Hospital.</p>
             </div>
             <div class="mvv-grid">
                 <div class="mvv-card mission fade-up">
@@ -2078,7 +2062,7 @@
         <div class="si">
             <div class="diff-grid">
                 <div>
-                    <span class="s-tag">Why MNR Medicity</span>
+                    <span class="s-tag">Why MNR Hospital</span>
                     <h2 class="s-title">What Sets Us <em>Apart</em></h2>
                     <p class="s-desc" style="margin-bottom:32px">We are not just another hospital. We are a carefully
                         designed healthcare ecosystem — built around what patients actually need.</p>
@@ -2120,16 +2104,16 @@
                 <div class="diff-img-wrap fade-up">
                     <div class="diff-img">
                         <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=600&h=480&fit=crop&crop=center"
-                            alt="MNR Medicity Facilities" />
+                            alt="MNR Hospital Facilities" />
                     </div>
                     <div class="diff-img-card">
                         <p>At a Glance</p>
                         <div class="diff-stat-row">
                             <div class="ds">
-                                <div class="n">200<span>+</span></div><small>Beds</small>
+                                <div class="n">500<span>+</span></div><small>Beds</small>
                             </div>
                             <div class="ds">
-                                <div class="n">7</div><small>Specialties</small>
+                                <div class="n">7<span>+</span></div><small>Specialties</small>
                             </div>
                             <div class="ds">
                                 <div class="n">50<span>+</span></div><small>Doctors</small>
@@ -2161,8 +2145,7 @@
                         <h3>Dr. Suresh Kamath</h3>
                         <div class="lead-role">Medical Director</div>
                         <div class="lead-qual">MD, DNB Medicine &middot; 22 Yrs Exp.</div>
-                        <div class="lead-socials"><a href="#"><i data-lucide="linkedin"></i></a><a href="#"><i
-                                    data-lucide="mail"></i></a></div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
                 <div class="lead-card fade-up">
@@ -2175,8 +2158,7 @@
                         <h3>Dr. Anitha Shetty</h3>
                         <div class="lead-role">Chief of Clinical Services</div>
                         <div class="lead-qual">MS, FACS &middot; 18 Yrs Exp.</div>
-                        <div class="lead-socials"><a href="#"><i data-lucide="linkedin"></i></a><a href="#"><i
-                                    data-lucide="mail"></i></a></div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
                 <div class="lead-card fade-up">
@@ -2189,8 +2171,7 @@
                         <h3>Mr. Ravi Nayak</h3>
                         <div class="lead-role">Chief Executive Officer</div>
                         <div class="lead-qual">MBA Healthcare &middot; 15 Yrs Exp.</div>
-                        <div class="lead-socials"><a href="#"><i data-lucide="linkedin"></i></a><a href="#"><i
-                                    data-lucide="mail"></i></a></div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
                 <div class="lead-card fade-up">
@@ -2203,8 +2184,7 @@
                         <h3>Dr. Kavitha Bhat</h3>
                         <div class="lead-role">Head of Nursing Services</div>
                         <div class="lead-qual">MSc Nursing &middot; 16 Yrs Exp.</div>
-                        <div class="lead-socials"><a href="#"><i data-lucide="linkedin"></i></a><a href="#"><i
-                                    data-lucide="mail"></i></a></div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
             </div>
@@ -2260,7 +2240,7 @@
         <div class="about-cta-box">
             <div style="position:relative;z-index:2">
                 <h2>Experience Healthcare the Way It Should Be</h2>
-                <p>Whether you need a specialist consultation, a routine check-up, or emergency care — MNR Medicity is
+                <p>Whether you need a specialist consultation, a routine check-up, or emergency care — MNR Hospital is
                     here, fully equipped and ready for you.</p>
             </div>
             <div class="cta-btns">
@@ -2273,24 +2253,25 @@
     <!-- FOOTER -->
     <footer>
         <div class="f-grid">
+
             <div class="f-brand">
                 <a href="index.html" class="nav-logo" style="text-decoration:none">
                     <div class="logo-icon"><i data-lucide="hospital"></i></div>
                     <div>
-                        <div class="logo-name" style="color:#fff">MNR Medicity</div>
+                        <div class="logo-name" style="color:#fff">MNR Hospital</div>
                         <div class="logo-sub" style="color:var(--teal-light)">Advanced Healthcare</div>
                     </div>
                 </a>
-                <p>MNR Medicity is committed to delivering compassionate, expert, and affordable healthcare to every
+                <p>MNR Hospital is committed to delivering compassionate, expert, and affordable healthcare to every
                     patient across Mangalore and Coastal Karnataka.</p>
                 <div class="f-socials">
-                    <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
                     <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
-                    <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
-                    <a href="#" aria-label="Youtube"><i data-lucide="youtube"></i></a>
+                    <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
                     <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                    <a href="#" aria-label="Youtube"><i data-lucide="youtube"></i></a>
                 </div>
             </div>
+
             <div class="f-col">
                 <h4>Quick Links</h4>
                 <ul>
@@ -2301,41 +2282,53 @@
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </div>
+
             <div class="f-col">
                 <h4>Departments</h4>
                 <ul>
-                    <li><a href="departments.html#cardiology">Cardiology</a></li>
-                    <li><a href="departments.html#pulmonology">Pulmonology</a></li>
-                    <li><a href="departments.html#gynecology">Gynecology</a></li>
-                    <li><a href="departments.html#neurology">Neurology</a></li>
-                    <li><a href="departments.html#urology">Urology</a></li>
-                    <li><a href="departments.html#gastrology">Gastroenterology</a></li>
-                    <li><a href="departments.html#pediatrics">Pediatrics</a></li>
+                    <li><a href="cardiology.html">Cardiology</a></li>
+                    <li><a href="pulmonology.html">Pulmonology</a></li>
+                    <li><a href="gynecology.html">Gynecology</a></li>
+                    <li><a href="neurology.html">Neurology</a></li>
+                    <li><a href="urology.html">Urology</a></li>
+                    <li><a href="gastroenterology.html">Gastroenterology</a></li>
+                    <li><a href="pediatrics.html">Pediatrics</a></li>
                 </ul>
             </div>
+
             <div class="f-col">
                 <h4>Contact Information</h4>
-                <div class="f-cr"><i data-lucide="map-pin"></i>
-                    <p>MNR Medicity Campus Kolambe, Behind Bajpe Proper, Karnataka 574142</p>
-                </div>
-                <div class="f-cr"><i data-lucide="phone"></i>
-                    <p><a href="tel:9876543210">9876543210</a></p>
+                <a href="https://maps.app.goo.gl/PgNGSG4DAPqkmZ1C6" target="_blank"
+                    style="text-decoration: none; color: inherit;">
+                    <div class="f-cr">
+                        <i data-lucide="map-pin"></i>
+                        <p>MNR medicity Campus Kolambe, Behind Bajpe Proper, Karnataka 574142</p>
+                    </div>
+                </a>
+                <div class="f-cr">
+                    <i data-lucide="phone"></i>
+                    <p><a href="tel:9876543210">+91 9876543210</a></p>
                 </div>
                 <div class="f-cr"><i data-lucide="mail"></i>
                     <p><a href="mailto:info@mnrmedicity.com">info@mnrmedicity.com</a></p>
                 </div>
-                <div class="f-cr"><i data-lucide="clock"></i>
-                    <p>OPD: Mon–Sat 8:00 AM – 8:00 PM<br>Emergency: 24/7</p>
-                </div>
+                <a href="contact.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div class="f-cr">
+                        <i data-lucide="clock"></i>
+                        <p>Emergency Services : 24/7</p>
+                    </div>
+                </a>
             </div>
+
         </div>
         <div class="f-bottom">
-            <span>&copy; 2025 MNR Medicity. All rights reserved.</span>
-            <div class="f-blinks">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Sitemap</a>
-            </div>
+            <span>&copy;
+                <script>document.write(new Date().getFullYear())</script> MNR Hospital. All rights reserved.
+            </span>
+            <span class="f-blinks">
+                Designed and Developed by <a href="http://thinkb.agency/" target="_blank" style="font-weight: 800;">
+                    thinkB</a>
+            </span>
         </div>
     </footer>
 
