@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Careers | MNR Medicity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root{--navy:#0a1f3c;--teal:#0e7c7b;--teal-light:#13a8a7;--gold:#c8992a;--gold-light:#e8b93e;--cream:#f8f4ee;--gray-light:#f0f4f8;--gray-mid:#8094a8;--text:#1a2d42;--shadow:0 8px 40px rgba(10,31,60,.10);--shadow-strong:0 16px 60px rgba(10,31,60,.18);}
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:'DM Sans',sans-serif;color:var(--text);background:#fff;overflow-x:hidden}
+        nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(10,31,60,.08);box-shadow:0 2px 20px rgba(10,31,60,.06);transition:all .35s}
+        nav.scrolled{background:rgba(10,31,60,.97);border-bottom-color:transparent}
+        nav.scrolled .logo-name,nav.scrolled .nav-link,nav.scrolled .drop-btn{color:#fff!important}
+        nav.scrolled .logo-sub{color:var(--teal-light)!important}
+        nav.scrolled .hamburger span{background:#fff}
+        .nav-wrap{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:72px}
+        .nav-logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+        .logo-icon{width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,var(--teal),var(--navy));display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .logo-icon svg{color:#fff;width:22px;height:22px}
+        .logo-name{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--navy);line-height:1.1}
+        .logo-sub{font-size:10px;color:var(--teal);letter-spacing:2px;text-transform:uppercase;font-weight:500}
+        .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+        .nav-link{font-size:14px;font-weight:500;color:var(--navy);padding:8px 13px;border-radius:8px;text-decoration:none;transition:all .2s}
+        .nav-link:hover,.nav-link.active{background:rgba(14,124,123,.09);color:var(--teal)}
+        .drop{position:relative}
+        .drop-btn{display:flex;align-items:center;gap:5px;font-size:14px;font-weight:500;color:var(--navy);padding:8px 13px;border-radius:8px;background:none;border:none;cursor:pointer;transition:all .2s;user-select:none}
+        .drop-btn svg{width:13px;height:13px;transition:transform .3s}
+        .drop.open .drop-btn{background:rgba(14,124,123,.09);color:var(--teal)}
+        .drop.open .drop-btn svg{transform:rotate(180deg)}
+        nav.scrolled .drop.open .drop-btn{color:var(--teal-light)!important}
+        .drop-menu::before{content:'';position:absolute;top:-16px;left:0;right:0;height:16px}
+        .drop-menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(6px);background:#fff;border-radius:16px;box-shadow:var(--shadow-strong);padding:8px;min-width:220px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .22s,transform .22s,visibility .22s;border:1px solid rgba(10,31,60,.07);z-index:200}
+        .drop.open .drop-menu{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0)}
+        .drop-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:9px;color:var(--text);font-size:14px;text-decoration:none;transition:all .18s;white-space:nowrap}
+        .drop-item svg{width:16px;height:16px;color:var(--teal);flex-shrink:0}
+        .drop-item:hover{background:var(--gray-light);color:var(--teal)}
+        .nav-cta{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--teal),var(--teal-light));color:#fff!important;padding:9px 20px;border-radius:50px;font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(14,124,123,.35);transition:all .25s}
+        .nav-cta svg{width:15px;height:15px}
+        .nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(14,124,123,.45)}
+        .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px}
+        .hamburger span{width:24px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s;display:block}
+        .mob-nav{display:none;position:fixed;inset:0;z-index:998;background:var(--navy);padding:90px 28px 40px;transform:translateX(100%);transition:transform .38s cubic-bezier(.77,0,.175,1);overflow-y:auto}
+        .mob-nav.open{transform:translateX(0)}
+        .mob-link{display:flex;align-items:center;gap:10px;color:#fff;font-size:17px;font-weight:500;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.08);text-decoration:none}
+        .mob-link svg{width:18px;height:18px;color:var(--teal-light)}
+        .mob-sub{padding-left:28px}
+        .mob-sub .mob-link{font-size:15px;color:rgba(255,255,255,.68)}
+        .mob-cta{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:28px;background:var(--teal);color:#fff;padding:15px;border-radius:50px;font-weight:600;font-size:15px;text-decoration:none}
+        .si{max-width:1300px;margin:0 auto}
+        .s-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+        .s-tag::before{content:'';width:22px;height:2px;background:var(--teal);border-radius:2px}
+        .fade-up{opacity:0;transform:translateY(24px);transition:all .6s cubic-bezier(.25,.46,.45,.94)}
+        .fade-up.in{opacity:1;transform:translateY(0)}
+        .fade-up:nth-child(2){transition-delay:.07s}.fade-up:nth-child(3){transition-delay:.14s}.fade-up:nth-child(4){transition-delay:.21s}.fade-up:nth-child(5){transition-delay:.28s}
+
+        /* HERO */
+        .page-hero{margin-top:72px;background:linear-gradient(135deg,#061529 0%,#0a2540 50%,#0d3d6b 100%);padding:90px 28px 100px;position:relative;overflow:hidden}
+        .page-hero::before{content:'';position:absolute;top:-40%;right:-8%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(14,124,123,.22) 0%,transparent 70%);pointer-events:none}
+        .page-hero::after{content:'';position:absolute;bottom:-30%;left:-5%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(200,153,42,.10) 0%,transparent 70%);pointer-events:none}
+        .hero-grid{position:absolute;inset:0;opacity:.035;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px);background-size:55px 55px}
+        .hero-inner{max-width:1300px;margin:0 auto;position:relative;z-index:2}
+        .breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.50);margin-bottom:22px}
+        .breadcrumb a{color:rgba(255,255,255,.50);text-decoration:none;transition:color .2s}
+        .breadcrumb a:hover{color:var(--teal-light)}
+        .breadcrumb svg{width:13px;height:13px}
+        .breadcrumb span{color:rgba(255,255,255,.9)}
+        .page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(34px,5vw,64px);font-weight:700;color:#fff;line-height:1.12;margin-bottom:20px;max-width:700px}
+        .page-hero h1 em{font-style:normal;color:var(--gold-light)}
+        .hero-sub{font-size:17px;color:rgba(255,255,255,.68);line-height:1.75;max-width:560px}
+
+        /* WHY JOIN */
+        .why-sec{padding:80px 28px;background:#fff}
+        .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px}
+        .why-card{background:var(--gray-light);border-radius:20px;padding:28px 24px;text-align:center;transition:all .35s}
+        .why-card:hover{background:#fff;box-shadow:var(--shadow);transform:translateY(-6px)}
+        .why-ico{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--teal),var(--teal-light));display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+        .why-ico svg{width:24px;height:24px;color:#fff}
+        .why-card h4{font-family:'Playfair Display',serif;font-size:16px;color:var(--navy);margin-bottom:8px}
+        .why-card p{font-size:13px;color:var(--gray-mid);line-height:1.7}
+
+        /* JOBS SECTION */
+        .jobs-sec{padding:0 28px 90px;background:#fff}
+        .jobs-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:16px}
+        .jobs-count{font-size:13px;color:var(--gray-mid)}
+        .jobs-count strong{color:var(--teal)}
+        .jobs-list{display:flex;flex-direction:column;gap:20px}
+
+        .job-card{background:#fff;border:1.5px solid rgba(10,31,60,.08);border-radius:22px;padding:0;overflow:hidden;box-shadow:0 2px 14px rgba(10,31,60,.05);transition:all .35s}
+        .job-card:hover{border-color:var(--teal);box-shadow:0 12px 40px rgba(14,124,123,.12);transform:translateY(-3px)}
+        .job-head{display:grid;grid-template-columns:1fr auto;gap:20px;padding:28px 32px 24px;align-items:start;cursor:pointer}
+        .job-dept-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 13px;border-radius:50px;color:#fff;margin-bottom:10px}
+        .job-head h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--navy);margin-bottom:8px;line-height:1.25}
+        .job-tags{display:flex;flex-wrap:wrap;gap:8px}
+        .job-tag{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--gray-mid);background:var(--gray-light);padding:5px 12px;border-radius:50px}
+        .job-tag svg{width:12px;height:12px;color:var(--teal)}
+        .job-right{display:flex;flex-direction:column;align-items:flex-end;gap:12px;flex-shrink:0}
+        .salary-badge{background:rgba(14,124,123,.09);border:1px solid rgba(14,124,123,.20);border-radius:12px;padding:10px 16px;text-align:right}
+        .salary-badge .sal-label{font-size:10px;color:var(--gray-mid);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:2px}
+        .salary-badge .sal-val{font-size:16px;font-weight:700;color:var(--teal);font-family:'Playfair Display',serif}
+        .btn-apply{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--teal),var(--teal-light));color:#fff;padding:11px 24px;border-radius:50px;font-weight:600;font-size:13px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 16px rgba(14,124,123,.32);transition:all .3s;white-space:nowrap}
+        .btn-apply svg{width:14px;height:14px}
+        .btn-apply:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(14,124,123,.42)}
+
+        /* Expandable job details */
+        .job-details{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease}
+        .job-details.open{max-height:500px}
+        .job-details-inner{border-top:1px solid rgba(10,31,60,.08);padding:28px 32px;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+        .jd-block h5{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gray-mid);margin-bottom:12px}
+        .jd-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+        .jd-list li{display:flex;align-items:flex-start;gap:8px;font-size:14px;color:#4a5d70;line-height:1.6}
+        .jd-list li svg{width:14px;height:14px;color:var(--teal);flex-shrink:0;margin-top:3px}
+
+        /* APPLY MODAL */
+        .modal-backdrop{position:fixed;inset:0;z-index:9999;background:rgba(6,21,41,.7);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s}
+        .modal-backdrop.open{opacity:1;pointer-events:all}
+        .modal{background:#fff;border-radius:28px;padding:44px 44px 40px;max-width:560px;width:100%;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.3);transform:translateY(20px);transition:transform .3s}
+        .modal-backdrop.open .modal{transform:translateY(0)}
+        .modal-close{position:absolute;top:20px;right:20px;width:38px;height:38px;border-radius:50%;background:var(--gray-light);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+        .modal-close:hover{background:#e74c3c;color:#fff}
+        .modal-close svg{width:16px;height:16px;color:var(--text)}
+        .modal-close:hover svg{color:#fff}
+        .modal h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:4px}
+        .modal-role{font-size:13px;color:var(--teal);font-weight:600;margin-bottom:24px}
+        .form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+        .form-group label{font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px}
+        .form-group label .req{color:var(--teal);margin-left:2px}
+        .form-group input,.form-group textarea{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:var(--gray-light);border:1.5px solid transparent;border-radius:12px;padding:13px 16px;outline:none;transition:all .22s;width:100%}
+        .form-group input:focus,.form-group textarea:focus{border-color:var(--teal);background:#fff;box-shadow:0 0 0 4px rgba(14,124,123,.08)}
+        .form-group input.error,.form-group textarea.error{border-color:#e74c3c}
+        .form-group textarea{resize:vertical;min-height:100px;line-height:1.65}
+        .form-group input::placeholder,.form-group textarea::placeholder{color:var(--gray-mid)}
+        /* File upload */
+        .file-upload{position:relative;border:2px dashed rgba(10,31,60,.15);border-radius:12px;padding:20px;text-align:center;cursor:pointer;transition:all .25s;background:var(--gray-light)}
+        .file-upload:hover,.file-upload.has-file{border-color:var(--teal);background:rgba(14,124,123,.04)}
+        .file-upload input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+        .file-upload-ico{width:36px;height:36px;border-radius:10px;background:rgba(14,124,123,.10);display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+        .file-upload-ico svg{width:18px;height:18px;color:var(--teal)}
+        .file-upload p{font-size:13px;color:var(--gray-mid);margin-bottom:3px}
+        .file-upload span{font-size:11px;color:var(--gray-mid)}
+        .file-name{font-size:12px;color:var(--teal);font-weight:600;margin-top:6px;display:none}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+        .btn-submit-modal{display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(135deg,var(--teal),var(--teal-light));color:#fff;padding:14px 28px;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;border:none;cursor:pointer;box-shadow:0 6px 22px rgba(14,124,123,.40);transition:all .3s;width:100%;margin-top:8px}
+        .btn-submit-modal svg{width:16px;height:16px}
+        .btn-submit-modal:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(14,124,123,.50)}
+        /* Modal success */
+        .modal-success{display:none;text-align:center;padding:20px 0}
+        .modal-success-ico{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-light));display:flex;align-items:center;justify-content:center;margin:0 auto 18px;box-shadow:0 8px 24px rgba(14,124,123,.35)}
+        .modal-success-ico svg{width:28px;height:28px;color:#fff}
+        .modal-success h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:10px}
+        .modal-success p{font-size:14px;color:var(--gray-mid);line-height:1.72;max-width:320px;margin:0 auto}
+
+        /* CTA */
+        .cta-sec{padding:80px 28px;background:var(--cream)}
+        .cta-box{max-width:1300px;margin:0 auto;background:linear-gradient(135deg,var(--teal) 0%,var(--teal-light) 100%);border-radius:28px;padding:60px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;position:relative;overflow:hidden}
+        .cta-box::before{content:'';position:absolute;right:-60px;top:-60px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.07);pointer-events:none}
+        .cta-box h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,34px);color:#fff;margin-bottom:10px}
+        .cta-box>div:first-child p{font-size:15px;color:rgba(255,255,255,.80);line-height:1.72;max-width:460px}
+        .cta-btns{display:flex;flex-direction:column;gap:12px;flex-shrink:0;position:relative;z-index:2}
+        .btn-white{display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--teal);padding:13px 26px;border: none;border-radius:50px;font-weight:700;font-size:14px;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.15);transition:all .3s}
+        .btn-white svg{width:16px;height:16px}
+        .btn-white:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.22)}
+        .btn-ghost-w{display:inline-flex;align-items:center;gap:9px;border:1.5px solid rgba(255,255,255,.45);color:#fff;padding:13px 26px;border-radius:50px;font-weight:500;font-size:14px;text-decoration:none;transition:all .3s}
+        .btn-ghost-w svg{width:16px;height:16px}
+        .btn-ghost-w:hover{border-color:#fff;background:rgba(255,255,255,.10)}
+        footer{background:var(--navy);padding:66px 28px 0}
+        .f-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:46px;padding-bottom:50px}
+        .f-brand p{font-size:14px;line-height:1.8;color:rgba(255,255,255,.52);margin:17px 0 20px}
+        .f-socials{display:flex;gap:9px}
+        .f-socials a{width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.60);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s}
+        .f-socials a:hover{background:var(--teal);color:#fff}
+        .f-socials a svg{width:15px;height:15px}
+        .f-col h4{color:#fff;font-size:15px;font-weight:600;margin-bottom:17px}
+        .f-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+        .f-col ul a{color:rgba(255,255,255,.52);text-decoration:none;font-size:14px;transition:color .2s}
+        .f-col ul a:hover{color:var(--teal-light)}
+        .f-cr{display:flex;gap:11px;margin-bottom:13px}
+        .f-cr svg{width:15px;height:15px;color:var(--teal-light);margin-top:2px;flex-shrink:0}
+        .f-cr p{font-size:13px;color:rgba(255,255,255,.52);line-height:1.65}
+        .f-cr a{color:inherit;text-decoration:none}
+        .f-bottom{max-width:1300px;margin:0 auto;border-top:1px solid rgba(255,255,255,.07);padding:22px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13px;color:rgba(255,255,255,.32)}
+        .f-bottom a{color:rgba(255,255,255,.42);text-decoration:none}
+        .f-bottom a:hover{color:var(--teal-light)}
+        .f-blinks{display:flex;gap:20px}
+        .scroll-top{position:fixed;bottom:26px;right:26px;z-index:999;width:46px;height:46px;border-radius:50%;background:var(--teal);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(14,124,123,.40);opacity:0;pointer-events:none;transition:all .3s}
+        .scroll-top svg{width:18px;height:18px}
+        .scroll-top.visible{opacity:1;pointer-events:all}
+        .scroll-top:hover{transform:translateY(-3px)}
+        @media(max-width:1024px){.why-grid{grid-template-columns:repeat(2,1fr)}.f-grid{grid-template-columns:1fr 1fr}.cta-box{grid-template-columns:1fr;padding:44px 36px}.cta-btns{flex-direction:row;flex-wrap:wrap}}
+        @media(max-width:1000px){.nav-links{display:none}.hamburger{display:flex}.mob-nav{display:block}.why-sec,.jobs-sec,.cta-sec{padding-left:20px;padding-right:20px}.job-head{grid-template-columns:1fr}.job-right{align-items:flex-start}.job-details-inner{grid-template-columns:1fr}.modal{padding:32px 24px}.form-row{grid-template-columns:1fr}.f-grid{grid-template-columns:1fr;gap:30px}.cta-box{padding:36px 24px}}
+             @media(max-width:480px){.why-grid {
+        grid-template-columns: 1fr;
+    }}
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-wrap">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-icon"><i data-lucide="hospital"></i></div>
+            <div><div class="logo-name">MNR Medicity</div><div class="logo-sub">Advanced Healthcare</div></div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About Us</a></li>
+            <li class="drop">
+                <button class="drop-btn">Departments <i data-lucide="chevron-down"></i></button>
+                <div class="drop-menu">
+                    <a href="cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i> Cardiology</a>
+                    <a href="pulmonology.html" class="drop-item"><i data-lucide="wind"></i> Pulmonology</a>
+                    <a href="gynecology.html" class="drop-item"><i data-lucide="baby"></i> Gynecology</a>
+                    <a href="neurology.html" class="drop-item"><i data-lucide="brain"></i> Neurology</a>
+                    <a href="urology.html" class="drop-item"><i data-lucide="activity"></i> Urology</a>
+                    <a href="gastroenterology.html" class="drop-item"><i data-lucide="stethoscope"></i> Gastroenterology</a>
+                    <a href="pediatrics.html" class="drop-item"><i data-lucide="smile"></i> Pediatrics</a>
+                </div>
+            </li>
+            <li><a href="doctors.html" class="nav-link">Doctors</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+            <li class="drop">
+                <button class="drop-btn">More <i data-lucide="chevron-down"></i></button>
+                <div class="drop-menu">
+                    <a href="blogs.html" class="drop-item"><i data-lucide="newspaper"></i> Blogs</a>
+                    <a href="gallery.html" class="drop-item"><i data-lucide="image"></i> Gallery</a>
+                    <a href="careers.html" class="drop-item"><i data-lucide="briefcase"></i> Careers</a>
+                    <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a>
+                </div>
+            </li>
+            <li><a href="contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+<div class="mob-nav" id="mobNav">
+    <a href="index.html" class="mob-link"><i data-lucide="home"></i> Home</a>
+    <a href="about.html" class="mob-link"><i data-lucide="info"></i> About Us</a>
+    <a href="doctors.html" class="mob-link"><i data-lucide="user-round"></i> Doctors</a>
+    <a href="contact.html" class="mob-link"><i data-lucide="phone"></i> Contact Us</a>
+    <a href="contact.html" class="mob-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+        <div class="breadcrumb"><a href="index.html">Home</a><i data-lucide="chevron-right"></i><span>Careers</span></div>
+        <h1>Build Your Career at<br><em>MNR Medicity</em></h1>
+        <p class="hero-sub">Join a team of passionate healthcare professionals who believe in delivering world-class care to every patient. We're growing — and we want you to grow with us.</p>
+    </div>
+</div>
+
+<!-- WHY JOIN US -->
+<section class="why-sec">
+    <div class="si">
+        <div style="text-align:center;max-width:580px;margin:0 auto">
+            <span class="s-tag">Why MNR Medicity</span>
+            <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.2vw,40px);color:var(--navy);margin-bottom:14px">A Place Where <em style="color:var(--teal);font-style:normal">Careers Thrive</em></h2>
+            <p style="font-size:15px;color:var(--gray-mid);line-height:1.75">We invest in our people the same way we invest in our patients — with dedication, resources, and genuine care.</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card fade-up"><div class="why-ico"><i data-lucide="trending-up"></i></div><h4>Career Growth</h4><p>Structured career ladders, internal promotions, and access to national CME programmes every year.</p></div>
+            <div class="why-card fade-up"><div class="why-ico"><i data-lucide="graduation-cap"></i></div><h4>Continuous Learning</h4><p>Sponsored training, workshops, fellowship support and regular clinical seminars by domain experts.</p></div>
+            <div class="why-card fade-up"><div class="why-ico"><i data-lucide="shield-check"></i></div><h4>Great Benefits</h4><p>Competitive CTC, health insurance for family, PF/Gratuity, performance bonuses and paid leave.</p></div>
+            <div class="why-card fade-up"><div class="why-ico"><i data-lucide="heart-handshake"></i></div><h4>Inclusive Culture</h4><p>A diverse, respectful workplace where every team member's voice is heard and contributions valued.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- JOB LISTINGS -->
+<section class="jobs-sec">
+    <div class="si">
+        <div class="jobs-header">
+            <div>
+                <span class="s-tag">Open Positions</span>
+                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,36px);color:var(--navy)">Current <em style="color:var(--teal);font-style:normal">Vacancies</em></h2>
+            </div>
+            <div class="jobs-count"><strong>7 positions</strong> currently open</div>
+        </div>
+        <div class="jobs-list">
+
+            <!-- JOB 1 -->
+            <div class="job-card fade-up">
+                <div class="job-head" onclick="toggleJob(this)">
+                    <div>
+                        <div class="job-dept-badge" style="background:linear-gradient(135deg,#c0392b,#e74c3c)"><i data-lucide="heart-pulse"></i> Cardiology</div>
+                        <h3>Consultant Interventional Cardiologist</h3>
+                        <div class="job-tags">
+                            <span class="job-tag"><i data-lucide="map-pin"></i> Kolambe, Mangalore</span>
+                            <span class="job-tag"><i data-lucide="clock"></i> Full-Time</span>
+                            <span class="job-tag"><i data-lucide="briefcase"></i> 5–10 Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="job-right">
+                        <div class="salary-badge"><div class="sal-label">CTC Offered</div><div class="sal-val">₹25–40 LPA</div></div>
+                        <button class="btn-apply" onclick="event.stopPropagation();openModal('Consultant Interventional Cardiologist')"><i data-lucide="send"></i> Apply Now</button>
+                    </div>
+                </div>
+                <div class="job-details">
+                    <div class="job-details-inner">
+                        <div class="jd-block"><h5>Qualifications</h5><ul class="jd-list"><li><i data-lucide="check-circle"></i>MD / DNB Internal Medicine</li><li><i data-lucide="check-circle"></i>DM Cardiology (mandatory)</li><li><i data-lucide="check-circle"></i>Fellowship in Interventional Cardiology preferred</li><li><i data-lucide="check-circle"></i>Valid MCI / NMC registration</li></ul></div>
+                        <div class="jd-block"><h5>Key Responsibilities</h5><ul class="jd-list"><li><i data-lucide="check-circle"></i>Perform angioplasty, stenting, and PPCI procedures</li><li><i data-lucide="check-circle"></i>Manage Cardiac ICU patients and heart failure cases</li><li><i data-lucide="check-circle"></i>Participate in weekly multidisciplinary team meetings</li><li><i data-lucide="check-circle"></i>Mentor junior residents and trainees</li></ul></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JOB 2 -->
+            <div class="job-card fade-up">
+                <div class="job-head" onclick="toggleJob(this)">
+                    <div>
+                        <div class="job-dept-badge" style="background:linear-gradient(135deg,#1d8348,#27ae60)"><i data-lucide="smile"></i> Pediatrics</div>
+                        <h3>Senior Consultant Pediatrician</h3>
+                        <div class="job-tags">
+                            <span class="job-tag"><i data-lucide="map-pin"></i> Kolambe, Mangalore</span>
+                            <span class="job-tag"><i data-lucide="clock"></i> Full-Time</span>
+                            <span class="job-tag"><i data-lucide="briefcase"></i> 3–8 Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="job-right">
+                        <div class="salary-badge"><div class="sal-label">CTC Offered</div><div class="sal-val">₹18–30 LPA</div></div>
+                        <button class="btn-apply" onclick="event.stopPropagation();openModal('Senior Consultant Pediatrician')"><i data-lucide="send"></i> Apply Now</button>
+                    </div>
+                </div>
+                <div class="job-details">
+                    <div class="job-details-inner">
+                        <div class="jd-block"><h5>Qualifications</h5><ul class="jd-list"><li><i data-lucide="check-circle"></i>MBBS + MD Pediatrics / DNB Pediatrics</li><li><i data-lucide="check-circle"></i>Fellowship in Neonatology preferred</li><li><i data-lucide="check-circle"></i>IAP membership preferred</li></ul></div>
+                        <div class="jd-block"><h5>Key Responsibilities</h5><ul class="jd-list"><li><i data-lucide="check-circle"></i>Manage NICU and PICU patients</li><li><i data-lucide="check-circle"></i>OPD consultations for children 0–18 years</li><li><i data-lucide="check-circle"></i>Vaccination counselling and growth monitoring</li><li><i data-lucide="check-circle"></i>Developmental assessment and parent education</li></ul></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JOB 3 -->
+            <div class="job-card fade-up">
+                <div class="job-head" onclick="toggleJob(this)">
+                    <div>
+                        <div class="job-dept-badge" style="background:linear-gradient(135deg,#2471a3,#3498db)"><i data-lucide="wind"></i> Pulmonology</div>
+                        <h3>Staff Nurse – Pulmonology & ICU</h3>
+                        <div class="job-tags">
+                            <span class="job-tag"><i data-lucide="map-pin"></i> Kolambe, Mangalore</span>
+                            <span class="job-tag"><i data-lucide="clock"></i> Full-Time</span>
+                            <span class="job-tag"><i data-lucide="briefcase"></i> 2–5 Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="job-right">
+                        <div class="salary-badge"><div class="sal-label">CTC Offered</div><div class="sal-val">₹3.5–6 LPA</div></div>
+                        <button class="btn-apply" onclick="event.stopPropagation();openModal('Staff Nurse – Pulmonology & ICU')"><i data-lucide="send"></i> Apply Now</button>
+                    </div>
+                </div>
+                <div class="job-details">
+                    <div class="job-details-inner">
+                        <div class="jd-block"><h5>Qualifications</h5><ul class="jd-list"><li><i data-lucide="check-circle"></i>B.Sc Nursing / GNM with valid Karnataka Nursing Council registration</li><li><i data-lucide="check-circle"></i>BLS / ACLS certification preferred</li><li><i data-lucide="check-circle"></i>ICU / ventilator management experience required</li></ul></div>
+                        <div class="jd-block"><h5>Key Responsibilities</h5><ul class="jd-list"><li><i data-lucide="check-circle"></i>Patient monitoring and medication administration</li><li><i data-lucide="check-circle"></i>Ventilator care and CPAP/BiPAP management</li><li><i data-lucide="check-circle"></i>Assisting pulmonologists during procedures</li></ul></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JOB 4 -->
+            <div class="job-card fade-up">
+                <div class="job-head" onclick="toggleJob(this)">
+                    <div>
+                        <div class="job-dept-badge" style="background:linear-gradient(135deg,#7d3c98,#9b59b6)"><i data-lucide="brain"></i> Neurology</div>
+                        <h3>Neurologist – Outpatient & Inpatient</h3>
+                        <div class="job-tags">
+                            <span class="job-tag"><i data-lucide="map-pin"></i> Kolambe, Mangalore</span>
+                            <span class="job-tag"><i data-lucide="clock"></i> Full-Time</span>
+                            <span class="job-tag"><i data-lucide="briefcase"></i> 4–10 Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="job-right">
+                        <div class="salary-badge"><div class="sal-label">CTC Offered</div><div class="sal-val">₹20–35 LPA</div></div>
+                        <button class="btn-apply" onclick="event.stopPropagation();openModal('Neurologist – Outpatient & Inpatient')"><i data-lucide="send"></i> Apply Now</button>
+                    </div>
+                </div>
+                <div class="job-details">
+                    <div class="job-details-inner">
+                        <div class="jd-block"><h5>Qualifications</h5><ul class="jd-list"><li><i data-lucide="check-circle"></i>MD Medicine + DM Neurology (mandatory)</li><li><i data-lucide="check-circle"></i>Stroke management training preferred</li><li><i data-lucide="check-circle"></i>EEG interpretation skills required</li></ul></div>
+                        <div class="jd-block"><h5>Key Responsibilities</h5><ul class="jd-list"><li><i data-lucide="check-circle"></i>Stroke unit management and thrombolysis protocol</li><li><i data-lucide="check-circle"></i>Epilepsy, migraine, Parkinson's management</li><li><i data-lucide="check-circle"></i>Neurorehabilitation coordination</li></ul></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JOB 5 -->
+            <div class="job-card fade-up">
+                <div class="job-head" onclick="toggleJob(this)">
+                    <div>
+                        <div class="job-dept-badge" style="background:linear-gradient(135deg,#0e7c7b,#13a8a7)"><i data-lucide="flask-conical"></i> Diagnostics</div>
+                        <h3>Radiographer – MRI & CT Technician</h3>
+                        <div class="job-tags">
+                            <span class="job-tag"><i data-lucide="map-pin"></i> Kolambe, Mangalore</span>
+                            <span class="job-tag"><i data-lucide="clock"></i> Full-Time</span>
+                            <span class="job-tag"><i data-lucide="briefcase"></i> 2–6 Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="job-right">
+                        <div class="salary-badge"><div class="sal-label">CTC Offered</div><div class="sal-val">₹3–5.5 LPA</div></div>
+                        <button class="btn-apply" onclick="event.stopPropagation();openModal('Radiographer – MRI & CT Technician')"><i data-lucide="send"></i> Apply Now</button>
+                    </div>
+                </div>
+                <div class="job-details">
+                    <div class="job-details-inner">
+                        <div class="jd-block"><h5>Qualifications</h5><ul class="jd-list"><li><i data-lucide="check-circle"></i>B.Sc / Diploma in Medical Imaging Technology</li><li><i data-lucide="check-circle"></i>Experience on 3T MRI and 128-slice CT platforms</li><li><i data-lucide="check-circle"></i>AERB radiation protection certification</li></ul></div>
+                        <div class="jd-block"><h5>Key Responsibilities</h5><ul class="jd-list"><li><i data-lucide="check-circle"></i>Conduct MRI, CT, and X-ray scans as per protocol</li><li><i data-lucide="check-circle"></i>Ensure patient safety and scan quality control</li><li><i data-lucide="check-circle"></i>Equipment maintenance and safety checks</li></ul></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JOB 6 -->
+            <div class="job-card fade-up">
+                <div class="job-head" onclick="toggleJob(this)">
+                    <div>
+                        <div class="job-dept-badge" style="background:linear-gradient(135deg,#c8992a,#e8b93e);color:#0a1f3c"><i data-lucide="users"></i> Administration</div>
+                        <h3>Hospital Administrator / Operations Manager</h3>
+                        <div class="job-tags">
+                            <span class="job-tag"><i data-lucide="map-pin"></i> Kolambe, Mangalore</span>
+                            <span class="job-tag"><i data-lucide="clock"></i> Full-Time</span>
+                            <span class="job-tag"><i data-lucide="briefcase"></i> 5–12 Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="job-right">
+                        <div class="salary-badge"><div class="sal-label">CTC Offered</div><div class="sal-val">₹10–18 LPA</div></div>
+                        <button class="btn-apply" onclick="event.stopPropagation();openModal('Hospital Administrator / Operations Manager')"><i data-lucide="send"></i> Apply Now</button>
+                    </div>
+                </div>
+                <div class="job-details">
+                    <div class="job-details-inner">
+                        <div class="jd-block"><h5>Qualifications</h5><ul class="jd-list"><li><i data-lucide="check-circle"></i>MBA Healthcare Management / MHA preferred</li><li><i data-lucide="check-circle"></i>5+ years in hospital operations or administration</li><li><i data-lucide="check-circle"></i>NABH accreditation experience is a strong plus</li></ul></div>
+                        <div class="jd-block"><h5>Key Responsibilities</h5><ul class="jd-list"><li><i data-lucide="check-circle"></i>Oversee day-to-day hospital operations and workflows</li><li><i data-lucide="check-circle"></i>Manage vendor relationships and procurement</li><li><i data-lucide="check-circle"></i>Lead quality improvement and compliance initiatives</li></ul></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JOB 7 -->
+            <div class="job-card fade-up">
+                <div class="job-head" onclick="toggleJob(this)">
+                    <div>
+                        <div class="job-dept-badge" style="background:linear-gradient(135deg,#d4890a,#f0a500)"><i data-lucide="stethoscope"></i> Gastroenterology</div>
+                        <h3>Gastroenterologist – Endoscopy & Hepatology</h3>
+                        <div class="job-tags">
+                            <span class="job-tag"><i data-lucide="map-pin"></i> Kolambe, Mangalore</span>
+                            <span class="job-tag"><i data-lucide="clock"></i> Full-Time</span>
+                            <span class="job-tag"><i data-lucide="briefcase"></i> 4–10 Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="job-right">
+                        <div class="salary-badge"><div class="sal-label">CTC Offered</div><div class="sal-val">₹22–38 LPA</div></div>
+                        <button class="btn-apply" onclick="event.stopPropagation();openModal('Gastroenterologist – Endoscopy & Hepatology')"><i data-lucide="send"></i> Apply Now</button>
+                    </div>
+                </div>
+                <div class="job-details">
+                    <div class="job-details-inner">
+                        <div class="jd-block"><h5>Qualifications</h5><ul class="jd-list"><li><i data-lucide="check-circle"></i>MD Medicine + DM Gastroenterology</li><li><i data-lucide="check-circle"></i>Proficiency in ERCP, EUS, and colonoscopy</li><li><i data-lucide="check-circle"></i>Liver biopsy and hepatology management experience</li></ul></div>
+                        <div class="jd-block"><h5>Key Responsibilities</h5><ul class="jd-list"><li><i data-lucide="check-circle"></i>Conduct UGI and LGI endoscopy procedures</li><li><i data-lucide="check-circle"></i>Manage IBD, hepatitis, and cirrhosis patients</li><li><i data-lucide="check-circle"></i>ERCP and therapeutic interventions</li></ul></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+    <div class="cta-box fade-up">
+        <div style="position:relative;z-index:2">
+            <h2>Don't See the Right Role?</h2>
+            <p>We're always looking for talented professionals. Send us your resume and we'll reach out when a matching position opens up at MNR Medicity.</p>
+        </div>
+        <div class="cta-btns">
+            <button class="btn-white" onclick="openModal('General Application')"><i data-lucide="send"></i> Send Your Resume</button>
+            <a href="contact.html" class="btn-ghost-w"><i data-lucide="phone-call"></i> Contact HR Team</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="f-grid">
+        <div class="f-brand">
+            <a href="index.html" class="nav-logo" style="text-decoration:none">
+                <div class="logo-icon"><i data-lucide="hospital"></i></div>
+                <div><div class="logo-name" style="color:#fff">MNR Medicity</div><div class="logo-sub" style="color:var(--teal-light)">Advanced Healthcare</div></div>
+            </a>
+            <p>MNR Medicity is committed to delivering compassionate, expert, and affordable healthcare to every patient across Mangalore and Coastal Karnataka.</p>
+            <div class="f-socials"><a href="#"><i data-lucide="facebook"></i></a><a href="#"><i data-lucide="instagram"></i></a><a href="#"><i data-lucide="twitter"></i></a><a href="#"><i data-lucide="youtube"></i></a><a href="#"><i data-lucide="linkedin"></i></a></div>
+        </div>
+        <div class="f-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="doctors.html">Our Doctors</a></li><li><a href="departments.html">Departments</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+        <div class="f-col"><h4>Departments</h4><ul><li><a href="cardiology.html">Cardiology</a></li><li><a href="pulmonology.html">Pulmonology</a></li><li><a href="gynecology.html">Gynecology</a></li><li><a href="neurology.html">Neurology</a></li><li><a href="urology.html">Urology</a></li><li><a href="gastroenterology.html">Gastroenterology</a></li><li><a href="pediatrics.html">Pediatrics</a></li></ul></div>
+        <div class="f-col"><h4>Contact Information</h4>
+            <div class="f-cr"><i data-lucide="map-pin"></i><p>MNR Medicity Campus Kolambe, Behind Bajpe Proper, Karnataka 574142</p></div>
+            <div class="f-cr"><i data-lucide="phone"></i><p><a href="tel:9876543210">9876543210</a></p></div>
+            <div class="f-cr"><i data-lucide="mail"></i><p><a href="mailto:info@mnrmedicity.com">info@mnrmedicity.com</a></p></div>
+            <div class="f-cr"><i data-lucide="clock"></i><p>OPD: Mon–Sat 8:00 AM – 8:00 PM<br>Emergency: 24/7</p></div>
+        </div>
+    </div>
+    <div class="f-bottom"><span>&copy; 2025 MNR Medicity. All rights reserved.</span><div class="f-blinks"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Sitemap</a></div></div>
+</footer>
+<button class="scroll-top" id="scrollTop"><i data-lucide="chevron-up"></i></button>
+
+<!-- APPLY MODAL -->
+<div class="modal-backdrop" id="applyModal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal()"><i data-lucide="x"></i></button>
+        <div id="modalForm">
+            <h3>Apply for Position</h3>
+            <div class="modal-role" id="modalRole"></div>
+            <div class="form-row">
+                <div class="form-group"><label>Full Name <span class="req">*</span></label><input type="text" id="appName" placeholder="Your full name" /></div>
+                <div class="form-group"><label>Phone <span class="req">*</span></label><input type="tel" id="appPhone" placeholder="+91 98765 43210" /></div>
+            </div>
+            <div class="form-group"><label>Email Address <span class="req">*</span></label><input type="email" id="appEmail" placeholder="you@example.com" /></div>
+            <div class="form-group"><label>Cover Letter</label><textarea id="appCover" placeholder="Tell us why you're a great fit for this role…"></textarea></div>
+            <div class="form-group">
+                <label>Resume / CV <span class="req">*</span> <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gray-mid)">(PDF only, max 5MB)</span></label>
+                <div class="file-upload" id="fileUploadArea">
+                    <input type="file" id="appResume" accept=".pdf" onchange="handleFile(this)" />
+                    <div class="file-upload-ico"><i data-lucide="upload"></i></div>
+                    <p>Click to upload or drag & drop</p>
+                    <span>PDF only · Max 5MB</span>
+                    <div class="file-name" id="fileName"></div>
+                </div>
+            </div>
+            <button class="btn-submit-modal" onclick="submitApplication()"><i data-lucide="send"></i> Submit Application</button>
+        </div>
+        <div class="modal-success" id="modalSuccess">
+            <div class="modal-success-ico"><i data-lucide="check"></i></div>
+            <h3>Application Submitted!</h3>
+            <p>Thank you for applying. Our HR team will review your application and get in touch within 5–7 working days.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+lucide.createIcons();
+var navbar=document.getElementById('navbar'),scrollBtn=document.getElementById('scrollTop');
+window.addEventListener('scroll',function(){navbar.classList.toggle('scrolled',window.scrollY>60);scrollBtn.classList.toggle('visible',window.scrollY>300);});
+function closeAllDrops(){document.querySelectorAll('.drop.open').forEach(function(d){d.classList.remove('open');});}
+document.querySelectorAll('.drop-btn').forEach(function(btn){btn.addEventListener('click',function(e){e.stopPropagation();var drop=btn.closest('.drop'),open=drop.classList.contains('open');closeAllDrops();if(!open)drop.classList.add('open');});});
+document.addEventListener('click',closeAllDrops);
+document.querySelectorAll('.drop-menu').forEach(function(m){m.addEventListener('click',function(e){e.stopPropagation();});});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+var ham=document.getElementById('hamburger'),mob=document.getElementById('mobNav');
+ham.addEventListener('click',function(){mob.classList.toggle('open');document.body.style.overflow=mob.classList.contains('open')?'hidden':'';});
+mob.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mob.classList.remove('open');document.body.style.overflow='';});});
+scrollBtn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:0.07});
+document.querySelectorAll('.fade-up').forEach(function(el){obs.observe(el);});
+
+function toggleJob(head){var details=head.closest('.job-card').querySelector('.job-details');details.classList.toggle('open');}
+
+function openModal(role){
+    document.getElementById('modalRole').textContent=role;
+    document.getElementById('modalForm').style.display='block';
+    document.getElementById('modalSuccess').style.display='none';
+    document.getElementById('applyModal').classList.add('open');
+    document.body.style.overflow='hidden';
+    lucide.createIcons();
+}
+function closeModal(){document.getElementById('applyModal').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('applyModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+function handleFile(input){
+    var fn=document.getElementById('fileName'),area=document.getElementById('fileUploadArea');
+    if(input.files&&input.files[0]){
+        var f=input.files[0];
+        if(f.type!=='application/pdf'){alert('Please upload a PDF file only.');input.value='';fn.style.display='none';area.classList.remove('has-file');return;}
+        if(f.size>5*1024*1024){alert('File size must be under 5MB.');input.value='';fn.style.display='none';area.classList.remove('has-file');return;}
+        fn.textContent='✓ '+f.name;fn.style.display='block';area.classList.add('has-file');
+    }
+}
+function submitApplication(){
+    var name=document.getElementById('appName').value.trim();
+    var phone=document.getElementById('appPhone').value.trim();
+    var email=document.getElementById('appEmail').value.trim();
+    var resume=document.getElementById('appResume').files[0];
+    if(!name||!phone||!email){alert('Please fill in all required fields.');return;}
+    if(!email.includes('@')){alert('Please enter a valid email address.');return;}
+    if(!resume){alert('Please upload your Resume / CV (PDF only).');return;}
+    document.getElementById('modalForm').style.display='none';
+    document.getElementById('modalSuccess').style.display='block';
+    lucide.createIcons();
+}
+</script>
+</body>
+</html>

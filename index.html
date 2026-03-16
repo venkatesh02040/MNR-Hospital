@@ -1,0 +1,2904 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MNR Medicity | Advanced Healthcare</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* ═══════════════════════════════════
+   ROOT & RESET
+═══════════════════════════════════ */
+        :root {
+            --navy: #0a1f3c;
+            --teal: #0e7c7b;
+            --teal-light: #13a8a7;
+            --gold: #c8992a;
+            --gold-light: #e8b93e;
+            --cream: #f8f4ee;
+            --gray-light: #f0f4f8;
+            --gray-mid: #8094a8;
+            --text: #1a2d42;
+            --shadow: 0 8px 40px rgba(10, 31, 60, .10);
+            --shadow-strong: 0 16px 60px rgba(10, 31, 60, .18);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ═══════════════════════════════════
+   NAVBAR
+═══════════════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, .97);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(10, 31, 60, .08);
+            box-shadow: 0 2px 20px rgba(10, 31, 60, .06);
+            transition: all .35s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 31, 60, .97);
+            border-bottom-color: transparent;
+        }
+
+        nav.scrolled .logo-name,
+        nav.scrolled .nav-link,
+        nav.scrolled .drop-btn {
+            color: #fff !important;
+        }
+
+        nav.scrolled .logo-sub {
+            color: var(--teal-light) !important;
+        }
+
+        nav.scrolled .hamburger span {
+            background: #fff;
+        }
+
+        .nav-wrap {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            height: 72px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 11px;
+            background: linear-gradient(135deg, var(--teal), var(--navy));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo-icon svg {
+            color: #fff;
+            width: 22px;
+            height: 22px;
+        }
+
+        .logo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.1;
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            color: var(--teal);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 13px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all .2s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(14, 124, 123, .09);
+            color: var(--teal);
+        }
+
+        .drop {
+            position: relative;
+        }
+
+        .drop-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 13px;
+            border-radius: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all .2s;
+            user-select: none;
+        }
+
+        .drop-btn svg {
+            width: 13px;
+            height: 13px;
+            transition: transform .3s;
+        }
+
+        .drop.open .drop-btn {
+            background: rgba(14, 124, 123, .09);
+            color: var(--teal);
+        }
+
+        .drop.open .drop-btn svg {
+            transform: rotate(180deg);
+        }
+
+        nav.scrolled .drop.open .drop-btn {
+            color: var(--teal-light) !important;
+        }
+
+        /* invisible bridge fills the gap so mouse doesn't lose hover */
+        .drop-menu::before {
+            content: '';
+            position: absolute;
+            top: -16px;
+            left: 0;
+            right: 0;
+            height: 16px;
+        }
+
+        .drop-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%) translateY(6px);
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: var(--shadow-strong);
+            padding: 8px;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity .22s ease, transform .22s ease, visibility .22s;
+            border: 1px solid rgba(10, 31, 60, .07);
+            z-index: 200;
+        }
+
+        .drop.open .drop-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .drop-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 9px;
+            color: var(--text);
+            font-size: 14px;
+            text-decoration: none;
+            transition: all .18s;
+            white-space: nowrap;
+        }
+
+        .drop-item svg {
+            width: 16px;
+            height: 16px;
+            color: var(--teal);
+            flex-shrink: 0;
+        }
+
+        .drop-item:hover {
+            background: var(--gray-light);
+            color: var(--teal);
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            color: #fff !important;
+            padding: 9px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(14, 124, 123, .35);
+            transition: all .25s;
+        }
+
+        .nav-cta svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(14, 124, 123, .45);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 6px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--navy);
+            border-radius: 2px;
+            transition: all .3s;
+            display: block;
+        }
+
+        /* ═══════════════════════════════════
+   MOBILE NAV
+═══════════════════════════════════ */
+        .mob-nav {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 998;
+            background: var(--navy);
+            padding: 90px 28px 40px;
+            transform: translateX(100%);
+            transition: transform .38s cubic-bezier(.77, 0, .175, 1);
+            overflow-y: auto;
+        }
+
+        .mob-nav.open {
+            transform: translateX(0);
+        }
+
+        .mob-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            font-size: 17px;
+            font-weight: 500;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            text-decoration: none;
+        }
+
+        .mob-link svg {
+            width: 18px;
+            height: 18px;
+            color: var(--teal-light);
+        }
+
+        .mob-sub {
+            padding-left: 28px;
+        }
+
+        .mob-sub .mob-link {
+            font-size: 15px;
+            color: rgba(255, 255, 255, .68);
+        }
+
+        .mob-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            margin-top: 28px;
+            background: var(--teal);
+            color: #fff;
+            padding: 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+        }
+
+        .mob-cta svg {
+            width: 17px;
+            height: 17px;
+        }
+
+        /* ═══════════════════════════════════
+   HERO CAROUSEL
+═══════════════════════════════════ */
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 72px);
+            min-height: 600px;
+            overflow: hidden;
+            background: #061529;
+            margin-top: 72px;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            z-index: 1;
+            transition: opacity 1.1s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 3;
+        }
+
+        .slide.prev {
+            opacity: 0;
+            z-index: 2;
+        }
+
+        /* Slide backgrounds */
+        .slide-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .slide-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+        }
+
+        .slide-1 .slide-bg {
+            background: linear-gradient(135deg, #061529 0%, #0a2540 40%, #0d3d6b 100%);
+        }
+
+        .slide-1 .slide-bg::after {
+            background: radial-gradient(ellipse at 70% 50%, rgba(14, 124, 123, .25) 0%, transparent 60%);
+        }
+
+        .slide-2 .slide-bg {
+            background: linear-gradient(135deg, #12061a 0%, #1a0f2e 40%, #2d1260 100%);
+        }
+
+        .slide-2 .slide-bg::after {
+            background: radial-gradient(ellipse at 70% 50%, rgba(155, 89, 182, .25) 0%, transparent 60%);
+        }
+
+        .slide-3 .slide-bg {
+            background: linear-gradient(135deg, #071a10 0%, #0a2518 40%, #0d3d22 100%);
+        }
+
+        .slide-3 .slide-bg::after {
+            background: radial-gradient(ellipse at 70% 50%, rgba(39, 174, 96, .25) 0%, transparent 60%);
+        }
+
+        .slide-4 .slide-bg {
+            background: linear-gradient(135deg, #1a0a05 0%, #2d1509 40%, #5a2d0a 100%);
+        }
+
+        .slide-4 .slide-bg::after {
+            background: radial-gradient(ellipse at 70% 50%, rgba(200, 153, 42, .28) 0%, transparent 60%);
+        }
+
+        /* Grid overlay */
+        .slide-grid {
+            position: absolute;
+            inset: 0;
+            opacity: .035;
+            background-image: linear-gradient(rgba(255, 255, 255, .6) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .6) 1px, transparent 1px);
+            background-size: 55px 55px;
+        }
+
+        /* Decorative rings */
+        .slide-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .08);
+            animation: ring-pulse 7s ease-in-out infinite;
+        }
+
+        .ring-1 {
+            width: 350px;
+            height: 350px;
+            right: 8%;
+            top: 15%;
+        }
+
+        .ring-2 {
+            width: 560px;
+            height: 560px;
+            right: 3%;
+            top: 2%;
+            animation-delay: 1.2s;
+            opacity: .6;
+        }
+
+        .ring-3 {
+            width: 780px;
+            height: 780px;
+            right: -2%;
+            top: -10%;
+            animation-delay: 2.4s;
+            opacity: .3;
+        }
+
+        @keyframes ring-pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: .08;
+            }
+
+            50% {
+                transform: scale(1.04);
+                opacity: .18;
+            }
+        }
+
+        .slide-inner {
+            position: relative;
+            z-index: 3;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 28px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Slide text left */
+        .slide-text {
+            max-width: 580px;
+        }
+
+        .slide-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, .10);
+            border: 1px solid rgba(255, 255, 255, .2);
+            color: rgba(255, 255, 255, .9);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+            backdrop-filter: blur(8px);
+        }
+
+        .slide-badge svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .slide-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(30px, 4.2vw, 56px);
+            font-weight: 700;
+            line-height: 1.14;
+            color: #fff;
+            margin-bottom: 18px;
+        }
+
+        .slide-title em {
+            font-style: normal;
+        }
+
+        .slide-1 .slide-title em {
+            color: var(--gold-light);
+        }
+
+        .slide-2 .slide-title em {
+            color: #d7aff5;
+        }
+
+        .slide-3 .slide-title em {
+            color: #7de8a8;
+        }
+
+        .slide-4 .slide-title em {
+            color: var(--gold-light);
+        }
+
+        .slide-desc {
+            font-size: 16px;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, .72);
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+
+        .slide-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 42px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            color: #fff;
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 6px 22px rgba(14, 124, 123, .40);
+            transition: all .3s;
+        }
+
+        .btn-primary svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(14, 124, 123, .50);
+        }
+
+        .btn-outline-w {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            border: 1.5px solid rgba(255, 255, 255, .35);
+            color: #fff;
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+            backdrop-filter: blur(8px);
+            transition: all .3s;
+        }
+
+        .btn-outline-w svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .btn-outline-w:hover {
+            border-color: #fff;
+            background: rgba(255, 255, 255, .1);
+        }
+
+        .slide-stats {
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .s-stat .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .s-stat .num span {
+            color: var(--gold-light);
+        }
+
+        .s-stat p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .5);
+            margin-top: 4px;
+        }
+
+        /* Slide right card */
+        .slide-card {
+            background: rgba(255, 255, 255, .07);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 24px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .sc-head {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+
+        .sc-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 15px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sc-icon svg {
+            width: 25px;
+            height: 25px;
+            color: #fff;
+        }
+
+        .slide-1 .sc-icon {
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+        }
+
+        .slide-2 .sc-icon {
+            background: linear-gradient(135deg, #9b59b6, #6c3483);
+        }
+
+        .slide-3 .sc-icon {
+            background: linear-gradient(135deg, #27ae60, #1e8449);
+        }
+
+        .slide-4 .sc-icon {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+        }
+
+        .sc-head h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 19px;
+            color: #fff;
+        }
+
+        .sc-head p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .55);
+            margin-top: 3px;
+        }
+
+        .sc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sc-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 10px;
+            padding: 11px 14px;
+            transition: all .2s;
+        }
+
+        .sc-item:hover {
+            background: rgba(255, 255, 255, .12);
+        }
+
+        .sc-item svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .slide-1 .sc-item svg {
+            color: var(--teal-light);
+        }
+
+        .slide-2 .sc-item svg {
+            color: #d7aff5;
+        }
+
+        .slide-3 .sc-item svg {
+            color: #7de8a8;
+        }
+
+        .slide-4 .sc-item svg {
+            color: var(--gold-light);
+        }
+
+        .sc-item span {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Float badges */
+        .fbadge {
+            position: absolute;
+            background: #fff;
+            border-radius: 14px;
+            padding: 12px 17px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, .18);
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .fbadge.fb-b {
+            bottom: -52px;
+            left: -18px;
+            animation: floatY 4s ease-in-out infinite;
+        }
+
+        .fbadge.fb-t {
+            top: -14px;
+            right: -14px;
+            animation: floatY 4s ease-in-out infinite 1.8s;
+        }
+
+        @keyframes floatY {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-9px);
+            }
+        }
+
+        .fb-ico {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fb-ico svg {
+            width: 17px;
+            height: 17px;
+            color: #fff;
+        }
+
+        .fbadge strong {
+            display: block;
+            font-size: 13px;
+            color: var(--navy);
+            line-height: 1.2;
+        }
+
+        .fbadge small {
+            font-size: 11px;
+            color: var(--gray-mid);
+        }
+
+        /* Carousel controls */
+        .c-dots {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .c-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .35);
+            cursor: pointer;
+            border: none;
+            transition: all .3s;
+            padding: 0;
+        }
+
+        .c-dot.active {
+            background: #fff;
+            width: 28px;
+            border-radius: 4px;
+        }
+
+        .c-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .12);
+            border: 1px solid rgba(255, 255, 255, .22);
+            color: #fff;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .25s;
+        }
+
+        .c-arrow:hover {
+            background: var(--teal);
+            border-color: var(--teal);
+        }
+
+        .c-arrow svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .c-prev {
+            left: 24px;
+        }
+
+        .c-next {
+            right: 24px;
+        }
+
+        .c-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(255, 255, 255, .1);
+            z-index: 10;
+        }
+
+        .c-bar {
+            height: 100%;
+            width: 0;
+            background: var(--teal-light);
+        }
+
+        /* ═══════════════════════════════════
+   TRUST BAR
+═══════════════════════════════════ */
+        .trust-bar {
+            background: var(--navy);
+            padding: 17px 28px;
+        }
+
+        .trust-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .t-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: rgba(255, 255, 255, .72);
+            font-size: 13px;
+        }
+
+        .t-item svg {
+            width: 15px;
+            height: 15px;
+            color: var(--teal-light);
+            flex-shrink: 0;
+        }
+
+        .t-div {
+            width: 1px;
+            height: 22px;
+            background: rgba(255, 255, 255, .13);
+        }
+
+        /* ═══════════════════════════════════
+   SHARED SECTION
+═══════════════════════════════════ */
+        section {
+            padding: 88px 28px;
+        }
+
+        .si {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .s-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 12px;
+        }
+
+        .s-tag::before {
+            content: '';
+            width: 22px;
+            height: 2px;
+            background: var(--teal);
+            border-radius: 2px;
+        }
+
+        .s-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(26px, 3.6vw, 42px);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+
+        .s-title em {
+            font-style: normal;
+            color: var(--teal);
+        }
+
+        .s-desc {
+            font-size: 15px;
+            color: var(--gray-mid);
+            line-height: 1.78;
+            max-width: 540px;
+        }
+
+        /* ═══════════════════════════════════
+   WHY CHOOSE US
+═══════════════════════════════════ */
+        .why-sec {
+            background: var(--cream);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            margin-top: 52px;
+        }
+
+        .why-visual {
+            background: linear-gradient(135deg, var(--navy), #0d3a6e);
+            border-radius: 24px;
+            padding: 38px 34px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .stat-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .10);
+            border-radius: 14px;
+            padding: 17px 20px;
+            transition: all .3s;
+        }
+
+        .stat-card:hover {
+            background: rgba(14, 124, 123, .18);
+        }
+
+        .stat-ico {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-ico svg {
+            width: 21px;
+            height: 21px;
+            color: #fff;
+        }
+
+        .stat-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: #fff;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .stat-card p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .57);
+            margin-top: 4px;
+        }
+
+        .why-feats {
+            display: flex;
+            flex-direction: column;
+            gap: 17px;
+        }
+
+        .why-f {
+            display: flex;
+            gap: 15px;
+            padding: 19px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 2px 18px rgba(10, 31, 60, .06);
+            transition: all .3s;
+        }
+
+        .why-f:hover {
+            box-shadow: var(--shadow);
+            transform: translateX(4px);
+        }
+
+        .f-ico {
+            width: 46px;
+            height: 46px;
+            border-radius: 13px;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .f-ico svg {
+            width: 20px;
+            height: 20px;
+            color: #fff;
+        }
+
+        .why-f h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 5px;
+        }
+
+        .why-f p {
+            font-size: 13px;
+            color: var(--gray-mid);
+            line-height: 1.65;
+        }
+
+        /* ═══════════════════════════════════
+   DEPARTMENTS
+═══════════════════════════════════ */
+        .dept-sec {
+            background: #fff;
+        }
+
+        .dept-hd {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-bottom: 42px;
+        }
+
+        .dept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
+            gap: 20px;
+        }
+
+        .dept-card {
+            display: block;
+            border-radius: 20px;
+            padding: 28px 24px;
+            background: var(--gray-light);
+            border: 1.5px solid transparent;
+            text-decoration: none;
+            transition: all .3s;
+        }
+
+        .dept-card:hover {
+            border-color: var(--teal);
+            background: #fff;
+            box-shadow: var(--shadow);
+            transform: translateY(-5px);
+        }
+
+        .d-ico {
+            width: 56px;
+            height: 56px;
+            border-radius: 15px;
+            margin-bottom: 17px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .d-ico svg {
+            width: 25px;
+            height: 25px;
+            color: #fff;
+        }
+
+        .dept-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--navy);
+            margin-bottom: 7px;
+        }
+
+        .dept-card p {
+            font-size: 13px;
+            color: var(--gray-mid);
+            line-height: 1.65;
+        }
+
+        .d-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--teal);
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 13px;
+        }
+
+        .d-more svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        /* ═══════════════════════════════════
+   DOCTORS
+═══════════════════════════════════ */
+        .doc-sec {
+            background: var(--cream);
+        }
+
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-top: 42px;
+        }
+
+        .doc-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 18px rgba(10, 31, 60, .07);
+            transition: all .3s;
+        }
+
+        .doc-card:hover {
+            transform: translateY(-7px);
+            box-shadow: var(--shadow);
+        }
+
+        .doc-ph {
+            height: 230px;
+            overflow: hidden;
+            position: relative;
+            background: var(--gray-light);
+        }
+
+        .doc-ph img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform .4s ease;
+        }
+
+        .doc-card:hover .doc-ph img {
+            transform: scale(1.06);
+        }
+
+        .doc-ph-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 55%, rgba(10, 31, 60, .20) 100%);
+        }
+
+        .doc-info {
+            padding: 18px 20px 24px;
+            text-align: center;
+        }
+
+        .doc-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .doc-spec {
+            font-size: 13px;
+            color: var(--teal);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .doc-exp {
+            font-size: 12px;
+            color: var(--gray-mid);
+            margin-bottom: 14px;
+        }
+
+        .btn-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .btn-sm svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        /* ═══════════════════════════════════
+   SERVICES (dark)
+═══════════════════════════════════ */
+        .svc-sec {
+            background: var(--navy);
+            padding: 88px 28px;
+        }
+
+        .svc-sec .s-title {
+            color: #fff;
+        }
+
+        .svc-sec .s-desc {
+            color: rgba(255, 255, 255, .58);
+        }
+
+        .svc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+            gap: 20px;
+            margin-top: 42px;
+        }
+
+        .svc-card {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all .3s;
+        }
+
+        .svc-card:hover {
+            background: rgba(14, 124, 123, .14);
+            border-color: rgba(14, 124, 123, .38);
+            transform: translateY(-4px);
+        }
+
+        .svc-ico {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 17px;
+        }
+
+        .svc-ico svg {
+            width: 23px;
+            height: 23px;
+            color: #fff;
+        }
+
+        .svc-card h3 {
+            color: #fff;
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 9px;
+        }
+
+        .svc-card p {
+            color: rgba(255, 255, 255, .52);
+            font-size: 13px;
+            line-height: 1.72;
+        }
+
+        /* ═══════════════════════════════════
+   APPOINTMENT BANNER
+═══════════════════════════════════ */
+        .appt {
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            padding: 66px 28px;
+        }
+
+        .appt-in {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .appt-in h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(22px, 3.2vw, 36px);
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .appt-in>div:first-child p {
+            color: rgba(255, 255, 255, .82);
+            font-size: 15px;
+            max-width: 480px;
+        }
+
+        .appt-acts {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .appt-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, .15);
+            border: 1px solid rgba(255, 255, 255, .22);
+            border-radius: 13px;
+            padding: 13px 17px;
+            backdrop-filter: blur(8px);
+        }
+
+        .appt-row svg {
+            width: 19px;
+            height: 19px;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .appt-row strong {
+            display: block;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .appt-row span {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .68);
+        }
+
+        .btn-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: #fff;
+            color: var(--teal);
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .14);
+            transition: all .3s;
+            margin-top: 20px;
+        }
+
+        .btn-white svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, .20);
+        }
+
+        /* ═══════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════ */
+        .testi-sec {
+            background: #fff;
+        }
+
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 20px;
+            margin-top: 42px;
+        }
+
+        .t-card {
+            background: var(--gray-light);
+            border-radius: 20px;
+            padding: 26px;
+            border: 1.5px solid transparent;
+            transition: all .3s;
+        }
+
+        .t-card:hover {
+            border-color: var(--teal);
+            box-shadow: var(--shadow);
+        }
+
+        .t-stars {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 14px;
+        }
+
+        .t-stars svg {
+            width: 16px;
+            height: 16px;
+            color: var(--gold);
+            fill: var(--gold);
+        }
+
+        .t-text {
+            font-size: 14px;
+            color: var(--text);
+            line-height: 1.78;
+            margin-bottom: 18px;
+            font-style: italic;
+        }
+
+        .t-author {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .t-av {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .t-author strong {
+            font-size: 14px;
+            color: var(--navy);
+            display: block;
+        }
+
+        .t-author span {
+            font-size: 12px;
+            color: var(--gray-mid);
+        }
+
+        /* ═══════════════════════════════════
+   ACCREDITATION
+═══════════════════════════════════ */
+        .accred {
+            background: var(--cream);
+            padding: 54px 28px;
+        }
+
+        .accred-in {
+            max-width: 1300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .accred-in>p {
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--gray-mid);
+            margin-bottom: 28px;
+        }
+
+        .accred-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .a-badge {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            background: #fff;
+            border-radius: 12px;
+            padding: 13px 20px;
+            box-shadow: 0 2px 14px rgba(10, 31, 60, .07);
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .a-badge svg {
+            width: 17px;
+            height: 17px;
+            color: var(--teal);
+        }
+
+        /* ═══════════════════════════════════
+   FOOTER
+═══════════════════════════════════ */
+        footer {
+            background: var(--navy);
+            padding: 66px 28px 0;
+        }
+
+        .f-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 46px;
+            padding-bottom: 50px;
+        }
+
+        .f-brand p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, .52);
+            margin: 17px 0 20px;
+        }
+
+        .f-socials {
+            display: flex;
+            gap: 9px;
+        }
+
+        .f-socials a {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: rgba(255, 255, 255, .07);
+            color: rgba(255, 255, 255, .60);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all .2s;
+        }
+
+        .f-socials a:hover {
+            background: var(--teal);
+            color: #fff;
+        }
+
+        .f-socials a svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .f-col h4 {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 17px;
+        }
+
+        .f-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .f-col ul a {
+            color: rgba(255, 255, 255, .52);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color .2s;
+        }
+
+        .f-col ul a:hover {
+            color: var(--teal-light);
+        }
+
+        .f-cr {
+            display: flex;
+            gap: 11px;
+            margin-bottom: 13px;
+        }
+
+        .f-cr svg {
+            width: 15px;
+            height: 15px;
+            color: var(--teal-light);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .f-cr p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .52);
+            line-height: 1.65;
+        }
+
+        .f-cr a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .f-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, .07);
+            padding: 22px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, .32);
+        }
+
+        .f-bottom a {
+            color: rgba(255, 255, 255, .42);
+            text-decoration: none;
+        }
+
+        .f-bottom a:hover {
+            color: var(--teal-light);
+        }
+
+        .f-blinks {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* ═══════════════════════════════════
+   SCROLL TOP
+═══════════════════════════════════ */
+        .scroll-top {
+            position: fixed;
+            bottom: 26px;
+            right: 26px;
+            z-index: 999;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--teal);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 18px rgba(14, 124, 123, .40);
+            opacity: 0;
+            pointer-events: none;
+            transition: all .3s;
+        }
+
+        .scroll-top svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ═══════════════════════════════════
+   FADE-UP ANIMATION
+═══════════════════════════════════ */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: all .65s cubic-bezier(.25, .46, .45, .94);
+        }
+
+        .fade-up.in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-up:nth-child(2) {
+            transition-delay: .08s
+        }
+
+        .fade-up:nth-child(3) {
+            transition-delay: .16s
+        }
+
+        .fade-up:nth-child(4) {
+            transition-delay: .24s
+        }
+
+        .fade-up:nth-child(5) {
+            transition-delay: .32s
+        }
+
+        .fade-up:nth-child(6) {
+            transition-delay: .40s
+        }
+
+        .fade-up:nth-child(7) {
+            transition-delay: .48s
+        }
+
+        /* ═══════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .slide-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .slide-card {
+                display: none;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .f-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .appt-in {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mob-nav {
+                display: block;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .svc-sec,
+            .appt,
+            .accred {
+                padding: 60px 20px;
+            }
+
+            .f-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .trust-inner {
+                justify-content: center;
+            }
+
+            .t-div {
+                display: none;
+            }
+
+            .hero-slider {
+                height: auto;
+                min-height: 100svh;
+            }
+
+            .slide-stats {
+                gap: 16px;
+            }
+
+            .c-arrow {
+                display: none;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-slider {
+                height: auto;
+                min-height: 120svh;
+            }
+
+            .slide-actions {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-outline-w {
+                text-align: center;
+                justify-content: center;
+            }
+
+            .slide-title {
+                font-size: 28px;
+            }
+
+            .appt-acts {
+                width: 100%;
+            }
+
+            .c-dots{
+                bottom: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════════
+     NAVBAR
+═══════════════════════════════════ -->
+    <nav id="navbar">
+        <div class="nav-wrap">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon"><i data-lucide="hospital"></i></div>
+                <div>
+                    <div class="logo-name">MNR Medicity</div>
+                    <div class="logo-sub">Advanced Healthcare</div>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li class="drop">
+                    <button class="drop-btn">Departments <i data-lucide="chevron-down"></i></button>
+                    <div class="drop-menu">
+                        <a href="departments.html#cardiology" class="drop-item"><i data-lucide="heart-pulse"></i>
+                            Cardiology</a>
+                        <a href="departments.html#pulmonology" class="drop-item"><i data-lucide="wind"></i>
+                            Pulmonology</a>
+                        <a href="departments.html#gynecology" class="drop-item"><i data-lucide="baby"></i>
+                            Gynecology</a>
+                        <a href="departments.html#neurology" class="drop-item"><i data-lucide="brain"></i> Neurology</a>
+                        <a href="departments.html#urology" class="drop-item"><i data-lucide="activity"></i> Urology</a>
+                        <a href="departments.html#gastrology" class="drop-item"><i data-lucide="stethoscope"></i>
+                            Gastroenterology</a>
+                        <a href="departments.html#pediatrics" class="drop-item"><i data-lucide="smile"></i>
+                            Pediatrics</a>
+                    </div>
+                </li>
+                <li><a href="doctors.html" class="nav-link">Doctors</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="drop">
+                    <button class="drop-btn">More <i data-lucide="chevron-down"></i></button>
+                    <div class="drop-menu">
+                        <a href="blogs.html" class="drop-item"><i data-lucide="newspaper"></i> Blogs</a>
+                        <a href="gallery.html" class="drop-item"><i data-lucide="image"></i> Gallery</a>
+                        <a href="careers.html" class="drop-item"><i data-lucide="briefcase"></i> Careers</a>
+                        <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a>
+                    </div>
+                </li>
+                <li><a href="contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
+                </li>
+            </ul>
+
+            <button class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <div class="mob-nav" id="mobNav">
+        <a href="index.html" class="mob-link"><i data-lucide="home"></i> Home</a>
+        <a href="about.html" class="mob-link"><i data-lucide="info"></i> About Us</a>
+        <span class="mob-link" style="cursor:pointer"><i data-lucide="layout-grid"></i> Departments</span>
+        <div class="mob-sub">
+            <a href="departments.html#cardiology" class="mob-link"><i data-lucide="heart-pulse"></i> Cardiology</a>
+            <a href="departments.html#pulmonology" class="mob-link"><i data-lucide="wind"></i> Pulmonology</a>
+            <a href="departments.html#gynecology" class="mob-link"><i data-lucide="baby"></i> Gynecology</a>
+            <a href="departments.html#neurology" class="mob-link"><i data-lucide="brain"></i> Neurology</a>
+            <a href="departments.html#urology" class="mob-link"><i data-lucide="activity"></i> Urology</a>
+            <a href="departments.html#gastrology" class="mob-link"><i data-lucide="stethoscope"></i>
+                Gastroenterology</a>
+            <a href="departments.html#pediatrics" class="mob-link"><i data-lucide="smile"></i> Pediatrics</a>
+        </div>
+        <a href="doctors.html" class="mob-link"><i data-lucide="user-round"></i> Doctors</a>
+        <a href="contact.html" class="mob-link"><i data-lucide="phone"></i> Contact Us</a>
+        <span class="mob-link" style="cursor:pointer"><i data-lucide="more-horizontal"></i> More</span>
+        <div class="mob-sub">
+            <a href="blogs.html" class="mob-link"><i data-lucide="newspaper"></i> Blogs</a>
+            <a href="gallery.html" class="mob-link"><i data-lucide="image"></i> Gallery</a>
+            <a href="careers.html" class="mob-link"><i data-lucide="briefcase"></i> Careers</a>
+            <a href="insurance.html" class="mob-link"><i data-lucide="shield-check"></i> Insurance</a>
+        </div>
+        <a href="contact.html" class="mob-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
+    </div>
+
+    <!-- ═══════════════════════════════════
+     HERO CAROUSEL
+═══════════════════════════════════ -->
+    <div class="hero-slider" id="heroSlider">
+
+        <!-- SLIDE 1 – Brand -->
+        <div class="slide slide-1 active">
+            <div class="slide-bg"></div>
+            <div class="slide-grid"></div>
+            <div class="slide-ring ring-1"></div>
+            <div class="slide-ring ring-2"></div>
+            <div class="slide-ring ring-3"></div>
+            <div class="slide-inner">
+                <div class="slide-text">
+                    <div class="slide-badge"><i data-lucide="circle-dot"></i>&nbsp; NABH Accredited Hospital</div>
+                    <h1 class="slide-title">Where Compassion Meets<br><em>Advanced Medicine</em></h1>
+                    <p class="slide-desc">MNR Medicity is a state-of-the-art multi-specialty hospital serving Mangalore
+                        and surrounding regions with world-class care, expert physicians, and cutting-edge technology.
+                    </p>
+                    <div class="slide-actions">
+                        <a href="contact.html" class="btn-primary"><i data-lucide="calendar-check"></i> Book
+                            Appointment</a>
+                        <a href="about.html" class="btn-outline-w"><i data-lucide="play-circle"></i> Our Story</a>
+                    </div>
+                    <div class="slide-stats">
+                        <div class="s-stat">
+                            <div class="num">25<span>+</span></div>
+                            <p>Years of Excellence</p>
+                        </div>
+                        <div class="s-stat">
+                            <div class="num">50<span>+</span></div>
+                            <p>Expert Doctors</p>
+                        </div>
+                        <div class="s-stat">
+                            <div class="num">1L<span>+</span></div>
+                            <p>Patients Treated</p>
+                        </div>
+                        <div class="s-stat">
+                            <div class="num">7</div>
+                            <p>Specialties</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-card">
+                    <div class="sc-head">
+                        <div class="sc-icon"><i data-lucide="hospital"></i></div>
+                        <div>
+                            <h3>Our Specialties</h3>
+                            <p>7 departments, one world-class campus</p>
+                        </div>
+                    </div>
+                    <div class="sc-list">
+                        <div class="sc-item"><i data-lucide="heart-pulse"></i><span>Cardiology</span></div>
+                        <div class="sc-item"><i data-lucide="wind"></i><span>Pulmonology</span></div>
+                        <div class="sc-item"><i data-lucide="brain"></i><span>Neurology</span></div>
+                        <div class="sc-item"><i data-lucide="baby"></i><span>Gynecology &amp; Obstetrics</span></div>
+                        <div class="sc-item"><i data-lucide="smile"></i><span>Pediatrics</span></div>
+                    </div>
+                    <div class="fbadge fb-b">
+                        <div class="fb-ico" style="background:linear-gradient(135deg,#e74c3c,#c0392b)"><i
+                                data-lucide="ambulance"></i></div>
+                        <div><strong>24/7 Emergency</strong><small>Always Ready</small></div>
+                    </div>
+                    <div class="fbadge fb-t">
+                        <div class="fb-ico" style="background:linear-gradient(135deg,var(--gold),var(--gold-light))"><i
+                                data-lucide="star"></i></div>
+                        <div><strong>4.9 / 5 Rating</strong><small>Patient Reviews</small></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2 – Cardiology -->
+        <div class="slide slide-2">
+            <div class="slide-bg"></div>
+            <div class="slide-grid"></div>
+            <div class="slide-ring ring-1"></div>
+            <div class="slide-ring ring-2"></div>
+            <div class="slide-ring ring-3"></div>
+            <div class="slide-inner">
+                <div class="slide-text">
+                    <div class="slide-badge"><i data-lucide="heart-pulse"></i>&nbsp; Department Spotlight</div>
+                    <h1 class="slide-title">World-Class<br><em>Cardiac Care</em></h1>
+                    <p class="slide-desc">Our Cardiology department offers comprehensive heart health services — from
+                        advanced diagnostics to interventional procedures and cardiac rehabilitation programs.</p>
+                    <div class="slide-actions">
+                        <a href="departments.html#cardiology" class="btn-primary"><i data-lucide="arrow-right"></i>
+                            Explore Cardiology</a>
+                        <a href="contact.html" class="btn-outline-w"><i data-lucide="calendar-check"></i> Book
+                            Consultation</a>
+                    </div>
+                    <div class="slide-stats">
+                        <div class="s-stat">
+                            <div class="num">5000<span>+</span></div>
+                            <p>Cardiac Procedures</p>
+                        </div>
+                        <div class="s-stat">
+                            <div class="num">98<span>%</span></div>
+                            <p>Success Rate</p>
+                        </div>
+                        <div class="s-stat">
+                            <div class="num">8<span>+</span></div>
+                            <p>Cardiologists</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-card">
+                    <div class="sc-head">
+                        <div class="sc-icon"><i data-lucide="heart-pulse"></i></div>
+                        <div>
+                            <h3>Cardiac Services</h3>
+                            <p>Full spectrum heart care</p>
+                        </div>
+                    </div>
+                    <div class="sc-list">
+                        <div class="sc-item"><i data-lucide="activity"></i><span>Echocardiography &amp; ECG</span></div>
+                        <div class="sc-item"><i data-lucide="zap"></i><span>Coronary Angioplasty</span></div>
+                        <div class="sc-item"><i data-lucide="shield-plus"></i><span>Pacemaker Implantation</span></div>
+                        <div class="sc-item"><i data-lucide="scan-line"></i><span>Cardiac Catheterization</span></div>
+                        <div class="sc-item"><i data-lucide="heart-handshake"></i><span>Cardiac Rehabilitation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 – Women & Child -->
+        <div class="slide slide-3">
+            <div class="slide-bg"></div>
+            <div class="slide-grid"></div>
+            <div class="slide-ring ring-1"></div>
+            <div class="slide-ring ring-2"></div>
+            <div class="slide-ring ring-3"></div>
+            <div class="slide-inner">
+                <div class="slide-text">
+                    <div class="slide-badge"><i data-lucide="baby"></i>&nbsp; Women &amp; Child Health</div>
+                    <h1 class="slide-title">Nurturing Every Life,<br><em>From the Very Start</em></h1>
+                    <p class="slide-desc">Dedicated maternity suites, a Level III NICU, and compassionate pediatric care
+                        — all under one roof, designed to give your family the best start possible.</p>
+                    <div class="slide-actions">
+                        <a href="departments.html#gynecology" class="btn-primary"><i data-lucide="arrow-right"></i>
+                            Maternity Services</a>
+                        <a href="departments.html#pediatrics" class="btn-outline-w"><i data-lucide="smile"></i>
+                            Pediatric Care</a>
+                    </div>
+                    <div class="slide-stats">
+                        <div class="s-stat">
+                            <div class="num">3000<span>+</span></div>
+                            <p>Deliveries Annually</p>
+                        </div>
+                        <div class="s-stat">
+                            <div class="num">Level III</div>
+                            <p>NICU Facility</p>
+                        </div>
+                        <div class="s-stat">
+                            <div class="num">24<span>/7</span></div>
+                            <p>Gynaecologist On-Call</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-card">
+                    <div class="sc-head">
+                        <div class="sc-icon"><i data-lucide="baby"></i></div>
+                        <div>
+                            <h3>Maternity &amp; Pediatrics</h3>
+                            <p>Care for mother and child</p>
+                        </div>
+                    </div>
+                    <div class="sc-list">
+                        <div class="sc-item"><i data-lucide="heart"></i><span>High-Risk Pregnancy Care</span></div>
+                        <div class="sc-item"><i data-lucide="scan"></i><span>Fetal Medicine &amp; Anomaly Scan</span>
+                        </div>
+                        <div class="sc-item"><i data-lucide="shield-plus"></i><span>Painless Labour &amp;
+                                C-Section</span></div>
+                        <div class="sc-item"><i data-lucide="baby"></i><span>NICU &amp; Neonatology</span></div>
+                        <div class="sc-item"><i data-lucide="smile"></i><span>Child Vaccination Programs</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4 – Emergency -->
+        <div class="slide slide-4">
+            <div class="slide-bg"></div>
+            <div class="slide-grid"></div>
+            <div class="slide-ring ring-1"></div>
+            <div class="slide-ring ring-2"></div>
+            <div class="slide-ring ring-3"></div>
+            <div class="slide-inner">
+                <div class="slide-text">
+                    <div class="slide-badge"><i data-lucide="ambulance"></i>&nbsp; 24/7 Emergency Services</div>
+                    <h1 class="slide-title">Always Here,<br><em>When You Need Us Most</em></h1>
+                    <p class="slide-desc">Our round-the-clock emergency and trauma care unit is equipped with advanced
+                        life support systems and a dedicated team of critical care specialists, always on standby.</p>
+                    <div class="slide-actions">
+                        <a href="tel:9876543210" class="btn-primary"><i data-lucide="phone-call"></i> Call
+                            9876543210</a>
+                        <a href="contact.html" class="btn-outline-w"><i data-lucide="map-pin"></i> Get Directions</a>
+                    </div>
+                    <div class="slide-stats">
+                        <div class="s-stat">
+                            <div class="num">24<span>/7</span></div>
+                            <p>Emergency Available</p>
+                        </div>
+                        <div class="s-stat">
+                            <div class="num">200<span>+</span></div>
+                            <p>Beds with Life Support</p>
+                        </div>
+                        <div class="s-stat">
+                            <div class="num">5 min</div>
+                            <p>Avg. Triage Time</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-card">
+                    <div class="sc-head">
+                        <div class="sc-icon"><i data-lucide="ambulance"></i></div>
+                        <div>
+                            <h3>Emergency Units</h3>
+                            <p>Critical care, always ready</p>
+                        </div>
+                    </div>
+                    <div class="sc-list">
+                        <div class="sc-item"><i data-lucide="zap"></i><span>Trauma &amp; Accident Care</span></div>
+                        <div class="sc-item"><i data-lucide="heart-pulse"></i><span>Cardiac Emergency (CICU)</span>
+                        </div>
+                        <div class="sc-item"><i data-lucide="brain"></i><span>Stroke Response Unit</span></div>
+                        <div class="sc-item"><i data-lucide="activity"></i><span>Medical ICU (MICU)</span></div>
+                        <div class="sc-item"><i data-lucide="ambulance"></i><span>Advanced Life Support Ambulance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <button class="c-arrow c-prev" id="cPrev"><i data-lucide="chevron-left"></i></button>
+        <button class="c-arrow c-next" id="cNext"><i data-lucide="chevron-right"></i></button>
+        <div class="c-dots">
+            <button class="c-dot active" data-i="0"></button>
+            <button class="c-dot" data-i="1"></button>
+            <button class="c-dot" data-i="2"></button>
+            <button class="c-dot" data-i="3"></button>
+        </div>
+        <div class="c-progress">
+            <div class="c-bar" id="cBar"></div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+     TRUST BAR
+═══════════════════════════════════ -->
+    <div class="trust-bar">
+        <div class="trust-inner">
+            <div class="t-item"><i data-lucide="ambulance"></i><span>24/7 Emergency Services</span></div>
+            <div class="t-div"></div>
+            <div class="t-item"><i data-lucide="phone"></i><span>9876543210</span></div>
+            <div class="t-div"></div>
+            <div class="t-item"><i data-lucide="map-pin"></i><span>Bajpe, Mangalore, Karnataka</span></div>
+            <div class="t-div"></div>
+            <div class="t-item"><i data-lucide="clock"></i><span>OPD: Mon – Sat, 8AM – 8PM</span></div>
+            <div class="t-div"></div>
+            <div class="t-item"><i data-lucide="badge-check"></i><span>NABH Accredited</span></div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+     WHY CHOOSE US
+═══════════════════════════════════ -->
+    <section class="why-sec">
+        <div class="si">
+            <span class="s-tag">Why Choose Us</span>
+            <div class="why-grid">
+
+                <!-- Left: Stats visual panel -->
+                <div class="why-visual">
+                    <div class="stat-card">
+                        <div class="stat-ico" style="background:linear-gradient(135deg,#e74c3c,#c0392b)"><i
+                                data-lucide="heart-pulse"></i></div>
+                        <div>
+                            <h4>1L+</h4>
+                            <p>Successful procedures performed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-ico" style="background:linear-gradient(135deg,var(--teal),var(--teal-light))">
+                            <i data-lucide="user-round-check"></i>
+                        </div>
+                        <div>
+                            <h4>50+</h4>
+                            <p>Highly qualified specialists</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-ico" style="background:linear-gradient(135deg,var(--gold),var(--gold-light))">
+                            <i data-lucide="award"></i>
+                        </div>
+                        <div>
+                            <h4>25+</h4>
+                            <p>Years of trusted healthcare</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-ico" style="background:linear-gradient(135deg,#9b59b6,#8e44ad)"><i
+                                data-lucide="bed"></i></div>
+                        <div>
+                            <h4>200+</h4>
+                            <p>Beds with advanced life support</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Feature list -->
+                <div>
+                    <span class="s-tag">Our Commitment</span>
+                    <h2 class="s-title">Excellence in Healthcare,<br><em>Every Step</em> of the Way</h2>
+                    <p class="s-desc" style="margin-bottom:26px">At MNR Medicity, we blend medical expertise with
+                        genuine compassion, ensuring every patient receives personalised, world-class treatment in a
+                        safe and caring environment.</p>
+                    <div class="why-feats">
+                        <div class="why-f">
+                            <div class="f-ico"><i data-lucide="scan-line"></i></div>
+                            <div>
+                                <h4>Advanced Diagnostic Technology</h4>
+                                <p>MRI, CT Scan, digital X-ray, and advanced lab facilities for rapid, accurate
+                                    diagnosis.</p>
+                            </div>
+                        </div>
+                        <div class="why-f">
+                            <div class="f-ico"><i data-lucide="users-round"></i></div>
+                            <div>
+                                <h4>Expert Multidisciplinary Team</h4>
+                                <p>Senior consultants collaborate across departments for integrated, holistic patient
+                                    care.</p>
+                            </div>
+                        </div>
+                        <div class="why-f">
+                            <div class="f-ico"><i data-lucide="scissors"></i></div>
+                            <div>
+                                <h4>Modern Operation Theatres</h4>
+                                <p>Sterile OTs with minimally invasive surgery capabilities and 24/7 anaesthesia
+                                    support.</p>
+                            </div>
+                        </div>
+                        <div class="why-f">
+                            <div class="f-ico"><i data-lucide="ambulance"></i></div>
+                            <div>
+                                <h4>Round-the-Clock Emergency</h4>
+                                <p>24/7 emergency and trauma care with dedicated ICU and critical care always on
+                                    standby.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+     DEPARTMENTS
+═══════════════════════════════════ -->
+    <section class="dept-sec">
+        <div class="si">
+            <div class="dept-hd">
+                <div>
+                    <span class="s-tag">Specialties</span>
+                    <h2 class="s-title">Our <em>Departments</em></h2>
+                    <p class="s-desc">Specialized care across 7 medical disciplines, delivered by the best in the field.
+                    </p>
+                </div>
+                <a href="departments.html" class="btn-primary" style="flex-shrink:0"><i data-lucide="arrow-right"></i>
+                    View All</a>
+            </div>
+            <div class="dept-grid">
+                <a href="departments.html#cardiology" class="dept-card fade-up">
+                    <div class="d-ico"><i data-lucide="heart-pulse"></i></div>
+                    <h3>Cardiology</h3>
+                    <p>Comprehensive heart care — from diagnostics to advanced interventional cardiology and cardiac
+                        surgery.</p>
+                    <div class="d-more">Learn More <i data-lucide="arrow-right"></i></div>
+                </a>
+                <a href="departments.html#pulmonology" class="dept-card fade-up">
+                    <div class="d-ico"><i data-lucide="wind"></i></div>
+                    <h3>Pulmonology</h3>
+                    <p>Expert diagnosis and management of respiratory conditions including asthma, COPD, and sleep
+                        disorders.</p>
+                    <div class="d-more">Learn More <i data-lucide="arrow-right"></i></div>
+                </a>
+                <a href="departments.html#gynecology" class="dept-card fade-up">
+                    <div class="d-ico"><i data-lucide="baby"></i></div>
+                    <h3>Gynecology</h3>
+                    <p>Dedicated women's health — prenatal care, high-risk pregnancy, laparoscopic surgery, and more.
+                    </p>
+                    <div class="d-more">Learn More <i data-lucide="arrow-right"></i></div>
+                </a>
+                <a href="departments.html#neurology" class="dept-card fade-up">
+                    <div class="d-ico"><i data-lucide="brain"></i></div>
+                    <h3>Neurology</h3>
+                    <p>Advanced treatment for stroke, epilepsy, Parkinson's, and complex neurological disorders.</p>
+                    <div class="d-more">Learn More <i data-lucide="arrow-right"></i></div>
+                </a>
+                <a href="departments.html#urology" class="dept-card fade-up">
+                    <div class="d-ico"><i data-lucide="activity"></i></div>
+                    <h3>Urology</h3>
+                    <p>Minimally invasive urological procedures including kidney stone management and prostate care.</p>
+                    <div class="d-more">Learn More <i data-lucide="arrow-right"></i></div>
+                </a>
+                <a href="departments.html#gastrology" class="dept-card fade-up">
+                    <div class="d-ico"><i data-lucide="stethoscope"></i></div>
+                    <h3>Gastroenterology</h3>
+                    <p>Specialized care for digestive disorders, liver diseases, endoscopy, and gastrointestinal
+                        cancers.</p>
+                    <div class="d-more">Learn More <i data-lucide="arrow-right"></i></div>
+                </a>
+                <a href="departments.html#pediatrics" class="dept-card fade-up">
+                    <div class="d-ico"><i data-lucide="smile"></i></div>
+                    <h3>Pediatrics</h3>
+                    <p>Compassionate expert care for children from newborns to adolescents, with a dedicated NICU.</p>
+                    <div class="d-more">Learn More <i data-lucide="arrow-right"></i></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+     DOCTORS
+═══════════════════════════════════ -->
+    <section class="doc-sec">
+        <div class="si">
+            <div style="text-align:center">
+                <span class="s-tag">Our Specialists</span>
+                <h2 class="s-title" style="margin:0 auto">Meet Our <em>Expert Doctors</em></h2>
+                <p class="s-desc" style="margin:12px auto 0">Trusted by thousands of patients across Coastal Karnataka.
+                </p>
+            </div>
+            <div class="doc-grid">
+
+                <div class="doc-card fade-up">
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=460&fit=crop&crop=faces,top"
+                            alt="Dr. Rajesh Sharma" />
+                        <div class="doc-ph-overlay"></div>
+                    </div>
+                    <div class="doc-info">
+                        <h3>Dr. Rajesh Sharma</h3>
+                        <div class="doc-spec">Cardiology</div>
+                        <div class="doc-exp">MD, DM Cardiology &middot; 18 Yrs Exp.</div>
+                        <a href="doctors.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
+                    </div>
+                </div>
+
+                <div class="doc-card fade-up">
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=460&fit=crop&crop=faces,top"
+                            alt="Dr. Priya Menon" />
+                        <div class="doc-ph-overlay"></div>
+                    </div>
+                    <div class="doc-info">
+                        <h3>Dr. Priya Menon</h3>
+                        <div class="doc-spec">Gynecology &amp; Obstetrics</div>
+                        <div class="doc-exp">MS OBG &middot; 14 Yrs Exp.</div>
+                        <a href="doctors.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
+                    </div>
+                </div>
+
+                <div class="doc-card fade-up">
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=460&fit=crop&crop=faces,top"
+                            alt="Dr. Arvind Kumar" />
+                        <div class="doc-ph-overlay"></div>
+                    </div>
+                    <div class="doc-info">
+                        <h3>Dr. Arvind Kumar</h3>
+                        <div class="doc-spec">Neurology</div>
+                        <div class="doc-exp">MD, DM Neurology &middot; 20 Yrs Exp.</div>
+                        <a href="doctors.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
+                    </div>
+                </div>
+
+                <div class="doc-card fade-up">
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=460&fit=crop&crop=faces,top"
+                            alt="Dr. Sneha Nair" />
+                        <div class="doc-ph-overlay"></div>
+                    </div>
+                    <div class="doc-info">
+                        <h3>Dr. Sneha Nair</h3>
+                        <div class="doc-spec">Pediatrics</div>
+                        <div class="doc-exp">MD Pediatrics &middot; 12 Yrs Exp.</div>
+                        <a href="doctors.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
+                    </div>
+                </div>
+
+            </div>
+            <div style="text-align:center;margin-top:34px">
+                <a href="doctors.html" class="btn-primary"><i data-lucide="users-round"></i> View All Doctors</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+     SERVICES
+═══════════════════════════════════ -->
+    <section class="svc-sec">
+        <div class="si">
+            <span class="s-tag" style="color:var(--teal-light)">What We Offer</span>
+            <h2 class="s-title">Comprehensive <em style="color:var(--gold-light)">Hospital Services</em></h2>
+            <p class="s-desc">Everything you need for complete healthcare — under one roof, 24 hours a day.</p>
+            <div class="svc-grid">
+                <div class="svc-card">
+                    <div class="svc-ico"><i data-lucide="ambulance"></i></div>
+                    <h3>Emergency &amp; Trauma Care</h3>
+                    <p>24-hour emergency department with fully equipped trauma bays, rapid triage, and specialist
+                        response teams on call.</p>
+                </div>
+                <div class="svc-card">
+                    <div class="svc-ico"><i data-lucide="scan-line"></i></div>
+                    <h3>Advanced Diagnostics</h3>
+                    <p>State-of-the-art lab, MRI, CT Scan, PET-CT, digital mammography, and fully automated pathology
+                        services.</p>
+                </div>
+                <div class="svc-card">
+                    <div class="svc-ico"><i data-lucide="scissors"></i></div>
+                    <h3>Surgical Services</h3>
+                    <p>Laparoscopic, robotic-assisted, and open surgical procedures with dedicated recovery wards across
+                        all specialties.</p>
+                </div>
+                <div class="svc-card">
+                    <div class="svc-ico"><i data-lucide="baby"></i></div>
+                    <h3>Maternity &amp; NICU</h3>
+                    <p>Comprehensive maternity care with a Level III NICU for premature and high-risk newborns, round
+                        the clock.</p>
+                </div>
+                <div class="svc-card">
+                    <div class="svc-ico"><i data-lucide="heart-pulse"></i></div>
+                    <h3>ICU &amp; Critical Care</h3>
+                    <p>Dedicated MICU, SICU, and CICU with advanced ventilator support and 24/7 intensivist coverage.
+                    </p>
+                </div>
+                <div class="svc-card">
+                    <div class="svc-ico"><i data-lucide="pill"></i></div>
+                    <h3>Pharmacy &amp; Blood Bank</h3>
+                    <p>24/7 in-house pharmacy with a full-service blood bank, component separation, and on-site storage
+                        facilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+     APPOINTMENT BANNER
+═══════════════════════════════════ -->
+    <div class="appt">
+        <div class="appt-in">
+            <div>
+                <h2>Ready to Take the Next Step Towards Better Health?</h2>
+                <p>Book your appointment today and experience compassionate, expert care at MNR Medicity — Mangalore's
+                    most trusted multi-specialty hospital.</p>
+                <a href="contact.html" class="btn-white"><i data-lucide="calendar-check"></i> Schedule Appointment</a>
+            </div>
+            <div class="appt-acts">
+                <div class="appt-row">
+                    <i data-lucide="phone-call"></i>
+                    <div><strong>9876543210</strong><span>Call us anytime, 24/7</span></div>
+                </div>
+                <div class="appt-row">
+                    <i data-lucide="map-pin"></i>
+                    <div><strong>MNR Medicity Campus</strong><span>Kolambe, Bajpe, Karnataka 574142</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════ -->
+    <section class="testi-sec">
+        <div class="si">
+            <div style="text-align:center">
+                <span class="s-tag">Patient Stories</span>
+                <h2 class="s-title" style="margin:0 auto">Words From Our <em>Patients</em></h2>
+                <p class="s-desc" style="margin:12px auto 0">Real experiences from real people we've had the privilege
+                    of caring for.</p>
+            </div>
+            <div class="testi-grid">
+
+                <div class="t-card fade-up">
+                    <div class="t-stars">
+                        <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i
+                            data-lucide="star"></i><i data-lucide="star"></i>
+                    </div>
+                    <p class="t-text">"The cardiology team at MNR Medicity is exceptional. Dr. Rajesh detected my
+                        condition early and the treatment was seamless. I am back to normal life thanks to their
+                        expertise and care."</p>
+                    <div class="t-author">
+                        <div class="t-av" style="background:linear-gradient(135deg,var(--teal),var(--navy))">MR</div>
+                        <div><strong>Mohammed Rafi</strong><span>Cardiac Patient, Mangalore</span></div>
+                    </div>
+                </div>
+
+                <div class="t-card fade-up">
+                    <div class="t-stars">
+                        <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i
+                            data-lucide="star"></i><i data-lucide="star"></i>
+                    </div>
+                    <p class="t-text">"I delivered my baby at MNR Medicity's maternity ward. The nurses and Dr. Priya
+                        were incredibly supportive throughout. The NICU team took wonderful care when my baby needed
+                        extra attention."</p>
+                    <div class="t-author">
+                        <div class="t-av" style="background:linear-gradient(135deg,#9b59b6,#6c3483)">SP</div>
+                        <div><strong>Sunitha Pai</strong><span>Maternity Patient, Udupi</span></div>
+                    </div>
+                </div>
+
+                <div class="t-card fade-up">
+                    <div class="t-stars">
+                        <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i
+                            data-lucide="star"></i><i data-lucide="star"></i>
+                    </div>
+                    <p class="t-text">"Brought my father here after a stroke. The neurology team's quick action saved
+                        his life. He is recovering well now. Forever grateful to Dr. Arvind and the entire staff at MNR
+                        Medicity."</p>
+                    <div class="t-author">
+                        <div class="t-av" style="background:linear-gradient(135deg,#e67e22,#ca6f1e)">VK</div>
+                        <div><strong>Vinayak Kamath</strong><span>Patient's Family, Bajpe</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+     ACCREDITATION
+═══════════════════════════════════ -->
+    <div class="accred">
+        <div class="accred-in">
+            <p>Accreditations &amp; Recognitions</p>
+            <div class="accred-row">
+                <div class="a-badge"><i data-lucide="badge-check"></i> NABH Accredited</div>
+                <div class="a-badge"><i data-lucide="award"></i> ISO 9001:2015</div>
+                <div class="a-badge"><i data-lucide="shield-check"></i> IMA Recognized</div>
+                <div class="a-badge"><i data-lucide="star"></i> Karnataka Govt. Approved</div>
+                <div class="a-badge"><i data-lucide="check-circle"></i> Ayushman Bharat</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+     FOOTER
+═══════════════════════════════════ -->
+    <footer>
+        <div class="f-grid">
+
+            <div class="f-brand">
+                <a href="index.html" class="nav-logo" style="text-decoration:none">
+                    <div class="logo-icon"><i data-lucide="hospital"></i></div>
+                    <div>
+                        <div class="logo-name" style="color:#fff">MNR Medicity</div>
+                        <div class="logo-sub" style="color:var(--teal-light)">Advanced Healthcare</div>
+                    </div>
+                </a>
+                <p>MNR Medicity is committed to delivering compassionate, expert, and affordable healthcare to every
+                    patient across Mangalore and Coastal Karnataka.</p>
+                <div class="f-socials">
+                    <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+                    <a href="#" aria-label="Youtube"><i data-lucide="youtube"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="f-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="doctors.html">Our Doctors</a></li>
+                    <li><a href="departments.html">Departments</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="f-col">
+                <h4>Departments</h4>
+                <ul>
+                    <li><a href="departments.html#cardiology">Cardiology</a></li>
+                    <li><a href="departments.html#pulmonology">Pulmonology</a></li>
+                    <li><a href="departments.html#gynecology">Gynecology</a></li>
+                    <li><a href="departments.html#neurology">Neurology</a></li>
+                    <li><a href="departments.html#urology">Urology</a></li>
+                    <li><a href="departments.html#gastrology">Gastroenterology</a></li>
+                    <li><a href="departments.html#pediatrics">Pediatrics</a></li>
+                </ul>
+            </div>
+
+            <div class="f-col">
+                <h4>Contact Information</h4>
+                <div class="f-cr">
+                    <i data-lucide="map-pin"></i>
+                    <p>MNR Medicity Campus Kolambe, Behind Bajpe Proper, Karnataka 574142</p>
+                </div>
+                <div class="f-cr">
+                    <i data-lucide="phone"></i>
+                    <p><a href="tel:9876543210">9876543210</a></p>
+                </div>
+                <div class="f-cr">
+                    <i data-lucide="mail"></i>
+                    <p><a href="/cdn-cgi/l/email-protection#ff96919990bf92918d929a9b969c968b86d19c9092"><span
+                                class="__cf_email__"
+                                data-cfemail="e1888f878ea18c8f938c84858882889598cf828e8c">[email&#160;protected]</span></a>
+                    </p>
+                </div>
+                <div class="f-cr">
+                    <i data-lucide="clock"></i>
+                    <p>OPD: Mon–Sat 8:00 AM – 8:00 PM<br>Emergency: 24/7</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="f-bottom">
+            <span>&copy; 2024 MNR Medicity. All rights reserved.</span>
+            <div class="f-blinks">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to top -->
+    <button class="scroll-top" id="scrollTop"><i data-lucide="chevron-up"></i></button>
+
+    <!-- ═══════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════ -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        /* ── Init Lucide Icons ── */
+        lucide.createIcons();
+
+        /* ── Navbar scroll ── */
+        const navbar = document.getElementById('navbar');
+        const scrollBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', function () {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
+            scrollBtn.classList.toggle('visible', window.scrollY > 300);
+        });
+
+        /* ── Dropdown menus (click-based, robust) ── */
+        var dropBtns = document.querySelectorAll('.drop-btn');
+
+        function closeAllDrops(except) {
+            document.querySelectorAll('.drop.open').forEach(function (d) {
+                if (d !== except) d.classList.remove('open');
+            });
+        }
+
+        dropBtns.forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var drop = btn.closest('.drop');
+                var isOpen = drop.classList.contains('open');
+                closeAllDrops(null);
+                if (!isOpen) drop.classList.add('open');
+            });
+        });
+
+        /* Close when clicking outside */
+        document.addEventListener('click', function () {
+            closeAllDrops(null);
+        });
+
+        /* Stop clicks inside menu from closing it */
+        document.querySelectorAll('.drop-menu').forEach(function (menu) {
+            menu.addEventListener('click', function (e) { e.stopPropagation(); });
+        });
+
+        /* Close on Escape key */
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeAllDrops(null);
+        });
+
+        /* Close dropdown when a link inside is clicked */
+        document.querySelectorAll('.drop-item').forEach(function (item) {
+            item.addEventListener('click', function () { closeAllDrops(null); });
+        });
+        /* ── Mobile hamburger ── */
+        var ham = document.getElementById('hamburger');
+        var mobNav = document.getElementById('mobNav');
+
+        ham.addEventListener('click', function () {
+            mobNav.classList.toggle('open');
+            document.body.style.overflow = mobNav.classList.contains('open') ? 'hidden' : '';
+        });
+        mobNav.querySelectorAll('a').forEach(function (a) {
+            a.addEventListener('click', function () {
+                mobNav.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        /* ── Scroll top button ── */
+        scrollBtn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        /* ── Hero Carousel ── */
+        var slides = document.querySelectorAll('.slide');
+        var dots = document.querySelectorAll('.c-dot');
+        var bar = document.getElementById('cBar');
+        var current = 0;
+        var autoTimer = null;
+        var isAnimating = false;
+        var DURATION = 7000; /* 7 seconds per slide */
+
+        /* Progress bar animation via JS so we can reset cleanly */
+        var barStart = null;
+        var barFrame = null;
+
+        function startBar() {
+            cancelAnimationFrame(barFrame);
+            bar.style.width = '0%';
+            barStart = null;
+            barFrame = requestAnimationFrame(function step(ts) {
+                if (!barStart) barStart = ts;
+                var pct = Math.min(((ts - barStart) / DURATION) * 100, 100);
+                bar.style.width = pct + '%';
+                if (pct < 100) barFrame = requestAnimationFrame(step);
+            });
+        }
+
+        function goTo(n) {
+            if (isAnimating) return;
+            var prev = current;
+            current = (n + slides.length) % slides.length;
+            if (prev === current) return;
+
+            isAnimating = true;
+
+            /* outgoing slide fades on top */
+            slides[prev].classList.add('prev');
+            slides[prev].classList.remove('active');
+            dots[prev].classList.remove('active');
+
+            /* incoming slide fades in */
+            slides[current].classList.add('active');
+            dots[current].classList.add('active');
+
+            setTimeout(function () {
+                slides[prev].classList.remove('prev');
+                isAnimating = false;
+            }, 1200);
+
+            startBar();
+        }
+
+        function startAuto() {
+            clearInterval(autoTimer);
+            autoTimer = setInterval(function () {
+                goTo(current + 1);
+            }, DURATION);
+        }
+
+        /* Arrow buttons */
+        document.getElementById('cNext').addEventListener('click', function () {
+            goTo(current + 1); startAuto();
+        });
+        document.getElementById('cPrev').addEventListener('click', function () {
+            goTo(current - 1); startAuto();
+        });
+
+        /* Dot buttons */
+        dots.forEach(function (dot) {
+            dot.addEventListener('click', function () {
+                goTo(parseInt(dot.dataset.i)); startAuto();
+            });
+        });
+
+        /* Pause on hover */
+        var heroSlider = document.getElementById('heroSlider');
+        heroSlider.addEventListener('mouseenter', function () {
+            clearInterval(autoTimer);
+            cancelAnimationFrame(barFrame);
+        });
+        heroSlider.addEventListener('mouseleave', function () {
+            startAuto(); startBar();
+        });
+
+        /* Kick off */
+        startBar();
+        startAuto();
+
+        /* ── Fade-up on scroll ── */
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('in');
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.fade-up').forEach(function (el) {
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>

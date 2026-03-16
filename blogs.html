@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health Blogs | MNR Medicity</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --navy: #0a1f3c;
+            --teal: #0e7c7b;
+            --teal-light: #13a8a7;
+            --gold: #c8992a;
+            --gold-light: #e8b93e;
+            --cream: #f8f4ee;
+            --gray-light: #f0f4f8;
+            --gray-mid: #8094a8;
+            --text: #1a2d42;
+            --shadow: 0 8px 40px rgba(10, 31, 60, .10);
+            --shadow-strong: 0 16px 60px rgba(10, 31, 60, .18);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ── NAVBAR ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, .97);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(10, 31, 60, .08);
+            box-shadow: 0 2px 20px rgba(10, 31, 60, .06);
+            transition: all .35s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 31, 60, .97);
+            border-bottom-color: transparent;
+        }
+
+        nav.scrolled .logo-name,
+        nav.scrolled .nav-link,
+        nav.scrolled .drop-btn {
+            color: #fff !important;
+        }
+
+        nav.scrolled .logo-sub {
+            color: var(--teal-light) !important;
+        }
+
+        nav.scrolled .hamburger span {
+            background: #fff;
+        }
+
+        .nav-wrap {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            height: 72px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 11px;
+            background: linear-gradient(135deg, var(--teal), var(--navy));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo-icon svg {
+            color: #fff;
+            width: 22px;
+            height: 22px;
+        }
+
+        .logo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.1;
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            color: var(--teal);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 13px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all .2s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(14, 124, 123, .09);
+            color: var(--teal);
+        }
+
+        .drop {
+            position: relative;
+        }
+
+        .drop-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 13px;
+            border-radius: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all .2s;
+            user-select: none;
+        }
+
+        .drop-btn svg {
+            width: 13px;
+            height: 13px;
+            transition: transform .3s;
+        }
+
+        .drop.open .drop-btn {
+            background: rgba(14, 124, 123, .09);
+            color: var(--teal);
+        }
+
+        .drop.open .drop-btn svg {
+            transform: rotate(180deg);
+        }
+
+        nav.scrolled .drop.open .drop-btn {
+            color: var(--teal-light) !important;
+        }
+
+        .drop-menu::before {
+            content: '';
+            position: absolute;
+            top: -16px;
+            left: 0;
+            right: 0;
+            height: 16px;
+        }
+
+        .drop-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%) translateY(6px);
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: var(--shadow-strong);
+            padding: 8px;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity .22s ease, transform .22s ease, visibility .22s;
+            border: 1px solid rgba(10, 31, 60, .07);
+            z-index: 200;
+        }
+
+        .drop.open .drop-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .drop-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 9px;
+            color: var(--text);
+            font-size: 14px;
+            text-decoration: none;
+            transition: all .18s;
+            white-space: nowrap;
+        }
+
+        .drop-item svg {
+            width: 16px;
+            height: 16px;
+            color: var(--teal);
+            flex-shrink: 0;
+        }
+
+        .drop-item:hover {
+            background: var(--gray-light);
+            color: var(--teal);
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            color: #fff !important;
+            padding: 9px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(14, 124, 123, .35);
+            transition: all .25s;
+        }
+
+        .nav-cta svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(14, 124, 123, .45);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 6px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--navy);
+            border-radius: 2px;
+            transition: all .3s;
+            display: block;
+        }
+
+        .mob-nav {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 998;
+            background: var(--navy);
+            padding: 90px 28px 40px;
+            transform: translateX(100%);
+            transition: transform .38s cubic-bezier(.77, 0, .175, 1);
+            overflow-y: auto;
+        }
+
+        .mob-nav.open {
+            transform: translateX(0);
+        }
+
+        .mob-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            font-size: 17px;
+            font-weight: 500;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            text-decoration: none;
+        }
+
+        .mob-link svg {
+            width: 18px;
+            height: 18px;
+            color: var(--teal-light);
+        }
+
+        .mob-sub {
+            padding-left: 28px;
+        }
+
+        .mob-sub .mob-link {
+            font-size: 15px;
+            color: rgba(255, 255, 255, .68);
+        }
+
+        .mob-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            margin-top: 28px;
+            background: var(--teal);
+            color: #fff;
+            padding: 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+        }
+
+        /* ── SHARED ── */
+        .si {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .s-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 12px;
+        }
+
+        .s-tag::before {
+            content: '';
+            width: 22px;
+            height: 2px;
+            background: var(--teal);
+            border-radius: 2px;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all .6s cubic-bezier(.25, .46, .45, .94);
+        }
+
+        .fade-up.in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-up:nth-child(2) {
+            transition-delay: .07s
+        }
+
+        .fade-up:nth-child(3) {
+            transition-delay: .14s
+        }
+
+        .fade-up:nth-child(4) {
+            transition-delay: .21s
+        }
+
+        .fade-up:nth-child(5) {
+            transition-delay: .28s
+        }
+
+        .fade-up:nth-child(6) {
+            transition-delay: .35s
+        }
+
+        /* ── HERO ── */
+        .page-hero {
+            margin-top: 72px;
+            background: linear-gradient(135deg, #061529 0%, #0a2540 50%, #0d3d6b 100%);
+            padding: 90px 28px 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -8%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(14, 124, 123, .22) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(200, 153, 42, .10) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-grid-overlay {
+            position: absolute;
+            inset: 0;
+            opacity: .035;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(255, 255, 255, .6) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .6) 1px, transparent 1px);
+            background-size: 55px 55px;
+        }
+
+        .hero-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, .50);
+            margin-bottom: 22px;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, .50);
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--teal-light);
+        }
+
+        .breadcrumb svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        .breadcrumb span {
+            color: rgba(255, 255, 255, .9);
+        }
+
+        .page-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(34px, 5vw, 64px);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.12;
+            margin-bottom: 20px;
+            max-width: 700px;
+        }
+
+        .page-hero h1 em {
+            font-style: normal;
+            color: var(--gold-light);
+        }
+
+        .hero-sub {
+            font-size: 17px;
+            color: rgba(255, 255, 255, .68);
+            line-height: 1.75;
+            max-width: 560px;
+        }
+
+        /* ── FEATURED BLOG (full-width card) ── */
+        .featured-sec {
+            padding: 72px 28px 0;
+            background: #fff;
+        }
+
+        .featured-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow-strong);
+            background: #fff;
+            border: 1.5px solid rgba(10, 31, 60, .06);
+            transition: transform .4s ease, box-shadow .4s ease;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 70px rgba(10, 31, 60, .16);
+        }
+
+        .feat-img {
+            height: 460px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feat-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .6s ease;
+        }
+
+        .featured-card:hover .feat-img img {
+            transform: scale(1.04);
+        }
+
+        .feat-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(10, 31, 60, .35) 0%, transparent 60%);
+        }
+
+        .feat-badge {
+            position: absolute;
+            top: 22px;
+            left: 22px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 50px;
+        }
+
+        .feat-body {
+            padding: 52px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .feat-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .feat-cat {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--teal);
+        }
+
+        .feat-cat svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .feat-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--gray-mid);
+        }
+
+        .feat-date {
+            font-size: 12px;
+            color: var(--gray-mid);
+        }
+
+        .feat-read {
+            font-size: 12px;
+            color: var(--gray-mid);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .feat-read svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .feat-body h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(22px, 2.4vw, 32px);
+            color: var(--navy);
+            line-height: 1.25;
+            margin-bottom: 16px;
+        }
+
+        .feat-body h2 em {
+            font-style: normal;
+            color: var(--teal);
+        }
+
+        .feat-body p {
+            font-size: 15px;
+            color: #4a5d70;
+            line-height: 1.82;
+            margin-bottom: 28px;
+        }
+
+        .feat-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(10, 31, 60, .08);
+            margin-bottom: 28px;
+        }
+
+        .auth-av {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .auth-av img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .auth-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .auth-role {
+            font-size: 11px;
+            color: var(--gray-mid);
+        }
+
+        .btn-read {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            color: #fff;
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 5px 18px rgba(14, 124, 123, .35);
+            transition: all .3s;
+            align-self: flex-start;
+        }
+
+        .btn-read svg {
+            width: 15px;
+            height: 15px;
+            transition: transform .2s;
+        }
+
+        .btn-read:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 9px 26px rgba(14, 124, 123, .45);
+        }
+
+        .btn-read:hover svg {
+            transform: translateX(3px);
+        }
+
+        /* ── FILTER BAR ── */
+        .filter-sec {
+            background: #fff;
+            padding: 44px 28px 0;
+        }
+
+        .filter-wrap {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            padding-bottom: 36px;
+            border-bottom: 1px solid rgba(10, 31, 60, .08);
+        }
+
+        .filter-tabs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .f-tab {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--gray-mid);
+            border: 1.5px solid rgba(10, 31, 60, .12);
+            background: #fff;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all .22s;
+        }
+
+        .f-tab svg {
+            width: 13px;
+            height: 13px;
+            flex-shrink: 0;
+        }
+
+        .f-tab:hover {
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+
+        .f-tab.active {
+            background: var(--navy);
+            color: #fff;
+            border-color: var(--navy);
+            box-shadow: 0 4px 14px rgba(10, 31, 60, .22);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gray-light);
+            border: 1.5px solid transparent;
+            border-radius: 50px;
+            padding: 9px 18px;
+            min-width: 240px;
+            transition: border-color .2s;
+        }
+
+        .search-box:focus-within {
+            border-color: var(--teal);
+            background: #fff;
+        }
+
+        .search-box svg {
+            width: 15px;
+            height: 15px;
+            color: var(--gray-mid);
+            flex-shrink: 0;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            color: var(--text);
+            background: transparent;
+            width: 100%;
+        }
+
+        .search-box input::placeholder {
+            color: var(--gray-mid);
+        }
+
+        /* ── BLOG GRID ── */
+        .blogs-sec {
+            padding: 52px 28px 90px;
+            background: #fff;
+        }
+
+        .blogs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        /* ── BLOG CARD ── */
+        .blog-card {
+            background: #fff;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1.5px solid rgba(10, 31, 60, .07);
+            box-shadow: 0 2px 16px rgba(10, 31, 60, .06);
+            transition: all .35s cubic-bezier(.25, .46, .45, .94);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-strong);
+            border-color: transparent;
+        }
+
+        .card-img {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+            background: var(--gray-light);
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .5s ease;
+        }
+
+        .blog-card:hover .card-img img {
+            transform: scale(1.06);
+        }
+
+        .card-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 55%, rgba(10, 31, 60, .45) 100%);
+        }
+
+        .card-cat {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 13px;
+            border-radius: 50px;
+            color: #fff;
+        }
+
+        .card-body {
+            padding: 22px 22px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .card-date {
+            font-size: 12px;
+            color: var(--gray-mid);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .card-date svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .card-read-time {
+            font-size: 12px;
+            color: var(--gray-mid);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .card-read-time svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .card-body h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--navy);
+            line-height: 1.35;
+            margin-bottom: 10px;
+            flex: 1;
+        }
+
+        .card-body p {
+            font-size: 13px;
+            color: #4a5d70;
+            line-height: 1.75;
+            margin-bottom: 18px;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid rgba(10, 31, 60, .07);
+        }
+
+        .card-author {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .card-author-av {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .card-author-av img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-author-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .btn-card-read {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--teal);
+            text-decoration: none;
+            transition: gap .2s;
+        }
+
+        .btn-card-read svg {
+            width: 13px;
+            height: 13px;
+            transition: transform .2s;
+        }
+
+        .blog-card:hover .btn-card-read svg {
+            transform: translateX(3px);
+        }
+
+        /* category colours */
+        .cat-cardiology {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+        }
+
+        .cat-pulmonology {
+            background: linear-gradient(135deg, #2471a3, #3498db);
+        }
+
+        .cat-gynecology {
+            background: linear-gradient(135deg, #c0396b, #e84393);
+        }
+
+        .cat-neurology {
+            background: linear-gradient(135deg, #7d3c98, #9b59b6);
+        }
+
+        .cat-urology {
+            background: linear-gradient(135deg, #1f618d, #2980b9);
+        }
+
+        .cat-gastro {
+            background: linear-gradient(135deg, #d4890a, #f0a500);
+        }
+
+        .cat-pediatrics {
+            background: linear-gradient(135deg, #1d8348, #27ae60);
+        }
+
+        .cat-wellness {
+            background: linear-gradient(135deg, #0e7c7b, #13a8a7);
+        }
+
+        /* ── NO RESULTS ── */
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+            grid-column: 1/-1;
+        }
+
+        .no-results svg {
+            width: 48px;
+            height: 48px;
+            color: var(--gray-mid);
+            margin-bottom: 16px;
+        }
+
+        .no-results h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .no-results p {
+            font-size: 14px;
+            color: var(--gray-mid);
+        }
+
+        /* ── NEWSLETTER ── */
+        .nl-sec {
+            padding: 80px 28px;
+            background: var(--cream);
+        }
+
+        .nl-box {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--navy) 0%, #1a3a6b 100%);
+            border-radius: 28px;
+            padding: 60px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nl-box::before {
+            content: '';
+            position: absolute;
+            right: -60px;
+            top: -60px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(14, 124, 123, .12);
+            pointer-events: none;
+        }
+
+        .nl-box::after {
+            content: '';
+            position: absolute;
+            left: -40px;
+            bottom: -60px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(200, 153, 42, .07);
+            pointer-events: none;
+        }
+
+        .nl-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(22px, 2.8vw, 36px);
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .nl-text h2 em {
+            font-style: normal;
+            color: var(--gold-light);
+        }
+
+        .nl-text p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, .62);
+            line-height: 1.75;
+            max-width: 460px;
+        }
+
+        .nl-form {
+            display: flex;
+            gap: 12px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nl-input {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            color: var(--text);
+            background: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 13px 24px;
+            outline: none;
+            min-width: 280px;
+        }
+
+        .nl-input::placeholder {
+            color: var(--gray-mid);
+        }
+
+        .btn-nl {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            color: #fff;
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            box-shadow: 0 5px 18px rgba(14, 124, 123, .40);
+            transition: all .3s;
+            white-space: nowrap;
+        }
+
+        .btn-nl svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .btn-nl:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 9px 26px rgba(14, 124, 123, .50);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--navy);
+            padding: 66px 28px 0;
+        }
+
+        .f-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 46px;
+            padding-bottom: 50px;
+        }
+
+        .f-brand p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, .52);
+            margin: 17px 0 20px;
+        }
+
+        .f-socials {
+            display: flex;
+            gap: 9px;
+        }
+
+        .f-socials a {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: rgba(255, 255, 255, .07);
+            color: rgba(255, 255, 255, .60);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all .2s;
+        }
+
+        .f-socials a:hover {
+            background: var(--teal);
+            color: #fff;
+        }
+
+        .f-socials a svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .f-col h4 {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 17px;
+        }
+
+        .f-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .f-col ul a {
+            color: rgba(255, 255, 255, .52);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color .2s;
+        }
+
+        .f-col ul a:hover {
+            color: var(--teal-light);
+        }
+
+        .f-cr {
+            display: flex;
+            gap: 11px;
+            margin-bottom: 13px;
+        }
+
+        .f-cr svg {
+            width: 15px;
+            height: 15px;
+            color: var(--teal-light);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .f-cr p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .52);
+            line-height: 1.65;
+        }
+
+        .f-cr a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .f-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, .07);
+            padding: 22px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, .32);
+        }
+
+        .f-bottom a {
+            color: rgba(255, 255, 255, .42);
+            text-decoration: none;
+        }
+
+        .f-bottom a:hover {
+            color: var(--teal-light);
+        }
+
+        .f-blinks {
+            display: flex;
+            gap: 20px;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 26px;
+            right: 26px;
+            z-index: 999;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--teal);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 18px rgba(14, 124, 123, .40);
+            opacity: 0;
+            pointer-events: none;
+            transition: all .3s;
+        }
+
+        .scroll-top svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width:1024px) {
+            .blogs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .featured-card {
+                grid-template-columns: 1fr;
+            }
+
+            .feat-img {
+                height: 300px;
+            }
+
+            .f-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .nl-box {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .nl-form {
+                flex-wrap: wrap;
+            }
+
+            .nl-input {
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width:1000px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mob-nav {
+                display: block;
+            }
+
+            .blogs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-sec,
+            .filter-sec,
+            .blogs-sec {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .nl-sec {
+                padding: 52px 20px;
+            }
+
+            .nl-box {
+                padding: 40px 28px;
+            }
+
+            .f-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="nav-wrap">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon"><i data-lucide="hospital"></i></div>
+                <div>
+                    <div class="logo-name">MNR Medicity</div>
+                    <div class="logo-sub">Advanced Healthcare</div>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li class="drop">
+                    <button class="drop-btn">Departments <i data-lucide="chevron-down"></i></button>
+                    <div class="drop-menu">
+                        <a href="cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i> Cardiology</a>
+                        <a href="pulmonology.html" class="drop-item"><i data-lucide="wind"></i> Pulmonology</a>
+                        <a href="gynecology.html" class="drop-item"><i data-lucide="baby"></i> Gynecology</a>
+                        <a href="neurology.html" class="drop-item"><i data-lucide="brain"></i> Neurology</a>
+                        <a href="urology.html" class="drop-item"><i data-lucide="activity"></i> Urology</a>
+                        <a href="gastroenterology.html" class="drop-item"><i data-lucide="stethoscope"></i>
+                            Gastroenterology</a>
+                        <a href="pediatrics.html" class="drop-item"><i data-lucide="smile"></i> Pediatrics</a>
+                    </div>
+                </li>
+                <li><a href="doctors.html" class="nav-link">Doctors</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="drop">
+                    <button class="drop-btn">More <i data-lucide="chevron-down"></i></button>
+                    <div class="drop-menu">
+                        <a href="blogs.html" class="drop-item"><i data-lucide="newspaper"></i> Blogs</a>
+                        <a href="gallery.html" class="drop-item"><i data-lucide="image"></i> Gallery</a>
+                        <a href="careers.html" class="drop-item"><i data-lucide="briefcase"></i> Careers</a>
+                        <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a>
+                    </div>
+                </li>
+                <li><a href="contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
+                </li>
+            </ul>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <div class="mob-nav" id="mobNav">
+        <a href="index.html" class="mob-link"><i data-lucide="home"></i> Home</a>
+        <a href="about.html" class="mob-link"><i data-lucide="info"></i> About Us</a>
+        <span class="mob-link" style="cursor:pointer"><i data-lucide="layout-grid"></i> Departments</span>
+        <div class="mob-sub">
+            <a href="cardiology.html" class="mob-link"><i data-lucide="heart-pulse"></i> Cardiology</a>
+            <a href="pulmonology.html" class="mob-link"><i data-lucide="wind"></i> Pulmonology</a>
+            <a href="gynecology.html" class="mob-link"><i data-lucide="baby"></i> Gynecology</a>
+            <a href="neurology.html" class="mob-link"><i data-lucide="brain"></i> Neurology</a>
+            <a href="urology.html" class="mob-link"><i data-lucide="activity"></i> Urology</a>
+            <a href="gastroenterology.html" class="mob-link"><i data-lucide="stethoscope"></i> Gastroenterology</a>
+            <a href="pediatrics.html" class="mob-link"><i data-lucide="smile"></i> Pediatrics</a>
+        </div>
+        <a href="doctors.html" class="mob-link"><i data-lucide="user-round"></i> Doctors</a>
+        <a href="contact.html" class="mob-link"><i data-lucide="phone"></i> Contact Us</a>
+        <span class="mob-link" style="cursor:pointer"><i data-lucide="more-horizontal"></i> More</span>
+        <div class="mob-sub">
+            <a href="blogs.html" class="mob-link"><i data-lucide="newspaper"></i> Blogs</a>
+            <a href="gallery.html" class="mob-link"><i data-lucide="image"></i> Gallery</a>
+            <a href="careers.html" class="mob-link"><i data-lucide="briefcase"></i> Careers</a>
+            <a href="insurance.html" class="mob-link"><i data-lucide="shield-check"></i> Insurance</a>
+        </div>
+        <a href="contact.html" class="mob-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
+    </div>
+
+    <!-- HERO -->
+    <div class="page-hero">
+        <div class="hero-grid-overlay"></div>
+        <div class="hero-inner">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a><i data-lucide="chevron-right"></i>
+                <span>Health Blogs</span>
+            </div>
+            <h1>Insights from Our<br><em>Medical Experts</em></h1>
+            <p class="hero-sub">Trusted health articles written by MNR Medicity's specialists — covering heart health,
+                women's wellness, child care, and much more.</p>
+        </div>
+    </div>
+
+    <!-- FEATURED BLOG -->
+    <section class="featured-sec">
+        <div class="si">
+            <a href="blog-detail.html" class="featured-card fade-up" style="text-decoration:none">
+                <div class="feat-img">
+                    <img src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=900&h=600&fit=crop"
+                        alt="Heart Health" />
+                    <div class="feat-img-overlay"></div>
+                    <div class="feat-badge">Featured Article</div>
+                </div>
+                <div class="feat-body">
+                    <div class="feat-meta">
+                        <span class="feat-cat"><i data-lucide="heart-pulse"></i> Cardiology</span>
+                        <span class="feat-dot"></span>
+                        <span class="feat-date">March 5, 2025</span>
+                        <span class="feat-dot"></span>
+                        <span class="feat-read"><i data-lucide="clock"></i> 8 min read</span>
+                    </div>
+                    <h2>10 Warning Signs Your Heart Is <em>Sending You</em> — And What to Do Next</h2>
+                    <p>Most heart conditions don't announce themselves dramatically. They speak in whispers — subtle
+                        signals that are easy to dismiss as tiredness or indigestion. Our senior cardiologist Dr. Suresh
+                        Kamath walks through the ten most overlooked cardiac warning signs and explains when to seek
+                        immediate care.</p>
+                    <div class="feat-author">
+                        <div class="auth-av"><img
+                                src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=80&h=80&fit=crop&crop=faces"
+                                alt="Dr. Suresh Kamath" /></div>
+                        <div>
+                            <div class="auth-name">Dr. Suresh Kamath</div>
+                            <div class="auth-role">Senior Interventional Cardiologist</div>
+                        </div>
+                    </div>
+                    <span class="btn-read">Read Full Article <i data-lucide="arrow-right"></i></span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- FILTER BAR -->
+    <div class="filter-sec">
+        <div class="filter-wrap">
+            <div class="filter-tabs" id="filterTabs">
+                <button class="f-tab active" data-cat="all"><i data-lucide="layout-grid"></i> All Topics</button>
+                <button class="f-tab" data-cat="cardiology"><i data-lucide="heart-pulse"></i> Cardiology</button>
+                <button class="f-tab" data-cat="pulmonology"><i data-lucide="wind"></i> Pulmonology</button>
+                <button class="f-tab" data-cat="gynecology"><i data-lucide="baby"></i> Gynecology</button>
+                <button class="f-tab" data-cat="neurology"><i data-lucide="brain"></i> Neurology</button>
+                <button class="f-tab" data-cat="pediatrics"><i data-lucide="smile"></i> Pediatrics</button>
+                <button class="f-tab" data-cat="wellness"><i data-lucide="leaf"></i> Wellness</button>
+            </div>
+            <div class="search-box">
+                <i data-lucide="search"></i>
+                <input type="text" id="searchInput" placeholder="Search articles…" />
+            </div>
+        </div>
+    </div>
+
+    <!-- BLOG GRID -->
+    <section class="blogs-sec">
+        <div class="si">
+            <div class="blogs-grid" id="blogGrid">
+
+                <!-- Cardiology -->
+                <a href="blog-detail.html" class="blog-card fade-up" data-cat="cardiology"
+                    data-title="understanding cholesterol hdl ldl heart disease prevention"
+                    style="text-decoration:none">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop"
+                            alt="Cholesterol" />
+                        <div class="card-img-overlay"></div>
+                        <span class="card-cat cat-cardiology">Cardiology</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-date"><i data-lucide="calendar"></i> Feb 20, 2025</span>
+                            <span class="card-read-time"><i data-lucide="clock"></i> 6 min</span>
+                        </div>
+                        <h3>Understanding Cholesterol: The Difference Between HDL and LDL</h3>
+                        <p>Not all cholesterol is bad. Learn how to interpret your lipid profile and what numbers
+                            actually put your heart at risk.</p>
+                        <div class="card-footer">
+                            <div class="card-author">
+                                <div class="card-author-av"><img
+                                        src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=60&h=60&fit=crop&crop=faces"
+                                        alt="Dr. Priya Nair" /></div>
+                                <span class="card-author-name">Dr. Priya Nair</span>
+                            </div>
+                            <span class="btn-card-read">Read More <i data-lucide="arrow-right"></i></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Pulmonology -->
+                <a href="blog-detail.html" class="blog-card fade-up" data-cat="pulmonology"
+                    data-title="copd management breathing exercises lung health pulmonology"
+                    style="text-decoration:none">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop"
+                            alt="Breathing" />
+                        <div class="card-img-overlay"></div>
+                        <span class="card-cat cat-pulmonology">Pulmonology</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-date"><i data-lucide="calendar"></i> Feb 14, 2025</span>
+                            <span class="card-read-time"><i data-lucide="clock"></i> 5 min</span>
+                        </div>
+                        <h3>5 Breathing Exercises That Actually Help COPD Patients</h3>
+                        <p>Simple, clinically validated techniques to improve lung capacity and reduce breathlessness in
+                            chronic obstructive pulmonary disease.</p>
+                        <div class="card-footer">
+                            <div class="card-author">
+                                <div class="card-author-av"><img
+                                        src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=60&h=60&fit=crop&crop=faces"
+                                        alt="Dr. Arun Hegde" /></div>
+                                <span class="card-author-name">Dr. Arun Hegde</span>
+                            </div>
+                            <span class="btn-card-read">Read More <i data-lucide="arrow-right"></i></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Gynecology -->
+                <a href="blog-detail.html" class="blog-card fade-up" data-cat="gynecology"
+                    data-title="pcos diet lifestyle management hormones women fertility" style="text-decoration:none">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=600&h=400&fit=crop"
+                            alt="Women health" />
+                        <div class="card-img-overlay"></div>
+                        <span class="card-cat cat-gynecology">Gynecology</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-date"><i data-lucide="calendar"></i> Feb 7, 2025</span>
+                            <span class="card-read-time"><i data-lucide="clock"></i> 7 min</span>
+                        </div>
+                        <h3>PCOS and Diet: What the Latest Research Actually Says</h3>
+                        <p>Polycystic ovary syndrome affects 1 in 5 women. Dr. Anitha Shetty cuts through the myths and
+                            explains evidence-based lifestyle changes.</p>
+                        <div class="card-footer">
+                            <div class="card-author">
+                                <div class="card-author-av"><img
+                                        src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=60&h=60&fit=crop&crop=faces"
+                                        alt="Dr. Anitha Shetty" /></div>
+                                <span class="card-author-name">Dr. Anitha Shetty</span>
+                            </div>
+                            <span class="btn-card-read">Read More <i data-lucide="arrow-right"></i></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Neurology -->
+                <a href="blog-detail.html" class="blog-card fade-up" data-cat="neurology"
+                    data-title="stroke symptoms fast act brain attack warning signs neurology"
+                    style="text-decoration:none">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&h=400&fit=crop"
+                            alt="Brain" />
+                        <div class="card-img-overlay"></div>
+                        <span class="card-cat cat-neurology">Neurology</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-date"><i data-lucide="calendar"></i> Jan 28, 2025</span>
+                            <span class="card-read-time"><i data-lucide="clock"></i> 4 min</span>
+                        </div>
+                        <h3>FAST: Recognising a Stroke in 60 Seconds Could Save a Life</h3>
+                        <p>Every minute of a stroke causes the loss of almost 2 million brain cells. Dr. Deepak Shenoy
+                            explains the four signs to never ignore.</p>
+                        <div class="card-footer">
+                            <div class="card-author">
+                                <div class="card-author-av"><img
+                                        src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=60&h=60&fit=crop&crop=faces"
+                                        alt="Dr. Deepak Shenoy" /></div>
+                                <span class="card-author-name">Dr. Deepak Shenoy</span>
+                            </div>
+                            <span class="btn-card-read">Read More <i data-lucide="arrow-right"></i></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Pediatrics -->
+                <a href="blog-detail.html" class="blog-card fade-up" data-cat="pediatrics"
+                    data-title="child vaccination schedule immunisation kids newborn pediatrics"
+                    style="text-decoration:none">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&h=400&fit=crop"
+                            alt="Pediatrics" />
+                        <div class="card-img-overlay"></div>
+                        <span class="card-cat cat-pediatrics">Pediatrics</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-date"><i data-lucide="calendar"></i> Jan 20, 2025</span>
+                            <span class="card-read-time"><i data-lucide="clock"></i> 5 min</span>
+                        </div>
+                        <h3>India's Immunisation Schedule Explained: What Every Parent Needs to Know</h3>
+                        <p>From birth to 15 years — a clear, parent-friendly guide to every vaccine your child needs and
+                            exactly when to get them.</p>
+                        <div class="card-footer">
+                            <div class="card-author">
+                                <div class="card-author-av"><img
+                                        src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=60&h=60&fit=crop&crop=faces"
+                                        alt="Dr. Nandita Alva" /></div>
+                                <span class="card-author-name">Dr. Nandita Alva</span>
+                            </div>
+                            <span class="btn-card-read">Read More <i data-lucide="arrow-right"></i></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Wellness -->
+                <a href="blog-detail.html" class="blog-card fade-up" data-cat="wellness"
+                    data-title="sleep quality health tips insomnia wellness lifestyle" style="text-decoration:none">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=600&h=400&fit=crop"
+                            alt="Sleep" />
+                        <div class="card-img-overlay"></div>
+                        <span class="card-cat cat-wellness">Wellness</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-date"><i data-lucide="calendar"></i> Jan 12, 2025</span>
+                            <span class="card-read-time"><i data-lucide="clock"></i> 6 min</span>
+                        </div>
+                        <h3>Why Sleep Is the Most Underrated Medicine — and How to Get More of It</h3>
+                        <p>Poor sleep is linked to diabetes, obesity, heart disease, and depression. Dr. Shruthi Rao
+                            shares science-backed strategies to reclaim your rest.</p>
+                        <div class="card-footer">
+                            <div class="card-author">
+                                <div class="card-author-av"><img
+                                        src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=60&h=60&fit=crop&crop=faces"
+                                        alt="Dr. Shruthi Rao" /></div>
+                                <span class="card-author-name">Dr. Shruthi Rao</span>
+                            </div>
+                            <span class="btn-card-read">Read More <i data-lucide="arrow-right"></i></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Cardiology 2 -->
+                <a href="blog-detail.html" class="blog-card fade-up" data-cat="cardiology"
+                    data-title="heart attack young people risk factors cardiology prevention"
+                    style="text-decoration:none">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=600&h=400&fit=crop"
+                            alt="Heart Attack" />
+                        <div class="card-img-overlay"></div>
+                        <span class="card-cat cat-cardiology">Cardiology</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-date"><i data-lucide="calendar"></i> Jan 5, 2025</span>
+                            <span class="card-read-time"><i data-lucide="clock"></i> 7 min</span>
+                        </div>
+                        <h3>Why Heart Attacks Are Rising Among People Under 45</h3>
+                        <p>India is seeing an alarming surge in cardiac events among young adults. Dr. Rajesh Shetty
+                            explains the risk factors most people never check for.</p>
+                        <div class="card-footer">
+                            <div class="card-author">
+                                <div class="card-author-av"><img
+                                        src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=60&h=60&fit=crop&crop=faces"
+                                        alt="Dr. Rajesh Shetty" /></div>
+                                <span class="card-author-name">Dr. Rajesh Shetty</span>
+                            </div>
+                            <span class="btn-card-read">Read More <i data-lucide="arrow-right"></i></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Gynecology 2 -->
+                <a href="blog-detail.html" class="blog-card fade-up" data-cat="gynecology"
+                    data-title="prenatal care high risk pregnancy tips maternal fetal health"
+                    style="text-decoration:none">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=600&h=400&fit=crop"
+                            alt="Pregnancy" />
+                        <div class="card-img-overlay"></div>
+                        <span class="card-cat cat-gynecology">Gynecology</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-date"><i data-lucide="calendar"></i> Dec 22, 2024</span>
+                            <span class="card-read-time"><i data-lucide="clock"></i> 8 min</span>
+                        </div>
+                        <h3>High-Risk Pregnancy: What It Means and How to Stay Safe</h3>
+                        <p>Being labelled "high-risk" is frightening — but with the right care and monitoring, most
+                            high-risk pregnancies result in healthy outcomes.</p>
+                        <div class="card-footer">
+                            <div class="card-author">
+                                <div class="card-author-av"><img
+                                        src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=60&h=60&fit=crop&crop=faces"
+                                        alt="Dr. Kavitha Bhat" /></div>
+                                <span class="card-author-name">Dr. Kavitha Bhat</span>
+                            </div>
+                            <span class="btn-card-read">Read More <i data-lucide="arrow-right"></i></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Wellness 2 -->
+                <a href="blog-detail.html" class="blog-card fade-up" data-cat="wellness"
+                    data-title="diabetes prevention diet sugar lifestyle management wellness"
+                    style="text-decoration:none">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=400&fit=crop"
+                            alt="Diabetes" />
+                        <div class="card-img-overlay"></div>
+                        <span class="card-cat cat-wellness">Wellness</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-date"><i data-lucide="calendar"></i> Dec 15, 2024</span>
+                            <span class="card-read-time"><i data-lucide="clock"></i> 6 min</span>
+                        </div>
+                        <h3>Pre-Diabetes: The Silent Warning You Can Still Reverse</h3>
+                        <p>75 million Indians are pre-diabetic — and most don't know it. Here's what to eat, move, and
+                            monitor to pull yourself back from the edge.</p>
+                        <div class="card-footer">
+                            <div class="card-author">
+                                <div class="card-author-av"><img
+                                        src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=60&h=60&fit=crop&crop=faces"
+                                        alt="MNR Medicity" /></div>
+                                <span class="card-author-name">MNR Medical Team</span>
+                            </div>
+                            <span class="btn-card-read">Read More <i data-lucide="arrow-right"></i></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- No results -->
+                <div class="no-results" id="noResults">
+                    <i data-lucide="search-x"></i>
+                    <h3>No Articles Found</h3>
+                    <p>Try a different topic or clear the search.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="nl-sec">
+        <div class="nl-box fade-up">
+            <div class="nl-text">
+                <span class="s-tag" style="color:var(--gold-light)">Stay Informed</span>
+                <h2>Get Health Tips Delivered to<br>Your <em>Inbox</em></h2>
+                <p>Join 12,000+ readers who receive our monthly health newsletter — expert articles, wellness guides,
+                    and updates from MNR Medicity's doctors.</p>
+            </div>
+            <div class="nl-form">
+                <input type="email" class="nl-input" placeholder="Enter your email address" id="nlEmail" />
+                <button class="btn-nl" onclick="subscribeNL()"><i data-lucide="send"></i> Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="f-grid">
+            <div class="f-brand">
+                <a href="index.html" class="nav-logo" style="text-decoration:none">
+                    <div class="logo-icon"><i data-lucide="hospital"></i></div>
+                    <div>
+                        <div class="logo-name" style="color:#fff">MNR Medicity</div>
+                        <div class="logo-sub" style="color:var(--teal-light)">Advanced Healthcare</div>
+                    </div>
+                </a>
+                <p>MNR Medicity is committed to delivering compassionate, expert, and affordable healthcare to every
+                    patient across Mangalore and Coastal Karnataka.</p>
+                <div class="f-socials">
+                    <a href="#"><i data-lucide="facebook"></i></a>
+                    <a href="#"><i data-lucide="instagram"></i></a>
+                    <a href="#"><i data-lucide="twitter"></i></a>
+                    <a href="#"><i data-lucide="youtube"></i></a>
+                    <a href="#"><i data-lucide="linkedin"></i></a>
+                </div>
+            </div>
+            <div class="f-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="doctors.html">Our Doctors</a></li>
+                    <li><a href="departments.html">Departments</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="f-col">
+                <h4>Departments</h4>
+                <ul>
+                    <li><a href="cardiology.html">Cardiology</a></li>
+                    <li><a href="pulmonology.html">Pulmonology</a></li>
+                    <li><a href="gynecology.html">Gynecology</a></li>
+                    <li><a href="neurology.html">Neurology</a></li>
+                    <li><a href="urology.html">Urology</a></li>
+                    <li><a href="gastroenterology.html">Gastroenterology</a></li>
+                    <li><a href="pediatrics.html">Pediatrics</a></li>
+                </ul>
+            </div>
+            <div class="f-col">
+                <h4>Contact Information</h4>
+                <div class="f-cr"><i data-lucide="map-pin"></i>
+                    <p>MNR Medicity Campus Kolambe, Behind Bajpe Proper, Karnataka 574142</p>
+                </div>
+                <div class="f-cr"><i data-lucide="phone"></i>
+                    <p><a href="tel:9876543210">9876543210</a></p>
+                </div>
+                <div class="f-cr"><i data-lucide="mail"></i>
+                    <p><a href="mailto:info@mnrmedicity.com">info@mnrmedicity.com</a></p>
+                </div>
+                <div class="f-cr"><i data-lucide="clock"></i>
+                    <p>OPD: Mon–Sat 8:00 AM – 8:00 PM<br>Emergency: 24/7</p>
+                </div>
+            </div>
+        </div>
+        <div class="f-bottom">
+            <span>&copy; 2025 MNR Medicity. All rights reserved.</span>
+            <div class="f-blinks"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop"><i data-lucide="chevron-up"></i></button>
+
+    <script>
+        lucide.createIcons();
+        var navbar = document.getElementById('navbar');
+        var scrollBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', function () { navbar.classList.toggle('scrolled', window.scrollY > 60); scrollBtn.classList.toggle('visible', window.scrollY > 300); });
+        function closeAllDrops() { document.querySelectorAll('.drop.open').forEach(function (d) { d.classList.remove('open'); }); }
+        document.querySelectorAll('.drop-btn').forEach(function (btn) { btn.addEventListener('click', function (e) { e.stopPropagation(); var drop = btn.closest('.drop'), open = drop.classList.contains('open'); closeAllDrops(); if (!open) drop.classList.add('open'); }); });
+        document.addEventListener('click', closeAllDrops);
+        document.querySelectorAll('.drop-menu').forEach(function (m) { m.addEventListener('click', function (e) { e.stopPropagation(); }); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAllDrops(); });
+        var ham = document.getElementById('hamburger'), mob = document.getElementById('mobNav');
+        ham.addEventListener('click', function () { mob.classList.toggle('open'); document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : ''; });
+        mob.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { mob.classList.remove('open'); document.body.style.overflow = ''; }); });
+        scrollBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        var obs = new IntersectionObserver(function (entries) { entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } }); }, { threshold: 0.07 });
+        document.querySelectorAll('.fade-up').forEach(function (el) { obs.observe(el); });
+
+        // Filter + search
+        var cards = Array.from(document.querySelectorAll('.blog-card'));
+        var activeCat = 'all'; var searchVal = '';
+        function applyFilters() { var vis = 0; cards.forEach(function (c) { var cat = c.dataset.cat || ''; var title = c.dataset.title || ''; var mC = activeCat === 'all' || cat === activeCat; var mS = searchVal === '' || title.includes(searchVal) || cat.includes(searchVal); if (mC && mS) { c.style.display = ''; vis++; } else { c.style.display = 'none'; } }); document.getElementById('noResults').style.display = vis === 0 ? 'block' : 'none'; }
+        document.querySelectorAll('.f-tab').forEach(function (t) { t.addEventListener('click', function () { document.querySelectorAll('.f-tab').forEach(function (x) { x.classList.remove('active'); }); t.classList.add('active'); activeCat = t.dataset.cat; applyFilters(); }); });
+        document.getElementById('searchInput').addEventListener('input', function () { searchVal = this.value.toLowerCase().trim(); applyFilters(); });
+
+        // Newsletter
+        function subscribeNL() { var v = document.getElementById('nlEmail').value.trim(); if (!v || !v.includes('@')) { alert('Please enter a valid email address.'); return; } document.getElementById('nlEmail').value = ''; alert('Thank you for subscribing! You\'ll receive our next newsletter soon.'); }
+    </script>
+</body>
+
+</html>

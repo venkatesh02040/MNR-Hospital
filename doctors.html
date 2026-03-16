@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Doctors | MNR Medicity</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --navy: #0a1f3c;
+            --teal: #0e7c7b;
+            --teal-light: #13a8a7;
+            --gold: #c8992a;
+            --gold-light: #e8b93e;
+            --cream: #f8f4ee;
+            --gray-light: #f0f4f8;
+            --gray-mid: #8094a8;
+            --text: #1a2d42;
+            --shadow: 0 8px 40px rgba(10, 31, 60, .10);
+            --shadow-strong: 0 16px 60px rgba(10, 31, 60, .18);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ── NAVBAR ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, .97);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(10, 31, 60, .08);
+            box-shadow: 0 2px 20px rgba(10, 31, 60, .06);
+            transition: all .35s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 31, 60, .97);
+            border-bottom-color: transparent;
+        }
+
+        nav.scrolled .logo-name,
+        nav.scrolled .nav-link,
+        nav.scrolled .drop-btn {
+            color: #fff !important;
+        }
+
+        nav.scrolled .logo-sub {
+            color: var(--teal-light) !important;
+        }
+
+        nav.scrolled .hamburger span {
+            background: #fff;
+        }
+
+        .nav-wrap {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            height: 72px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 11px;
+            background: linear-gradient(135deg, var(--teal), var(--navy));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo-icon svg {
+            color: #fff;
+            width: 22px;
+            height: 22px;
+        }
+
+        .logo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.1;
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            color: var(--teal);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 13px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all .2s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(14, 124, 123, .09);
+            color: var(--teal);
+        }
+
+        .drop {
+            position: relative;
+        }
+
+        .drop-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 13px;
+            border-radius: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all .2s;
+            user-select: none;
+        }
+
+        .drop-btn svg {
+            width: 13px;
+            height: 13px;
+            transition: transform .3s;
+        }
+
+        .drop.open .drop-btn {
+            background: rgba(14, 124, 123, .09);
+            color: var(--teal);
+        }
+
+        .drop.open .drop-btn svg {
+            transform: rotate(180deg);
+        }
+
+        nav.scrolled .drop.open .drop-btn {
+            color: var(--teal-light) !important;
+        }
+
+        .drop-menu::before {
+            content: '';
+            position: absolute;
+            top: -16px;
+            left: 0;
+            right: 0;
+            height: 16px;
+        }
+
+        .drop-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%) translateY(6px);
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: var(--shadow-strong);
+            padding: 8px;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity .22s ease, transform .22s ease, visibility .22s;
+            border: 1px solid rgba(10, 31, 60, .07);
+            z-index: 200;
+        }
+
+        .drop.open .drop-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .drop-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 9px;
+            color: var(--text);
+            font-size: 14px;
+            text-decoration: none;
+            transition: all .18s;
+            white-space: nowrap;
+        }
+
+        .drop-item svg {
+            width: 16px;
+            height: 16px;
+            color: var(--teal);
+            flex-shrink: 0;
+        }
+
+        .drop-item:hover {
+            background: var(--gray-light);
+            color: var(--teal);
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            color: #fff !important;
+            padding: 9px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(14, 124, 123, .35);
+            transition: all .25s;
+        }
+
+        .nav-cta svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(14, 124, 123, .45);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 6px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--navy);
+            border-radius: 2px;
+            transition: all .3s;
+            display: block;
+        }
+
+        .mob-nav {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 998;
+            background: var(--navy);
+            padding: 90px 28px 40px;
+            transform: translateX(100%);
+            transition: transform .38s cubic-bezier(.77, 0, .175, 1);
+            overflow-y: auto;
+        }
+
+        .mob-nav.open {
+            transform: translateX(0);
+        }
+
+        .mob-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            font-size: 17px;
+            font-weight: 500;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            text-decoration: none;
+        }
+
+        .mob-link svg {
+            width: 18px;
+            height: 18px;
+            color: var(--teal-light);
+        }
+
+        .mob-sub {
+            padding-left: 28px;
+        }
+
+        .mob-sub .mob-link {
+            font-size: 15px;
+            color: rgba(255, 255, 255, .68);
+        }
+
+        .mob-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            margin-top: 28px;
+            background: var(--teal);
+            color: #fff;
+            padding: 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+        }
+
+        .mob-cta svg {
+            width: 17px;
+            height: 17px;
+        }
+
+        /* ── SHARED ── */
+        .si {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .s-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 12px;
+        }
+
+        .s-tag::before {
+            content: '';
+            width: 22px;
+            height: 2px;
+            background: var(--teal);
+            border-radius: 2px;
+        }
+
+        .s-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(26px, 3.6vw, 42px);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+
+        .s-title em {
+            font-style: normal;
+            color: var(--teal);
+        }
+
+        .s-desc {
+            font-size: 15px;
+            color: var(--gray-mid);
+            line-height: 1.78;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: all .65s cubic-bezier(.25, .46, .45, .94);
+        }
+
+        .fade-up.in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-up:nth-child(2) {
+            transition-delay: .07s
+        }
+
+        .fade-up:nth-child(3) {
+            transition-delay: .14s
+        }
+
+        .fade-up:nth-child(4) {
+            transition-delay: .21s
+        }
+
+        .fade-up:nth-child(5) {
+            transition-delay: .28s
+        }
+
+        .fade-up:nth-child(6) {
+            transition-delay: .35s
+        }
+
+        .fade-up:nth-child(7) {
+            transition-delay: .42s
+        }
+
+        .fade-up:nth-child(8) {
+            transition-delay: .49s
+        }
+
+        /* ── PAGE HERO ── */
+        .page-hero {
+            margin-top: 72px;
+            background: linear-gradient(135deg, #061529 0%, #0a2540 50%, #0d3d6b 100%);
+            padding: 90px 28px 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -8%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(14, 124, 123, .22) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(200, 153, 42, .10) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-grid-overlay {
+            position: absolute;
+            inset: 0;
+            opacity: .035;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(255, 255, 255, .6) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .6) 1px, transparent 1px);
+            background-size: 55px 55px;
+        }
+
+        .page-hero-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, .50);
+            margin-bottom: 22px;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, .50);
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--teal-light);
+        }
+
+        .breadcrumb svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        .breadcrumb span {
+            color: rgba(255, 255, 255, .9);
+        }
+
+        .page-hero-inner h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(34px, 5vw, 64px);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.12;
+            margin-bottom: 20px;
+            max-width: 700px;
+        }
+
+        .page-hero-inner h1 em {
+            font-style: normal;
+            color: var(--gold-light);
+        }
+
+        .hero-sub {
+            font-size: 17px;
+            color: rgba(255, 255, 255, .68);
+            line-height: 1.75;
+            max-width: 560px;
+        }
+
+        /* ── STATS STRIP ── */
+        .stats-strip {
+            background: #fff;
+            box-shadow: 0 4px 30px rgba(10, 31, 60, .08);
+        }
+
+        .stats-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .stat-cell {
+            padding: 28px 24px;
+            text-align: center;
+            border-right: 1px solid rgba(10, 31, 60, .07);
+            border-bottom: 3px solid transparent;
+            transition: all .3s;
+        }
+
+        .stat-cell:last-child {
+            border-right: none;
+        }
+
+        .stat-cell:hover {
+            border-bottom-color: var(--teal);
+            background: var(--gray-light);
+        }
+
+        .stat-cell .big {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1;
+        }
+
+        .stat-cell .big span {
+            color: var(--teal);
+        }
+
+        .stat-cell p {
+            font-size: 13px;
+            color: var(--gray-mid);
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        /* ── FILTER BAR ── */
+        .filter-sec {
+            background: var(--gray-light);
+            padding: 28px 28px 0;
+            border-bottom: 1px solid rgba(10, 31, 60, .06);
+        }
+
+        .filter-wrap {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            padding-bottom: 20px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .f-tab {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--gray-mid);
+            border: 1.5px solid rgba(10, 31, 60, .12);
+            background: #fff;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all .22s;
+            text-decoration: none;
+        }
+
+        .f-tab svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+
+        .f-tab:hover {
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+
+        .f-tab.active {
+            background: var(--navy);
+            color: #fff;
+            border-color: var(--navy);
+            box-shadow: 0 4px 14px rgba(10, 31, 60, .22);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+            border: 1.5px solid rgba(10, 31, 60, .12);
+            border-radius: 50px;
+            padding: 9px 18px;
+            min-width: 240px;
+            transition: border-color .2s;
+        }
+
+        .search-box:focus-within {
+            border-color: var(--teal);
+        }
+
+        .search-box svg {
+            width: 15px;
+            height: 15px;
+            color: var(--gray-mid);
+            flex-shrink: 0;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            color: var(--text);
+            background: transparent;
+            width: 100%;
+        }
+
+        .search-box input::placeholder {
+            color: var(--gray-mid);
+        }
+
+        /* ── DOCTORS GRID ── */
+        .doctors-sec {
+            padding: 56px 28px 90px;
+            background: var(--gray-light);
+        }
+
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 26px;
+        }
+
+        /* ── DOCTOR CARD ── */
+        .doc-card {
+            background: #fff;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 2px 18px rgba(10, 31, 60, .07);
+            transition: all .35s cubic-bezier(.25, .46, .45, .94);
+            border: 1.5px solid rgba(10, 31, 60, .05);
+            position: relative;
+        }
+
+        .doc-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 22px 55px rgba(10, 31, 60, .13);
+            border-color: transparent;
+        }
+
+        /* Photo area */
+        .doc-photo {
+            height: 260px;
+            position: relative;
+            overflow: hidden;
+            background: var(--gray-light);
+        }
+
+        .doc-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform .5s ease;
+        }
+
+        .doc-card:hover .doc-photo img {
+            transform: scale(1.06);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 45%, rgba(10, 31, 60, .60) 100%);
+        }
+
+        /* Dept ribbon */
+        .dept-pill {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 50px;
+            padding: 5px 13px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+        }
+
+        .dept-pill svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* Experience badge */
+        .exp-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255, 255, 255, .15);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, .25);
+            border-radius: 12px;
+            padding: 6px 12px;
+            text-align: center;
+        }
+
+        .exp-badge .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .exp-badge small {
+            font-size: 9px;
+            color: rgba(255, 255, 255, .75);
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Name overlay at bottom of photo */
+        .photo-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 18px 20px 16px;
+        }
+
+        .photo-name h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 19px;
+            color: #fff;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 2px;
+        }
+
+        .photo-name .role {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .75);
+            font-weight: 500;
+        }
+
+        /* Card body */
+        .doc-body {
+            padding: 20px 22px 24px;
+        }
+
+        .qual-row {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 14px;
+        }
+
+        .qual-row svg {
+            width: 14px;
+            height: 14px;
+            color: var(--teal);
+            flex-shrink: 0;
+        }
+
+        .qual-row span {
+            font-size: 13px;
+            color: var(--gray-mid);
+        }
+
+        /* Expertise chips */
+        .expertise-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 18px;
+        }
+
+        .e-chip {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 11px;
+            border-radius: 50px;
+            background: var(--gray-light);
+            color: var(--text);
+            transition: all .2s;
+        }
+
+        .doc-card:hover .e-chip {
+            background: rgba(14, 124, 123, .09);
+            color: var(--teal);
+        }
+
+        /* Card footer */
+        .doc-foot {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-know {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            flex: 1;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            color: #fff;
+            padding: 11px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 13px;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(14, 124, 123, .28);
+            transition: all .25s;
+        }
+
+        .btn-know svg {
+            width: 14px;
+            height: 14px;
+            transition: transform .2s;
+        }
+
+        .btn-know:hover {
+            box-shadow: 0 7px 22px rgba(14, 124, 123, .42);
+            transform: translateY(-1px);
+        }
+
+        .doc-card:hover .btn-know svg {
+            transform: translateX(2px);
+        }
+
+        .btn-call-sm {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(10, 31, 60, .12);
+            color: var(--gray-mid);
+            text-decoration: none;
+            transition: all .22s;
+            flex-shrink: 0;
+        }
+
+        .btn-call-sm svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .btn-call-sm:hover {
+            border-color: var(--teal);
+            color: var(--teal);
+            background: rgba(14, 124, 123, .06);
+        }
+
+        /* ── DEPT COLOR MAP ── */
+        .pill-cardiology {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+        }
+
+        .pill-pulmonology {
+            background: linear-gradient(135deg, #2471a3, #3498db);
+        }
+
+        .pill-gynecology {
+            background: linear-gradient(135deg, #c0396b, #e84393);
+        }
+
+        .pill-neurology {
+            background: linear-gradient(135deg, #7d3c98, #9b59b6);
+        }
+
+        .pill-urology {
+            background: linear-gradient(135deg, #1f618d, #2980b9);
+        }
+
+        .pill-gastro {
+            background: linear-gradient(135deg, #d4890a, #f0a500);
+        }
+
+        .pill-pediatrics {
+            background: linear-gradient(135deg, #1d8348, #27ae60);
+        }
+
+        .pill-medicine {
+            background: linear-gradient(135deg, #0e7c7b, #13a8a7);
+        }
+
+        /* ── NO RESULTS ── */
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .no-results svg {
+            width: 48px;
+            height: 48px;
+            color: var(--gray-mid);
+            margin-bottom: 16px;
+        }
+
+        .no-results h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .no-results p {
+            font-size: 14px;
+            color: var(--gray-mid);
+        }
+
+        /* ── CTA ── */
+        .cta-sec {
+            padding: 80px 28px;
+            background: #fff;
+        }
+
+        .cta-box {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
+            border-radius: 28px;
+            padding: 64px 60px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            right: -60px;
+            top: -60px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .07);
+            pointer-events: none;
+        }
+
+        .cta-box h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(22px, 3vw, 36px);
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .cta-box>div:first-child p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, .80);
+            line-height: 1.75;
+            max-width: 480px;
+        }
+
+        .cta-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: #fff;
+            color: var(--teal);
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .15);
+            transition: all .3s;
+        }
+
+        .btn-white svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, .22);
+        }
+
+        .btn-ghost-w {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            border: 1.5px solid rgba(255, 255, 255, .45);
+            color: #fff;
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all .3s;
+        }
+
+        .btn-ghost-w svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .btn-ghost-w:hover {
+            border-color: #fff;
+            background: rgba(255, 255, 255, .10);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--navy);
+            padding: 66px 28px 0;
+        }
+
+        .f-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 46px;
+            padding-bottom: 50px;
+        }
+
+        .f-brand p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, .52);
+            margin: 17px 0 20px;
+        }
+
+        .f-socials {
+            display: flex;
+            gap: 9px;
+        }
+
+        .f-socials a {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: rgba(255, 255, 255, .07);
+            color: rgba(255, 255, 255, .60);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all .2s;
+        }
+
+        .f-socials a:hover {
+            background: var(--teal);
+            color: #fff;
+        }
+
+        .f-socials a svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .f-col h4 {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 17px;
+        }
+
+        .f-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .f-col ul a {
+            color: rgba(255, 255, 255, .52);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color .2s;
+        }
+
+        .f-col ul a:hover {
+            color: var(--teal-light);
+        }
+
+        .f-cr {
+            display: flex;
+            gap: 11px;
+            margin-bottom: 13px;
+        }
+
+        .f-cr svg {
+            width: 15px;
+            height: 15px;
+            color: var(--teal-light);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .f-cr p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .52);
+            line-height: 1.65;
+        }
+
+        .f-cr a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .f-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, .07);
+            padding: 22px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, .32);
+        }
+
+        .f-bottom a {
+            color: rgba(255, 255, 255, .42);
+            text-decoration: none;
+        }
+
+        .f-bottom a:hover {
+            color: var(--teal-light);
+        }
+
+        .f-blinks {
+            display: flex;
+            gap: 20px;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 26px;
+            right: 26px;
+            z-index: 999;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--teal);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 18px rgba(14, 124, 123, .40);
+            opacity: 0;
+            pointer-events: none;
+            transition: all .3s;
+        }
+
+        .scroll-top svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width:1024px) {
+            .stats-inner {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .f-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cta-box {
+                grid-template-columns: 1fr;
+                padding: 44px 36px;
+            }
+
+            .cta-btns {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width:1000px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mob-nav {
+                display: block;
+            }
+
+            .page-hero {
+                padding: 60px 20px 72px;
+            }
+
+            .filter-sec {
+                padding: 20px 20px 0;
+            }
+
+            .filter-wrap {
+                gap: 12px;
+            }
+
+            .search-box {
+                min-width: 100%;
+            }
+
+            .doctors-sec {
+                padding: 40px 20px 70px;
+            }
+
+            .doc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .f-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .cta-box {
+                padding: 36px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="nav-wrap">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon"><i data-lucide="hospital"></i></div>
+                <div>
+                    <div class="logo-name">MNR Medicity</div>
+                    <div class="logo-sub">Advanced Healthcare</div>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li class="drop">
+                    <button class="drop-btn">Departments <i data-lucide="chevron-down"></i></button>
+                    <div class="drop-menu">
+                        <a href="cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i> Cardiology</a>
+                        <a href="pulmonology.html" class="drop-item"><i data-lucide="wind"></i> Pulmonology</a>
+                        <a href="gynecology.html" class="drop-item"><i data-lucide="baby"></i> Gynecology</a>
+                        <a href="neurology.html" class="drop-item"><i data-lucide="brain"></i> Neurology</a>
+                        <a href="urology.html" class="drop-item"><i data-lucide="activity"></i> Urology</a>
+                        <a href="gastroenterology.html" class="drop-item"><i data-lucide="stethoscope"></i>
+                            Gastroenterology</a>
+                        <a href="pediatrics.html" class="drop-item"><i data-lucide="smile"></i> Pediatrics</a>
+                    </div>
+                </li>
+                <li><a href="doctors.html" class="nav-link active">Doctors</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="drop">
+                    <button class="drop-btn">More <i data-lucide="chevron-down"></i></button>
+                    <div class="drop-menu">
+                        <a href="blogs.html" class="drop-item"><i data-lucide="newspaper"></i> Blogs</a>
+                        <a href="gallery.html" class="drop-item"><i data-lucide="image"></i> Gallery</a>
+                        <a href="careers.html" class="drop-item"><i data-lucide="briefcase"></i> Careers</a>
+                        <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a>
+                    </div>
+                </li>
+                <li><a href="contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
+                </li>
+            </ul>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <div class="mob-nav" id="mobNav">
+        <a href="index.html" class="mob-link"><i data-lucide="home"></i> Home</a>
+        <a href="about.html" class="mob-link"><i data-lucide="info"></i> About Us</a>
+        <span class="mob-link" style="cursor:pointer"><i data-lucide="layout-grid"></i> Departments</span>
+        <div class="mob-sub">
+            <a href="departments.html#cardiology" class="mob-link"><i data-lucide="heart-pulse"></i> Cardiology</a>
+            <a href="departments.html#pulmonology" class="mob-link"><i data-lucide="wind"></i> Pulmonology</a>
+            <a href="departments.html#gynecology" class="mob-link"><i data-lucide="baby"></i> Gynecology</a>
+            <a href="departments.html#neurology" class="mob-link"><i data-lucide="brain"></i> Neurology</a>
+            <a href="departments.html#urology" class="mob-link"><i data-lucide="activity"></i> Urology</a>
+            <a href="departments.html#gastrology" class="mob-link"><i data-lucide="stethoscope"></i>
+                Gastroenterology</a>
+            <a href="departments.html#pediatrics" class="mob-link"><i data-lucide="smile"></i> Pediatrics</a>
+        </div>
+        <a href="doctors.html" class="mob-link"><i data-lucide="user-round"></i> Doctors</a>
+        <a href="contact.html" class="mob-link"><i data-lucide="phone"></i> Contact Us</a>
+        <span class="mob-link" style="cursor:pointer"><i data-lucide="more-horizontal"></i> More</span>
+        <div class="mob-sub">
+            <a href="blogs.html" class="mob-link"><i data-lucide="newspaper"></i> Blogs</a>
+            <a href="gallery.html" class="mob-link"><i data-lucide="image"></i> Gallery</a>
+            <a href="careers.html" class="mob-link"><i data-lucide="briefcase"></i> Careers</a>
+            <a href="insurance.html" class="mob-link"><i data-lucide="shield-check"></i> Insurance</a>
+        </div>
+        <a href="contact.html" class="mob-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
+    </div>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+        <div class="hero-grid-overlay"></div>
+        <div class="page-hero-inner">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a><i data-lucide="chevron-right"></i>
+                <span>Our Doctors</span>
+            </div>
+            <h1>Meet Our Panel of<br><em>Expert Specialists</em></h1>
+            <p class="hero-sub">50+ senior doctors across 7 departments — trained at India's finest institutions,
+                committed to delivering world-class care right here in Coastal Karnataka.</p>
+        </div>
+    </div>
+
+    <!-- STATS STRIP -->
+    <div class="stats-strip">
+        <div class="stats-inner">
+            <div class="stat-cell">
+                <div class="big">50<span>+</span></div>
+                <p>Expert Specialists</p>
+            </div>
+            <div class="stat-cell">
+                <div class="big">7</div>
+                <p>Departments</p>
+            </div>
+            <div class="stat-cell">
+                <div class="big">200<span>+</span></div>
+                <p>Avg. Years Combined Exp.</p>
+            </div>
+            <div class="stat-cell">
+                <div class="big">24<span>/7</span></div>
+                <p>On-Call Coverage</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="filter-sec">
+        <div class="filter-wrap">
+            <div class="filter-tabs" id="filterTabs">
+                <button class="f-tab active" data-dept="all"><i data-lucide="layout-grid"></i> All Doctors</button>
+                <button class="f-tab" data-dept="cardiology"><i data-lucide="heart-pulse"></i> Cardiology</button>
+                <button class="f-tab" data-dept="pulmonology"><i data-lucide="wind"></i> Pulmonology</button>
+                <button class="f-tab" data-dept="gynecology"><i data-lucide="baby"></i> Gynecology</button>
+                <button class="f-tab" data-dept="neurology"><i data-lucide="brain"></i> Neurology</button>
+                <button class="f-tab" data-dept="urology"><i data-lucide="activity"></i> Urology</button>
+                <button class="f-tab" data-dept="gastro"><i data-lucide="stethoscope"></i> Gastroenterology</button>
+                <button class="f-tab" data-dept="pediatrics"><i data-lucide="smile"></i> Pediatrics</button>
+            </div>
+            <div class="search-box">
+                <i data-lucide="search"></i>
+                <input type="text" id="searchInput" placeholder="Search by name or specialty…" />
+            </div>
+        </div>
+    </div>
+
+    <!-- DOCTORS GRID -->
+    <section class="doctors-sec">
+        <div class="si">
+            <div class="doc-grid" id="docGrid">
+
+                <!-- ── CARDIOLOGY ── -->
+                <div class="doc-card fade-up" data-dept="cardiology"
+                    data-name="dr suresh kamath interventional cardiologist">
+                    <div class="doc-photo">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&h=520&fit=crop&crop=faces,top"
+                            alt="Dr. Suresh Kamath" />
+                        <div class="photo-overlay"></div>
+                        <div class="dept-pill pill-cardiology"><i data-lucide="heart-pulse"></i> Cardiology</div>
+                        <div class="exp-badge">
+                            <div class="num">22</div><small>Yrs Exp</small>
+                        </div>
+                        <div class="photo-name">
+                            <h3>Dr. Suresh Kamath</h3>
+                            <div class="role">Senior Interventional Cardiologist</div>
+                        </div>
+                    </div>
+                    <div class="doc-body">
+                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD, DM Cardiology &middot; AIIMS
+                                New Delhi</span></div>
+                        <div class="expertise-chips"><span class="e-chip">Angioplasty</span><span class="e-chip">Heart
+                                Failure</span><span class="e-chip">Pacemakers</span><span class="e-chip">ICD</span>
+                        </div>
+                        <div class="doc-foot">
+                            <a href="dr-suresh-kamath.html" class="btn-know">Know More <i
+                                    data-lucide="arrow-right"></i></a>
+                            <a href="contact.html" class="btn-call-sm" title="Book Appointment"><i
+                                    data-lucide="calendar-check"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-card fade-up" data-dept="cardiology"
+                    data-name="dr priya nair cardiologist echocardiographer">
+                    <div class="doc-photo">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&h=520&fit=crop&crop=faces,top"
+                            alt="Dr. Priya Nair" />
+                        <div class="photo-overlay"></div>
+                        <div class="dept-pill pill-cardiology"><i data-lucide="heart-pulse"></i> Cardiology</div>
+                        <div class="exp-badge">
+                            <div class="num">14</div><small>Yrs Exp</small>
+                        </div>
+                        <div class="photo-name">
+                            <h3>Dr. Priya Nair</h3>
+                            <div class="role">Cardiologist & Echocardiographer</div>
+                        </div>
+                    </div>
+                    <div class="doc-body">
+                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD, DNB Cardiology &middot; KMC
+                                Manipal</span></div>
+                        <div class="expertise-chips"><span class="e-chip">Echo</span><span
+                                class="e-chip">Arrhythmia</span><span class="e-chip">Women's Heart</span><span
+                                class="e-chip">Preventive</span></div>
+                        <div class="doc-foot">
+                            <a href="dr-priya-nair.html" class="btn-know">Know More <i
+                                    data-lucide="arrow-right"></i></a>
+                            <a href="contact.html" class="btn-call-sm" title="Book Appointment"><i
+                                    data-lucide="calendar-check"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-card fade-up" data-dept="cardiology"
+                    data-name="dr rajesh shetty cardiac electrophysiologist">
+                    <div class="doc-photo">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=500&h=520&fit=crop&crop=faces,top"
+                            alt="Dr. Rajesh Shetty" />
+                        <div class="photo-overlay"></div>
+                        <div class="dept-pill pill-cardiology"><i data-lucide="heart-pulse"></i> Cardiology</div>
+                        <div class="exp-badge">
+                            <div class="num">18</div><small>Yrs Exp</small>
+                        </div>
+                        <div class="photo-name">
+                            <h3>Dr. Rajesh Shetty</h3>
+                            <div class="role">Cardiac Electrophysiologist</div>
+                        </div>
+                    </div>
+                    <div class="doc-body">
+                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD, DM Cardiology &middot; CMC
+                                Vellore</span></div>
+                        <div class="expertise-chips"><span class="e-chip">Ablation</span><span
+                                class="e-chip">Pacemakers</span><span class="e-chip">AF</span><span
+                                class="e-chip">SVT</span></div>
+                        <div class="doc-foot">
+                            <a href="dr-rajesh-shetty.html" class="btn-know">Know More <i
+                                    data-lucide="arrow-right"></i></a>
+                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── PULMONOLOGY ── -->
+                <div class="doc-card fade-up" data-dept="pulmonology"
+                    data-name="dr arun hegde pulmonologist intensivist">
+                    <div class="doc-photo">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=500&h=520&fit=crop&crop=faces,top"
+                            alt="Dr. Arun Hegde" />
+                        <div class="photo-overlay"></div>
+                        <div class="dept-pill pill-pulmonology"><i data-lucide="wind"></i> Pulmonology</div>
+                        <div class="exp-badge">
+                            <div class="num">19</div><small>Yrs Exp</small>
+                        </div>
+                        <div class="photo-name">
+                            <h3>Dr. Arun Hegde</h3>
+                            <div class="role">Senior Pulmonologist & Intensivist</div>
+                        </div>
+                    </div>
+                    <div class="doc-body">
+                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD, DM Pulmonology &middot; PGI
+                                Chandigarh</span></div>
+                        <div class="expertise-chips"><span class="e-chip">COPD</span><span class="e-chip">Critical
+                                Care</span><span class="e-chip">Bronchoscopy</span><span
+                                class="e-chip">Post-COVID</span></div>
+
+                        <div class="doc-foot">
+                            <a href="dr-arun-hegde.html" class="btn-know">Know More <i
+                                    data-lucide="arrow-right"></i></a>
+                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-card fade-up" data-dept="pulmonology"
+                    data-name="dr shruthi rao respiratory sleep specialist">
+                    <div class="doc-photo">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=500&h=520&fit=crop&crop=faces,top"
+                            alt="Dr. Shruthi Rao" />
+                        <div class="photo-overlay"></div>
+                        <div class="dept-pill pill-pulmonology"><i data-lucide="wind"></i> Pulmonology</div>
+                        <div class="exp-badge">
+                            <div class="num">12</div><small>Yrs Exp</small>
+                        </div>
+                        <div class="photo-name">
+                            <h3>Dr. Shruthi Rao</h3>
+                            <div class="role">Respiratory Medicine & Sleep Specialist</div>
+                        </div>
+                    </div>
+                    <div class="doc-body">
+                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD, Fellowship Pulmonology
+                                &middot; NIMHANS</span></div>
+                        <div class="expertise-chips"><span class="e-chip">Asthma</span><span class="e-chip">Sleep
+                                Study</span><span class="e-chip">CPAP</span><span class="e-chip">PFT</span></div>
+
+                        <div class="doc-foot">
+                            <a href="dr-shruthi-rao.html" class="btn-know">Know More <i
+                                    data-lucide="arrow-right"></i></a>
+                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── GYNECOLOGY ── -->
+                <div class="doc-card fade-up" data-dept="gynecology"
+                    data-name="dr anitha shetty gynecologist obstetrician">
+                    <div class="doc-photo">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&h=520&fit=crop&crop=faces,top"
+                            alt="Dr. Anitha Shetty" />
+                        <div class="photo-overlay"></div>
+                        <div class="dept-pill pill-gynecology"><i data-lucide="baby"></i> Gynecology</div>
+                        <div class="exp-badge">
+                            <div class="num">18</div><small>Yrs Exp</small>
+                        </div>
+                        <div class="photo-name">
+                            <h3>Dr. Anitha Shetty</h3>
+                            <div class="role">Chief of Clinical Services · Sr. Gynecologist</div>
+                        </div>
+                    </div>
+                    <div class="doc-body">
+                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MS OBG, FACS &middot; JIPMER
+                                Puducherry</span></div>
+                        <div class="expertise-chips"><span class="e-chip">High-Risk OB</span><span
+                                class="e-chip">Laparoscopy</span><span class="e-chip">PCOS</span><span
+                                class="e-chip">MFM</span></div>
+                        <div class="doc-foot">
+                            <a href="dr-anitha-shetty.html" class="btn-know">Know More <i
+                                    data-lucide="arrow-right"></i></a>
+                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-card fade-up" data-dept="gynecology"
+                    data-name="dr kavitha bhat gynecologist fetal medicine">
+                    <div class="doc-photo">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=500&h=520&fit=crop&crop=faces,top"
+                            alt="Dr. Kavitha Bhat" />
+                        <div class="photo-overlay"></div>
+                        <div class="dept-pill pill-gynecology"><i data-lucide="baby"></i> Gynecology</div>
+                        <div class="exp-badge">
+                            <div class="num">13</div><small>Yrs Exp</small>
+                        </div>
+                        <div class="photo-name">
+                            <h3>Dr. Kavitha Bhat</h3>
+                            <div class="role">Consultant Gynecologist & Fetal Medicine</div>
+                        </div>
+                    </div>
+                    <div class="doc-body">
+                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MS OBG, Fellowship MFM &middot;
+                                KMC Manipal</span></div>
+                        <div class="expertise-chips"><span class="e-chip">Fetal Medicine</span><span
+                                class="e-chip">Hysterectomy</span><span class="e-chip">Fertility</span></div>
+
+                        <div class="doc-foot">
+                            <a href="dr-kavitha-bhat.html" class="btn-know">Know More <i
+                                    data-lucide="arrow-right"></i></a>
+                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── NEUROLOGY ── -->
+                <div class="doc-card fade-up" data-dept="neurology" data-name="dr deepak shenoy neurologist stroke">
+                    <div class="doc-photo">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&h=520&fit=crop&crop=faces,top"
+                            alt="Dr. Deepak Shenoy" />
+                        <div class="photo-overlay"></div>
+                        <div class="dept-pill pill-neurology"><i data-lucide="brain"></i> Neurology</div>
+                        <div class="exp-badge">
+                            <div class="num">20</div><small>Yrs Exp</small>
+                        </div>
+                        <div class="photo-name">
+                            <h3>Dr. Deepak Shenoy</h3>
+                            <div class="role">Senior Neurologist & Stroke Specialist</div>
+                        </div>
+                    </div>
+                    <div class="doc-body">
+                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD, DM Neurology &middot;
+                                NIMHANS Bengaluru</span></div>
+                        <div class="expertise-chips"><span class="e-chip">Stroke</span><span
+                                class="e-chip">Epilepsy</span><span class="e-chip">Movement</span><span
+                                class="e-chip">Dementia</span></div>
+
+                        <div class="doc-foot">
+                            <a href="dr-deepak-shenoy.html" class="btn-know">Know More <i
+                                    data-lucide="arrow-right"></i></a>
+                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-card fade-up" data-dept="neurology"
+                    data-name="dr naresh nayak neurosurgeon spine brain">
+                    <div class="doc-photo">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=500&h=520&fit=crop&crop=faces,top"
+                            alt="Dr. Naresh Nayak" />
+                        <div class="photo-overlay"></div>
+                        <div class="dept-pill pill-neurology"><i data-lucide="brain"></i> Neurology</div>
+                        <div class="exp-badge">
+                            <div class="num">17</div><small>Yrs Exp</small>
+                        </div>
+                        <div class="photo-name">
+                            <h3>Dr. Naresh Nayak</h3>
+                            <div class="role">Consultant Neurosurgeon</div>
+                        </div>
+                    </div>
+                    <div class="doc-body">
+                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MS, MCh Neurosurgery &middot;
+                                AIIMS New Delhi</span></div>
+                        <div class="expertise-chips"><span class="e-chip">Craniotomy</span><span class="e-chip">Spine
+                                Surgery</span><span class="e-chip">Tumours</span></div>
+
+                        <div class="doc-foot">
+                            <a href="dr-naresh-nayak.html" class="btn-know">Know More <i
+                                    data-lucide="arrow-right"></i></a>
+                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── UROLOGY ── -->
+                <div class="doc-card fade-up" data-dept="urology"
+                    data-name="dr prakash nair urologist endourologist stones">
+                    <div class="doc-photo">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=500&h=520&fit=crop&crop=faces,top"
+                            alt="Dr. Prakash Nair" />
+                        <div class="photo-overlay"></div>
+                        <div class="dept-pill pill-urology"><i data-lucide="activity"></i> Urology</div>
+                        <div class="exp-badge">
+                            <div class="num">16</div><small>Yrs Exp</small>
+                        </div>
+                        <div class="photo-name">
+                            <h3>Dr. Prakash Nair</h3>
+                            <div class="role">Senior Urologist & Endourologist</div>
+                        </div>
+                    </div>
+                    <div class="doc-body">
+                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MS, MCh Urology &middot; SGPGI
+                                Lucknow</span></div>
+                        <div class="expertise-chips"><span class="e-chip">Kidney Stones</span><span
+                                class="e-chip">TURP</span><span class="e-chip">Uro-Oncology</span><span
+                                class="e-chip">PCNL</span></div>
+
+                        <div class="doc-foot">
+                            <a href="dr-prakash-nair.html" class="btn-know">Know More <i
+                                    data-lucide="arrow-right"></i></a>
+                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-card fade-up" data-dept="urology"
+                    data-name="dr ananya bhat urologist female incontinence">
+                    <div class="doc-photo">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=500&h=520&fit=crop&crop=faces,top"
+                            alt="Dr. Ananya Bhat" />
+                        <div class="photo-overlay"></div>
+                        <div class="dept-pill pill-urology"><i data-lucide="activity"></i> Urology</div>
+                        <div class="exp-badge">
+                            <div class="num">9</div><small>Yrs Exp</small>
+                        </div>
+                        <div class="photo-name">
+                            <h3>Dr. Ananya Bhat</h3>
+                            <div class="role">Consultant Urologist</div>
+                        </div>
+                    </div>
+                    <div class="doc-body">
+                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MS, DNB Urology &middot; KMC
+                                Manipal</span></div>
+                        <div class="expertise-chips"><span class="e-chip">Female Urology</span><span
+                                class="e-chip">Incontinence</span><span class="e-chip">Cystoscopy</span></div>
+
+                        <div class="doc-foot">
+                            <a href="dr-ananya-bhat.html" class="btn-know">Know More <i
+                                    data-lucide="arrow-right"></i></a>
+                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── GASTROENTEROLOGY ── -->
+                <div class="doc-card fade-up" data-dept="gastro"
+                    data-name="dr vivek shetty gastroenterologist hepatologist">
+                    <div class="doc-photo">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&h=520&fit=crop&crop=faces,top"
+                            alt="Dr. Vivek Shetty" />
+                        <div class="photo-overlay"></div>
+                        <div class="dept-pill pill-gastro"><i data-lucide="stethoscope"></i> Gastroenterology</div>
+                        <div class="exp-badge">
+                            <div class="num">21</div><small>Yrs Exp</small>
+                        </div>
+                        <div class="photo-name">
+                            <h3>Dr. Vivek Shetty</h3>
+                            <div class="role">Senior Gastroenterologist & Hepatologist</div>
+                        </div>
+                    </div>
+                    <div class="doc-body">
+                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD, DM Gastroenterology &middot;
+                                CMC Vellore</span></div>
+                        <div class="expertise-chips"><span class="e-chip">Hepatology</span><span
+                                class="e-chip">ERCP</span><span class="e-chip">IBD</span><span
+                                class="e-chip">Endoscopy</span></div>
+
+                        <div class="doc-foot">
+                            <a href="dr-vivek-shetty.html" class="btn-know">Know More <i
+                                    data-lucide="arrow-right"></i></a>
+                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-card fade-up" data-dept="gastro"
+                    data-name="dr rekha menon gastroenterologist liver colonoscopy">
+                    <div class="doc-photo">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&h=520&fit=crop&crop=faces,top"
+                            alt="Dr. Rekha Menon" />
+                        <div class="photo-overlay"></div>
+                        <div class="dept-pill pill-gastro"><i data-lucide="stethoscope"></i> Gastroenterology</div>
+                        <div class="exp-badge">
+                            <div class="num">13</div><small>Yrs Exp</small>
+                        </div>
+                        <div class="photo-name">
+                            <h3>Dr. Rekha Menon</h3>
+                            <div class="role">Consultant Gastroenterologist</div>
+                        </div>
+                    </div>
+                    <div class="doc-body">
+                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD, DNB Gastroenterology
+                                &middot; Amrita Kochi</span></div>
+                        <div class="expertise-chips"><span class="e-chip">Endoscopy</span><span class="e-chip">Liver
+                                Disease</span><span class="e-chip">Colonoscopy</span></div>
+
+                        <div class="doc-foot">
+                            <a href="dr-rekha-menon.html" class="btn-know">Know More <i
+                                    data-lucide="arrow-right"></i></a>
+                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── PEDIATRICS ── -->
+                <div class="doc-card fade-up" data-dept="pediatrics"
+                    data-name="dr nandita alva neonatologist nicu newborn">
+                    <div class="doc-photo">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=500&h=520&fit=crop&crop=faces,top"
+                            alt="Dr. Nandita Alva" />
+                        <div class="photo-overlay"></div>
+                        <div class="dept-pill pill-pediatrics"><i data-lucide="smile"></i> Pediatrics</div>
+                        <div class="exp-badge">
+                            <div class="num">17</div><small>Yrs Exp</small>
+                        </div>
+                        <div class="photo-name">
+                            <h3>Dr. Nandita Alva</h3>
+                            <div class="role">Senior Neonatologist</div>
+                        </div>
+                    </div>
+                    <div class="doc-body">
+                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD Pediatrics, Fellowship
+                                Neonatology &middot; AIIMS</span></div>
+                        <div class="expertise-chips"><span class="e-chip">NICU</span><span class="e-chip">Premature
+                                Babies</span><span class="e-chip">Neonatal Sepsis</span></div>
+
+                        <div class="doc-foot">
+                            <a href="dr-nandita-alva.html" class="btn-know">Know More <i
+                                    data-lucide="arrow-right"></i></a>
+                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-card fade-up" data-dept="pediatrics"
+                    data-name="dr girish shenoy pediatrician child fever vaccination">
+                    <div class="doc-photo">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&h=520&fit=crop&crop=faces,top"
+                            alt="Dr. Girish Shenoy" />
+                        <div class="photo-overlay"></div>
+                        <div class="dept-pill pill-pediatrics"><i data-lucide="smile"></i> Pediatrics</div>
+                        <div class="exp-badge">
+                            <div class="num">14</div><small>Yrs Exp</small>
+                        </div>
+                        <div class="photo-name">
+                            <h3>Dr. Girish Shenoy</h3>
+                            <div class="role">Consultant Pediatrician</div>
+                        </div>
+                    </div>
+                    <div class="doc-body">
+                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD Pediatrics, DCH &middot; KMC
+                                Manipal</span></div>
+                        <div class="expertise-chips"><span class="e-chip">Respiratory</span><span
+                                class="e-chip">Fever</span><span class="e-chip">Vaccinations</span><span
+                                class="e-chip">Nutrition</span></div>
+
+                        <div class="doc-foot">
+                            <a href="dr-girish-shenoy.html" class="btn-know">Know More <i
+                                    data-lucide="arrow-right"></i></a>
+                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-card fade-up" data-dept="pediatrics"
+                    data-name="dr anjali krishnan developmental pediatrician autism adhd">
+                    <div class="doc-photo">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&h=520&fit=crop&crop=faces,top"
+                            alt="Dr. Anjali Krishnan" />
+                        <div class="photo-overlay"></div>
+                        <div class="dept-pill pill-pediatrics"><i data-lucide="smile"></i> Pediatrics</div>
+                        <div class="exp-badge">
+                            <div class="num">10</div><small>Yrs Exp</small>
+                        </div>
+                        <div class="photo-name">
+                            <h3>Dr. Anjali Krishnan</h3>
+                            <div class="role">Developmental Pediatrician</div>
+                        </div>
+                    </div>
+                    <div class="doc-body">
+                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD Pediatrics, Fellowship Dev.
+                                Peds &middot; NIMHANS</span></div>
+                        <div class="expertise-chips"><span class="e-chip">Autism</span><span
+                                class="e-chip">ADHD</span><span class="e-chip">Dev. Delay</span><span
+                                class="e-chip">Speech</span></div>
+
+                        <div class="doc-foot">
+                            <a href="dr-anjali-krishnan.html" class="btn-know">Know More <i
+                                    data-lucide="arrow-right"></i></a>
+                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- No Results -->
+            <div class="no-results" id="noResults">
+                <i data-lucide="search-x"></i>
+                <h3>No Doctors Found</h3>
+                <p>Try a different name, specialty, or select "All Doctors" to see the full panel.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-sec">
+        <div class="cta-box">
+            <div style="position:relative;z-index:2">
+                <h2>Not Sure Which Doctor to See?</h2>
+                <p>Our care coordinators will listen to your symptoms and connect you directly with the right specialist
+                    — quickly and without the confusion. Available 6 days a week.</p>
+            </div>
+            <div class="cta-btns">
+                <a href="contact.html" class="btn-white"><i data-lucide="calendar-check"></i> Book Appointment</a>
+                <a href="tel:9876543210" class="btn-ghost-w"><i data-lucide="phone-call"></i> Call 9876543210</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="f-grid">
+            <div class="f-brand">
+                <a href="index.html" class="nav-logo" style="text-decoration:none">
+                    <div class="logo-icon"><i data-lucide="hospital"></i></div>
+                    <div>
+                        <div class="logo-name" style="color:#fff">MNR Medicity</div>
+                        <div class="logo-sub" style="color:var(--teal-light)">Advanced Healthcare</div>
+                    </div>
+                </a>
+                <p>MNR Medicity is committed to delivering compassionate, expert, and affordable healthcare to every
+                    patient across Mangalore and Coastal Karnataka.</p>
+                <div class="f-socials">
+                    <a href="#"><i data-lucide="facebook"></i></a>
+                    <a href="#"><i data-lucide="instagram"></i></a>
+                    <a href="#"><i data-lucide="twitter"></i></a>
+                    <a href="#"><i data-lucide="youtube"></i></a>
+                    <a href="#"><i data-lucide="linkedin"></i></a>
+                </div>
+            </div>
+            <div class="f-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="doctors.html">Our Doctors</a></li>
+                    <li><a href="departments.html">Departments</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="f-col">
+                <h4>Departments</h4>
+                <ul>
+                    <li><a href="cardiology.html">Cardiology</a></li>
+                    <li><a href="pulmonology.html">Pulmonology</a></li>
+                    <li><a href="gynecology.html">Gynecology</a></li>
+                    <li><a href="neurology.html">Neurology</a></li>
+                    <li><a href="urology.html">Urology</a></li>
+                    <li><a href="gastroenterology.html">Gastroenterology</a></li>
+                    <li><a href="pediatrics.html">Pediatrics</a></li>
+                </ul>
+            </div>
+            <div class="f-col">
+                <h4>Contact Information</h4>
+                <div class="f-cr"><i data-lucide="map-pin"></i>
+                    <p>MNR Medicity Campus Kolambe, Behind Bajpe Proper, Karnataka 574142</p>
+                </div>
+                <div class="f-cr"><i data-lucide="phone"></i>
+                    <p><a href="tel:9876543210">9876543210</a></p>
+                </div>
+                <div class="f-cr"><i data-lucide="mail"></i>
+                    <p><a href="mailto:info@mnrmedicity.com">info@mnrmedicity.com</a></p>
+                </div>
+                <div class="f-cr"><i data-lucide="clock"></i>
+                    <p>OPD: Mon–Sat 8:00 AM – 8:00 PM<br>Emergency: 24/7</p>
+                </div>
+            </div>
+        </div>
+        <div class="f-bottom">
+            <span>&copy; 2025 MNR Medicity. All rights reserved.</span>
+            <div class="f-blinks"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop"><i data-lucide="chevron-up"></i></button>
+
+    <script>
+        lucide.createIcons();
+
+        // Navbar
+        var navbar = document.getElementById('navbar');
+        var scrollBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', function () {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
+            scrollBtn.classList.toggle('visible', window.scrollY > 300);
+        });
+
+        // Dropdown
+        function closeAllDrops() { document.querySelectorAll('.drop.open').forEach(function (d) { d.classList.remove('open'); }); }
+        document.querySelectorAll('.drop-btn').forEach(function (btn) {
+            btn.addEventListener('click', function (e) { e.stopPropagation(); var drop = btn.closest('.drop'), open = drop.classList.contains('open'); closeAllDrops(); if (!open) drop.classList.add('open'); });
+        });
+        document.addEventListener('click', closeAllDrops);
+        document.querySelectorAll('.drop-menu').forEach(function (m) { m.addEventListener('click', function (e) { e.stopPropagation(); }); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAllDrops(); });
+
+        // Hamburger
+        var ham = document.getElementById('hamburger'), mob = document.getElementById('mobNav');
+        ham.addEventListener('click', function () { mob.classList.toggle('open'); document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : ''; });
+        mob.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { mob.classList.remove('open'); document.body.style.overflow = ''; }); });
+
+        // Scroll top
+        scrollBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // Fade-up observer
+        var obs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.fade-up').forEach(function (el) { obs.observe(el); });
+
+        // ── FILTER + SEARCH ──
+        var cards = Array.from(document.querySelectorAll('.doc-card'));
+        var noRes = document.getElementById('noResults');
+        var activeFilter = 'all';
+        var searchVal = '';
+
+        function applyFilters() {
+            var visible = 0;
+            cards.forEach(function (card) {
+                var dept = card.dataset.dept || '';
+                var name = card.dataset.name || '';
+                var matchDept = activeFilter === 'all' || dept === activeFilter;
+                var matchSearch = searchVal === '' || name.includes(searchVal);
+                if (matchDept && matchSearch) {
+                    card.style.display = '';
+                    visible++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            noRes.style.display = visible === 0 ? 'block' : 'none';
+        }
+
+        document.querySelectorAll('.f-tab').forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                document.querySelectorAll('.f-tab').forEach(function (t) { t.classList.remove('active'); });
+                tab.classList.add('active');
+                activeFilter = tab.dataset.dept;
+                applyFilters();
+            });
+        });
+
+        document.getElementById('searchInput').addEventListener('input', function () {
+            searchVal = this.value.toLowerCase().trim();
+            applyFilters();
+        });
+    </script>
+</body>
+
+</html>

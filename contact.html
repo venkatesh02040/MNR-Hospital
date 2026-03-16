@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | MNR Medicity</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --navy: #0a1f3c;
+            --teal: #0e7c7b;
+            --teal-light: #13a8a7;
+            --gold: #c8992a;
+            --gold-light: #e8b93e;
+            --cream: #f8f4ee;
+            --gray-light: #f0f4f8;
+            --gray-mid: #8094a8;
+            --text: #1a2d42;
+            --shadow: 0 8px 40px rgba(10, 31, 60, .10);
+            --shadow-strong: 0 16px 60px rgba(10, 31, 60, .18);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ── NAVBAR ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, .97);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(10, 31, 60, .08);
+            box-shadow: 0 2px 20px rgba(10, 31, 60, .06);
+            transition: all .35s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 31, 60, .97);
+            border-bottom-color: transparent;
+        }
+
+        nav.scrolled .logo-name,
+        nav.scrolled .nav-link,
+        nav.scrolled .drop-btn {
+            color: #fff !important;
+        }
+
+        nav.scrolled .logo-sub {
+            color: var(--teal-light) !important;
+        }
+
+        nav.scrolled .hamburger span {
+            background: #fff;
+        }
+
+        .nav-wrap {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            height: 72px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 11px;
+            background: linear-gradient(135deg, var(--teal), var(--navy));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo-icon svg {
+            color: #fff;
+            width: 22px;
+            height: 22px;
+        }
+
+        .logo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.1;
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            color: var(--teal);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 13px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all .2s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(14, 124, 123, .09);
+            color: var(--teal);
+        }
+
+        .drop {
+            position: relative;
+        }
+
+        .drop-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 13px;
+            border-radius: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all .2s;
+            user-select: none;
+        }
+
+        .drop-btn svg {
+            width: 13px;
+            height: 13px;
+            transition: transform .3s;
+        }
+
+        .drop.open .drop-btn {
+            background: rgba(14, 124, 123, .09);
+            color: var(--teal);
+        }
+
+        .drop.open .drop-btn svg {
+            transform: rotate(180deg);
+        }
+
+        nav.scrolled .drop.open .drop-btn {
+            color: var(--teal-light) !important;
+        }
+
+        .drop-menu::before {
+            content: '';
+            position: absolute;
+            top: -16px;
+            left: 0;
+            right: 0;
+            height: 16px;
+        }
+
+        .drop-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%) translateY(6px);
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: var(--shadow-strong);
+            padding: 8px;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity .22s ease, transform .22s ease, visibility .22s;
+            border: 1px solid rgba(10, 31, 60, .07);
+            z-index: 200;
+        }
+
+        .drop.open .drop-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .drop-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 9px;
+            color: var(--text);
+            font-size: 14px;
+            text-decoration: none;
+            transition: all .18s;
+            white-space: nowrap;
+        }
+
+        .drop-item svg {
+            width: 16px;
+            height: 16px;
+            color: var(--teal);
+            flex-shrink: 0;
+        }
+
+        .drop-item:hover {
+            background: var(--gray-light);
+            color: var(--teal);
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            color: #fff !important;
+            padding: 9px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(14, 124, 123, .35);
+            transition: all .25s;
+        }
+
+        .nav-cta svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(14, 124, 123, .45);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 6px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--navy);
+            border-radius: 2px;
+            transition: all .3s;
+            display: block;
+        }
+
+        .mob-nav {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 998;
+            background: var(--navy);
+            padding: 90px 28px 40px;
+            transform: translateX(100%);
+            transition: transform .38s cubic-bezier(.77, 0, .175, 1);
+            overflow-y: auto;
+        }
+
+        .mob-nav.open {
+            transform: translateX(0);
+        }
+
+        .mob-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            font-size: 17px;
+            font-weight: 500;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            text-decoration: none;
+        }
+
+        .mob-link svg {
+            width: 18px;
+            height: 18px;
+            color: var(--teal-light);
+        }
+
+        .mob-sub {
+            padding-left: 28px;
+        }
+
+        .mob-sub .mob-link {
+            font-size: 15px;
+            color: rgba(255, 255, 255, .68);
+        }
+
+        .mob-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            margin-top: 28px;
+            background: var(--teal);
+            color: #fff;
+            padding: 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+        }
+
+        .mob-cta svg {
+            width: 17px;
+            height: 17px;
+        }
+
+        /* ── SHARED ── */
+        .si {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .s-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 12px;
+        }
+
+        .s-tag::before {
+            content: '';
+            width: 22px;
+            height: 2px;
+            background: var(--teal);
+            border-radius: 2px;
+        }
+
+        .s-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(26px, 3.6vw, 42px);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+
+        .s-title em {
+            font-style: normal;
+            color: var(--teal);
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all .6s cubic-bezier(.25, .46, .45, .94);
+        }
+
+        .fade-up.in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-up:nth-child(2) {
+            transition-delay: .07s
+        }
+
+        .fade-up:nth-child(3) {
+            transition-delay: .14s
+        }
+
+        .fade-up:nth-child(4) {
+            transition-delay: .21s
+        }
+
+        .fade-up:nth-child(5) {
+            transition-delay: .28s
+        }
+
+        /* ── PAGE HERO ── */
+        .page-hero {
+            margin-top: 72px;
+            background: linear-gradient(135deg, #061529 0%, #0a2540 50%, #0d3d6b 100%);
+            padding: 90px 28px 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -8%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(14, 124, 123, .22) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(200, 153, 42, .10) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-grid-overlay {
+            position: absolute;
+            inset: 0;
+            opacity: .035;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(255, 255, 255, .6) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .6) 1px, transparent 1px);
+            background-size: 55px 55px;
+        }
+
+        .page-hero-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, .50);
+            margin-bottom: 22px;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, .50);
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--teal-light);
+        }
+
+        .breadcrumb svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        .breadcrumb span {
+            color: rgba(255, 255, 255, .9);
+        }
+
+        .page-hero-inner h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(34px, 5vw, 64px);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.12;
+            margin-bottom: 20px;
+            max-width: 700px;
+        }
+
+        .page-hero-inner h1 em {
+            font-style: normal;
+            color: var(--gold-light);
+        }
+
+        .hero-sub {
+            font-size: 17px;
+            color: rgba(255, 255, 255, .68);
+            line-height: 1.75;
+            max-width: 560px;
+        }
+
+        /* ── QUICK CONTACT CARDS ── */
+        .quick-sec {
+            background: var(--navy);
+            padding: 0 28px;
+        }
+
+        .quick-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            transform: translateY(0);
+        }
+
+        .q-card {
+            padding: 32px 28px;
+            border-right: 1px solid rgba(255, 255, 255, .07);
+            position: relative;
+            overflow: hidden;
+            transition: background .3s;
+        }
+
+        .q-card:last-child {
+            border-right: none;
+        }
+
+        .q-card:hover {
+            background: rgba(255, 255, 255, .04);
+        }
+
+        .q-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 28px;
+            right: 28px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--teal), var(--teal-light));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .35s ease;
+            border-radius: 2px;
+        }
+
+        .q-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .q-ico {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: rgba(14, 124, 123, .18);
+            border: 1px solid rgba(14, 124, 123, .3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            transition: all .3s;
+        }
+
+        .q-ico svg {
+            width: 20px;
+            height: 20px;
+            color: var(--teal-light);
+        }
+
+        .q-card:hover .q-ico {
+            background: var(--teal);
+            border-color: var(--teal);
+        }
+
+        .q-card:hover .q-ico svg {
+            color: #fff;
+        }
+
+        .q-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .35);
+            margin-bottom: 6px;
+        }
+
+        .q-val {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+
+        .q-sub {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .40);
+        }
+
+        .q-card a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ── MAIN CONTACT SECTION ── */
+        .contact-sec {
+            padding: 80px 28px 90px;
+            background: var(--gray-light);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 520px;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* ── CONTACT FORM ── */
+        .form-wrap {
+            background: #fff;
+            border-radius: 28px;
+            padding: 48px 44px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-header {
+            margin-bottom: 36px;
+        }
+
+        .form-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(24px, 2.6vw, 34px);
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .form-header h2 em {
+            font-style: normal;
+            color: var(--teal);
+        }
+
+        .form-header p {
+            font-size: 14px;
+            color: var(--gray-mid);
+            line-height: 1.72;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-bottom: 18px;
+        }
+
+        .form-group.no-mb {
+            margin-bottom: 0;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--navy);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group label .req {
+            color: var(--teal);
+            margin-left: 2px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            color: var(--text);
+            background: var(--gray-light);
+            border: 1.5px solid transparent;
+            border-radius: 12px;
+            padding: 13px 16px;
+            outline: none;
+            transition: all .22s;
+            width: 100%;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--gray-mid);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--teal);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(14, 124, 123, .08);
+        }
+
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: #e74c3c;
+            background: rgba(231, 76, 60, .04);
+        }
+
+        .form-group .err-msg {
+            font-size: 11px;
+            color: #e74c3c;
+            display: none;
+        }
+
+        .form-group.has-error .err-msg {
+            display: block;
+        }
+
+        .select-wrap {
+            position: relative;
+        }
+
+        .select-wrap::after {
+            content: '';
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid var(--gray-mid);
+            pointer-events: none;
+        }
+
+        .select-wrap select {
+            cursor: pointer;
+            padding-right: 38px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.65;
+        }
+
+        /* Department radio pills */
+        .dept-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .dept-pills input[type="radio"] {
+            display: none;
+        }
+
+        .dept-pills label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-mid);
+            border: 1.5px solid rgba(10, 31, 60, .12);
+            background: var(--gray-light);
+            cursor: pointer;
+            transition: all .2s;
+            white-space: nowrap;
+        }
+
+        .dept-pills label svg {
+            width: 13px;
+            height: 13px;
+            flex-shrink: 0;
+        }
+
+        .dept-pills input[type="radio"]:checked+label {
+            background: var(--navy);
+            color: #fff;
+            border-color: var(--navy);
+            box-shadow: 0 4px 14px rgba(10, 31, 60, .22);
+        }
+
+        /* Preferred time */
+        .time-slots {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .time-slots input[type="radio"] {
+            display: none;
+        }
+
+        .time-slots label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--gray-mid);
+            border: 1.5px solid rgba(10, 31, 60, .12);
+            background: #fff;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .time-slots label svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        .time-slots input[type="radio"]:checked+label {
+            border-color: var(--teal);
+            color: var(--teal);
+            background: rgba(14, 124, 123, .07);
+        }
+
+        /* Consent checkbox */
+        .check-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+        }
+
+        .check-row input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+            accent-color: var(--teal);
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .check-row span {
+            font-size: 13px;
+            color: var(--gray-mid);
+            line-height: 1.6;
+        }
+
+        .check-row span a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        .check-row span a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            color: #fff;
+            padding: 15px 36px;
+            border-radius: 50px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 22px rgba(14, 124, 123, .40);
+            transition: all .3s;
+            width: 100%;
+            margin-top: 26px;
+        }
+
+        .btn-submit svg {
+            width: 17px;
+            height: 17px;
+            transition: transform .2s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(14, 124, 123, .50);
+        }
+
+        .btn-submit:hover svg {
+            transform: translateX(3px);
+        }
+
+        .btn-submit:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Success state */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 48px 20px;
+        }
+
+        .success-ico {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 28px rgba(14, 124, 123, .35);
+        }
+
+        .success-ico svg {
+            width: 32px;
+            height: 32px;
+            color: #fff;
+        }
+
+        .form-success h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .form-success p {
+            font-size: 14px;
+            color: var(--gray-mid);
+            line-height: 1.72;
+            max-width: 360px;
+            margin: 0 auto 28px;
+        }
+
+        .btn-reset {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1.5px solid var(--teal);
+            color: var(--teal);
+            padding: 11px 26px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            background: none;
+            font-family: 'DM Sans', sans-serif;
+            transition: all .2s;
+        }
+
+        .btn-reset:hover {
+            background: rgba(14, 124, 123, .07);
+        }
+
+        /* ── INFO PANEL ── */
+        .info-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .info-block {
+            background: #fff;
+            border-radius: 22px;
+            padding: 30px 28px;
+            box-shadow: 0 2px 18px rgba(10, 31, 60, .06);
+            border: 1.5px solid rgba(10, 31, 60, .05);
+        }
+
+        .info-block h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--navy);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-block h3 svg {
+            width: 18px;
+            height: 18px;
+            color: var(--teal);
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 13px 0;
+            border-bottom: 1px solid rgba(10, 31, 60, .06);
+        }
+
+        .contact-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .c-ico {
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            background: rgba(14, 124, 123, .09);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all .3s;
+        }
+
+        .c-ico svg {
+            width: 17px;
+            height: 17px;
+            color: var(--teal);
+        }
+
+        .contact-row:hover .c-ico {
+            background: var(--teal);
+        }
+
+        .contact-row:hover .c-ico svg {
+            color: #fff;
+        }
+
+        .c-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray-mid);
+            margin-bottom: 3px;
+        }
+
+        .c-val {
+            font-size: 14px;
+            color: var(--text);
+            font-weight: 500;
+            line-height: 1.55;
+        }
+
+        .c-val a {
+            color: inherit;
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .c-val a:hover {
+            color: var(--teal);
+        }
+
+        /* OPD Hours table */
+        .opd-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .opd-table tr {
+            border-bottom: 1px solid rgba(10, 31, 60, .06);
+        }
+
+        .opd-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .opd-table td {
+            padding: 10px 0;
+            font-size: 13px;
+        }
+
+        .opd-table td:first-child {
+            color: var(--text);
+            font-weight: 500;
+            width: 48%;
+        }
+
+        .opd-table td:last-child {
+            color: var(--gray-mid);
+            text-align: right;
+        }
+
+        .opd-table .open-now {
+            color: #1d8348;
+            font-weight: 700;
+        }
+
+        .opd-table .closed {
+            color: #e74c3c;
+        }
+
+        .emg-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(231, 76, 60, .08);
+            color: #c0392b;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 7px 14px;
+            border-radius: 8px;
+            margin-top: 14px;
+        }
+
+        .emg-badge svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .emg-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #e74c3c;
+            animation: pulse 1.8s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: .55;
+                transform: scale(1.4)
+            }
+        }
+
+        /* Social links */
+        .social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .soc-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all .22s;
+        }
+
+        .soc-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .soc-btn.fb {
+            background: rgba(24, 119, 242, .10);
+            color: #1877f2;
+        }
+
+        .soc-btn.fb:hover {
+            background: #1877f2;
+            color: #fff;
+        }
+
+        .soc-btn.ig {
+            background: rgba(225, 48, 108, .10);
+            color: #e1306c;
+        }
+
+        .soc-btn.ig:hover {
+            background: #e1306c;
+            color: #fff;
+        }
+
+        .soc-btn.tw {
+            background: rgba(29, 161, 242, .10);
+            color: #1da1f2;
+        }
+
+        .soc-btn.tw:hover {
+            background: #1da1f2;
+            color: #fff;
+        }
+
+        .soc-btn.yt {
+            background: rgba(255, 0, 0, .10);
+            color: #ff0000;
+        }
+
+        .soc-btn.yt:hover {
+            background: #ff0000;
+            color: #fff;
+        }
+
+        .soc-btn.li {
+            background: rgba(0, 119, 181, .10);
+            color: #0077b5;
+        }
+
+        .soc-btn.li:hover {
+            background: #0077b5;
+            color: #fff;
+        }
+
+        /* ── MAP SECTION ── */
+        .map-sec {
+            background: #fff;
+        }
+
+        .map-wrap {
+            width: 100%;
+            height: 420px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-wrap iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            filter: grayscale(15%) contrast(1.05);
+        }
+
+        .btn-directions {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: var(--teal);
+            color: #fff;
+            padding: 9px 18px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all .25s;
+        }
+
+        .btn-directions svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        .btn-directions:hover {
+            background: var(--teal-light);
+            transform: translateY(-1px);
+        }
+
+        /* ── FAQ SECTION ── */
+        .faq-sec {
+            padding: 80px 28px 90px;
+            background: var(--cream);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 44px;
+        }
+
+        .faq-item {
+            background: #fff;
+            border-radius: 18px;
+            border: 1.5px solid rgba(10, 31, 60, .07);
+            overflow: hidden;
+            transition: box-shadow .3s;
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow);
+        }
+
+        .faq-q {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 20px 22px;
+            cursor: pointer;
+        }
+
+        .faq-q span {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--navy);
+            line-height: 1.4;
+        }
+
+        .faq-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all .3s;
+        }
+
+        .faq-icon svg {
+            width: 14px;
+            height: 14px;
+            color: var(--teal);
+            transition: transform .3s;
+        }
+
+        .faq-item.open .faq-icon {
+            background: var(--teal);
+        }
+
+        .faq-item.open .faq-icon svg {
+            color: #fff;
+            transform: rotate(45deg);
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .35s ease, padding .35s ease;
+        }
+
+        .faq-a p {
+            font-size: 14px;
+            color: #4a5d70;
+            line-height: 1.78;
+            padding: 0 22px 20px;
+        }
+
+        .faq-item.open .faq-a {
+            max-height: 300px;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--navy);
+            padding: 66px 28px 0;
+        }
+
+        .f-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 46px;
+            padding-bottom: 50px;
+        }
+
+        .f-brand p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, .52);
+            margin: 17px 0 20px;
+        }
+
+        .f-socials {
+            display: flex;
+            gap: 9px;
+        }
+
+        .f-socials a {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: rgba(255, 255, 255, .07);
+            color: rgba(255, 255, 255, .60);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all .2s;
+        }
+
+        .f-socials a:hover {
+            background: var(--teal);
+            color: #fff;
+        }
+
+        .f-socials a svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .f-col h4 {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 17px;
+        }
+
+        .f-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .f-col ul a {
+            color: rgba(255, 255, 255, .52);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color .2s;
+        }
+
+        .f-col ul a:hover {
+            color: var(--teal-light);
+        }
+
+        .f-cr {
+            display: flex;
+            gap: 11px;
+            margin-bottom: 13px;
+        }
+
+        .f-cr svg {
+            width: 15px;
+            height: 15px;
+            color: var(--teal-light);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .f-cr p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .52);
+            line-height: 1.65;
+        }
+
+        .f-cr a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .f-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, .07);
+            padding: 22px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, .32);
+        }
+
+        .f-bottom a {
+            color: rgba(255, 255, 255, .42);
+            text-decoration: none;
+        }
+
+        .f-bottom a:hover {
+            color: var(--teal-light);
+        }
+
+        .f-blinks {
+            display: flex;
+            gap: 20px;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 26px;
+            right: 26px;
+            z-index: 999;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--teal);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 18px rgba(14, 124, 123, .40);
+            opacity: 0;
+            pointer-events: none;
+            transition: all .3s;
+        }
+
+        .scroll-top svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width:1100px) {
+            .contact-grid {
+                grid-template-columns: 1fr 440px;
+                gap: 44px;
+            }
+        }
+
+        @media (max-width:960px) {
+            .quick-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .q-card {
+                border-bottom: 1px solid rgba(255, 255, 255, .07);
+            }
+
+            .q-card:nth-child(2) {
+                border-right: none;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width:1000px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mob-nav {
+                display: block;
+            }
+
+            .page-hero {
+                padding: 60px 20px 72px;
+            }
+
+            .quick-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contact-sec {
+                padding: 52px 20px 70px;
+            }
+
+            .form-wrap {
+                padding: 32px 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-sec {
+                padding: 52px 20px 70px;
+            }
+
+            .f-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+        }
+
+        @media (max-width:480px) {
+            .quick-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .q-card {
+                border-right: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="nav-wrap">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon"><i data-lucide="hospital"></i></div>
+                <div>
+                    <div class="logo-name">MNR Medicity</div>
+                    <div class="logo-sub">Advanced Healthcare</div>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li class="drop">
+                    <button class="drop-btn">Departments <i data-lucide="chevron-down"></i></button>
+                    <div class="drop-menu">
+                        <a href="cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i> Cardiology</a>
+                        <a href="pulmonology.html" class="drop-item"><i data-lucide="wind"></i> Pulmonology</a>
+                        <a href="gynecology.html" class="drop-item"><i data-lucide="baby"></i> Gynecology</a>
+                        <a href="neurology.html" class="drop-item"><i data-lucide="brain"></i> Neurology</a>
+                        <a href="urology.html" class="drop-item"><i data-lucide="activity"></i> Urology</a>
+                        <a href="gastroenterology.html" class="drop-item"><i data-lucide="stethoscope"></i>
+                            Gastroenterology</a>
+                        <a href="pediatrics.html" class="drop-item"><i data-lucide="smile"></i> Pediatrics</a>
+                    </div>
+                </li>
+                <li><a href="doctors.html" class="nav-link">Doctors</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                <li class="drop">
+                    <button class="drop-btn">More <i data-lucide="chevron-down"></i></button>
+                    <div class="drop-menu">
+                        <a href="blogs.html" class="drop-item"><i data-lucide="newspaper"></i> Blogs</a>
+                        <a href="gallery.html" class="drop-item"><i data-lucide="image"></i> Gallery</a>
+                        <a href="careers.html" class="drop-item"><i data-lucide="briefcase"></i> Careers</a>
+                        <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a>
+                    </div>
+                </li>
+                <li><a href="contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
+                </li>
+            </ul>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <div class="mob-nav" id="mobNav">
+        <a href="index.html" class="mob-link"><i data-lucide="home"></i> Home</a>
+        <a href="about.html" class="mob-link"><i data-lucide="info"></i> About Us</a>
+        <span class="mob-link" style="cursor:pointer"><i data-lucide="layout-grid"></i> Departments</span>
+        <div class="mob-sub">
+            <a href="cardiology.html" class="mob-link"><i data-lucide="heart-pulse"></i> Cardiology</a>
+            <a href="pulmonology.html" class="mob-link"><i data-lucide="wind"></i> Pulmonology</a>
+            <a href="gynecology.html" class="mob-link"><i data-lucide="baby"></i> Gynecology</a>
+            <a href="neurology.html" class="mob-link"><i data-lucide="brain"></i> Neurology</a>
+            <a href="urology.html" class="mob-link"><i data-lucide="activity"></i> Urology</a>
+            <a href="gastroenterology.html" class="mob-link"><i data-lucide="stethoscope"></i> Gastroenterology</a>
+            <a href="pediatrics.html" class="mob-link"><i data-lucide="smile"></i> Pediatrics</a>
+        </div>
+        <a href="doctors.html" class="mob-link"><i data-lucide="user-round"></i> Doctors</a>
+        <a href="contact.html" class="mob-link"><i data-lucide="phone"></i> Contact Us</a>
+        <span class="mob-link" style="cursor:pointer"><i data-lucide="more-horizontal"></i> More</span>
+        <div class="mob-sub">
+            <a href="blogs.html" class="mob-link"><i data-lucide="newspaper"></i> Blogs</a>
+            <a href="gallery.html" class="mob-link"><i data-lucide="image"></i> Gallery</a>
+            <a href="careers.html" class="mob-link"><i data-lucide="briefcase"></i> Careers</a>
+            <a href="insurance.html" class="mob-link"><i data-lucide="shield-check"></i> Insurance</a>
+        </div>
+        <a href="contact.html" class="mob-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
+    </div>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+        <div class="hero-grid-overlay"></div>
+        <div class="page-hero-inner">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a><i data-lucide="chevron-right"></i>
+                <span>Contact Us</span>
+            </div>
+            <h1>We're Here<br>Whenever You <em>Need Us</em></h1>
+            <p class="hero-sub">Whether it's booking an appointment, finding the right specialist, or simply asking a
+                question — our team is ready to help you every step of the way.</p>
+        </div>
+    </div>
+
+    <!-- QUICK CONTACT CARDS -->
+    <div class="quick-sec">
+        <div class="quick-inner">
+            <div class="q-card fade-up">
+                <div class="q-ico"><i data-lucide="phone-call"></i></div>
+                <div class="q-label">Call Us</div>
+                <div class="q-val"><a href="tel:9876543210">9876543210</a></div>
+                <div class="q-sub">Mon – Sat, 8AM – 8PM</div>
+            </div>
+            <div class="q-card fade-up">
+                <div class="q-ico"><i data-lucide="mail"></i></div>
+                <div class="q-label">Email</div>
+                <div class="q-val"><a href="mailto:info@mnrmedicity.com">info@mnrmedicity.com</a></div>
+                <div class="q-sub">Reply within 24 hours</div>
+            </div>
+            <div class="q-card fade-up">
+                <div class="q-ico"><i data-lucide="map-pin"></i></div>
+                <div class="q-label">Visit Us</div>
+                <div class="q-val">MNR Medicity Campus</div>
+                <div class="q-sub">Kolambe, Behind Bajpe, Karnataka 574142</div>
+            </div>
+            <div class="q-card fade-up">
+                <div class="q-ico"><i data-lucide="siren"></i></div>
+                <div class="q-label">Emergency</div>
+                <div class="q-val"><a href="tel:9876543210">24 / 7 Always Open</a></div>
+                <div class="q-sub">Emergency & Trauma Care</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTACT SECTION -->
+    <section class="contact-sec">
+        <div class="si">
+            <div class="contact-grid">
+
+                <!-- FORM -->
+                <div class="form-wrap fade-up">
+                    <div id="formContent">
+                        <div class="form-header">
+                            <span class="s-tag">Appointment Request</span>
+                            <h2>Book Your <em>Consultation</em></h2>
+                            <p>Fill in the details below and our team will confirm your appointment within 2 hours
+                                during working hours.</p>
+                        </div>
+
+                        <form id="contactForm" novalidate>
+
+                            <!-- Name row -->
+                            <div class="form-row">
+                                <div class="form-group no-mb">
+                                    <label>First Name <span class="req">*</span></label>
+                                    <input type="text" id="firstName" placeholder="Suresh" />
+                                    <span class="err-msg">Please enter your first name</span>
+                                </div>
+                                <div class="form-group no-mb">
+                                    <label>Last Name <span class="req">*</span></label>
+                                    <input type="text" id="lastName" placeholder="Kamath" />
+                                    <span class="err-msg">Please enter your last name</span>
+                                </div>
+                            </div>
+
+                            <!-- Contact row -->
+                            <div class="form-row" style="margin-top:18px">
+                                <div class="form-group no-mb">
+                                    <label>Phone Number <span class="req">*</span></label>
+                                    <input type="tel" id="phone" placeholder="+91 98765 43210" />
+                                    <span class="err-msg">Please enter a valid phone number</span>
+                                </div>
+                                <div class="form-group no-mb">
+                                    <label>Email Address</label>
+                                    <input type="email" id="email" placeholder="you@example.com" />
+                                    <span class="err-msg">Please enter a valid email</span>
+                                </div>
+                            </div>
+
+                            <!-- Department -->
+                            <div class="form-group" style="margin-top:18px">
+                                <label>Select Department <span class="req">*</span></label>
+                                <div class="dept-pills" id="deptPills">
+                                    <input type="radio" name="dept" id="d-cardio" value="Cardiology" />
+                                    <label for="d-cardio"><i data-lucide="heart-pulse"></i> Cardiology</label>
+                                    <input type="radio" name="dept" id="d-pulmo" value="Pulmonology" />
+                                    <label for="d-pulmo"><i data-lucide="wind"></i> Pulmonology</label>
+                                    <input type="radio" name="dept" id="d-gynec" value="Gynecology" />
+                                    <label for="d-gynec"><i data-lucide="baby"></i> Gynecology</label>
+                                    <input type="radio" name="dept" id="d-neuro" value="Neurology" />
+                                    <label for="d-neuro"><i data-lucide="brain"></i> Neurology</label>
+                                    <input type="radio" name="dept" id="d-urol" value="Urology" />
+                                    <label for="d-urol"><i data-lucide="activity"></i> Urology</label>
+                                    <input type="radio" name="dept" id="d-gastro" value="Gastroenterology" />
+                                    <label for="d-gastro"><i data-lucide="stethoscope"></i> Gastroenterology</label>
+                                    <input type="radio" name="dept" id="d-pedia" value="Pediatrics" />
+                                    <label for="d-pedia"><i data-lucide="smile"></i> Pediatrics</label>
+                                    <input type="radio" name="dept" id="d-gen" value="General" />
+                                    <label for="d-gen"><i data-lucide="stethoscope"></i> General</label>
+                                </div>
+                                <span class="err-msg" id="deptErr"
+                                    style="display:none;font-size:11px;color:#e74c3c;margin-top:6px;">Please select a
+                                    department</span>
+                            </div>
+
+                            <!-- Preferred Date & Time -->
+                            <div class="form-row">
+                                <div class="form-group no-mb">
+                                    <label>Preferred Date <span class="req">*</span></label>
+                                    <input type="date" id="apptDate" />
+                                    <span class="err-msg">Please choose a date</span>
+                                </div>
+                                <div class="form-group no-mb">
+                                    <label>Visit Type</label>
+                                    <div class="select-wrap">
+                                        <select id="visitType">
+                                            <option value="">Select type</option>
+                                            <option>First Consultation</option>
+                                            <option>Follow-up</option>
+                                            <option>Second Opinion</option>
+                                            <option>Emergency</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Preferred time -->
+                            <div class="form-group" style="margin-top:18px">
+                                <label>Preferred Time Slot</label>
+                                <div class="time-slots">
+                                    <input type="radio" name="slot" id="t-morn" value="Morning (8AM–12PM)" />
+                                    <label for="t-morn"><i data-lucide="sunrise"></i> Morning</label>
+                                    <input type="radio" name="slot" id="t-after" value="Afternoon (12PM–4PM)" />
+                                    <label for="t-after"><i data-lucide="sun"></i> Afternoon</label>
+                                    <input type="radio" name="slot" id="t-eve" value="Evening (4PM–8PM)" />
+                                    <label for="t-eve"><i data-lucide="sunset"></i> Evening</label>
+                                </div>
+                            </div>
+
+                            <!-- Message -->
+                            <div class="form-group">
+                                <label>Describe Your Concern</label>
+                                <textarea id="message"
+                                    placeholder="Briefly describe your symptoms or reason for the visit…"></textarea>
+                            </div>
+
+                            <!-- Consent -->
+                            <div class="check-row">
+                                <input type="checkbox" id="consent" />
+                                <span>I agree to the <a href="#">Privacy Policy</a> and consent to MNR Medicity
+                                    contacting me regarding this appointment request.</span>
+                            </div>
+                            <span class="err-msg" id="consentErr"
+                                style="display:none;font-size:11px;color:#e74c3c;margin-top:6px;">You must agree to
+                                continue</span>
+
+                            <button type="submit" class="btn-submit" id="submitBtn">
+                                <i data-lucide="calendar-check"></i> Send Appointment Request <i
+                                    data-lucide="arrow-right"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Success State -->
+                    <div class="form-success" id="formSuccess">
+                        <div class="success-ico"><i data-lucide="check"></i></div>
+                        <h3>Request Sent!</h3>
+                        <p>Thank you. Our team will call you within 2 hours to confirm your appointment at MNR Medicity.
+                        </p>
+                        <button class="btn-reset" id="resetBtn"><i data-lucide="rotate-ccw"></i> Submit Another
+                            Request</button>
+                    </div>
+                </div>
+
+                <!-- INFO PANEL -->
+                <div class="info-panel">
+
+                    <!-- Contact details -->
+                    <div class="info-block fade-up">
+                        <h3><i data-lucide="info"></i> Contact Information</h3>
+                        <div class="contact-row">
+                            <div class="c-ico"><i data-lucide="phone-call"></i></div>
+                            <div>
+                                <div class="c-label">Main Line</div>
+                                <div class="c-val"><a href="tel:9876543210">9876543210</a></div>
+                            </div>
+                        </div>
+                        <div class="contact-row">
+                            <div class="c-ico"><i data-lucide="phone-forwarded"></i></div>
+                            <div>
+                                <div class="c-label">Emergency / Casualty</div>
+                                <div class="c-val"><a href="tel:9876543210">9876543210</a> &nbsp;·&nbsp; 24 / 7</div>
+                            </div>
+                        </div>
+                        <div class="contact-row">
+                            <div class="c-ico"><i data-lucide="mail"></i></div>
+                            <div>
+                                <div class="c-label">Email</div>
+                                <div class="c-val"><a href="mailto:info@mnrmedicity.com">info@mnrmedicity.com</a></div>
+                            </div>
+                        </div>
+                        <div class="contact-row">
+                            <div class="c-ico"><i data-lucide="map-pin"></i></div>
+                            <div>
+                                <div class="c-label">Address</div>
+                                <div class="c-val">MNR Medicity Campus Kolambe,<br>Behind Bajpe Proper, Karnataka 574142
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social -->
+                    <div class="info-block fade-up">
+                        <h3><i data-lucide="share-2"></i> Follow Us</h3>
+                        <p style="font-size:13px;color:var(--gray-mid);margin-bottom:16px;line-height:1.65">Stay
+                            connected for health tips, updates, and patient stories from MNR Medicity.</p>
+                        <div class="social-links">
+                            <a href="#" class="soc-btn ig"><i data-lucide="instagram"></i></a>
+                            <a href="#" class="soc-btn fb"><i data-lucide="facebook"></i></a>
+                            <a href="#" class="soc-btn li"><i data-lucide="linkedin"></i></a>
+                            <a href="#" class="soc-btn yt"><i data-lucide="youtube"></i></a>
+                        </div>
+                    </div>
+
+                </div><!-- /info-panel -->
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP -->
+    <div class="map-sec">
+        <div class="map-wrap">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1944.063663707912!2d74.9099614!3d12.9637033!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba356fca8ca05c3%3A0xf36b998ea2d366c8!2sPana%20Pre-University%20College!5e0!3m2!1sen!2sin!4v1773220117150!5m2!1sen!2sin"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                title="MNR Medicity Location">
+            </iframe>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <section class="faq-sec">
+        <div class="si">
+            <div style="text-align:center;max-width:600px;margin:0 auto 0">
+                <span class="s-tag">FAQs</span>
+                <h2 class="s-title">Frequently Asked <em>Questions</em></h2>
+                <p style="font-size:15px;color:var(--gray-mid);line-height:1.75">Quick answers to the most common
+                    questions patients ask before visiting MNR Medicity.</p>
+            </div>
+            <div class="faq-grid">
+
+                <div class="faq-item fade-up">
+                    <div class="faq-q">
+                        <span>Do I need a prior appointment to visit the OPD?</span>
+                        <div class="faq-icon"><i data-lucide="plus"></i></div>
+                    </div>
+                    <div class="faq-a">
+                        <p>Walk-ins are welcome at our OPD during working hours. However, booking an appointment online
+                            or by phone ensures you are attended to faster and reduces waiting time, especially for
+                            specialist consultations.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up">
+                    <div class="faq-q">
+                        <span>What documents should I bring for my first visit?</span>
+                        <div class="faq-icon"><i data-lucide="plus"></i></div>
+                    </div>
+                    <div class="faq-a">
+                        <p>Please bring a government-issued photo ID, any previous medical records, lab reports, imaging
+                            scans, and a list of current medications. This helps our doctors understand your medical
+                            history immediately.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up">
+                    <div class="faq-q">
+                        <span>Does MNR Medicity accept insurance?</span>
+                        <div class="faq-icon"><i data-lucide="plus"></i></div>
+                    </div>
+                    <div class="faq-a">
+                        <p>Yes, we are empanelled with most major insurance providers and Third Party Administrators
+                            (TPAs). Please contact us with your insurer's name to confirm coverage before your visit. We
+                            also accept Ayushman Bharat.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up">
+                    <div class="faq-q">
+                        <span>How do I reach MNR Medicity from Mangalore city?</span>
+                        <div class="faq-icon"><i data-lucide="plus"></i></div>
+                    </div>
+                    <div class="faq-a">
+                        <p>We are located at Kolambe, behind Bajpe Airport on the NH-66. From Mangalore city centre it
+                            is approximately 12 km. Auto-rickshaws, taxis, and city buses are available. Free parking is
+                            available on campus.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up">
+                    <div class="faq-q">
+                        <span>What is the emergency contact number?</span>
+                        <div class="faq-icon"><i data-lucide="plus"></i></div>
+                    </div>
+                    <div class="faq-a">
+                        <p>Our emergency and casualty department is reachable 24 hours a day, 7 days a week at
+                            9876543210. We are equipped for cardiac emergencies, trauma, and critical care round the
+                            clock.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up">
+                    <div class="faq-q">
+                        <span>Can I get a second opinion at MNR Medicity?</span>
+                        <div class="faq-icon"><i data-lucide="plus"></i></div>
+                    </div>
+                    <div class="faq-a">
+                        <p>Absolutely. Our senior specialists are available for second opinion consultations. Please
+                            bring all existing reports, imaging, and a referral if available. Select "Second Opinion"
+                            when booking your appointment.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="f-grid">
+            <div class="f-brand">
+                <a href="index.html" class="nav-logo" style="text-decoration:none">
+                    <div class="logo-icon"><i data-lucide="hospital"></i></div>
+                    <div>
+                        <div class="logo-name" style="color:#fff">MNR Medicity</div>
+                        <div class="logo-sub" style="color:var(--teal-light)">Advanced Healthcare</div>
+                    </div>
+                </a>
+                <p>MNR Medicity is committed to delivering compassionate, expert, and affordable healthcare to every
+                    patient across Mangalore and Coastal Karnataka.</p>
+                <div class="f-socials">
+                    <a href="#"><i data-lucide="facebook"></i></a>
+                    <a href="#"><i data-lucide="instagram"></i></a>
+                    <a href="#"><i data-lucide="twitter"></i></a>
+                    <a href="#"><i data-lucide="youtube"></i></a>
+                    <a href="#"><i data-lucide="linkedin"></i></a>
+                </div>
+            </div>
+            <div class="f-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="doctors.html">Our Doctors</a></li>
+                    <li><a href="departments.html">Departments</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="f-col">
+                <h4>Departments</h4>
+                <ul>
+                    <li><a href="cardiology.html">Cardiology</a></li>
+                    <li><a href="pulmonology.html">Pulmonology</a></li>
+                    <li><a href="gynecology.html">Gynecology</a></li>
+                    <li><a href="neurology.html">Neurology</a></li>
+                    <li><a href="urology.html">Urology</a></li>
+                    <li><a href="gastroenterology.html">Gastroenterology</a></li>
+                    <li><a href="pediatrics.html">Pediatrics</a></li>
+                </ul>
+            </div>
+            <div class="f-col">
+                <h4>Contact Information</h4>
+                <div class="f-cr"><i data-lucide="map-pin"></i>
+                    <p>MNR Medicity Campus Kolambe, Behind Bajpe Proper, Karnataka 574142</p>
+                </div>
+                <div class="f-cr"><i data-lucide="phone"></i>
+                    <p><a href="tel:9876543210">9876543210</a></p>
+                </div>
+                <div class="f-cr"><i data-lucide="mail"></i>
+                    <p><a href="mailto:info@mnrmedicity.com">info@mnrmedicity.com</a></p>
+                </div>
+                <div class="f-cr"><i data-lucide="clock"></i>
+                    <p>OPD: Mon–Sat 8:00 AM – 8:00 PM<br>Emergency: 24/7</p>
+                </div>
+            </div>
+        </div>
+        <div class="f-bottom">
+            <span>&copy; 2025 MNR Medicity. All rights reserved.</span>
+            <div class="f-blinks"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop"><i data-lucide="chevron-up"></i></button>
+
+    <script>
+        lucide.createIcons();
+
+        // Navbar scroll
+        var navbar = document.getElementById('navbar');
+        var scrollBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', function () {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
+            scrollBtn.classList.toggle('visible', window.scrollY > 300);
+        });
+
+        // Dropdowns
+        function closeAllDrops() { document.querySelectorAll('.drop.open').forEach(function (d) { d.classList.remove('open'); }); }
+        document.querySelectorAll('.drop-btn').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var drop = btn.closest('.drop'), open = drop.classList.contains('open');
+                closeAllDrops();
+                if (!open) drop.classList.add('open');
+            });
+        });
+        document.addEventListener('click', closeAllDrops);
+        document.querySelectorAll('.drop-menu').forEach(function (m) { m.addEventListener('click', function (e) { e.stopPropagation(); }); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAllDrops(); });
+
+        // Hamburger
+        var ham = document.getElementById('hamburger'), mob = document.getElementById('mobNav');
+        ham.addEventListener('click', function () {
+            mob.classList.toggle('open');
+            document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+        });
+        mob.querySelectorAll('a').forEach(function (a) {
+            a.addEventListener('click', function () { mob.classList.remove('open'); document.body.style.overflow = ''; });
+        });
+
+        // Scroll top
+        scrollBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // Fade-up observer
+        var obs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+        }, { threshold: 0.07 });
+        document.querySelectorAll('.fade-up').forEach(function (el) { obs.observe(el); });
+
+        // Set min date to today
+        var dateInput = document.getElementById('apptDate');
+        var today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+
+        // ── FORM VALIDATION & SUBMIT ──
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var valid = true;
+
+            function validate(id, condition) {
+                var el = document.getElementById(id);
+                var group = el ? el.closest('.form-group') : null;
+                if (group) {
+                    if (condition) { group.classList.remove('has-error'); el.classList.remove('error'); }
+                    else { group.classList.add('has-error'); el.classList.add('error'); valid = false; }
+                }
+            }
+
+            validate('firstName', document.getElementById('firstName').value.trim().length > 0);
+            validate('lastName', document.getElementById('lastName').value.trim().length > 0);
+            var ph = document.getElementById('phone').value.trim();
+            validate('phone', ph.length >= 10);
+
+            // Dept check
+            var deptVal = document.querySelector('input[name="dept"]:checked');
+            var deptErr = document.getElementById('deptErr');
+            if (!deptVal) { deptErr.style.display = 'block'; valid = false; }
+            else { deptErr.style.display = 'none'; }
+
+            // Date check
+            validate('apptDate', document.getElementById('apptDate').value !== '');
+
+            // Consent
+            var consent = document.getElementById('consent');
+            var consentErr = document.getElementById('consentErr');
+            if (!consent.checked) { consentErr.style.display = 'block'; valid = false; }
+            else { consentErr.style.display = 'none'; }
+
+            if (!valid) return;
+
+            // Simulate submit
+            var btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i data-lucide="loader"></i> Sending…';
+            lucide.createIcons();
+
+            setTimeout(function () {
+                document.getElementById('formContent').style.display = 'none';
+                document.getElementById('formSuccess').style.display = 'block';
+                lucide.createIcons();
+            }, 1400);
+        });
+
+        // Reset form
+        document.getElementById('resetBtn').addEventListener('click', function () {
+            document.getElementById('contactForm').reset();
+            document.getElementById('submitBtn').disabled = false;
+            document.getElementById('submitBtn').innerHTML = '<i data-lucide="calendar-check"></i> Send Appointment Request <i data-lucide="arrow-right"></i>';
+            document.getElementById('formSuccess').style.display = 'none';
+            document.getElementById('formContent').style.display = 'block';
+            document.querySelectorAll('.has-error').forEach(function (el) { el.classList.remove('has-error'); });
+            document.querySelectorAll('.error').forEach(function (el) { el.classList.remove('error'); });
+            lucide.createIcons();
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-item').forEach(function (item) {
+            item.querySelector('.faq-q').addEventListener('click', function () {
+                var isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item.open').forEach(function (o) { o.classList.remove('open'); });
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+    </script>
+</body>
+
+</html>
