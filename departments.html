@@ -58,14 +58,14 @@
         }
 
         nav.scrolled {
-            background: rgba(10, 31, 60, .97);
+            background: rgba(255, 255, 255, .97);
             border-bottom-color: transparent;
         }
 
         nav.scrolled .logo-name,
         nav.scrolled .nav-link,
         nav.scrolled .drop-btn {
-            color: #fff !important;
+            color: var(--navy);
         }
 
         nav.scrolled .logo-sub {
@@ -73,7 +73,7 @@
         }
 
         nav.scrolled .hamburger span {
-            background: #fff;
+            background: #1a2d42;
         }
 
         .nav-wrap {
@@ -280,6 +280,7 @@
         }
 
         .hamburger span {
+            background: #1a2d42;
             width: 24px;
             height: 2px;
             background: var(--navy);
@@ -580,7 +581,7 @@
             cursor: pointer;
             position: relative;
             border: 1.5px solid rgba(10, 31, 60, .08);
-            height: 580px;
+            height: 524px;
         }
 
         /* Top image strip */
@@ -679,14 +680,14 @@
             line-height: 1.76;
             margin-bottom: 20px;
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 3;
+            text-overflow: ellipsis;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         /* Services chips */
-        .dept-services {
+        /* .dept-services {
             display: flex;
             flex-wrap: wrap;
             gap: 7px;
@@ -705,7 +706,7 @@
 
         .dept-card:hover .svc-chip {
             background: rgba(14, 124, 123, .14);
-        }
+        } */
 
         /* Card footer */
         .dept-foot {
@@ -1154,6 +1155,31 @@
         }
 
         /* ── RESPONSIVE ── */
+        @media (max-width: 1400px) {
+            .c-arrow {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1100px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mob-nav {
+                display: block;
+            }
+
+            .c-arrow {
+                display: none;
+            }
+        }
+
         @media (max-width:1024px) {
             .dept-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1182,7 +1208,7 @@
             }
         }
 
-        @media (max-width:1000px) {
+        @media (max-width:800px) {
             .nav-links {
                 display: none;
             }
@@ -1204,7 +1230,7 @@
             }
 
             .dept-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
 
             .filter-inner {
@@ -1229,7 +1255,11 @@
             }
         }
 
-        @media (max-width:480px) {
+        @media (max-width:580px) {
+            .dept-grid {
+                grid-template-columns: 1fr;
+            }
+
             .highlight-inner {
                 grid-template-columns: 1fr 1fr;
             }
@@ -1248,7 +1278,7 @@
         }
 
         @media (max-width:380px) {
-                        .dept-img {
+            .dept-img {
                 height: 252px;
             }
         }
@@ -1417,13 +1447,13 @@
                         <p>Comprehensive cardiac care from early diagnosis to complex interventions. Our cardiologists
                             manage coronary artery disease, heart failure, arrhythmias, and congenital defects with
                             precision and compassion.</p>
-                        <div class="dept-services">
+                        <!-- <div class="dept-services">
                             <span class="svc-chip">ECG & Echo</span>
                             <span class="svc-chip">Angioplasty</span>
                             <span class="svc-chip">Holter Monitoring</span>
                             <span class="svc-chip">Cardiac ICU</span>
                             <span class="svc-chip">Pacemakers</span>
-                        </div>
+                        </div> -->
                         <div class="dept-foot">
                             <a href="cardiology.html" class="dept-link">Know More <i data-lucide="arrow-right"></i></a>
                         </div>
@@ -1444,13 +1474,13 @@
                         <div class="dept-tagline">Lung & Respiratory Health</div>
                         <p>Expert diagnosis and treatment of respiratory conditions including asthma, COPD, sleep apnea,
                             and lung infections. Our pulmonologists use the latest pulmonary function tests.</p>
-                        <div class="dept-services">
+                        <!-- <div class="dept-services">
                             <span class="svc-chip">Spirometry</span>
                             <span class="svc-chip">Bronchoscopy</span>
                             <span class="svc-chip">Sleep Study</span>
                             <span class="svc-chip">Chest X-Ray</span>
                             <span class="svc-chip">HRCT Chest</span>
-                        </div>
+                        </div> -->
                         <div class="dept-foot">
                             <a href="pulmonology.html" class="dept-link">Know More <i data-lucide="arrow-right"></i></a>
                         </div>
@@ -1472,13 +1502,13 @@
                         <p>Complete women's healthcare — from routine gynecological consultations and fertility support
                             to high-risk pregnancies and neonatal care. Our Level III NICU ensures the best start for
                             every newborn.</p>
-                        <div class="dept-services">
+                        <!-- <div class="dept-services">
                             <span class="svc-chip">Antenatal Care</span>
                             <span class="svc-chip">Laparoscopy</span>
                             <span class="svc-chip">NICU (Level III)</span>
                             <span class="svc-chip">Fertility Clinic</span>
                             <span class="svc-chip">High-Risk OB</span>
-                        </div>
+                        </div> -->
                         <div class="dept-foot">
                             <a href="gynecology.html" class="dept-link">Know More <i data-lucide="arrow-right"></i></a>
                         </div>
@@ -1500,13 +1530,13 @@
                         <p>Advanced care for conditions of the brain, spinal cord, and nervous system. From epilepsy and
                             stroke management to complex neurosurgical interventions, our team provides rapid and
                             accurate treatment.</p>
-                        <div class="dept-services">
+                        <!-- <div class="dept-services">
                             <span class="svc-chip">EEG / EMG</span>
                             <span class="svc-chip">Stroke Unit</span>
                             <span class="svc-chip">Brain MRI</span>
                             <span class="svc-chip">Neurosurgery</span>
                             <span class="svc-chip">Spine Care</span>
-                        </div>
+                        </div> -->
                         <div class="dept-foot">
                             <a href="neurology.html" class="dept-link">Know More <i data-lucide="arrow-right"></i></a>
                         </div>
@@ -1528,13 +1558,13 @@
                         <p>Comprehensive urological care for men and women covering kidney stones, prostate conditions,
                             bladder disorders, and urinary tract infections. We offer both medical and minimally
                             invasive surgical solutions.</p>
-                        <div class="dept-services">
+                        <!-- <div class="dept-services">
                             <span class="svc-chip">Kidney Stone Laser</span>
                             <span class="svc-chip">TURP</span>
                             <span class="svc-chip">Cystoscopy</span>
                             <span class="svc-chip">Uro-oncology</span>
                             <span class="svc-chip">Andrology</span>
-                        </div>
+                        </div> -->
                         <div class="dept-foot">
                             <a href="urology.html" class="dept-link">Know More <i data-lucide="arrow-right"></i></a>
                         </div>
@@ -1556,14 +1586,14 @@
                         <p>Specialized diagnosis and treatment of disorders affecting the digestive tract, liver, and
                             pancreas. Our gastroenterologists use cutting-edge endoscopic techniques for accurate,
                             minimally invasive care.</p>
-                        <div class="dept-services">
+                        <!-- <div class="dept-services">
                             <span class="svc-chip">Endoscopy</span>
                             <span class="svc-chip">Colonoscopy</span>
                             <span class="svc-chip">Liver Biopsy</span>
                             <span class="svc-chip">ERCP</span>
                             <span class="svc-chip">IBD Clinic</span>
                             <span class="svc-chip">XYZ</span>
-                        </div>
+                        </div> -->
                         <div class="dept-foot">
                             <a href="gastroenterology.html" class="dept-link">Know More <i
                                     data-lucide="arrow-right"></i></a>
@@ -1586,13 +1616,13 @@
                         <p>Dedicated child-friendly care from birth through adolescence. Our pediatric team specialises
                             in neonatal health, childhood infections, developmental disorders, and preventive
                             vaccination programs.</p>
-                        <div class="dept-services">
+                        <!-- <div class="dept-services">
                             <span class="svc-chip">Neonatal Care</span>
                             <span class="svc-chip">Immunisation</span>
                             <span class="svc-chip">Developmental</span>
                             <span class="svc-chip">Peds Surgery</span>
                             <span class="svc-chip">PICU</span>
-                        </div>
+                        </div> -->
                         <div class="dept-foot">
                             <a href="pediatrics.html" class="dept-link">Know More <i data-lucide="arrow-right"></i></a>
                         </div>

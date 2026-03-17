@@ -58,14 +58,14 @@
         }
 
         nav.scrolled {
-            background: rgba(10, 31, 60, .97);
+            background: rgba(255, 255, 255, .97);
             border-bottom-color: transparent;
         }
 
         nav.scrolled .logo-name,
         nav.scrolled .nav-link,
         nav.scrolled .drop-btn {
-            color: #fff !important;
+            color: var(--navy);
         }
 
         nav.scrolled .logo-sub {
@@ -73,7 +73,7 @@
         }
 
         nav.scrolled .hamburger span {
-            background: #fff;
+            background: #1a2d42;
         }
 
         .nav-wrap {
@@ -280,6 +280,7 @@
         }
 
         .hamburger span {
+            background: #1a2d42;
             width: 24px;
             height: 2px;
             background: var(--navy);
@@ -772,83 +773,6 @@
             line-height: 1.65;
         }
 
-        /* Department radio pills */
-        .dept-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .dept-pills input[type="radio"] {
-            display: none;
-        }
-
-        .dept-pills label {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 15px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--gray-mid);
-            border: 1.5px solid rgba(10, 31, 60, .12);
-            background: var(--gray-light);
-            cursor: pointer;
-            transition: all .2s;
-            white-space: nowrap;
-        }
-
-        .dept-pills label svg {
-            width: 13px;
-            height: 13px;
-            flex-shrink: 0;
-        }
-
-        .dept-pills input[type="radio"]:checked+label {
-            background: var(--navy);
-            color: #fff;
-            border-color: var(--navy);
-            box-shadow: 0 4px 14px rgba(10, 31, 60, .22);
-        }
-
-        /* Preferred time */
-        .time-slots {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .time-slots input[type="radio"] {
-            display: none;
-        }
-
-        .time-slots label {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 9px 18px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--gray-mid);
-            border: 1.5px solid rgba(10, 31, 60, .12);
-            background: #fff;
-            cursor: pointer;
-            transition: all .2s;
-        }
-
-        .time-slots label svg {
-            width: 13px;
-            height: 13px;
-        }
-
-        .time-slots input[type="radio"]:checked+label {
-            border-color: var(--teal);
-            color: var(--teal);
-            background: rgba(14, 124, 123, .08);
-        }
-
         .btn-submit {
             display: inline-flex;
             align-items: center;
@@ -872,14 +796,6 @@
             width: 17px;
             height: 17px;
             transition: transform .2s;
-        }
-
-        .btn-submit:hover {
-            transform: translateY(-2px);
-        }
-
-        .btn-submit:hover svg {
-            transform: translateX(3px);
         }
 
         .btn-submit:disabled {
@@ -1486,7 +1402,30 @@
         }
 
         /* ── RESPONSIVE ── */
-        @media (max-width:1100px) {
+        @media (max-width: 1400px) {
+            .c-arrow {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1100px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mob-nav {
+                display: block;
+            }
+
+            .c-arrow {
+                display: none;
+            }
+
             .contact-grid {
                 grid-template-columns: 1fr 440px;
                 gap: 44px;
@@ -1515,7 +1454,7 @@
             }
         }
 
-        @media (max-width:1000px) {
+        @media (max-width:800px) {
             .nav-links {
                 display: none;
             }
@@ -1756,66 +1695,6 @@
                                     <label>Email Address</label>
                                     <input type="email" id="email" placeholder="you@example.com" />
                                     <span class="err-msg">Please enter a valid email</span>
-                                </div>
-                            </div>
-
-                            <!-- Department -->
-                            <div class="form-group" style="margin-top:18px">
-                                <label>Select Department <span class="req">*</span></label>
-                                <div class="dept-pills" id="deptPills">
-                                    <input type="radio" name="dept" id="d-cardio" value="Cardiology" />
-                                    <label for="d-cardio"><i data-lucide="heart-pulse"></i> Cardiology</label>
-                                    <input type="radio" name="dept" id="d-pulmo" value="Pulmonology" />
-                                    <label for="d-pulmo"><i data-lucide="wind"></i> Pulmonology</label>
-                                    <input type="radio" name="dept" id="d-gynec" value="Gynecology" />
-                                    <label for="d-gynec"><i data-lucide="baby"></i> Gynecology</label>
-                                    <input type="radio" name="dept" id="d-neuro" value="Neurology" />
-                                    <label for="d-neuro"><i data-lucide="brain"></i> Neurology</label>
-                                    <input type="radio" name="dept" id="d-urol" value="Urology" />
-                                    <label for="d-urol"><i data-lucide="activity"></i> Urology</label>
-                                    <input type="radio" name="dept" id="d-gastro" value="Gastroenterology" />
-                                    <label for="d-gastro"><i data-lucide="stethoscope"></i> Gastroenterology</label>
-                                    <input type="radio" name="dept" id="d-pedia" value="Pediatrics" />
-                                    <label for="d-pedia"><i data-lucide="smile"></i> Pediatrics</label>
-                                    <input type="radio" name="dept" id="d-gen" value="General" />
-                                    <label for="d-gen"><i data-lucide="stethoscope"></i> General</label>
-                                </div>
-                                <span class="err-msg" id="deptErr"
-                                    style="display:none;font-size:11px;color:#e74c3c;margin-top:6px;">Please select a
-                                    department</span>
-                            </div>
-
-                            <!-- Preferred Date & Time -->
-                            <div class="form-row">
-                                <div class="form-group no-mb">
-                                    <label>Preferred Date <span class="req">*</span></label>
-                                    <input type="date" id="apptDate" />
-                                    <span class="err-msg">Please choose a date</span>
-                                </div>
-                                <div class="form-group no-mb">
-                                    <label>Visit Type</label>
-                                    <div class="select-wrap">
-                                        <select id="visitType">
-                                            <option value="">Select type</option>
-                                            <option>First Consultation</option>
-                                            <option>Follow-up</option>
-                                            <option>Second Opinion</option>
-                                            <option>Emergency</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Preferred time -->
-                            <div class="form-group" style="margin-top:18px">
-                                <label>Preferred Time Slot</label>
-                                <div class="time-slots">
-                                    <input type="radio" name="slot" id="t-morn" value="Morning (8AM–12PM)" />
-                                    <label for="t-morn"><i data-lucide="sunrise"></i> Morning</label>
-                                    <input type="radio" name="slot" id="t-after" value="Afternoon (12PM–4PM)" />
-                                    <label for="t-after"><i data-lucide="sun"></i> Afternoon</label>
-                                    <input type="radio" name="slot" id="t-eve" value="Evening (4PM–8PM)" />
-                                    <label for="t-eve"><i data-lucide="sunset"></i> Evening</label>
                                 </div>
                             </div>
 

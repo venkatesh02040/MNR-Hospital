@@ -58,14 +58,14 @@
         }
 
         nav.scrolled {
-            background: rgba(10, 31, 60, .97);
+            background: rgba(255, 255, 255, .97);
             border-bottom-color: transparent;
         }
 
         nav.scrolled .logo-name,
         nav.scrolled .nav-link,
         nav.scrolled .drop-btn {
-            color: #fff !important;
+            color: var(--navy);
         }
 
         nav.scrolled .logo-sub {
@@ -73,7 +73,7 @@
         }
 
         nav.scrolled .hamburger span {
-            background: #fff;
+            background: #1a2d42;
         }
 
         .nav-wrap {
@@ -280,6 +280,7 @@
         }
 
         .hamburger span {
+            background: #1a2d42;
             width: 24px;
             height: 2px;
             background: var(--navy);
@@ -1669,6 +1670,31 @@
         }
 
         /* ── RESPONSIVE ── */
+        @media (max-width: 1400px) {
+            .c-arrow {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1100px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mob-nav {
+                display: block;
+            }
+
+            .c-arrow {
+                display: none;
+            }
+        }
+
         @media (max-width:1024px) {
             .intro-grid {
                 grid-template-columns: 1fr;
@@ -1696,7 +1722,7 @@
             }
 
             .mvv-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
 
             .diff-grid {
@@ -1713,7 +1739,7 @@
             }
 
             .comm-cards {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
 
             .numbers-inner {
@@ -1735,7 +1761,7 @@
             }
         }
 
-        @media (max-width:1000px) {
+        @media (max-width:800px) {
             .nav-links {
                 display: none;
             }
@@ -1760,6 +1786,10 @@
             .community-sec,
             .about-cta-sec {
                 padding: 60px 20px;
+            }
+
+            .mvv-grid {
+                grid-template-columns: 1fr;
             }
 
             .accred-sec {
@@ -1889,7 +1919,7 @@
             </div>
             <h1>Built for <em>Today.</em><br>Designed for Every Patient.</h1>
             <p style="color: #ffffffb8;">MNR Hospital is a modern, full-scale multi-specialty hospital built with one
-                purpose — to bring expert,
+                purpose to bring expert,
                 compassionate, and accessible healthcare to every family in Coastal Karnataka.</p>
         </div>
     </div>
@@ -1985,10 +2015,10 @@
                 <div class="founder-card fade-up">
                     <div class="founder-photo">
                         <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=500&h=520&fit=crop&crop=faces,top"
-                            alt="Dr. M. N. Rao — Founder, MNR Hospital" />
+                            alt="Doctor Name — Founder, MNR Hospital" />
                     </div>
                     <div class="founder-card-info">
-                        <h3>Dr. M. N. Rao</h3>
+                        <h3>Doctor Name</h3>
                         <div class="role">Founder &amp; Chairman, MNR Hospital</div>
                         <div class="quals">
                             <span class="qual-tag">MBBS</span>
@@ -2002,7 +2032,7 @@
                     <h2 class="s-title">A Doctor's Dream,<br>Built for <em>Every Patient</em></h2>
                     <p class="pull-quote">"I have seen too many patients from our region travel hours to cities just to
                         get the care they deserve. MNR Hospital exists to change that — permanently."</p>
-                    <p class="founder-bio">Dr. M. N. Rao is a respected physician with over three decades of clinical
+                    <p class="founder-bio">Doctor Name is a respected physician with over three decades of clinical
                         practice across Coastal Karnataka. After years of witnessing the healthcare gap in the region
                         firsthand, he channelled his experience and conviction into founding MNR Hospital — a hospital
                         that does not compromise on quality, technology, or compassion.</p>
@@ -2015,8 +2045,7 @@
                         <div class="f-pill"><i data-lucide="heart-handshake"></i> Patient-First Philosophy</div>
                         <div class="f-pill"><i data-lucide="award"></i> IMA Recognized Physician</div>
                     </div>
-                    <a href="contact.html" class="btn-primary"><i data-lucide="calendar-check"></i> Book a
-                        Consultation</a>
+                    <a href="contact.html" class="btn-primary"><i data-lucide="calendar-check"></i> Book Appointment</a>
                 </div>
             </div>
         </div>

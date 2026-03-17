@@ -58,14 +58,14 @@
         }
 
         nav.scrolled {
-            background: rgba(10, 31, 60, .97);
+            background: rgba(255, 255, 255, .97);
             border-bottom-color: transparent;
         }
 
         nav.scrolled .logo-name,
         nav.scrolled .nav-link,
         nav.scrolled .drop-btn {
-            color: #fff !important;
+            color: var(--navy);
         }
 
         nav.scrolled .logo-sub {
@@ -73,7 +73,7 @@
         }
 
         nav.scrolled .hamburger span {
-            background: #fff;
+            background: #1a2d42;
         }
 
         .nav-wrap {
@@ -251,7 +251,8 @@
             gap: 7px;
             background: linear-gradient(135deg, var(--teal), var(--teal-light));
             color: #fff !important;
-            padding: 13px 26px;            border-radius: 50px;
+            padding: 13px 26px;
+            border-radius: 50px;
             font-size: 14px;
             font-weight: 600;
             text-decoration: none;
@@ -279,6 +280,7 @@
         }
 
         .hamburger span {
+            background: #1a2d42;
             width: 24px;
             height: 2px;
             background: var(--navy);
@@ -745,94 +747,6 @@
             background: linear-gradient(135deg, #c0392b, #e74c3c);
         }
 
-        /* Image mid-article */
-        .art-img {
-            width: 100%;
-            border-radius: 18px;
-            overflow: hidden;
-            margin: 32px 0;
-        }
-
-        .art-img img {
-            width: 100%;
-            height: 340px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .art-img figcaption {
-            font-size: 12px;
-            color: var(--gray-mid);
-            padding: 10px 14px;
-            font-style: italic;
-            text-align: center;
-        }
-
-        /* Tags -->
-        .art-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 36px 0 0; padding-top: 28px; border-top: 1px solid rgba(10,31,60,.08); }
-        .art-tag { font-size: 12px; font-weight: 600; color: var(--gray-mid); padding: 5px 14px; border-radius: 50px; border: 1.5px solid rgba(10,31,60,.12); background: var(--gray-light); text-decoration: none; transition: all .2s; }
-        .art-tag:hover { border-color: var(--teal); color: var(--teal); background: rgba(14,124,123,.08); }
-
-        /* Share row */
-        .share-label {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--navy);
-        }
-
-        .share-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            padding: 9px 18px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all .2s;
-        }
-
-        .share-btn svg {
-            width: 14px;
-            height: 14px;
-        }
-
-        .share-btn.wa {
-            background: #25D366;
-            color: #fff;
-        }
-
-        .share-btn.wa:hover {
-            background: #1aad52;
-        }
-
-        .share-btn.li {
-            background: #0077b5;
-            color: #fff;
-        }
-
-        .share-btn.li:hover {
-            background: #005d8f;
-        }
-
-        .share-btn.tw {
-            background: #1da1f2;
-            color: #fff;
-        }
-
-        .share-btn.tw:hover {
-            background: #0d8bdb;
-        }
-
-        .share-btn.cp {
-            background: var(--navy);
-            color: #fff;
-        }
-
-        .share-btn.cp:hover {
-            background: #1a3a6b;
-        }
-
         /* Author bio card */
         .author-card {
             display: flex;
@@ -1073,74 +987,6 @@
         .btn-s-call:hover {
             border-color: #fff;
             background: rgba(255, 255, 255, .10);
-        }
-
-        /* Doctor card sidebar */
-        .doc-mini {
-            background: var(--gray-light);
-            border-radius: 20px;
-            padding: 20px;
-        }
-
-        .doc-mini h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 14px;
-            color: var(--navy);
-            margin-bottom: 14px;
-        }
-
-        .doc-mini-row {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .doc-mini-av {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        .doc-mini-av img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .doc-mini-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--navy);
-            margin-bottom: 2px;
-        }
-
-        .doc-mini-role {
-            font-size: 11px;
-            color: var(--gray-mid);
-            margin-bottom: 10px;
-        }
-
-        .btn-doc-mini {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--teal);
-            text-decoration: none;
-            transition: gap .2s;
-        }
-
-        .btn-doc-mini svg {
-            width: 12px;
-            height: 12px;
-            transition: transform .2s;
-        }
-
-        .btn-doc-mini:hover svg {
-            transform: translateX(3px);
         }
 
         /* ── RELATED ARTICLES ── */
@@ -1462,7 +1308,7 @@
             color: var(--teal-light);
         }
 
- 
+
 
         .scroll-top {
             position: fixed;
@@ -1479,7 +1325,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-             
+
             opacity: 0;
             pointer-events: none;
             transition: all .3s;
@@ -1539,7 +1385,7 @@
             }
         }
 
-        @media (max-width:1000px) {
+        @media (max-width:800px) {
             .nav-links {
                 display: none;
             }
@@ -1586,10 +1432,11 @@
             }
         }
 
-                @media (max-width: 480px) {
+        @media (max-width: 480px) {
             .nav-wrap {
                 padding: 0px;
-            } }
+            }
+        }
     </style>
 </head>
 
@@ -1599,7 +1446,7 @@
     <div class="progress-bar" id="progressBar"></div>
 
     <!-- NAVBAR -->
-    <nav  style="padding: 16px;" id="navbar">
+    <nav style="padding: 16px;" id="navbar">
         <div class="nav-wrap">
             <a href="index.html" class="nav-logo">
                 <div>
@@ -1704,7 +1551,7 @@
                         </div>
                     </div>
                     <div class="meta-sep"></div>
-                    <div class="meta-item"><i data-lucide="calendar"></i> March 5, 2025</div>
+                    <div class="meta-item"><i data-lucide="calendar"></i> March 5, 2026</div>
                     <div class="meta-sep"></div>
                     <div class="meta-item"><i data-lucide="clock"></i> 8 min read</div>
                 </div>
@@ -1867,16 +1714,6 @@
                     importantly — if something feels wrong, don't dismiss it. Come in for a check-up. The best outcome
                     in cardiology is always the crisis that was prevented.</p>
 
-                <!-- Tags -->
-                <div class="art-tags">
-                    <a class="art-tag">Heart Health</a>
-                    <a class="art-tag">Cardiology</a>
-                    <a class="art-tag">Warning Signs</a>
-                    <a class="art-tag">Prevention</a>
-                    <a class="art-tag">Heart Attack</a>
-                    <a class="art-tag">Women's Heart Health</a>
-                </div>
-
                 <!-- Author bio -->
                 <div class="author-card">
                     <div class="author-img"><img
@@ -1925,22 +1762,6 @@
                     <a href="tel:9876543210" class="btn-s-call"><i data-lucide="phone-call"></i> Call +91 9876543210</a>
                 </div>
 
-                <!-- Doctor card -->
-                <div class="doc-mini fade-up">
-                    <h4>About the Author</h4>
-                    <div class="doc-mini-row">
-                        <div class="doc-mini-av"><img
-                                src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=100&h=100&fit=crop&crop=faces"
-                                alt="Dr. Suresh Kamath" /></div>
-                        <div>
-                            <div class="doc-mini-name">Dr. Suresh Kamath</div>
-                            <div class="doc-mini-role">Interventional Cardiologist · 22 Yrs Exp</div>
-                            <a href="dr-suresh-kamath.html" class="btn-doc-mini">View Profile <i
-                                    data-lucide="arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-
             </aside>
 
         </div>
@@ -1954,7 +1775,7 @@
                 style="font-family:'Playfair Display',serif;font-size:clamp(22px,2.6vw,34px);color:var(--navy);margin-bottom:6px;">
                 You Might Also <span style="color:var(--teal)">Enjoy</span></h2>
             <div class="related-grid">
-                <a href="blog-detail.html" class="rel-art">
+                <a href="understanding-cholesterol.html" class="rel-art">
                     <div class="rel-art-img">
                         <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&h=300&fit=crop"
                             alt="Cholesterol" />
@@ -1964,11 +1785,11 @@
                     </div>
                     <div class="rel-art-body">
                         <h3>Understanding Cholesterol: The Difference Between HDL and LDL</h3>
-                        <div class="rel-meta"><i data-lucide="calendar"></i> Feb 20, 2025 <span>·</span><i
+                        <div class="rel-meta"><i data-lucide="calendar"></i> Feb 20, 2026 <span>·</span><i
                                 data-lucide="clock"></i> 6 min</div>
                     </div>
                 </a>
-                <a href="blog-detail.html" class="rel-art">
+                <a href="heart-attacks-young.html" class="rel-art">
                     <div class="rel-art-img">
                         <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=500&h=300&fit=crop"
                             alt="Young Heart Attack" />
@@ -1978,11 +1799,11 @@
                     </div>
                     <div class="rel-art-body">
                         <h3>Why Heart Attacks Are Rising Among People Under 45</h3>
-                        <div class="rel-meta"><i data-lucide="calendar"></i> Jan 5, 2025 <span>·</span><i
+                        <div class="rel-meta"><i data-lucide="calendar"></i> Jan 5, 2026 <span>·</span><i
                                 data-lucide="clock"></i> 7 min</div>
                     </div>
                 </a>
-                <a href="blog-detail.html" class="rel-art">
+                <a href="stoke-fast.html" class="rel-art">
                     <div class="rel-art-img">
                         <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=500&h=300&fit=crop"
                             alt="Stroke" />
@@ -1992,7 +1813,7 @@
                     </div>
                     <div class="rel-art-body">
                         <h3>FAST: Recognising a Stroke in 60 Seconds Could Save a Life</h3>
-                        <div class="rel-meta"><i data-lucide="calendar"></i> Jan 28, 2025 <span>·</span><i
+                        <div class="rel-meta"><i data-lucide="calendar"></i> Jan 28, 2026 <span>·</span><i
                                 data-lucide="clock"></i> 4 min</div>
                     </div>
                 </a>

@@ -58,14 +58,14 @@
         }
 
         nav.scrolled {
-            background: rgba(10, 31, 60, .97);
+            background: rgba(255, 255, 255, .97);
             border-bottom-color: transparent;
         }
 
         nav.scrolled .logo-name,
         nav.scrolled .nav-link,
         nav.scrolled .drop-btn {
-            color: #fff !important;
+            color: var(--navy);
         }
 
         nav.scrolled .logo-sub {
@@ -73,7 +73,7 @@
         }
 
         nav.scrolled .hamburger span {
-            background: #fff;
+            background: #1a2d42;
         }
 
         .nav-wrap {
@@ -251,7 +251,8 @@
             gap: 7px;
             background: linear-gradient(135deg, var(--teal), var(--teal-light));
             color: #fff !important;
-            padding: 13px 26px;            border-radius: 50px;
+            padding: 13px 26px;
+            border-radius: 50px;
             font-size: 14px;
             font-weight: 600;
             text-decoration: none;
@@ -279,6 +280,7 @@
         }
 
         .hamburger span {
+            background: #1a2d42;
             width: 24px;
             height: 2px;
             background: var(--navy);
@@ -678,7 +680,7 @@
             color: #fff;
             padding: 13px 26px;
             border-radius: 50px;
-            font-size: 14px;
+            font-size: 13.7px;
             font-weight: 600;
             text-decoration: none;
             box-shadow: 0 5px 18px rgba(14, 124, 123, .35);
@@ -1130,7 +1132,6 @@
             border: none;
             cursor: pointer;
             font-family: 'DM Sans', sans-serif;
-            box-shadow: 0 5px 18px rgba(14, 124, 123, .40);
             transition: all .3s;
             white-space: nowrap;
         }
@@ -1138,11 +1139,6 @@
         .btn-nl svg {
             width: 15px;
             height: 15px;
-        }
-
-        .btn-nl:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 9px 26px rgba(14, 124, 123, .50);
         }
 
         /* ── FOOTER ── */
@@ -1268,7 +1264,7 @@
             color: var(--teal-light);
         }
 
- 
+
 
         .scroll-top {
             position: fixed;
@@ -1285,7 +1281,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-             
+
             opacity: 0;
             pointer-events: none;
             transition: all .3s;
@@ -1306,6 +1302,31 @@
         }
 
         /* ── RESPONSIVE ── */
+        @media (max-width: 1400px) {
+            .c-arrow {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1100px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mob-nav {
+                display: block;
+            }
+
+            .c-arrow {
+                display: none;
+            }
+        }
+
         @media (max-width:1024px) {
             .blogs-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1337,7 +1358,7 @@
             }
         }
 
-        @media (max-width:1000px) {
+        @media (max-width:800px) {
             .nav-links {
                 display: none;
             }
@@ -1351,7 +1372,7 @@
             }
 
             .blogs-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
 
             .featured-sec,
@@ -1375,17 +1396,22 @@
             }
         }
 
-                @media (max-width: 480px) {
+        @media (max-width: 700px) {
             .nav-wrap {
                 padding: 0px;
-            } }
+            }
+
+            .blogs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <!-- NAVBAR -->
-    <nav  style="padding: 16px;" id="navbar">
+    <nav style="padding: 16px;" id="navbar">
         <div class="nav-wrap">
             <a href="index.html" class="nav-logo">
                 <div>
@@ -1481,7 +1507,7 @@
     <!-- FEATURED BLOG -->
     <section class="featured-sec">
         <div class="si">
-            <a href="blog-detail.html" class="featured-card fade-up" style="text-decoration:none">
+            <a href="heart-warning-signs.html" class="featured-card fade-up" style="text-decoration:none">
                 <div class="feat-img">
                     <img src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=900&h=600&fit=crop"
                         alt="Heart Health" />
@@ -1492,7 +1518,7 @@
                     <div class="feat-meta">
                         <span class="feat-cat"><i data-lucide="heart-pulse"></i> Cardiology</span>
                         <span class="feat-dot"></span>
-                        <span class="feat-date">March 5, 2025</span>
+                        <span class="feat-date">March 5, 2026</span>
                         <span class="feat-dot"></span>
                         <span class="feat-read"><i data-lucide="clock"></i> 8 min read</span>
                     </div>
@@ -1541,7 +1567,7 @@
             <div class="blogs-grid" id="blogGrid">
 
                 <!-- Cardiology -->
-                <a href="blog-detail.html" class="blog-card fade-up" data-cat="cardiology"
+                <a href="understanding-cholesterol.html" class="blog-card fade-up" data-cat="cardiology"
                     data-title="understanding cholesterol hdl ldl heart disease prevention"
                     style="text-decoration:none">
                     <div class="card-img">
@@ -1552,7 +1578,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-meta">
-                            <span class="card-date"><i data-lucide="calendar"></i> Feb 20, 2025</span>
+                            <span class="card-date"><i data-lucide="calendar"></i> Feb 20, 2026</span>
                             <span class="card-read-time"><i data-lucide="clock"></i> 6 min</span>
                         </div>
                         <h3>Understanding Cholesterol: The Difference Between HDL and LDL</h3>
@@ -1571,7 +1597,7 @@
                 </a>
 
                 <!-- Pulmonology -->
-                <a href="blog-detail.html" class="blog-card fade-up" data-cat="pulmonology"
+                <a href="copd-breathing-exercises.html" class="blog-card fade-up" data-cat="pulmonology"
                     data-title="copd management breathing exercises lung health pulmonology"
                     style="text-decoration:none">
                     <div class="card-img">
@@ -1582,7 +1608,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-meta">
-                            <span class="card-date"><i data-lucide="calendar"></i> Feb 14, 2025</span>
+                            <span class="card-date"><i data-lucide="calendar"></i> Feb 14, 2026</span>
                             <span class="card-read-time"><i data-lucide="clock"></i> 5 min</span>
                         </div>
                         <h3>5 Breathing Exercises That Actually Help COPD Patients</h3>
@@ -1601,7 +1627,7 @@
                 </a>
 
                 <!-- Gynecology -->
-                <a href="blog-detail.html" class="blog-card fade-up" data-cat="gynecology"
+                <a href="pcos-diet.html" class="blog-card fade-up" data-cat="gynecology"
                     data-title="pcos diet lifestyle management hormones women fertility" style="text-decoration:none">
                     <div class="card-img">
                         <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=600&h=400&fit=crop"
@@ -1611,7 +1637,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-meta">
-                            <span class="card-date"><i data-lucide="calendar"></i> Feb 7, 2025</span>
+                            <span class="card-date"><i data-lucide="calendar"></i> Feb 7, 2026</span>
                             <span class="card-read-time"><i data-lucide="clock"></i> 7 min</span>
                         </div>
                         <h3>PCOS and Diet: What the Latest Research Actually Says</h3>
@@ -1630,7 +1656,7 @@
                 </a>
 
                 <!-- Neurology -->
-                <a href="blog-detail.html" class="blog-card fade-up" data-cat="neurology"
+                <a href="stoke-fast.html" class="blog-card fade-up" data-cat="neurology"
                     data-title="stroke symptoms fast act brain attack warning signs neurology"
                     style="text-decoration:none">
                     <div class="card-img">
@@ -1641,7 +1667,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-meta">
-                            <span class="card-date"><i data-lucide="calendar"></i> Jan 28, 2025</span>
+                            <span class="card-date"><i data-lucide="calendar"></i> Jan 28, 2026</span>
                             <span class="card-read-time"><i data-lucide="clock"></i> 4 min</span>
                         </div>
                         <h3>FAST: Recognising a Stroke in 60 Seconds Could Save a Life</h3>
@@ -1660,7 +1686,7 @@
                 </a>
 
                 <!-- Pediatrics -->
-                <a href="blog-detail.html" class="blog-card fade-up" data-cat="pediatrics"
+                <a href="immunisation-schedule.html" class="blog-card fade-up" data-cat="pediatrics"
                     data-title="child vaccination schedule immunisation kids newborn pediatrics"
                     style="text-decoration:none">
                     <div class="card-img">
@@ -1671,7 +1697,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-meta">
-                            <span class="card-date"><i data-lucide="calendar"></i> Jan 20, 2025</span>
+                            <span class="card-date"><i data-lucide="calendar"></i> Jan 20, 2026</span>
                             <span class="card-read-time"><i data-lucide="clock"></i> 5 min</span>
                         </div>
                         <h3>India's Immunisation Schedule Explained: What Every Parent Needs to Know</h3>
@@ -1690,7 +1716,7 @@
                 </a>
 
                 <!-- Wellness -->
-                <a href="blog-detail.html" class="blog-card fade-up" data-cat="wellness"
+                <a href="sleep-medicine.html" class="blog-card fade-up" data-cat="wellness"
                     data-title="sleep quality health tips insomnia wellness lifestyle" style="text-decoration:none">
                     <div class="card-img">
                         <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=600&h=400&fit=crop"
@@ -1700,7 +1726,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-meta">
-                            <span class="card-date"><i data-lucide="calendar"></i> Jan 12, 2025</span>
+                            <span class="card-date"><i data-lucide="calendar"></i> Jan 12, 2026</span>
                             <span class="card-read-time"><i data-lucide="clock"></i> 6 min</span>
                         </div>
                         <h3>Why Sleep Is the Most Underrated Medicine — and How to Get More of It</h3>
@@ -1719,7 +1745,7 @@
                 </a>
 
                 <!-- Cardiology 2 -->
-                <a href="blog-detail.html" class="blog-card fade-up" data-cat="cardiology"
+                <a href="heart-attacks-young.html" class="blog-card fade-up" data-cat="cardiology"
                     data-title="heart attack young people risk factors cardiology prevention"
                     style="text-decoration:none">
                     <div class="card-img">
@@ -1730,7 +1756,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-meta">
-                            <span class="card-date"><i data-lucide="calendar"></i> Jan 5, 2025</span>
+                            <span class="card-date"><i data-lucide="calendar"></i> Jan 5, 2026</span>
                             <span class="card-read-time"><i data-lucide="clock"></i> 7 min</span>
                         </div>
                         <h3>Why Heart Attacks Are Rising Among People Under 45</h3>
@@ -1749,7 +1775,7 @@
                 </a>
 
                 <!-- Gynecology 2 -->
-                <a href="blog-detail.html" class="blog-card fade-up" data-cat="gynecology"
+                <a href="high-risk-pregnancy.html" class="blog-card fade-up" data-cat="gynecology"
                     data-title="prenatal care high risk pregnancy tips maternal fetal health"
                     style="text-decoration:none">
                     <div class="card-img">
@@ -1760,7 +1786,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-meta">
-                            <span class="card-date"><i data-lucide="calendar"></i> Dec 22, 2024</span>
+                            <span class="card-date"><i data-lucide="calendar"></i> Jan 3, 2026</span>
                             <span class="card-read-time"><i data-lucide="clock"></i> 8 min</span>
                         </div>
                         <h3>High-Risk Pregnancy: What It Means and How to Stay Safe</h3>
@@ -1779,7 +1805,7 @@
                 </a>
 
                 <!-- Wellness 2 -->
-                <a href="blog-detail.html" class="blog-card fade-up" data-cat="wellness"
+                <a href="prediabetes.html" class="blog-card fade-up" data-cat="wellness"
                     data-title="diabetes prevention diet sugar lifestyle management wellness"
                     style="text-decoration:none">
                     <div class="card-img">
@@ -1790,7 +1816,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-meta">
-                            <span class="card-date"><i data-lucide="calendar"></i> Dec 15, 2024</span>
+                            <span class="card-date"><i data-lucide="calendar"></i> Jan 2, 2026</span>
                             <span class="card-read-time"><i data-lucide="clock"></i> 6 min</span>
                         </div>
                         <h3>Pre-Diabetes: The Silent Warning You Can Still Reverse</h3>
@@ -1823,14 +1849,16 @@
     <section class="nl-sec">
         <div class="nl-box fade-up">
             <div class="nl-text">
-                <span class="s-tag" style="color:var(--gold-light)">Stay Informed</span>
-                <h2>Get Health Tips Delivered to<br>Your <em>Inbox</em></h2>
-                <p>Join 12,000+ readers who receive our monthly health newsletter — expert articles, wellness guides,
-                    and updates from MNR Hospital's doctors.</p>
+                <span class="s-tag" style="color:var(--gold-light)">Take the Next Step</span>
+                <h2>Ready to Prioritize Your <em>Health</em>?</h2>
+                <p>Book an appointment with one of our expert specialists today.<br>
+                    We're here to provide compassionate, personalized care at a time that works for you.</p>
             </div>
             <div class="nl-form">
-                <input type="email" class="nl-input" placeholder="Enter your email address" id="nlEmail" />
-                <button class="btn-nl" onclick="subscribeNL()"><i data-lucide="send"></i> Subscribe</button>
+                <a href="contact.html" class="btn-nl"
+                    style="margin:0 auto; font-size:16px; padding:16px 40px;text-decoration: none;">
+                    <i data-lucide="calendar-check"></i> Book Appointment
+                </a>
             </div>
         </div>
     </section>
@@ -1941,8 +1969,7 @@
         document.querySelectorAll('.f-tab').forEach(function (t) { t.addEventListener('click', function () { document.querySelectorAll('.f-tab').forEach(function (x) { x.classList.remove('active'); }); t.classList.add('active'); activeCat = t.dataset.cat; applyFilters(); }); });
         document.getElementById('searchInput').addEventListener('input', function () { searchVal = this.value.toLowerCase().trim(); applyFilters(); });
 
-        // Newsletter
-        function subscribeNL() { var v = document.getElementById('nlEmail').value.trim(); if (!v || !v.includes('@')) { alert('Please enter a valid email address.'); return; } document.getElementById('nlEmail').value = ''; alert('Thank you for subscribing! You\'ll receive our next newsletter soon.'); }
+
     </script>
 </body>
 

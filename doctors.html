@@ -58,14 +58,14 @@
         }
 
         nav.scrolled {
-            background: rgba(10, 31, 60, .97);
+            background: rgba(255, 255, 255, .97);
             border-bottom-color: transparent;
         }
 
         nav.scrolled .logo-name,
         nav.scrolled .nav-link,
         nav.scrolled .drop-btn {
-            color: #fff !important;
+            color: var(--navy);
         }
 
         nav.scrolled .logo-sub {
@@ -73,7 +73,7 @@
         }
 
         nav.scrolled .hamburger span {
-            background: #fff;
+            background: #1a2d42;
         }
 
         .nav-wrap {
@@ -280,6 +280,7 @@
         }
 
         .hamburger span {
+            background: #1a2d42;
             width: 24px;
             height: 2px;
             background: var(--navy);
@@ -696,217 +697,79 @@
         /* ── DOCTOR CARD ── */
         .doc-card {
             background: #fff;
-            border-radius: 24px;
+            border-radius: 20px;
             overflow: hidden;
-            transition: all .35s cubic-bezier(.25, .46, .45, .94);
+            transition: all .3s;
             border: 1.5px solid rgba(10, 31, 60, .05);
-            position: relative;
         }
 
-        /* Photo area */
-        .doc-photo {
+        .doc-ph {
             height: 250px;
-            position: relative;
             overflow: hidden;
+            position: relative;
             background: var(--gray-light);
         }
 
-        .doc-photo img {
+        .doc-ph img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center top;
             display: block;
-            transition: transform .5s ease;
+            transition: transform .4s ease;
         }
 
-        .doc-card:hover .doc-photo img {
+        .doc-card:hover .doc-ph img {
             transform: scale(1.08);
         }
 
-        .photo-overlay {
+        .doc-ph-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, transparent 45%, rgba(10, 31, 60, .60) 100%);
+            background: linear-gradient(to bottom, transparent 55%, rgba(10, 31, 60, .20) 100%);
         }
 
-        /* Dept ribbon */
-        .dept-pill {
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            border-radius: 50px;
-            padding: 5px 13px;
-            font-size: 11px;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: .5px;
-            text-transform: uppercase;
-        }
-
-        .dept-pill svg {
-            width: 12px;
-            height: 12px;
-        }
-
-        /* Experience badge */
-        .exp-badge {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: rgba(255, 255, 255, .15);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, .25);
-            border-radius: 12px;
-            padding: 6px 12px;
+        .doc-info {
+            padding: 18px 20px 24px;
             text-align: center;
         }
 
-        .exp-badge .num {
+        .doc-info h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            font-weight: 700;
-            color: #fff;
-            line-height: 1;
+            font-size: 17px;
+            color: var(--navy);
+            margin-bottom: 4px;
         }
 
-        .exp-badge small {
-            font-size: 9px;
-            color: rgba(255, 255, 255, .75);
-            display: block;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .doc-spec {
+            font-size: 13px;
+            color: var(--teal);
+            font-weight: 600;
+            margin-bottom: 5px;
         }
 
-        /* Name overlay at bottom of photo */
-        .photo-name {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 18px 20px 16px;
-        }
-
-        .photo-name h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 19px;
-            color: #fff;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 2px;
-        }
-
-        .photo-name .role {
+        .doc-exp {
             font-size: 12px;
-            color: rgba(255, 255, 255, .75);
-            font-weight: 500;
-        }
-
-        /* Card body */
-        .doc-body {
-            padding: 20px 22px 24px;
-        }
-
-        .qual-row {
-            display: flex;
-            align-items: center;
-            gap: 7px;
+            color: var(--gray-mid);
             margin-bottom: 14px;
         }
 
-        .qual-row svg {
-            width: 14px;
-            height: 14px;
-            color: var(--teal);
-            flex-shrink: 0;
-        }
-
-        .qual-row span {
-            font-size: 13px;
-            color: var(--gray-mid);
-        }
-
-        /* Expertise chips */
-        .expertise-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 18px;
-        }
-
-        .e-chip {
-            font-size: 11px;
-            font-weight: 600;
-            padding: 4px 11px;
-            border-radius: 50px;
-            background: var(--gray-light);
-            color: var(--text);
-            transition: all .2s;
-        }
-
-        .doc-card:hover .e-chip {
-            background: rgba(14, 124, 123, .09);
-            color: var(--teal);
-        }
-
-        /* Card footer */
-        .doc-foot {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-know {
+        .btn-sm {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 7px;
-            flex: 1;
+            gap: 6px;
+            padding: 8px 18px;
+            border-radius: 50px;
             background: linear-gradient(135deg, var(--teal), var(--teal-light));
             color: #fff;
-            padding: 11px 16px;
-            border-radius: 50px;
-            font-weight: 600;
             font-size: 13px;
+            font-weight: 600;
             text-decoration: none;
-            transition: all .25s;
         }
 
-        .btn-know svg {
-            width: 14px;
-            height: 14px;
-            transition: transform .2s;
-        }
-
-        .doc-card:hover .btn-know svg {
-            transform: translateX(2px);
-        }
-
-        .btn-call-sm {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            border: 1.5px solid rgba(10, 31, 60, .12);
-            color: var(--gray-mid);
-            text-decoration: none;
-            transition: all .22s;
-            flex-shrink: 0;
-        }
-
-        .btn-call-sm svg {
-            width: 15px;
-            height: 15px;
-        }
-
-        .btn-call-sm:hover {
-            border-color: var(--teal);
-            color: var(--teal);
-            background: rgba(14, 124, 123, .08);
+        .btn-sm svg {
+            width: 13px;
+            height: 13px;
         }
 
         /* ── DEPT COLOR MAP ── */
@@ -1253,7 +1116,7 @@
             }
         }
 
-        @media (max-width:1000px) {
+        @media (max-width:800px) {
             .nav-links {
                 display: none;
             }
@@ -1452,480 +1315,240 @@
             <div class="doc-grid" id="docGrid">
 
                 <!-- ── CARDIOLOGY ── -->
-                <div class="doc-card fade-up" data-dept="cardiology"
-                    data-name="dr suresh kamath interventional cardiologist">
-                    <div class="doc-photo">
-                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&h=520&fit=crop&crop=faces,top"
+                <div class="doc-card fade-up" data-dept="cardiology" data-name="dr suresh kamath cardiologist">
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=460&fit=crop&crop=faces,top"
                             alt="Dr. Suresh Kamath" />
-                        <div class="photo-overlay"></div>
-                        <div class="dept-pill pill-cardiology"><i data-lucide="heart-pulse"></i> Cardiology</div>
-                        <div class="exp-badge">
-                            <div class="num">22</div><small>Yrs Exp</small>
-                        </div>
-                        <div class="photo-name">
-                            <h3>Dr. Suresh Kamath</h3>
-                            <div class="role">Senior Interventional Cardiologist</div>
-                        </div>
+                        <div class="doc-ph-overlay"></div>
                     </div>
-                    <div class="doc-body">
-                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD, DM Cardiology &middot; AIIMS
-                                New Delhi</span></div>
-                        <div class="expertise-chips"><span class="e-chip">Angioplasty</span><span class="e-chip">Heart
-                                Failure</span><span class="e-chip">Pacemakers</span><span class="e-chip">ICD</span>
-                        </div>
-                        <div class="doc-foot">
-                            <a href="doctor-detail.html" class="btn-know">Know More <i
-                                    data-lucide="arrow-right"></i></a>
-                            <a href="contact.html" class="btn-call-sm" title="Book Appointment"><i
-                                    data-lucide="calendar-check"></i></a>
-                        </div>
+                    <div class="doc-info">
+                        <h3>Dr. Suresh Kamath</h3>
+                        <div class="doc-spec">Cardiology</div>
+                        <div class="doc-exp">MD, DM Cardiology · 20 Yrs Exp.</div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
 
-                <div class="doc-card fade-up" data-dept="cardiology"
-                    data-name="dr priya nair cardiologist echocardiographer">
-                    <div class="doc-photo">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&h=520&fit=crop&crop=faces,top"
+                <div class="doc-card fade-up" data-dept="cardiology" data-name="dr priya nair cardiologist">
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=460&fit=crop&crop=faces,top"
                             alt="Dr. Priya Nair" />
-                        <div class="photo-overlay"></div>
-                        <div class="dept-pill pill-cardiology"><i data-lucide="heart-pulse"></i> Cardiology</div>
-                        <div class="exp-badge">
-                            <div class="num">14</div><small>Yrs Exp</small>
-                        </div>
-                        <div class="photo-name">
-                            <h3>Dr. Priya Nair</h3>
-                            <div class="role">Cardiologist & Echocardiographer</div>
-                        </div>
+                        <div class="doc-ph-overlay"></div>
                     </div>
-                    <div class="doc-body">
-                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD, DNB Cardiology &middot; KMC
-                                Manipal</span></div>
-                        <div class="expertise-chips"><span class="e-chip">Echo</span><span
-                                class="e-chip">Arrhythmia</span><span class="e-chip">Women's Heart</span><span
-                                class="e-chip">Preventive</span></div>
-                        <div class="doc-foot">
-                            <a href="doctor-detail.html" class="btn-know">Know More <i
-                                    data-lucide="arrow-right"></i></a>
-                            <a href="contact.html" class="btn-call-sm" title="Book Appointment"><i
-                                    data-lucide="calendar-check"></i></a>
-                        </div>
+                    <div class="doc-info">
+                        <h3>Dr. Priya Nair</h3>
+                        <div class="doc-spec">Cardiology</div>
+                        <div class="doc-exp">MD, DNB Cardiology · 14 Yrs Exp.</div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
 
-                <div class="doc-card fade-up" data-dept="cardiology"
-                    data-name="dr rajesh shetty cardiac electrophysiologist">
-                    <div class="doc-photo">
-                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=500&h=520&fit=crop&crop=faces,top"
+                <div class="doc-card fade-up" data-dept="cardiology" data-name="dr rajesh shetty cardiologist">
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=460&fit=crop&crop=faces,top"
                             alt="Dr. Rajesh Shetty" />
-                        <div class="photo-overlay"></div>
-                        <div class="dept-pill pill-cardiology"><i data-lucide="heart-pulse"></i> Cardiology</div>
-                        <div class="exp-badge">
-                            <div class="num">18</div><small>Yrs Exp</small>
-                        </div>
-                        <div class="photo-name">
-                            <h3>Dr. Rajesh Shetty</h3>
-                            <div class="role">Cardiac Electrophysiologist</div>
-                        </div>
+                        <div class="doc-ph-overlay"></div>
                     </div>
-                    <div class="doc-body">
-                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD, DM Cardiology &middot; CMC
-                                Vellore</span></div>
-                        <div class="expertise-chips"><span class="e-chip">Ablation</span><span
-                                class="e-chip">Pacemakers</span><span class="e-chip">AF</span><span
-                                class="e-chip">SVT</span><span class="e-chip">Bradycardia</span></div>
-                        <div class="doc-foot">
-                            <a href="doctor-detail.html" class="btn-know">Know More <i
-                                    data-lucide="arrow-right"></i></a>
-                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
-                        </div>
+                    <div class="doc-info">
+                        <h3>Dr. Rajesh Shetty</h3>
+                        <div class="doc-spec">Cardiology</div>
+                        <div class="doc-exp">MD, DM Cardiology · 18 Yrs Exp.</div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
 
                 <!-- ── PULMONOLOGY ── -->
-                <div class="doc-card fade-up" data-dept="pulmonology"
-                    data-name="dr arun hegde pulmonologist intensivist">
-                    <div class="doc-photo">
-                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=500&h=520&fit=crop&crop=faces,top"
+                <div class="doc-card fade-up" data-dept="pulmonology" data-name="dr arun hegde pulmonologist">
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=460&fit=crop&crop=faces,top"
                             alt="Dr. Arun Hegde" />
-                        <div class="photo-overlay"></div>
-                        <div class="dept-pill pill-pulmonology"><i data-lucide="wind"></i> Pulmonology</div>
-                        <div class="exp-badge">
-                            <div class="num">19</div><small>Yrs Exp</small>
-                        </div>
-                        <div class="photo-name">
-                            <h3>Dr. Arun Hegde</h3>
-                            <div class="role">Senior Pulmonologist & Intensivist</div>
-                        </div>
+                        <div class="doc-ph-overlay"></div>
                     </div>
-                    <div class="doc-body">
-                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD, DM Pulmonology &middot; PGI
-                                Chandigarh</span></div>
-                        <div class="expertise-chips"><span class="e-chip">COPD</span><span class="e-chip">Critical
-                                Care</span><span class="e-chip">Bronchoscopy</span><span
-                                class="e-chip">Post-COVID</span></div>
-
-                        <div class="doc-foot">
-                            <a href="doctor-detail.html" class="btn-know">Know More <i
-                                    data-lucide="arrow-right"></i></a>
-                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
-                        </div>
+                    <div class="doc-info">
+                        <h3>Dr. Arun Hegde</h3>
+                        <div class="doc-spec">Pulmonology</div>
+                        <div class="doc-exp">MD, DM Pulmonology · 19 Yrs Exp.</div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
 
-                <div class="doc-card fade-up" data-dept="pulmonology"
-                    data-name="dr shruthi rao respiratory sleep specialist">
-                    <div class="doc-photo">
-                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=500&h=520&fit=crop&crop=faces,top"
+                <div class="doc-card fade-up" data-dept="pulmonology" data-name="dr shruthi rao respiratory">
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=460&fit=crop&crop=faces,top"
                             alt="Dr. Shruthi Rao" />
-                        <div class="photo-overlay"></div>
-                        <div class="dept-pill pill-pulmonology"><i data-lucide="wind"></i> Pulmonology</div>
-                        <div class="exp-badge">
-                            <div class="num">12</div><small>Yrs Exp</small>
-                        </div>
-                        <div class="photo-name">
-                            <h3>Dr. Shruthi Rao</h3>
-                            <div class="role">Respiratory Medicine & Sleep Specialist</div>
-                        </div>
+                        <div class="doc-ph-overlay"></div>
                     </div>
-                    <div class="doc-body">
-                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD, Fellowship Pulmonology
-                                &middot; NIMHANS</span></div>
-                        <div class="expertise-chips"><span class="e-chip">Asthma</span><span class="e-chip">Sleep
-                                Study</span><span class="e-chip">CPAP</span><span class="e-chip">PFT</span></div>
-
-                        <div class="doc-foot">
-                            <a href="doctor-detail.html" class="btn-know">Know More <i
-                                    data-lucide="arrow-right"></i></a>
-                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
-                        </div>
+                    <div class="doc-info">
+                        <h3>Dr. Shruthi Rao</h3>
+                        <div class="doc-spec">Pulmonology</div>
+                        <div class="doc-exp">MD, Fellowship Pulmonology · 12 Yrs Exp.</div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
 
                 <!-- ── GYNECOLOGY ── -->
-                <div class="doc-card fade-up" data-dept="gynecology"
-                    data-name="dr anitha shetty gynecologist obstetrician">
-                    <div class="doc-photo">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&h=520&fit=crop&crop=faces,top"
+                <div class="doc-card fade-up" data-dept="gynecology" data-name="dr anitha shetty gynecologist">
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=460&fit=crop&crop=faces,top"
                             alt="Dr. Anitha Shetty" />
-                        <div class="photo-overlay"></div>
-                        <div class="dept-pill pill-gynecology"><i data-lucide="baby"></i> Gynecology</div>
-                        <div class="exp-badge">
-                            <div class="num">18</div><small>Yrs Exp</small>
-                        </div>
-                        <div class="photo-name">
-                            <h3>Dr. Anitha Shetty</h3>
-                            <div class="role">Chief of Clinical Services · Sr. Gynecologist</div>
-                        </div>
+                        <div class="doc-ph-overlay"></div>
                     </div>
-                    <div class="doc-body">
-                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MS OBG, FACS &middot; JIPMER
-                                Puducherry</span></div>
-                        <div class="expertise-chips"><span class="e-chip">High-Risk OB</span><span
-                                class="e-chip">Laparoscopy</span><span class="e-chip">PCOS</span><span
-                                class="e-chip">MFM</span></div>
-                        <div class="doc-foot">
-                            <a href="doctor-detail.html" class="btn-know">Know More <i
-                                    data-lucide="arrow-right"></i></a>
-                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
-                        </div>
+                    <div class="doc-info">
+                        <h3>Dr. Anitha Shetty</h3>
+                        <div class="doc-spec">Gynecology</div>
+                        <div class="doc-exp">MS OBG, FACS · 18 Yrs Exp.</div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
 
-                <div class="doc-card fade-up" data-dept="gynecology"
-                    data-name="dr kavitha bhat gynecologist fetal medicine">
-                    <div class="doc-photo">
-                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=500&h=520&fit=crop&crop=faces,top"
+                <div class="doc-card fade-up" data-dept="gynecology" data-name="dr kavitha bhat gynecologist">
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=460&fit=crop&crop=faces,top"
                             alt="Dr. Kavitha Bhat" />
-                        <div class="photo-overlay"></div>
-                        <div class="dept-pill pill-gynecology"><i data-lucide="baby"></i> Gynecology</div>
-                        <div class="exp-badge">
-                            <div class="num">13</div><small>Yrs Exp</small>
-                        </div>
-                        <div class="photo-name">
-                            <h3>Dr. Kavitha Bhat</h3>
-                            <div class="role">Consultant Gynecologist & Fetal Medicine</div>
-                        </div>
+                        <div class="doc-ph-overlay"></div>
                     </div>
-                    <div class="doc-body">
-                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MS OBG, Fellowship MFM &middot;
-                                KMC Manipal</span></div>
-                        <div class="expertise-chips"><span class="e-chip">Fetal Medicine</span><span
-                                class="e-chip">Hysterectomy</span><span class="e-chip">Fertility</span></div>
-
-                        <div class="doc-foot">
-                            <a href="doctor-detail.html" class="btn-know">Know More <i
-                                    data-lucide="arrow-right"></i></a>
-                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
-                        </div>
+                    <div class="doc-info">
+                        <h3>Dr. Kavitha Bhat</h3>
+                        <div class="doc-spec">Gynecology</div>
+                        <div class="doc-exp">MS OBG, Fellowship MFM · 13 Yrs Exp.</div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
 
                 <!-- ── NEUROLOGY ── -->
-                <div class="doc-card fade-up" data-dept="neurology" data-name="dr deepak shenoy neurologist stroke">
-                    <div class="doc-photo">
-                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&h=520&fit=crop&crop=faces,top"
+                <div class="doc-card fade-up" data-dept="neurology" data-name="dr deepak shenoy neurologist">
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=460&fit=crop&crop=faces,top"
                             alt="Dr. Deepak Shenoy" />
-                        <div class="photo-overlay"></div>
-                        <div class="dept-pill pill-neurology"><i data-lucide="brain"></i> Neurology</div>
-                        <div class="exp-badge">
-                            <div class="num">20</div><small>Yrs Exp</small>
-                        </div>
-                        <div class="photo-name">
-                            <h3>Dr. Deepak Shenoy</h3>
-                            <div class="role">Senior Neurologist & Stroke Specialist</div>
-                        </div>
+                        <div class="doc-ph-overlay"></div>
                     </div>
-                    <div class="doc-body">
-                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD, DM Neurology &middot;
-                                NIMHANS</span></div>
-                        <div class="expertise-chips"><span class="e-chip">Stroke</span><span
-                                class="e-chip">Epilepsy</span><span class="e-chip">Movement</span><span
-                                class="e-chip">Dementia</span></div>
-
-                        <div class="doc-foot">
-                            <a href="doctor-detail.html" class="btn-know">Know More <i
-                                    data-lucide="arrow-right"></i></a>
-                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
-                        </div>
+                    <div class="doc-info">
+                        <h3>Dr. Deepak Shenoy</h3>
+                        <div class="doc-spec">Neurology</div>
+                        <div class="doc-exp">MD, DM Neurology · 20 Yrs Exp.</div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
 
-                <div class="doc-card fade-up" data-dept="neurology"
-                    data-name="dr naresh nayak neurosurgeon spine brain">
-                    <div class="doc-photo">
-                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=500&h=520&fit=crop&crop=faces,top"
+                <div class="doc-card fade-up" data-dept="neurology" data-name="dr naresh nayak neurosurgeon">
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=460&fit=crop&crop=faces,top"
                             alt="Dr. Naresh Nayak" />
-                        <div class="photo-overlay"></div>
-                        <div class="dept-pill pill-neurology"><i data-lucide="brain"></i> Neurology</div>
-                        <div class="exp-badge">
-                            <div class="num">17</div><small>Yrs Exp</small>
-                        </div>
-                        <div class="photo-name">
-                            <h3>Dr. Naresh Nayak</h3>
-                            <div class="role">Consultant Neurosurgeon</div>
-                        </div>
+                        <div class="doc-ph-overlay"></div>
                     </div>
-                    <div class="doc-body">
-                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MS, MCh Neurosurgery &middot;
-                                AIIMS Delhi</span></div>
-                        <div class="expertise-chips"><span class="e-chip">Craniotomy</span><span class="e-chip">Spine
-                                Surgery</span><span class="e-chip">Tumours</span></div>
-
-                        <div class="doc-foot">
-                            <a href="doctor-detail.html" class="btn-know">Know More <i
-                                    data-lucide="arrow-right"></i></a>
-                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
-                        </div>
+                    <div class="doc-info">
+                        <h3>Dr. Naresh Nayak</h3>
+                        <div class="doc-spec">Neurology</div>
+                        <div class="doc-exp">MS, MCh Neurosurgery · 17 Yrs Exp.</div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
 
                 <!-- ── UROLOGY ── -->
                 <div class="doc-card fade-up" data-dept="urology"
                     data-name="dr prakash nair urologist endourologist stones">
-                    <div class="doc-photo">
-                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=500&h=520&fit=crop&crop=faces,top"
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=460&fit=crop&crop=faces,top"
                             alt="Dr. Prakash Nair" />
-                        <div class="photo-overlay"></div>
-                        <div class="dept-pill pill-urology"><i data-lucide="activity"></i> Urology</div>
-                        <div class="exp-badge">
-                            <div class="num">16</div><small>Yrs Exp</small>
-                        </div>
-                        <div class="photo-name">
-                            <h3>Dr. Prakash Nair</h3>
-                            <div class="role">Senior Urologist & Endourologist</div>
-                        </div>
+                        <div class="doc-ph-overlay"></div>
                     </div>
-                    <div class="doc-body">
-                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MS, MCh Urology &middot; SGPGI
-                                Lucknow</span></div>
-                        <div class="expertise-chips"><span class="e-chip">Kidney Stones</span><span
-                                class="e-chip">TURP</span><span class="e-chip">Uro-Oncology</span><span
-                                class="e-chip">PCNL</span></div>
-
-                        <div class="doc-foot">
-                            <a href="doctor-detail.html" class="btn-know">Know More <i
-                                    data-lucide="arrow-right"></i></a>
-                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
-                        </div>
+                    <div class="doc-info">
+                        <h3>Dr. Prakash Nair</h3>
+                        <div class="doc-spec">Urology</div>
+                        <div class="doc-exp">MS, MCh Urology · 16 Yrs Exp.</div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
 
                 <div class="doc-card fade-up" data-dept="urology"
                     data-name="dr ananya bhat urologist female incontinence">
-                    <div class="doc-photo">
-                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=500&h=520&fit=crop&crop=faces,top"
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=460&fit=crop&crop=faces,top"
                             alt="Dr. Ananya Bhat" />
-                        <div class="photo-overlay"></div>
-                        <div class="dept-pill pill-urology"><i data-lucide="activity"></i> Urology</div>
-                        <div class="exp-badge">
-                            <div class="num">9</div><small>Yrs Exp</small>
-                        </div>
-                        <div class="photo-name">
-                            <h3>Dr. Ananya Bhat</h3>
-                            <div class="role">Consultant Urologist</div>
-                        </div>
+                        <div class="doc-ph-overlay"></div>
                     </div>
-                    <div class="doc-body">
-                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MS, DNB Urology &middot; KMC
-                                Manipal</span></div>
-                        <div class="expertise-chips"><span class="e-chip">Female Urology</span><span
-                                class="e-chip">Incontinence</span><span class="e-chip">Cystoscopy</span></div>
-
-                        <div class="doc-foot">
-                            <a href="doctor-detail.html" class="btn-know">Know More <i
-                                    data-lucide="arrow-right"></i></a>
-                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
-                        </div>
+                    <div class="doc-info">
+                        <h3>Dr. Ananya Bhat</h3>
+                        <div class="doc-spec">Urology</div>
+                        <div class="doc-exp">MS, DNB Urology · 9 Yrs Exp.</div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
 
                 <!-- ── GASTROENTEROLOGY ── -->
                 <div class="doc-card fade-up" data-dept="gastro"
                     data-name="dr vivek shetty gastroenterologist hepatologist">
-                    <div class="doc-photo">
-                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&h=520&fit=crop&crop=faces,top"
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=460&fit=crop&crop=faces,top"
                             alt="Dr. Vivek Shetty" />
-                        <div class="photo-overlay"></div>
-                        <div class="dept-pill pill-gastro"><i data-lucide="stethoscope"></i> Gastroenterology</div>
-                        <div class="exp-badge">
-                            <div class="num">21</div><small>Yrs Exp</small>
-                        </div>
-                        <div class="photo-name">
-                            <h3>Dr. Vivek Shetty</h3>
-                            <div class="role">Senior Gastroenterologist & Hepatologist</div>
-                        </div>
+                        <div class="doc-ph-overlay"></div>
                     </div>
-                    <div class="doc-body">
-                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD, DM Gastroenterology &middot;
-                                CMC Vellore</span></div>
-                        <div class="expertise-chips"><span class="e-chip">Hepatology</span><span
-                                class="e-chip">ERCP</span><span class="e-chip">IBD</span><span
-                                class="e-chip">Endoscopy</span></div>
-
-                        <div class="doc-foot">
-                            <a href="doctor-detail.html" class="btn-know">Know More <i
-                                    data-lucide="arrow-right"></i></a>
-                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
-                        </div>
+                    <div class="doc-info">
+                        <h3>Dr. Vivek Shetty</h3>
+                        <div class="doc-spec">Gastroenterology</div>
+                        <div class="doc-exp">MD, DM Gastroenterology · 21 Yrs Exp.</div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
 
                 <div class="doc-card fade-up" data-dept="gastro"
                     data-name="dr rekha menon gastroenterologist liver colonoscopy">
-                    <div class="doc-photo">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&h=520&fit=crop&crop=faces,top"
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=460&fit=crop&crop=faces,top"
                             alt="Dr. Rekha Menon" />
-                        <div class="photo-overlay"></div>
-                        <div class="dept-pill pill-gastro"><i data-lucide="stethoscope"></i> Gastroenterology</div>
-                        <div class="exp-badge">
-                            <div class="num">13</div><small>Yrs Exp</small>
-                        </div>
-                        <div class="photo-name">
-                            <h3>Dr. Rekha Menon</h3>
-                            <div class="role">Consultant Gastroenterologist</div>
-                        </div>
+                        <div class="doc-ph-overlay"></div>
                     </div>
-                    <div class="doc-body">
-                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD, DNB Gastroenterology
-                                &middot; Amrita Kochi</span></div>
-                        <div class="expertise-chips"><span class="e-chip">Endoscopy</span><span class="e-chip">Liver
-                                Disease</span><span class="e-chip">Colonoscopy</span></div>
-
-                        <div class="doc-foot">
-                            <a href="doctor-detail.html" class="btn-know">Know More <i
-                                    data-lucide="arrow-right"></i></a>
-                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
-                        </div>
+                    <div class="doc-info">
+                        <h3>Dr. Rekha Menon</h3>
+                        <div class="doc-spec">Gastroenterology</div>
+                        <div class="doc-exp">MD, DNB Gastroenterology · 13 Yrs Exp.</div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
 
                 <!-- ── PEDIATRICS ── -->
                 <div class="doc-card fade-up" data-dept="pediatrics"
                     data-name="dr nandita alva neonatologist nicu newborn">
-                    <div class="doc-photo">
-                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=500&h=520&fit=crop&crop=faces,top"
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=460&fit=crop&crop=faces,top"
                             alt="Dr. Nandita Alva" />
-                        <div class="photo-overlay"></div>
-                        <div class="dept-pill pill-pediatrics"><i data-lucide="smile"></i> Pediatrics</div>
-                        <div class="exp-badge">
-                            <div class="num">17</div><small>Yrs Exp</small>
-                        </div>
-                        <div class="photo-name">
-                            <h3>Dr. Nandita Alva</h3>
-                            <div class="role">Senior Neonatologist</div>
-                        </div>
+                        <div class="doc-ph-overlay"></div>
                     </div>
-                    <div class="doc-body">
-                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD Pediatrics, Fellowship
-                                Neonatology &middot; AIIMS</span></div>
-                        <div class="expertise-chips"><span class="e-chip">NICU</span><span class="e-chip">Premature
-                                Babies</span><span class="e-chip">Neonatal Sepsis</span></div>
-
-                        <div class="doc-foot">
-                            <a href="doctor-detail.html" class="btn-know">Know More <i
-                                    data-lucide="arrow-right"></i></a>
-                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
-                        </div>
+                    <div class="doc-info">
+                        <h3>Dr. Nandita Alva</h3>
+                        <div class="doc-spec">Pediatrics</div>
+                        <div class="doc-exp">MD Pediatrics, Fellowship Neonatology · 17 Yrs Exp.</div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
 
                 <div class="doc-card fade-up" data-dept="pediatrics"
                     data-name="dr girish shenoy pediatrician child fever vaccination">
-                    <div class="doc-photo">
-                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&h=520&fit=crop&crop=faces,top"
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=460&fit=crop&crop=faces,top"
                             alt="Dr. Girish Shenoy" />
-                        <div class="photo-overlay"></div>
-                        <div class="dept-pill pill-pediatrics"><i data-lucide="smile"></i> Pediatrics</div>
-                        <div class="exp-badge">
-                            <div class="num">14</div><small>Yrs Exp</small>
-                        </div>
-                        <div class="photo-name">
-                            <h3>Dr. Girish Shenoy</h3>
-                            <div class="role">Consultant Pediatrician</div>
-                        </div>
+                        <div class="doc-ph-overlay"></div>
                     </div>
-                    <div class="doc-body">
-                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD Pediatrics, DCH &middot; KMC
-                                Manipal Hospitals</span></div>
-                        <div class="expertise-chips"><span class="e-chip">Respiratory</span><span
-                                class="e-chip">Fever</span><span class="e-chip">Vaccinations</span><span
-                                class="e-chip">Nutrition</span></div>
-
-                        <div class="doc-foot">
-                            <a href="doctor-detail.html" class="btn-know">Know More <i
-                                    data-lucide="arrow-right"></i></a>
-                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
-                        </div>
+                    <div class="doc-info">
+                        <h3>Dr. Girish Shenoy</h3>
+                        <div class="doc-spec">Pediatrics</div>
+                        <div class="doc-exp">MD Pediatrics, DCH · 14 Yrs Exp.</div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
 
                 <div class="doc-card fade-up" data-dept="pediatrics"
                     data-name="dr anjali krishnan developmental pediatrician autism adhd">
-                    <div class="doc-photo">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&h=520&fit=crop&crop=faces,top"
+                    <div class="doc-ph">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=460&fit=crop&crop=faces,top"
                             alt="Dr. Anjali Krishnan" />
-                        <div class="photo-overlay"></div>
-                        <div class="dept-pill pill-pediatrics"><i data-lucide="smile"></i> Pediatrics</div>
-                        <div class="exp-badge">
-                            <div class="num">10</div><small>Yrs Exp</small>
-                        </div>
-                        <div class="photo-name">
-                            <h3>Dr. Anjali Krishnan</h3>
-                            <div class="role">Developmental Pediatrician</div>
-                        </div>
+                        <div class="doc-ph-overlay"></div>
                     </div>
-                    <div class="doc-body">
-                        <div class="qual-row"><i data-lucide="graduation-cap"></i><span>MD Pediatrics, Fellowship Dev.
-                                Peds &middot; NIMHANS</span></div>
-                        <div class="expertise-chips"><span class="e-chip">Autism</span><span
-                                class="e-chip">ADHD</span><span class="e-chip">Dev. Delay</span><span
-                                class="e-chip">Speech</span></div>
-
-                        <div class="doc-foot">
-                            <a href="doctor-detail.html" class="btn-know">Know More <i
-                                    data-lucide="arrow-right"></i></a>
-                            <a href="contact.html" class="btn-call-sm"><i data-lucide="calendar-check"></i></a>
-                        </div>
+                    <div class="doc-info">
+                        <h3>Dr. Anjali Krishnan</h3>
+                        <div class="doc-spec">Pediatrics</div>
+                        <div class="doc-exp">MD Pediatrics, Fellowship Developmental Pediatrics · 10 Yrs Exp.</div>
+                        <a href="doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
 
