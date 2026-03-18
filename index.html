@@ -484,7 +484,7 @@
         }
 
         .slide-1 .slide-title em {
-            color: var(--gold-light);
+            color: #7ecbff;
         }
 
         .slide-2 .slide-title em {
@@ -492,11 +492,11 @@
         }
 
         .slide-3 .slide-title em {
-            color: #7de8a8;
+            color: #7ecbff;
         }
 
         .slide-4 .slide-title em {
-            color: var(--gold-light);
+            color: #7ecbff;
         }
 
         .slide-desc {
@@ -531,11 +531,6 @@
         .btn-primary svg {
             width: 16px;
             height: 16px;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 22px rgba(11, 121, 170, .4);
         }
 
         .btn-outline-w {
@@ -692,7 +687,7 @@
             align-items: center;
             gap: 9px;
             color: rgba(255, 255, 255, .72);
-            font-size: 13px;
+            font-size: 14px;
             text-decoration: none;
         }
 
@@ -1346,7 +1341,7 @@
    BLOGS SECTION
 ═══════════════════════════════════ */
         .blogs-sec {
-            background: var(--cream);
+            background: #fff;
             padding: 88px 28px;
         }
 
@@ -1793,6 +1788,133 @@
             transition-delay: .48s
         }
 
+        /* ── NUMBERS STRIP ── */
+        .numbers-strip {
+            background: #fff;
+            box-shadow: 0 4px 30px rgba(10, 31, 60, .08);
+            padding-top: 56px;
+        }
+
+        .numbers-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .num-cell {
+            padding: 32px 24px;
+            text-align: center;
+            border-right: 1px solid rgba(10, 31, 60, .08);
+            border-bottom: 3px solid transparent;
+            transition: all .3s;
+        }
+
+        .num-cell:last-child {
+            border-right: none;
+        }
+
+        .num-cell .big {
+            font-family: 'Poppins', sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1;
+        }
+
+        .num-cell .big span {
+            color: var(--teal);
+        }
+
+        .num-cell p {
+            font-size: 13px;
+            color: var(--gray-mid);
+            margin-top: 7px;
+            font-weight: 500;
+        }
+
+        /* ── FAQ SECTION ── */
+        .faq-sec {
+            padding: 80px 28px 90px;
+            background: var(--cream);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 44px;
+        }
+
+        .faq-item {
+            background: #fff;
+            border-radius: 18px;
+            border: 1.5px solid rgba(10, 31, 60, .08);
+            overflow: hidden;
+            transition: box-shadow .3s;
+        }
+
+        .faq-q {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 20px 22px;
+            cursor: pointer;
+        }
+
+        .faq-q span {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--navy);
+            line-height: 1.4;
+        }
+
+        .faq-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all .3s;
+        }
+
+        .faq-icon svg {
+            width: 14px;
+            height: 14px;
+            color: var(--teal);
+            transition: transform .3s;
+        }
+
+        .faq-item.open .faq-icon {
+            background: var(--teal);
+        }
+
+        .faq-item.open .faq-icon svg {
+            color: #fff;
+            transform: rotate(45deg);
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .35s ease, padding .35s ease;
+        }
+
+        .faq-a p {
+            font-size: 14px;
+            color: #4a5d70;
+            line-height: 1.78;
+            padding: 0 22px 20px;
+        }
+
+        .faq-item.open .faq-a {
+            max-height: 300px;
+        }
+
         /* ═══════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════ */
@@ -1872,9 +1994,9 @@
                 padding: 60px 20px;
             }
 
-            .trust-inner {
+            /* .trust-inner {
                 justify-content: center;
-            }
+            } */
 
             .t-div {
                 display: none;
@@ -1887,6 +2009,10 @@
 
             .slide-stats {
                 gap: 16px;
+            }
+
+            .faq-sec {
+                padding: 52px 20px 70px;
             }
 
         }
@@ -2051,7 +2177,7 @@
                             Appointment</a>
                         <a href="about.html" class="btn-outline-w"><i data-lucide="play-circle"></i> Our Story</a>
                     </div>
-                    <div class="slide-stats">
+                    <!-- <div class="slide-stats">
                         <div class="s-stat">
                             <div class="num">25<span>+</span></div>
                             <p>Years of Excellence</p>
@@ -2068,7 +2194,7 @@
                             <div class="num">7<span>+</span></div>
                             <p>Specialties</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -2088,7 +2214,7 @@
                         <a href="contact.html" class="btn-outline-w"><i data-lucide="calendar-check"></i> Book
                             Appointment</a>
                     </div>
-                    <div class="slide-stats">
+                    <!-- <div class="slide-stats">
                         <div class="s-stat">
                             <div class="num">5000<span>+</span></div>
                             <p>Cardiac Procedures</p>
@@ -2101,7 +2227,7 @@
                             <div class="num">8<span>+</span></div>
                             <p>Cardiologists</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -2120,7 +2246,7 @@
                             Services</a>
                         <a href="pediatrics.html" class="btn-outline-w"><i data-lucide="smile"></i> Pediatric Care</a>
                     </div>
-                    <div class="slide-stats">
+                    <!-- <div class="slide-stats">
                         <div class="s-stat">
                             <div class="num">3000<span>+</span></div>
                             <p>Deliveries Annually</p>
@@ -2133,7 +2259,7 @@
                             <div class="num">24<span>/7</span></div>
                             <p>Gynaecologist On-Call</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -2153,7 +2279,7 @@
                         <a href="https://maps.app.goo.gl/PgNGSG4DAPqkmZ1C6" target="_blank" class="btn-outline-w"><i
                                 data-lucide="map-pin"></i> Get Directions</a>
                     </div>
-                    <div class="slide-stats">
+                    <!-- <div class="slide-stats">
                         <div class="s-stat">
                             <div class="num">24<span>/7</span></div>
                             <p>Emergency Available</p>
@@ -2166,7 +2292,7 @@
                             <div class="num">5 min</div>
                             <p>Avg. Triage Time</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -2214,7 +2340,7 @@
 
                 <!-- Left: Image -->
                 <div class="why-visual fade-up">
-                    <img src="./T2.png" alt="MNR Hospital commitment to excellence" />
+                    <img src="./mnr-open-img.png" alt="MNR Hospital commitment to excellence" />
                 </div>
 
                 <!-- Right: Features -->
@@ -2264,6 +2390,28 @@
         </div>
     </section>
 
+    <!-- NUMBERS STRIP -->
+    <div class="numbers-strip">
+        <div class="numbers-inner">
+            <div class="num-cell">
+                <div class="big">50<span>+</span></div>
+                <p>Expert Specialists</p>
+            </div>
+            <div class="num-cell">
+                <div class="big">20<span>+</span></div>
+                <p>Medical Departments</p>
+            </div>
+            <div class="num-cell">
+                <div class="big">900<span>+</span></div>
+                <p>Hospital Beds</p>
+            </div>
+            <div class="num-cell">
+                <div class="big">24<span>/7</span></div>
+                <p>Emergency Services</p>
+            </div>
+        </div>
+    </div>
+
     <!-- ═══════════════════════════════════
      DEPARTMENTS
 ═══════════════════════════════════ -->
@@ -2273,7 +2421,8 @@
                 <div>
                     <span class="s-tag">Specialties</span>
                     <h2 class="s-title">Our <em>Departments</em></h2>
-                    <p class="s-desc">Specialized care across 7 medical disciplines, delivered by the best in the field.
+                    <p class="s-desc">Specialized care across 20+ medical disciplines, delivered by the best in the
+                        field.
                     </p>
                 </div>
                 <a href="departments.html" class="btn-primary" style="flex-shrink:0"><i data-lucide="arrow-right"></i>
@@ -2324,6 +2473,12 @@
                     <div class="d-ico"><i data-lucide="smile"></i></div>
                     <h3>Pediatrics</h3>
                     <p>Compassionate expert care for children from newborns to adolescents, with a dedicated NICU.</p>
+                    <div class="d-more">Learn More <i data-lucide="arrow-right"></i></div>
+                </a>
+                <a href="orthopedics.html" class="dept-card fade-up">
+                    <div class="d-ico"><i data-lucide="bone"></i></div>
+                    <h3>Orthopedics</h3>
+                    <p>Advanced care for bones, joints, and spine from fractures to joint replacement and rehab.</p>
                     <div class="d-more">Learn More <i data-lucide="arrow-right"></i></div>
                 </a>
             </div>
@@ -2464,6 +2619,22 @@
     </section>
 
     <!-- ═══════════════════════════════════
+     ACCREDITATION
+═══════════════════════════════════ -->
+    <div class="accred">
+        <div class="accred-in">
+            <p>Accreditations &amp; Recognitions</p>
+            <div class="accred-row">
+                <div class="a-badge"><i data-lucide="badge-check"></i> NABH Accredited</div>
+                <div class="a-badge"><i data-lucide="award"></i> ISO 9001:2015</div>
+                <div class="a-badge"><i data-lucide="shield-check"></i> IMA Recognized</div>
+                <div class="a-badge"><i data-lucide="star"></i> Karnataka Govt. Approved</div>
+                <div class="a-badge"><i data-lucide="check-circle"></i> Ayushman Bharat</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
      APPOINTMENT BANNER
 ═══════════════════════════════════ -->
     <div class="appt">
@@ -2472,7 +2643,7 @@
                 <h2>Ready to Take the Next Step Towards Better Health?</h2>
                 <p>Book your appointment today and experience compassionate, expert care at MNR Hospital — Mangalore's
                     most trusted multi-specialty hospital.</p>
-                <a href="contact.html" class="btn-white"><i data-lucide="calendar-check"></i> Schedule Appointment</a>
+                <a href="contact.html" class="btn-white"><i data-lucide="calendar-check"></i> Book Appointment</a>
             </div>
             <div class="appt-acts">
                 <a href="tel:+919876543210" class="appt-row" aria-label="Call MNR Hospital">
@@ -2539,6 +2710,93 @@
                         <div><strong>Vinayak Kamath</strong><span>Patient's Family, Bajpe</span></div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-sec">
+        <div class="si">
+            <div style="text-align:center;max-width:600px;margin:0 auto 0">
+                <span class="s-tag">FAQs</span>
+                <h2 class="s-title">Frequently Asked <em>Questions</em></h2>
+                <p style="font-size:15px;color:var(--gray-mid);line-height:1.75">Quick answers to the most common
+                    questions patients ask before visiting MNR Hospital.</p>
+            </div>
+            <div class="faq-grid">
+
+                <div class="faq-item fade-up">
+                    <div class="faq-q">
+                        <span>Do I need a prior appointment to visit the OPD?</span>
+                        <div class="faq-icon"><i data-lucide="plus"></i></div>
+                    </div>
+                    <div class="faq-a">
+                        <p>Walk-ins are welcome at our OPD during working hours. However, booking an appointment online
+                            or by phone ensures you are attended to faster and reduces waiting time, especially for
+                            specialist consultations.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up">
+                    <div class="faq-q">
+                        <span>What documents should I bring for my first visit?</span>
+                        <div class="faq-icon"><i data-lucide="plus"></i></div>
+                    </div>
+                    <div class="faq-a">
+                        <p>Please bring a government-issued photo ID, any previous medical records, lab reports, imaging
+                            scans, and a list of current medications. This helps our doctors understand your medical
+                            history immediately.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up">
+                    <div class="faq-q">
+                        <span>Does MNR Hospital accept insurance?</span>
+                        <div class="faq-icon"><i data-lucide="plus"></i></div>
+                    </div>
+                    <div class="faq-a">
+                        <p>Yes, we are empanelled with most major insurance providers and Third Party Administrators
+                            (TPAs). Please contact us with your insurer's name to confirm coverage before your visit. We
+                            also accept Ayushman Bharat.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up">
+                    <div class="faq-q">
+                        <span>How do I reach MNR Hospital from Mangalore city?</span>
+                        <div class="faq-icon"><i data-lucide="plus"></i></div>
+                    </div>
+                    <div class="faq-a">
+                        <p>We are located at Kolambe, behind Bajpe Airport on the NH-66. From Mangalore city centre it
+                            is approximately 12 km. Auto-rickshaws, taxis, and city buses are available. Free parking is
+                            available on campus.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up">
+                    <div class="faq-q">
+                        <span>What is the emergency contact number?</span>
+                        <div class="faq-icon"><i data-lucide="plus"></i></div>
+                    </div>
+                    <div class="faq-a">
+                        <p>Our emergency and casualty department is reachable 24 hours a day, 7 days a week at
+                            9876543210. We are equipped for cardiac emergencies, trauma, and critical care round the
+                            clock.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up">
+                    <div class="faq-q">
+                        <span>Can I get a second opinion at MNR Hospital?</span>
+                        <div class="faq-icon"><i data-lucide="plus"></i></div>
+                    </div>
+                    <div class="faq-a">
+                        <p>Absolutely. Our senior specialists are available for second opinion consultations. Please
+                            bring all existing reports, imaging, and a referral if available. Select "Second Opinion"
+                            when booking your appointment.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -2648,22 +2906,6 @@
             </div>
         </div>
     </section>
-
-    <!-- ═══════════════════════════════════
-     ACCREDITATION
-═══════════════════════════════════ -->
-    <div class="accred">
-        <div class="accred-in">
-            <p>Accreditations &amp; Recognitions</p>
-            <div class="accred-row">
-                <div class="a-badge"><i data-lucide="badge-check"></i> NABH Accredited</div>
-                <div class="a-badge"><i data-lucide="award"></i> ISO 9001:2015</div>
-                <div class="a-badge"><i data-lucide="shield-check"></i> IMA Recognized</div>
-                <div class="a-badge"><i data-lucide="star"></i> Karnataka Govt. Approved</div>
-                <div class="a-badge"><i data-lucide="check-circle"></i> Ayushman Bharat</div>
-            </div>
-        </div>
-    </div>
 
     <!-- ═══════════════════════════════════
      FOOTER
@@ -2863,6 +3105,15 @@
             });
         }, { threshold: 0.12 });
         document.querySelectorAll('.fade-up').forEach(function (el) { observer.observe(el); });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-item').forEach(function (item) {
+            item.querySelector('.faq-q').addEventListener('click', function () {
+                var isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item.open').forEach(function (o) { o.classList.remove('open'); });
+                if (!isOpen) item.classList.add('open');
+            });
+        });
     </script>
 </body>
 
