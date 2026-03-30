@@ -467,7 +467,7 @@
         .page-hero {
             margin-top: 72px;
             background: linear-gradient(135deg, #061529 0%, #0a2540 50%, #0d3d6b 100%);
-            padding: 90px 28px 100px;
+            padding: 90px 28px 50px;
             position: relative;
             overflow: hidden;
         }
@@ -548,7 +548,6 @@
             color: #fff;
             line-height: 1.12;
             margin-bottom: 20px;
-            max-width: 700px;
         }
 
         .page-hero-inner h1 em {
@@ -560,7 +559,6 @@
             font-size: 17px;
             color: rgba(255, 255, 255, .68);
             line-height: 1.75;
-            max-width: 560px;
         }
 
 
@@ -617,6 +615,7 @@
 
         /* Floating icon badge on image */
         .dept-icon-badge {
+            background-color: var(--teal);
             position: absolute;
             bottom: 20px;
             left: 28px;
@@ -775,71 +774,6 @@
 
         .dept-card:hover::after {
             opacity: 1;
-        }
-
-        /* ── FEATURE HIGHLIGHT STRIP ── */
-        .highlight-strip {
-            background: #fff;
-            padding: 60px 28px;
-        }
-
-        .highlight-inner {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
-        }
-
-        .h-cell {
-            padding: 32px 28px;
-            text-align: center;
-            border-right: 1px solid rgba(10, 31, 60, .08);
-            transition: all .3s;
-        }
-
-        .h-cell:last-child {
-            border-right: none;
-        }
-
-        .h-cell:hover {
-            background: var(--gray-light);
-        }
-
-        .h-ico {
-            width: 52px;
-            height: 52px;
-            border-radius: 16px;
-            margin: 0 auto 16px;
-            background: linear-gradient(135deg, var(--teal), var(--teal-light));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .h-ico svg {
-            width: 22px;
-            height: 22px;
-            color: #fff;
-        }
-
-        .h-cell .big {
-            font-family: 'Poppins', sans-serif;
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--navy);
-            line-height: 1;
-        }
-
-        .h-cell .big span {
-            color: var(--teal);
-        }
-
-        .h-cell p {
-            font-size: 13px;
-            color: var(--gray-mid);
-            margin-top: 6px;
-            font-weight: 500;
         }
 
         /* ── CALL TO ACTION ── */
@@ -1202,9 +1136,6 @@
                 padding: 36px 28px;
             }
 
-            .highlight-strip {
-                padding: 40px 20px;
-            }
         }
 
         @media (max-width:580px) {
@@ -1341,34 +1272,6 @@
             <div>
                 <p>From cardiology to pediatrics — MNR Hospital houses 20+ world-class departments under one roof, each
                     led by senior specialists and supported by the latest medical technology.</p>
-            </div>
-        </div>
-    </div>
-
-
-
-    <!-- HIGHLIGHT STRIP -->
-    <div class="highlight-strip">
-        <div class="highlight-inner si">
-            <div class="h-cell">
-                <div class="h-ico"><i data-lucide="users"></i></div>
-                <div class="big">50<span>+</span></div>
-                <p>Specialist Doctors</p>
-            </div>
-            <div class="h-cell">
-                <div class="h-ico"><i data-lucide="layout-grid"></i></div>
-                <div class="big">20<span>+</span></div>
-                <p>Medical Departments</p>
-            </div>
-            <div class="h-cell">
-                <div class="h-ico"><i data-lucide="scan-line"></i></div>
-                <div class="big">15<span>+</span></div>
-                <p>Advanced Diagnostics</p>
-            </div>
-            <div class="h-cell">
-                <div class="h-ico"><i data-lucide="clock"></i></div>
-                <div class="big">24<span>/7</span></div>
-                <p>Emergency & ICU</p>
             </div>
         </div>
     </div>
