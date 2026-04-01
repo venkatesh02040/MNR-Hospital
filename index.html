@@ -10,7 +10,152 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700&family=DM+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* ── Hide Google's default top banner ── */
+        .goog-te-banner-frame,
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        }
+        body { top: 0 !important; }
+
+        /* ── Hide Google branding & the real widget (we drive it via JS) ── */
+        .goog-logo-link,
+        .goog-te-gadget span { display: none !important; }
+        .goog-te-gadget { font-size: 0 !important; }
+
+        /* The real Google widget is invisible — it sits off-screen,
+           we only use it programmatically */
+        #google_translate_element {
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* ════════════════════════════════════════
+           FLOATING TRANSLATE BUTTON
+           Works on BOTH desktop & mobile
+        ════════════════════════════════════════ */
+
+        /* Floating globe button */
+        .float-translate-btn {
+            position: fixed;
+            bottom: 144px; /* stacked above whatsapp (86px) and scroll-top (26px) */
+            right: 24px;
+            z-index: 9998;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--teal, #0b79aa);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .float-translate-btn svg {
+            width: 22px;
+            height: 22px;
+            pointer-events: none;
+        }
+
+        /* Dropdown panel that opens above the button */
+        .float-translate-panel {
+            position: fixed;
+            bottom: 204px;
+            right: 20px;
+            z-index: 9997;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(10, 31, 60, 0.18);
+            border: 1px solid rgba(10, 31, 60, 0.08);
+            padding: 10px;
+            width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+        }
+        .float-translate-panel.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Panel header */
+        .ftp-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 8px 10px;
+            border-bottom: 1px solid rgba(10, 31, 60, 0.07);
+            margin-bottom: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--navy, #0a1f3c);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .ftp-header svg {
+            width: 14px;
+            height: 14px;
+            color: var(--teal, #0b79aa);
+        }
+
+        /* The language select inside the panel */
+        .ftp-select {
+            width: 100%;
+            padding: 9px 12px;
+            border-radius: 10px;
+            border: 1.5px solid rgba(10, 31, 60, 0.12);
+            background: #f0f4f8;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: #1a2d42;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%230b79aa' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-color: #f0f4f8;
+            padding-right: 32px;
+        }
+        .ftp-select:focus {
+            border-color: var(--teal, #0b79aa);
+            background-color: #fff;
+        }
+        .ftp-select option { color: #1a2d42; background: #fff; }
+
+        /* Active language badge shown on the button when non-English */
+        .float-translate-btn .lang-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--gold, #c8992a);
+            color: #fff;
+            font-size: 8px;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            padding: 2px 5px;
+            border-radius: 20px;
+            line-height: 1;
+            display: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .float-translate-btn.active-lang .lang-badge { display: block; }
+        .float-translate-btn { position: fixed; } /* ensure badge absolute works */
+    </style>
     <style>
         
         footer .nav-logo{
@@ -2509,7 +2654,7 @@
             <div class="doc-grid">
                 <div class="doc-card fade-up">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=460&fit=crop&crop=faces,top"
+                        <img src="./doctor-placeholder.jpeg"
                             alt="Dr. Rajesh Sharma" />
                         <div class="doc-ph-overlay"></div>
                     </div>
@@ -2522,7 +2667,7 @@
                 </div>
                 <div class="doc-card fade-up">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=460&fit=crop&crop=faces,top"
+                        <img src="./doctor-placeholder.jpeg"
                             alt="Dr. Priya Menon" />
                         <div class="doc-ph-overlay"></div>
                     </div>
@@ -2535,7 +2680,7 @@
                 </div>
                 <div class="doc-card fade-up">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=460&fit=crop&crop=faces,top"
+                        <img src="./doctor-placeholder.jpeg"
                             alt="Dr. Arvind Kumar" />
                         <div class="doc-ph-overlay"></div>
                     </div>
@@ -2548,7 +2693,7 @@
                 </div>
                 <div class="doc-card fade-up">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=460&fit=crop&crop=faces,top"
+                        <img src="./doctor-placeholder.jpeg"
                             alt="Dr. Sneha Nair" />
                         <div class="doc-ph-overlay"></div>
                     </div>
@@ -2990,6 +3135,52 @@
     <!-- Scroll to top -->
     <button class="scroll-top" id="scrollTop"><i data-lucide="chevron-up"></i></button>
 
+    <!-- ── FLOATING TRANSLATE BUTTON (desktop + mobile) ── -->
+    <button class="float-translate-btn" id="floatTranslateBtn" aria-label="Translate page" title="Translate">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        <span class="lang-badge" id="langBadge">EN</span>
+    </button>
+
+    <div class="float-translate-panel" id="floatTranslatePanel">
+        <div class="ftp-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            Select Language
+        </div>
+        <select class="ftp-select" id="ftpSelect" aria-label="Choose language">
+            <option value="">🌐 English (Default)</option>
+            <option value="ar">🇸🇦 Arabic</option>
+            <option value="hi">🇮🇳 Hindi</option>
+            <option value="kn">🇮🇳 Kannada</option>
+            <option value="ml">🇮🇳 Malayalam</option>
+            <option value="ta">🇮🇳 Tamil</option>
+            <option value="te">🇮🇳 Telugu</option>
+            <option value="fr">🇫🇷 French</option>
+            <option value="de">🇩🇪 German</option>
+            <option value="zh-CN">🇨🇳 Chinese</option>
+            <option value="ja">🇯🇵 Japanese</option>
+            <option value="ko">🇰🇷 Korean</option>
+            <option value="ru">🇷🇺 Russian</option>
+            <option value="es">🇪🇸 Spanish</option>
+            <option value="pt">🇵🇹 Portuguese</option>
+            <option value="it">🇮🇹 Italian</option>
+            <option value="nl">🇳🇱 Dutch</option>
+            <option value="pl">🇵🇱 Polish</option>
+            <option value="tr">🇹🇷 Turkish</option>
+            <option value="ms">🇲🇾 Malay</option>
+            <option value="id">🇮🇩 Indonesian</option>
+        </select>
+    </div>
+
     <!-- ═══════════════════════════════════
      JAVASCRIPT
 ═══════════════════════════════════ -->
@@ -3163,6 +3354,91 @@
             }
         }
     </style>
+    <script type="text/javascript">
+        /* ════════════════════════════════════════════════════
+           GOOGLE TRANSLATE — COOKIE-BASED APPROACH
+           
+           How Google Translate actually works:
+           It reads a cookie called "googtrans" with the format
+           "/en/TARGET_LANG" e.g. "/en/hi" for Hindi.
+           Setting this cookie + reloading the page is the ONLY
+           100% reliable way to trigger translation — it works
+           identically on desktop and mobile with no race conditions.
+        ════════════════════════════════════════════════════ */
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'ar,hi,kn,ml,ta,te,fr,de,zh-CN,ja,ko,ru,es,pt,it,nl,pl,tr,ms,id',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        /* ── Helper: set the googtrans cookie on current domain + / ── */
+        function setGoogTransCookie(lang) {
+            var value = lang ? '/en/' + lang : '/en/en';
+            /* Set on domain root — required for Google Translate to pick it up */
+            document.cookie = 'googtrans=' + value + '; path=/';
+            document.cookie = 'googtrans=' + value + '; path=/; domain=' + location.hostname;
+        }
+
+        /* ── Helper: read current googtrans cookie ── */
+        function getGoogTransLang() {
+            var match = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/([^;]+)/);
+            return match ? match[1] : '';
+        }
+
+        /* ── Floating button UI logic ── */
+        document.addEventListener('DOMContentLoaded', function () {
+            var btn    = document.getElementById('floatTranslateBtn');
+            var panel  = document.getElementById('floatTranslatePanel');
+            var select = document.getElementById('ftpSelect');
+            var badge  = document.getElementById('langBadge');
+
+            /* Restore badge state from cookie on page load */
+            var currentLang = getGoogTransLang();
+            if (currentLang && currentLang !== 'en') {
+                btn.classList.add('active-lang');
+                badge.textContent = currentLang.toUpperCase().slice(0, 2);
+                select.value = currentLang;
+            }
+
+            /* Toggle panel */
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                panel.classList.toggle('open');
+            });
+
+            /* Close on outside click */
+            document.addEventListener('click', function () {
+                panel.classList.remove('open');
+            });
+            panel.addEventListener('click', function (e) { e.stopPropagation(); });
+
+            /* ── Language change: set cookie → reload ── */
+            select.addEventListener('change', function () {
+                var lang = select.value;
+
+                if (!lang || lang === 'en') {
+                    /* Reset to English: clear the cookie */
+                    document.cookie = 'googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+                    document.cookie = 'googtrans=; path=/; domain=' + location.hostname + '; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+                } else {
+                    setGoogTransCookie(lang);
+                }
+
+                /* Reload — Google Translate reads the cookie on load */
+                location.reload();
+            });
+        });
+    </script>
+
+    <!-- Google Translate script — loads asynchronously -->
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    </script>
+
 </body>
 
 </html>

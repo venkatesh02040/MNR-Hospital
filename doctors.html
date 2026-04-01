@@ -10,12 +10,158 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700&family=DM+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        
-        footer .nav-logo{
-                filter: brightness(0) invert(1);
+        /* ── Hide Google's default top banner ── */
+        .goog-te-banner-frame,
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
         }
+        body { top: 0 !important; }
+
+        /* ── Hide Google branding & the real widget (we drive it via JS) ── */
+        .goog-logo-link,
+        .goog-te-gadget span { display: none !important; }
+        .goog-te-gadget { font-size: 0 !important; }
+
+        /* The real Google widget is invisible — it sits off-screen,
+           we only use it programmatically */
+        #google_translate_element {
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* ════════════════════════════════════════
+           FLOATING TRANSLATE BUTTON
+           Works on BOTH desktop & mobile
+        ════════════════════════════════════════ */
+
+        /* Floating globe button */
+        .float-translate-btn {
+            position: fixed;
+            bottom: 144px; /* stacked above whatsapp (86px) and scroll-top (26px) */
+            right: 24px;
+            z-index: 9998;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--teal, #0b79aa);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .float-translate-btn svg {
+            width: 22px;
+            height: 22px;
+            pointer-events: none;
+        }
+
+        /* Dropdown panel that opens above the button */
+        .float-translate-panel {
+            position: fixed;
+            bottom: 204px;
+            right: 20px;
+            z-index: 9997;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(10, 31, 60, 0.18);
+            border: 1px solid rgba(10, 31, 60, 0.08);
+            padding: 10px;
+            width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+        }
+        .float-translate-panel.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Panel header */
+        .ftp-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 8px 10px;
+            border-bottom: 1px solid rgba(10, 31, 60, 0.07);
+            margin-bottom: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--navy, #0a1f3c);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .ftp-header svg {
+            width: 14px;
+            height: 14px;
+            color: var(--teal, #0b79aa);
+        }
+
+        /* The language select inside the panel */
+        .ftp-select {
+            width: 100%;
+            padding: 9px 12px;
+            border-radius: 10px;
+            border: 1.5px solid rgba(10, 31, 60, 0.12);
+            background: #f0f4f8;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: #1a2d42;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%230b79aa' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-color: #f0f4f8;
+            padding-right: 32px;
+        }
+        .ftp-select:focus {
+            border-color: var(--teal, #0b79aa);
+            background-color: #fff;
+        }
+        .ftp-select option { color: #1a2d42; background: #fff; }
+
+        /* Active language badge shown on the button when non-English */
+        .float-translate-btn .lang-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--gold, #c8992a);
+            color: #fff;
+            font-size: 8px;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            padding: 2px 5px;
+            border-radius: 20px;
+            line-height: 1;
+            display: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .float-translate-btn.active-lang .lang-badge { display: block; }
+        .float-translate-btn { position: fixed; } /* ensure badge absolute works */
+    </style>
+    <style>
+
+        footer .nav-logo {
+            filter: brightness(0) invert(1);
+        }
+
         :root {
             --navy: #0a1f3c;
             --teal: #0b79aa;
@@ -415,33 +561,13 @@
             transform: translateY(0);
         }
 
-        .fade-up:nth-child(2) {
-            transition-delay: .08s
-        }
-
-        .fade-up:nth-child(3) {
-            transition-delay: .14s
-        }
-
-        .fade-up:nth-child(4) {
-            transition-delay: .21s
-        }
-
-        .fade-up:nth-child(5) {
-            transition-delay: .28s
-        }
-
-        .fade-up:nth-child(6) {
-            transition-delay: .35s
-        }
-
-        .fade-up:nth-child(7) {
-            transition-delay: .42s
-        }
-
-        .fade-up:nth-child(8) {
-            transition-delay: .49s
-        }
+        .fade-up:nth-child(2) { transition-delay: .08s }
+        .fade-up:nth-child(3) { transition-delay: .14s }
+        .fade-up:nth-child(4) { transition-delay: .21s }
+        .fade-up:nth-child(5) { transition-delay: .28s }
+        .fade-up:nth-child(6) { transition-delay: .35s }
+        .fade-up:nth-child(7) { transition-delay: .42s }
+        .fade-up:nth-child(8) { transition-delay: .49s }
 
         /* ── PAGE HERO ── */
         .page-hero {
@@ -481,7 +607,8 @@
             inset: 0;
             opacity: .035;
             pointer-events: none;
-            background-image: linear-gradient(rgba(255, 255, 255, .6) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .6) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(255, 255, 255, .6) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, .6) 1px, transparent 1px);
             background-size: 55px 55px;
         }
 
@@ -507,18 +634,14 @@
             transition: color .2s;
         }
 
-        .breadcrumb a:hover {
-            color: var(--teal-light);
-        }
+        .breadcrumb a:hover { color: var(--teal-light); }
 
         .breadcrumb svg {
             width: 13px;
             height: 13px;
         }
 
-        .breadcrumb span {
-            color: rgba(255, 255, 255, .9);
-        }
+        .breadcrumb span { color: rgba(255, 255, 255, .9); }
 
         .page-hero-inner h1 {
             font-family: 'Poppins', sans-serif;
@@ -613,9 +736,7 @@
             transition: border-color .2s;
         }
 
-        .search-box:focus-within {
-            border-color: var(--teal);
-        }
+        .search-box:focus-within { border-color: var(--teal); }
 
         .search-box svg {
             width: 15px;
@@ -634,9 +755,7 @@
             width: 100%;
         }
 
-        .search-box input::placeholder {
-            color: var(--gray-mid);
-        }
+        .search-box input::placeholder { color: var(--gray-mid); }
 
         /* ── DOCTORS GRID ── */
         .doctors-sec {
@@ -675,9 +794,7 @@
             transition: transform .4s ease;
         }
 
-        .doc-card:hover .doc-ph img {
-            transform: scale(1.08);
-        }
+        .doc-card:hover .doc-ph img { transform: scale(1.08); }
 
         .doc-ph-overlay {
             position: absolute;
@@ -723,43 +840,7 @@
             text-decoration: none;
         }
 
-        .btn-sm svg {
-            width: 13px;
-            height: 13px;
-        }
-
-        /* ── DEPT COLOR MAP ── */
-        .pill-cardiology {
-            background: linear-gradient(135deg, #c0392b, #e74c3c);
-        }
-
-        .pill-pulmonology {
-            background: linear-gradient(135deg, #2471a3, #3498db);
-        }
-
-        .pill-gynecology {
-            background: linear-gradient(135deg, #c0396b, #e84393);
-        }
-
-        .pill-neurology {
-            background: linear-gradient(135deg, #7d3c98, #9b59b6);
-        }
-
-        .pill-urology {
-            background: linear-gradient(135deg, #1f618d, #2980b9);
-        }
-
-        .pill-gastro {
-            background: linear-gradient(135deg, #d4890a, #f0a500);
-        }
-
-        .pill-pediatrics {
-            background: linear-gradient(135deg, #1d8348, #27ae60);
-        }
-
-        .pill-medicine {
-            background: linear-gradient(135deg, #0b79aa, #0b79aa);
-        }
+        .btn-sm svg { width: 13px; height: 13px; }
 
         /* ── NO RESULTS ── */
         .no-results {
@@ -857,10 +938,7 @@
             transition: all .3s;
         }
 
-        .btn-white svg {
-            width: 16px;
-            height: 16px;
-        }
+        .btn-white svg { width: 16px; height: 16px; }
 
         .btn-white:hover {
             transform: translateY(-2px);
@@ -881,10 +959,7 @@
             transition: all .3s;
         }
 
-        .btn-ghost-w svg {
-            width: 16px;
-            height: 16px;
-        }
+        .btn-ghost-w svg { width: 16px; height: 16px; }
 
         .btn-ghost-w:hover {
             border-color: #fff;
@@ -936,10 +1011,7 @@
             color: #fff;
         }
 
-        .f-socials a svg {
-            width: 15px;
-            height: 15px;
-        }
+        .f-socials a svg { width: 15px; height: 15px; }
 
         .f-col h4 {
             color: #fff;
@@ -962,9 +1034,7 @@
             transition: color .2s;
         }
 
-        .f-col ul a:hover {
-            color: var(--teal-light);
-        }
+        .f-col ul a:hover { color: var(--teal-light); }
 
         .f-cr {
             display: flex;
@@ -1010,11 +1080,7 @@
             text-decoration: none;
         }
 
-        .f-bottom a:hover {
-            color: var(--teal-light);
-        }
-
-
+        .f-bottom a:hover { color: var(--teal-light); }
 
         .scroll-top {
             position: fixed;
@@ -1031,129 +1097,54 @@
             display: flex;
             align-items: center;
             justify-content: center;
-
             opacity: 0;
             pointer-events: none;
             transition: all .3s;
         }
 
-        .scroll-top svg {
-            width: 18px;
-            height: 18px;
-        }
+        .scroll-top svg { width: 18px; height: 18px; }
 
         .scroll-top.visible {
             opacity: 1;
             pointer-events: all;
         }
 
-        .scroll-top:hover {
-            transform: translateY(-3px);
-        }
+        .scroll-top:hover { transform: translateY(-3px); }
 
         /* ── RESPONSIVE ── */
-
-        @media (max-width: 1400px) {
-            .c-arrow {
-                display: none;
-            }
-        }
+        @media (max-width: 1400px) { .c-arrow { display: none; } }
 
         @media (max-width: 1100px) {
-
-            .nav-links {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .mob-nav {
-                display: block;
-            }
-
-            .c-arrow {
-                display: none;
-            }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .mob-nav { display: block; }
+            .c-arrow { display: none; }
         }
 
-        @media (max-width:1024px) {
-            .stats-inner {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .f-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .cta-box {
-                grid-template-columns: 1fr;
-                padding: 44px 36px;
-            }
-
-            .cta-btns {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
+        @media (max-width: 1024px) {
+            .stats-inner { grid-template-columns: repeat(2, 1fr); }
+            .f-grid { grid-template-columns: 1fr 1fr; }
+            .cta-box { grid-template-columns: 1fr; padding: 44px 36px; }
+            .cta-btns { flex-direction: row; flex-wrap: wrap; }
         }
 
-        @media (max-width:800px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .mob-nav {
-                display: block;
-            }
-
-            .page-hero {
-                padding: 60px 20px 72px;
-            }
-
-            .filter-sec {
-                padding: 20px 20px 0;
-            }
-
-            .filter-wrap {
-                gap: 12px;
-            }
-
-            .search-box {
-                min-width: 100%;
-            }
-
-            .doctors-sec {
-                padding: 40px 20px 70px;
-            }
-
-            .doc-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .f-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .cta-box {
-                padding: 36px 24px;
-            }
+        @media (max-width: 800px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .mob-nav { display: block; }
+            .page-hero { padding: 60px 20px 72px; }
+            .filter-sec { padding: 20px 20px 0; }
+            .filter-wrap { gap: 12px; }
+            .search-box { min-width: 100%; }
+            .doctors-sec { padding: 40px 20px 70px; }
+            .doc-grid { grid-template-columns: 1fr 1fr; }
+            .f-grid { grid-template-columns: 1fr; gap: 30px; }
+            .cta-box { padding: 36px 24px; }
         }
 
         @media (max-width: 480px) {
-            
-            .doc-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-wrap {
-                padding: 0px;
-            }
+            .doc-grid { grid-template-columns: 1fr; }
+            .nav-wrap { padding: 0px; }
         }
     </style>
 </head>
@@ -1175,20 +1166,14 @@
                 <li class="drop">
                     <button style="font-family: 'Poppins', sans-serif;" class="drop-btn">Departments <i data-lucide="chevron-down"></i></button>
                     <div class="drop-menu">
-                        <a href="cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i>
-                            Cardiology</a>
-                        <a href="pulmonology.html" class="drop-item"><i data-lucide="wind"></i>
-                            Pulmonology</a>
-                        <a href="gynecology.html" class="drop-item"><i data-lucide="baby"></i>
-                            Gynecology</a>
+                        <a href="cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i> Cardiology</a>
+                        <a href="pulmonology.html" class="drop-item"><i data-lucide="wind"></i> Pulmonology</a>
+                        <a href="gynecology.html" class="drop-item"><i data-lucide="baby"></i> Gynecology</a>
                         <a href="neurology.html" class="drop-item"><i data-lucide="brain"></i> Neurology</a>
                         <a href="urology.html" class="drop-item"><i data-lucide="activity"></i> Urology</a>
-                        <a href="gastroenterology.html" class="drop-item"><i data-lucide="stethoscope"></i>
-                            Gastroenterology</a>
-                        <a href="pediatrics.html" class="drop-item"><i data-lucide="smile"></i>
-                            Pediatrics</a>
-                        <a href="departments.html" class="drop-item"><i data-lucide="chevron-right"></i>
-                            View All</a>
+                        <a href="gastroenterology.html" class="drop-item"><i data-lucide="stethoscope"></i> Gastroenterology</a>
+                        <a href="pediatrics.html" class="drop-item"><i data-lucide="smile"></i> Pediatrics</a>
+                        <a href="departments.html" class="drop-item"><i data-lucide="chevron-right"></i> View All</a>
                     </div>
                 </li>
                 <li><a href="doctors.html" class="nav-link active">Doctors</a></li>
@@ -1199,12 +1184,10 @@
                         <a href="blogs.html" class="drop-item"><i data-lucide="newspaper"></i> Blogs</a>
                         <a href="gallery.html" class="drop-item"><i data-lucide="image"></i> Gallery</a>
                         <a href="careers.html" class="drop-item"><i data-lucide="briefcase"></i> Careers</a>
-                         <!-- <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a> -->
                         <a href="international-patients.html" class="drop-item"><i data-lucide="globe"></i> International Patients</a>
                     </div>
                 </li>
-                <li><a href="contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
-                </li>
+                <li><a href="contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a></li>
             </ul>
 
             <button class="hamburger" id="hamburger">
@@ -1224,8 +1207,7 @@
             <a href="gynecology.html" class="mob-link"><i data-lucide="baby"></i> Gynecology</a>
             <a href="neurology.html" class="mob-link"><i data-lucide="brain"></i> Neurology</a>
             <a href="urology.html" class="mob-link"><i data-lucide="activity"></i> Urology</a>
-            <a href="gastroenterology.html" class="mob-link"><i data-lucide="stethoscope"></i>
-                Gastroenterology</a>
+            <a href="gastroenterology.html" class="mob-link"><i data-lucide="stethoscope"></i> Gastroenterology</a>
             <a href="pediatrics.html" class="mob-link"><i data-lucide="smile"></i> Pediatrics</a>
             <a href="departments.html" class="mob-link"><i data-lucide="chevron-right"></i> View All</a>
         </div>
@@ -1236,11 +1218,14 @@
             <a href="blogs.html" class="mob-link"><i data-lucide="newspaper"></i> Blogs</a>
             <a href="gallery.html" class="mob-link"><i data-lucide="image"></i> Gallery</a>
             <a href="careers.html" class="mob-link"><i data-lucide="briefcase"></i> Careers</a>
-            <!-- <a href="insurance.html" class="mob-link"><i data-lucide="shield-check"></i> Insurance</a> -->
             <a href="international-patients.html" class="mob-link"><i data-lucide="globe"></i> International Patients</a>
         </div>
+
         <a href="contact.html" class="mob-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
     </div>
+
+    <!-- Hidden Google Translate anchor — lives outside nav so it always renders -->
+    <div id="google_translate_element" aria-hidden="true"></div>
 
     <!-- PAGE HERO -->
     <div class="page-hero">
@@ -1284,8 +1269,7 @@
                 <!-- ── CARDIOLOGY ── -->
                 <div class="doc-card fade-up" data-dept="cardiology" data-name="dr suresh kamath cardiologist">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=460&fit=crop&crop=faces,top"
-                            alt="Dr. Suresh Kamath" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Suresh Kamath" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1298,8 +1282,7 @@
 
                 <div class="doc-card fade-up" data-dept="cardiology" data-name="dr priya nair cardiologist">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=460&fit=crop&crop=faces,top"
-                            alt="Dr. Priya Nair" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Priya Nair" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1312,8 +1295,7 @@
 
                 <div class="doc-card fade-up" data-dept="cardiology" data-name="dr rajesh shetty cardiologist">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=460&fit=crop&crop=faces,top"
-                            alt="Dr. Rajesh Shetty" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Rajesh Shetty" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1327,8 +1309,7 @@
                 <!-- ── PULMONOLOGY ── -->
                 <div class="doc-card fade-up" data-dept="pulmonology" data-name="dr arun hegde pulmonologist">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=460&fit=crop&crop=faces,top"
-                            alt="Dr. Arun Hegde" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Arun Hegde" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1341,8 +1322,7 @@
 
                 <div class="doc-card fade-up" data-dept="pulmonology" data-name="dr shruthi rao respiratory">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=460&fit=crop&crop=faces,top"
-                            alt="Dr. Shruthi Rao" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Shruthi Rao" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1356,8 +1336,7 @@
                 <!-- ── GYNECOLOGY ── -->
                 <div class="doc-card fade-up" data-dept="gynecology" data-name="dr anitha shetty gynecologist">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=460&fit=crop&crop=faces,top"
-                            alt="Dr. Anitha Shetty" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Anitha Shetty" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1370,8 +1349,7 @@
 
                 <div class="doc-card fade-up" data-dept="gynecology" data-name="dr kavitha bhat gynecologist">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=460&fit=crop&crop=faces,top"
-                            alt="Dr. Kavitha Bhat" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Kavitha Bhat" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1385,8 +1363,7 @@
                 <!-- ── NEUROLOGY ── -->
                 <div class="doc-card fade-up" data-dept="neurology" data-name="dr deepak shenoy neurologist">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=460&fit=crop&crop=faces,top"
-                            alt="Dr. Deepak Shenoy" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Deepak Shenoy" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1399,8 +1376,7 @@
 
                 <div class="doc-card fade-up" data-dept="neurology" data-name="dr naresh nayak neurosurgeon">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=460&fit=crop&crop=faces,top"
-                            alt="Dr. Naresh Nayak" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Naresh Nayak" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1412,11 +1388,9 @@
                 </div>
 
                 <!-- ── UROLOGY ── -->
-                <div class="doc-card fade-up" data-dept="urology"
-                    data-name="dr prakash nair urologist endourologist stones">
+                <div class="doc-card fade-up" data-dept="urology" data-name="dr prakash nair urologist endourologist stones">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=460&fit=crop&crop=faces,top"
-                            alt="Dr. Prakash Nair" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Prakash Nair" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1427,11 +1401,9 @@
                     </div>
                 </div>
 
-                <div class="doc-card fade-up" data-dept="urology"
-                    data-name="dr ananya bhat urologist female incontinence">
+                <div class="doc-card fade-up" data-dept="urology" data-name="dr ananya bhat urologist female incontinence">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=460&fit=crop&crop=faces,top"
-                            alt="Dr. Ananya Bhat" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Ananya Bhat" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1443,11 +1415,9 @@
                 </div>
 
                 <!-- ── GASTROENTEROLOGY ── -->
-                <div class="doc-card fade-up" data-dept="gastro"
-                    data-name="dr vivek shetty gastroenterologist hepatologist">
+                <div class="doc-card fade-up" data-dept="gastro" data-name="dr vivek shetty gastroenterologist hepatologist">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=460&fit=crop&crop=faces,top"
-                            alt="Dr. Vivek Shetty" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Vivek Shetty" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1458,11 +1428,9 @@
                     </div>
                 </div>
 
-                <div class="doc-card fade-up" data-dept="gastro"
-                    data-name="dr rekha menon gastroenterologist liver colonoscopy">
+                <div class="doc-card fade-up" data-dept="gastro" data-name="dr rekha menon gastroenterologist liver colonoscopy">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=460&fit=crop&crop=faces,top"
-                            alt="Dr. Rekha Menon" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Rekha Menon" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1474,11 +1442,9 @@
                 </div>
 
                 <!-- ── PEDIATRICS ── -->
-                <div class="doc-card fade-up" data-dept="pediatrics"
-                    data-name="dr nandita alva neonatologist nicu newborn">
+                <div class="doc-card fade-up" data-dept="pediatrics" data-name="dr nandita alva neonatologist nicu newborn">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=460&fit=crop&crop=faces,top"
-                            alt="Dr. Nandita Alva" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Nandita Alva" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1489,11 +1455,9 @@
                     </div>
                 </div>
 
-                <div class="doc-card fade-up" data-dept="pediatrics"
-                    data-name="dr girish shenoy pediatrician child fever vaccination">
+                <div class="doc-card fade-up" data-dept="pediatrics" data-name="dr girish shenoy pediatrician child fever vaccination">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=460&fit=crop&crop=faces,top"
-                            alt="Dr. Girish Shenoy" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Girish Shenoy" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1504,11 +1468,9 @@
                     </div>
                 </div>
 
-                <div class="doc-card fade-up" data-dept="pediatrics"
-                    data-name="dr anjali krishnan developmental pediatrician autism adhd">
+                <div class="doc-card fade-up" data-dept="pediatrics" data-name="dr anjali krishnan developmental pediatrician autism adhd">
                     <div class="doc-ph">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=460&fit=crop&crop=faces,top"
-                            alt="Dr. Anjali Krishnan" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Anjali Krishnan" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1548,7 +1510,6 @@
     <!-- FOOTER -->
     <footer>
         <div class="f-grid">
-
             <div class="f-brand">
                 <a href="index.html" class="nav-logo" style="text-decoration:none">
                     <div>
@@ -1602,8 +1563,9 @@
                     <i data-lucide="phone"></i>
                     <p><a href="tel:9876543210">+91 9876543210</a></p>
                 </div>
-                <div class="f-cr"><i data-lucide="mail"></i>
-                    <p><a href="mailto:info@mnrmedicity.com">info@mnrmedicity.com</a></p>
+                <div class="f-cr">
+                    <i data-lucide="mail"></i>
+                    <p><a href="/cdn-cgi/l/email-protection#dcb5b2bab39cb1b2aeb1b9b8b5bfb5a8a5f2bfb3b1"><span class="__cf_email__" data-cfemail="30595e565f705d5e425d555459535944491e535f5d">[email&#160;protected]</span></a></p>
                 </div>
                 <a href="contact.html" target="_blank" style="text-decoration: none; color: inherit;">
                     <div class="f-cr">
@@ -1612,94 +1574,66 @@
                     </div>
                 </a>
             </div>
-
         </div>
         <div class="f-bottom">
             <span>&copy;
-                <script>document.write(new Date().getFullYear())</script> MNR Hospital. All rights reserved.
+                <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear())</script> MNR Hospital. All rights reserved.
             </span>
             <span class="f-blinks">
-                Designed and Developed by <a href="http://thinkb.agency/" target="_blank" style="font-weight: 800;">
-                    thinkB</a>
+                Designed and Developed by <a href="http://thinkb.agency/" target="_blank" style="font-weight: 800;">thinkB</a>
             </span>
         </div>
     </footer>
 
     <button class="scroll-top" id="scrollTop"><i data-lucide="chevron-up"></i></button>
 
-    <script>
-        lucide.createIcons();
+    <!-- ── FLOATING TRANSLATE BUTTON (desktop + mobile) ── -->
+    <button class="float-translate-btn" id="floatTranslateBtn" aria-label="Translate page" title="Translate">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        <span class="lang-badge" id="langBadge">EN</span>
+    </button>
 
-        // Navbar
-        var navbar = document.getElementById('navbar');
-        var scrollBtn = document.getElementById('scrollTop');
-        window.addEventListener('scroll', function () {
-            navbar.classList.toggle('scrolled', window.scrollY > 60);
-            scrollBtn.classList.toggle('visible', window.scrollY > 300);
-        });
+    <div class="float-translate-panel" id="floatTranslatePanel">
+        <div class="ftp-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            Select Language
+        </div>
+        <select class="ftp-select" id="ftpSelect" aria-label="Choose language">
+            <option value="">🌐 English (Default)</option>
+            <option value="ar">🇸🇦 Arabic</option>
+            <option value="hi">🇮🇳 Hindi</option>
+            <option value="kn">🇮🇳 Kannada</option>
+            <option value="ml">🇮🇳 Malayalam</option>
+            <option value="ta">🇮🇳 Tamil</option>
+            <option value="te">🇮🇳 Telugu</option>
+            <option value="fr">🇫🇷 French</option>
+            <option value="de">🇩🇪 German</option>
+            <option value="zh-CN">🇨🇳 Chinese</option>
+            <option value="ja">🇯🇵 Japanese</option>
+            <option value="ko">🇰🇷 Korean</option>
+            <option value="ru">🇷🇺 Russian</option>
+            <option value="es">🇪🇸 Spanish</option>
+            <option value="pt">🇵🇹 Portuguese</option>
+            <option value="it">🇮🇹 Italian</option>
+            <option value="nl">🇳🇱 Dutch</option>
+            <option value="pl">🇵🇱 Polish</option>
+            <option value="tr">🇹🇷 Turkish</option>
+            <option value="ms">🇲🇾 Malay</option>
+            <option value="id">🇮🇩 Indonesian</option>
+        </select>
+    </div>
 
-        // Dropdown
-        function closeAllDrops() { document.querySelectorAll('.drop.open').forEach(function (d) { d.classList.remove('open'); }); }
-        document.querySelectorAll('.drop-btn').forEach(function (btn) {
-            btn.addEventListener('click', function (e) { e.stopPropagation(); var drop = btn.closest('.drop'), open = drop.classList.contains('open'); closeAllDrops(); if (!open) drop.classList.add('open'); });
-        });
-        document.addEventListener('click', closeAllDrops);
-        document.querySelectorAll('.drop-menu').forEach(function (m) { m.addEventListener('click', function (e) { e.stopPropagation(); }); });
-        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAllDrops(); });
-
-        // Hamburger
-        var ham = document.getElementById('hamburger'), mob = document.getElementById('mobNav');
-        ham.addEventListener('click', function () { mob.classList.toggle('open'); document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : ''; });
-        mob.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { mob.classList.remove('open'); document.body.style.overflow = ''; }); });
-
-        // Scroll top
-        scrollBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-
-        // Fade-up observer
-        var obs = new IntersectionObserver(function (entries) {
-            entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-        }, { threshold: 0.08 });
-        document.querySelectorAll('.fade-up').forEach(function (el) { obs.observe(el); });
-
-        // ── FILTER + SEARCH ──
-        var cards = Array.from(document.querySelectorAll('.doc-card'));
-        var noRes = document.getElementById('noResults');
-        var activeFilter = 'all';
-        var searchVal = '';
-
-        function applyFilters() {
-            var visible = 0;
-            cards.forEach(function (card) {
-                var dept = card.dataset.dept || '';
-                var name = card.dataset.name || '';
-                var matchDept = activeFilter === 'all' || dept === activeFilter;
-                var matchSearch = searchVal === '' || name.includes(searchVal);
-                if (matchDept && matchSearch) {
-                    card.style.display = '';
-                    visible++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-            noRes.style.display = visible === 0 ? 'block' : 'none';
-        }
-
-        document.querySelectorAll('.f-tab').forEach(function (tab) {
-            tab.addEventListener('click', function () {
-                document.querySelectorAll('.f-tab').forEach(function (t) { t.classList.remove('active'); });
-                tab.classList.add('active');
-                activeFilter = tab.dataset.dept;
-                applyFilters();
-            });
-        });
-
-        document.getElementById('searchInput').addEventListener('input', function () {
-            searchVal = this.value.toLowerCase().trim();
-            applyFilters();
-        });
-    </script>
-
-
+    <!-- WhatsApp Float -->
     <a href="https://wa.me/919876543210?text=Hello%20MNR%20Hospital,%20I%20need%20assistance." class="wa-float"
         target="_blank" aria-label="WhatsApp Chat">
         <i class="fa-brands fa-whatsapp"></i>
@@ -1725,7 +1659,6 @@
             transition: all 0.3s ease;
         }
 
-
         @media (max-width: 768px) {
             .wa-float {
                 width: 50px;
@@ -1736,6 +1669,178 @@
             }
         }
     </style>
-</body>
 
+    <script>
+        lucide.createIcons();
+
+        // Navbar scroll
+        var navbar = document.getElementById('navbar');
+        var scrollBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', function () {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
+            scrollBtn.classList.toggle('visible', window.scrollY > 300);
+        });
+
+        // Dropdown
+        function closeAllDrops() {
+            document.querySelectorAll('.drop.open').forEach(function (d) { d.classList.remove('open'); });
+        }
+        document.querySelectorAll('.drop-btn').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var drop = btn.closest('.drop'), open = drop.classList.contains('open');
+                closeAllDrops();
+                if (!open) drop.classList.add('open');
+            });
+        });
+        document.addEventListener('click', closeAllDrops);
+        document.querySelectorAll('.drop-menu').forEach(function (m) {
+            m.addEventListener('click', function (e) { e.stopPropagation(); });
+        });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAllDrops(); });
+
+        // Hamburger
+        var ham = document.getElementById('hamburger'), mob = document.getElementById('mobNav');
+        ham.addEventListener('click', function () {
+            mob.classList.toggle('open');
+            document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+        });
+        mob.querySelectorAll('a').forEach(function (a) {
+            a.addEventListener('click', function () {
+                mob.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Scroll top
+        scrollBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // Fade-up observer
+        var obs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.fade-up').forEach(function (el) { obs.observe(el); });
+
+        // Filter + Search
+        var cards = Array.from(document.querySelectorAll('.doc-card'));
+        var noRes = document.getElementById('noResults');
+        var activeFilter = 'all';
+        var searchVal = '';
+
+        function applyFilters() {
+            var visible = 0;
+            cards.forEach(function (card) {
+                var dept = card.dataset.dept || '';
+                var name = card.dataset.name || '';
+                var matchDept = activeFilter === 'all' || dept === activeFilter;
+                var matchSearch = searchVal === '' || name.includes(searchVal);
+                if (matchDept && matchSearch) { card.style.display = ''; visible++; }
+                else { card.style.display = 'none'; }
+            });
+            noRes.style.display = visible === 0 ? 'block' : 'none';
+        }
+
+        document.querySelectorAll('.f-tab').forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                document.querySelectorAll('.f-tab').forEach(function (t) { t.classList.remove('active'); });
+                tab.classList.add('active');
+                activeFilter = tab.dataset.dept;
+                applyFilters();
+            });
+        });
+
+        document.getElementById('searchInput').addEventListener('input', function () {
+            searchVal = this.value.toLowerCase().trim();
+            applyFilters();
+        });
+    </script>
+
+    <script type="text/javascript">
+        /* ════════════════════════════════════════════════════
+           GOOGLE TRANSLATE — COOKIE-BASED APPROACH
+           
+           How Google Translate actually works:
+           It reads a cookie called "googtrans" with the format
+           "/en/TARGET_LANG" e.g. "/en/hi" for Hindi.
+           Setting this cookie + reloading the page is the ONLY
+           100% reliable way to trigger translation — it works
+           identically on desktop and mobile with no race conditions.
+        ════════════════════════════════════════════════════ */
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'ar,hi,kn,ml,ta,te,fr,de,zh-CN,ja,ko,ru,es,pt,it,nl,pl,tr,ms,id',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        /* ── Helper: set the googtrans cookie on current domain + / ── */
+        function setGoogTransCookie(lang) {
+            var value = lang ? '/en/' + lang : '/en/en';
+            /* Set on domain root — required for Google Translate to pick it up */
+            document.cookie = 'googtrans=' + value + '; path=/';
+            document.cookie = 'googtrans=' + value + '; path=/; domain=' + location.hostname;
+        }
+
+        /* ── Helper: read current googtrans cookie ── */
+        function getGoogTransLang() {
+            var match = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/([^;]+)/);
+            return match ? match[1] : '';
+        }
+
+        /* ── Floating button UI logic ── */
+        document.addEventListener('DOMContentLoaded', function () {
+            var btn    = document.getElementById('floatTranslateBtn');
+            var panel  = document.getElementById('floatTranslatePanel');
+            var select = document.getElementById('ftpSelect');
+            var badge  = document.getElementById('langBadge');
+
+            /* Restore badge state from cookie on page load */
+            var currentLang = getGoogTransLang();
+            if (currentLang && currentLang !== 'en') {
+                btn.classList.add('active-lang');
+                badge.textContent = currentLang.toUpperCase().slice(0, 2);
+                select.value = currentLang;
+            }
+
+            /* Toggle panel */
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                panel.classList.toggle('open');
+            });
+
+            /* Close on outside click */
+            document.addEventListener('click', function () {
+                panel.classList.remove('open');
+            });
+            panel.addEventListener('click', function (e) { e.stopPropagation(); });
+
+            /* ── Language change: set cookie → reload ── */
+            select.addEventListener('change', function () {
+                var lang = select.value;
+
+                if (!lang || lang === 'en') {
+                    /* Reset to English: clear the cookie */
+                    document.cookie = 'googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+                    document.cookie = 'googtrans=; path=/; domain=' + location.hostname + '; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+                } else {
+                    setGoogTransCookie(lang);
+                }
+
+                /* Reload — Google Translate reads the cookie on load */
+                location.reload();
+            });
+        });
+    </script>
+
+    <!-- Google Translate script — loads asynchronously -->
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    </script>
+
+</body>
 </html>
