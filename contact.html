@@ -10,19 +10,27 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700&family=DM+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         /* ── Hide Google's default top banner ── */
         .goog-te-banner-frame,
         .goog-te-banner-frame.skiptranslate {
             display: none !important;
         }
-        body { top: 0 !important; }
+
+        body {
+            top: 0 !important;
+        }
 
         /* ── Hide Google branding & the real widget (we drive it via JS) ── */
         .goog-logo-link,
-        .goog-te-gadget span { display: none !important; }
-        .goog-te-gadget { font-size: 0 !important; }
+        .goog-te-gadget span {
+            display: none !important;
+        }
+
+        .goog-te-gadget {
+            font-size: 0 !important;
+        }
 
         /* The real Google widget is invisible — it sits off-screen,
            we only use it programmatically */
@@ -42,7 +50,8 @@
         /* Floating globe button */
         .float-translate-btn {
             position: fixed;
-            bottom: 144px; /* stacked above whatsapp (86px) and scroll-top (26px) */
+            bottom: 144px;
+            /* stacked above whatsapp (86px) and scroll-top (26px) */
             right: 24px;
             z-index: 9998;
             width: 50px;
@@ -57,6 +66,7 @@
             justify-content: center;
             transition: transform 0.25s, box-shadow 0.25s;
         }
+
         .float-translate-btn svg {
             width: 22px;
             height: 22px;
@@ -80,6 +90,7 @@
             transform: translateY(10px);
             transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
         }
+
         .float-translate-panel.open {
             opacity: 1;
             visibility: visible;
@@ -101,6 +112,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
         .ftp-header svg {
             width: 14px;
             height: 14px;
@@ -130,11 +142,16 @@
             background-color: #f0f4f8;
             padding-right: 32px;
         }
+
         .ftp-select:focus {
             border-color: var(--teal, #0b79aa);
             background-color: #fff;
         }
-        .ftp-select option { color: #1a2d42; background: #fff; }
+
+        .ftp-select option {
+            color: #1a2d42;
+            background: #fff;
+        }
 
         /* Active language badge shown on the button when non-English */
         .float-translate-btn .lang-badge {
@@ -153,8 +170,16 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .float-translate-btn.active-lang .lang-badge { display: block; }
-        .float-translate-btn { position: fixed; } /* ensure badge absolute works */
+
+        .float-translate-btn.active-lang .lang-badge {
+            display: block;
+        }
+
+        .float-translate-btn {
+            position: fixed;
+        }
+
+        /* ensure badge absolute works */
     </style>
     <style>
         footer .nav-logo {
@@ -1714,8 +1739,9 @@
                         <a href="blogs.html" class="drop-item"><i data-lucide="newspaper"></i> Blogs</a>
                         <a href="gallery.html" class="drop-item"><i data-lucide="image"></i> Gallery</a>
                         <a href="careers.html" class="drop-item"><i data-lucide="briefcase"></i> Careers</a>
-                         <!-- <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a> -->
-                        <a href="international-patients.html" class="drop-item"><i data-lucide="globe"></i> International Patients</a>
+                        <!-- <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a> -->
+                        <a href="international-patients.html" class="drop-item"><i data-lucide="globe"></i>
+                            International Patients</a>
                     </div>
                 </li>
                 <li><a href="contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
@@ -1752,7 +1778,8 @@
             <a href="gallery.html" class="mob-link"><i data-lucide="image"></i> Gallery</a>
             <a href="careers.html" class="mob-link"><i data-lucide="briefcase"></i> Careers</a>
             <!-- <a href="insurance.html" class="mob-link"><i data-lucide="shield-check"></i> Insurance</a> -->
-            <a href="international-patients.html" class="mob-link"><i data-lucide="globe"></i> International Patients</a>
+            <a href="international-patients.html" class="mob-link"><i data-lucide="globe"></i> International
+                Patients</a>
         </div>
         <a href="contact.html" class="mob-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
     </div>
@@ -1933,10 +1960,10 @@
                         <p style="font-size:13px;color:var(--gray-mid);margin-bottom:16px;line-height:1.65">Stay
                             connected for health tips, updates, and patient stories from MNR Hospital.</p>
                         <div class="social-links">
-                            <a href="#" class="soc-btn ig" ><i class="fa-brands fa-instagram"></i></a>
-                            <a href="#" class="soc-btn fb" ><i class="fa-brands fa-facebook"></i></a>
-                            <a href="#" class="soc-btn li" ><i class="fa-brands fa-linkedin"></i></a>
-                            <a href="#" class="soc-btn yt" ><i class="fa-brands fa-youtube"></i></a>
+                            <a href="#" class="soc-btn ig"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="soc-btn fb"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#" class="soc-btn li"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="#" class="soc-btn yt"><i class="fa-brands fa-youtube"></i></a>
                         </div>
                     </div>
 
@@ -2127,22 +2154,22 @@
 
     <!-- ── FLOATING TRANSLATE BUTTON (desktop + mobile) ── -->
     <button class="float-translate-btn" id="floatTranslateBtn" aria-label="Translate page" title="Translate">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="2" y1="12" x2="22" y2="12"/>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="2" y1="12" x2="22" y2="12" />
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
         </svg>
         <span class="lang-badge" id="langBadge">EN</span>
     </button>
 
     <div class="float-translate-panel" id="floatTranslatePanel">
         <div class="ftp-header">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="2" y1="12" x2="22" y2="12"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
             </svg>
             Select Language
         </div>
@@ -2281,14 +2308,14 @@
             lucide.createIcons();
         });
 
-        // FAQ accordion
-        document.querySelectorAll('.faq-item').forEach(function (item) {
-            item.querySelector('.faq-q').addEventListener('click', function () {
-                var isOpen = item.classList.contains('open');
-                document.querySelectorAll('.faq-item.open').forEach(function (o) { o.classList.remove('open'); });
-                if (!isOpen) item.classList.add('open');
-            });
-        });
+        // // FAQ accordion
+        // document.querySelectorAll('.faq-item').forEach(function (item) {
+        //     item.querySelector('.faq-q').addEventListener('click', function () {
+        //         var isOpen = item.classList.contains('open');
+        //         document.querySelectorAll('.faq-item.open').forEach(function (o) { o.classList.remove('open'); });
+        //         if (!isOpen) item.classList.add('open');
+        //     });
+        // });
     </script>
 
 
@@ -2365,10 +2392,10 @@
 
         /* ── Floating button UI logic ── */
         document.addEventListener('DOMContentLoaded', function () {
-            var btn    = document.getElementById('floatTranslateBtn');
-            var panel  = document.getElementById('floatTranslatePanel');
+            var btn = document.getElementById('floatTranslateBtn');
+            var panel = document.getElementById('floatTranslatePanel');
             var select = document.getElementById('ftpSelect');
-            var badge  = document.getElementById('langBadge');
+            var badge = document.getElementById('langBadge');
 
             /* Restore badge state from cookie on page load */
             var currentLang = getGoogTransLang();
@@ -2409,8 +2436,34 @@
     </script>
 
     <!-- Google Translate script — loads asynchronously -->
-    <script type="text/javascript"
-        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    </script>
+
+    <script>
+        // FAQ Accordion - Fixed & Improved
+        document.addEventListener('DOMContentLoaded', function () {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(function (item) {
+                const question = item.querySelector('.faq-q');
+
+                if (question) {
+                    question.addEventListener('click', function () {
+                        const isCurrentlyOpen = item.classList.contains('open');
+
+                        // Close all other open FAQs (accordion behavior)
+                        faqItems.forEach(function (otherItem) {
+                            otherItem.classList.remove('open');
+                        });
+
+                        // Toggle current one
+                        if (!isCurrentlyOpen) {
+                            item.classList.add('open');
+                        }
+                    });
+                }
+            });
+        });
     </script>
 
 </body>
