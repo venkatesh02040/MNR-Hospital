@@ -24,7 +24,7 @@
         .goog-te-gadget span { display: none !important; }
         .goog-te-gadget { font-size: 0 !important; }
 
-        /* The real Google widget is invisible — it sits off-screen,
+        /* The real Google widget is invisible it sits off-screen,
            we only use it programmatically */
         #google_translate_element {
             position: absolute;
@@ -1634,7 +1634,7 @@
             </div>
             <h1>Build Your Career at<br><em>MNR Hospital</em></h1>
             <p class="hero-sub">Join a team of passionate healthcare professionals who believe in delivering world-class
-                care to every patient. We're growing — and we want you to grow with us.</p>
+                care to every patient. We're growing and we want you to grow with us.</p>
         </div>
     </div>
 
@@ -1647,7 +1647,7 @@
                     style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.2vw,40px);color:var(--navy);margin-bottom:14px">
                     A Place Where <em style="color:var(--teal);font-style:normal">Careers Thrive</em></h2>
                 <p style="font-size:15px;color:var(--gray-mid);line-height:1.75">We invest in our people the same way we
-                    invest in our patients — with dedication, resources, and genuine care.</p>
+                    invest in our patients with dedication, resources, and genuine care.</p>
             </div>
             <div class="why-grid">
                 <div class="why-card fade-up">
@@ -2312,13 +2312,13 @@
     </style>
     <script type="text/javascript">
         /* ════════════════════════════════════════════════════
-           GOOGLE TRANSLATE — COOKIE-BASED APPROACH
+           GOOGLE TRANSLATE COOKIE-BASED APPROACH
            
            How Google Translate actually works:
            It reads a cookie called "googtrans" with the format
            "/en/TARGET_LANG" e.g. "/en/hi" for Hindi.
            Setting this cookie + reloading the page is the ONLY
-           100% reliable way to trigger translation — it works
+           100% reliable way to trigger translation it works
            identically on desktop and mobile with no race conditions.
         ════════════════════════════════════════════════════ */
 
@@ -2334,7 +2334,7 @@
         /* ── Helper: set the googtrans cookie on current domain + / ── */
         function setGoogTransCookie(lang) {
             var value = lang ? '/en/' + lang : '/en/en';
-            /* Set on domain root — required for Google Translate to pick it up */
+            /* Set on domain root required for Google Translate to pick it up */
             document.cookie = 'googtrans=' + value + '; path=/';
             document.cookie = 'googtrans=' + value + '; path=/; domain=' + location.hostname;
         }
@@ -2384,13 +2384,13 @@
                     setGoogTransCookie(lang);
                 }
 
-                /* Reload — Google Translate reads the cookie on load */
+                /* Reload Google Translate reads the cookie on load */
                 location.reload();
             });
         });
     </script>
 
-    <!-- Google Translate script — loads asynchronously -->
+    <!-- Google Translate script loads asynchronously -->
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
     </script>

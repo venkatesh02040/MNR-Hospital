@@ -23,7 +23,7 @@
         .goog-te-gadget span { display: none !important; }
         .goog-te-gadget { font-size: 0 !important; }
 
-        /* The real Google widget is invisible — it sits off-screen,
+        /* The real Google widget is invisible it sits off-screen,
            we only use it programmatically */
         #google_translate_element {
             position: absolute;
@@ -1494,8 +1494,8 @@
                     <span>Radiology</span>
                 </div>
                 <h1>Department of<br><em>Radiology</em></h1>
-                <p>State-of-the-art diagnostic imaging — 3T MRI, 128-slice CT, digital X-ray, ultrasound, mammography,
-                    and interventional radiology — providing precise, rapid reporting.</p>
+                <p>State-of-the-art diagnostic imaging 3T MRI, 128-slice CT, digital X-ray, ultrasound, mammography,
+                    and interventional radiology providing precise, rapid reporting.</p>
                 <div class="hero-chips">
                     <div class="hero-chip"><i data-lucide="scan-line"></i> MRI & CT Scan</div>
                     <div class="hero-chip"><i data-lucide="activity"></i> Ultrasound</div>
@@ -1531,8 +1531,8 @@
                         diseases. Without radiology, modern medicine would be working in the dark. The ability to
                         visualise internal anatomy, detect tumours, assess vascular anatomy, guide needle biopsies, and
                         drain collections without open surgery has revolutionised virtually every medical and surgical
-                        specialty. Modern radiology encompasses a vast array of technologies — from the simplest X-ray
-                        to the extraordinary soft-tissue resolution of 3 Tesla MRI — and a sub-specialty of
+                        specialty. Modern radiology encompasses a vast array of technologies from the simplest X-ray
+                        to the extraordinary soft-tissue resolution of 3 Tesla MRI and a sub-specialty of
                         interventional radiology that treats disease through image-guided, minimally invasive
                         procedures.</p>
                     <div class="section-divider"></div>
@@ -1542,16 +1542,16 @@
                         imaging; a 128-slice CT scanner for high-resolution chest, abdominal, and vascular studies;
                         digital radiography systems; ultrasound machines including Doppler capability for vascular
                         studies and echocardiography support; and a dedicated mammography unit for breast imaging
-                        including digital tomosynthesis. Our radiologists provide clinical, correlative reporting — not
-                        just descriptive image analysis — with same-day reporting for urgent studies and structured
+                        including digital tomosynthesis. Our radiologists provide clinical, correlative reporting not
+                        just descriptive image analysis with same-day reporting for urgent studies and structured
                         turnaround times for elective imaging. CT and MRI angiography provide detailed vascular
                         assessment without catheterisation.</p>
                     <div class="section-divider"></div>
-                    <h2>Interventional Radiology — <em>Treating Without Surgery</em></h2>
+                    <h2>Interventional Radiology <em>Treating Without Surgery</em></h2>
                     <p>Our interventional radiology service performs image-guided diagnostic and therapeutic procedures
                         including CT-guided biopsies, fluoroscopy-guided drainages, tumour embolisation, uterine artery
                         embolisation, and PICC line insertions. These procedures deliver surgical-quality interventions
-                        with minimal patient trauma and short recovery times — often performed as day procedures under
+                        with minimal patient trauma and short recovery times often performed as day procedures under
                         local anaesthetic.</p>
                 </div>
                 <div class="dept-sidebar">
@@ -1883,13 +1883,13 @@
     </style>
     <script type="text/javascript">
         /* ════════════════════════════════════════════════════
-           GOOGLE TRANSLATE — COOKIE-BASED APPROACH
+           GOOGLE TRANSLATE COOKIE-BASED APPROACH
            
            How Google Translate actually works:
            It reads a cookie called "googtrans" with the format
            "/en/TARGET_LANG" e.g. "/en/hi" for Hindi.
            Setting this cookie + reloading the page is the ONLY
-           100% reliable way to trigger translation — it works
+           100% reliable way to trigger translation it works
            identically on desktop and mobile with no race conditions.
         ════════════════════════════════════════════════════ */
 
@@ -1905,7 +1905,7 @@
         /* ── Helper: set the googtrans cookie on current domain + / ── */
         function setGoogTransCookie(lang) {
             var value = lang ? '/en/' + lang : '/en/en';
-            /* Set on domain root — required for Google Translate to pick it up */
+            /* Set on domain root required for Google Translate to pick it up */
             document.cookie = 'googtrans=' + value + '; path=/';
             document.cookie = 'googtrans=' + value + '; path=/; domain=' + location.hostname;
         }
@@ -1955,13 +1955,13 @@
                     setGoogTransCookie(lang);
                 }
 
-                /* Reload — Google Translate reads the cookie on load */
+                /* Reload Google Translate reads the cookie on load */
                 location.reload();
             });
         });
     </script>
 
-    <!-- Google Translate script — loads asynchronously -->
+    <!-- Google Translate script loads asynchronously -->
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
     </script>

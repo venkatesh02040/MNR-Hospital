@@ -24,7 +24,7 @@
         .goog-te-gadget span { display: none !important; }
         .goog-te-gadget { font-size: 0 !important; }
 
-        /* The real Google widget is invisible — it sits off-screen,
+        /* The real Google widget is invisible it sits off-screen,
            we only use it programmatically */
         #google_translate_element {
             position: absolute;
@@ -1651,7 +1651,7 @@
                 <span>Health Blogs</span>
             </div>
             <h1>Insights from Our <em>Medical Experts</em></h1>
-            <p class="hero-sub">Trusted health articles written by MNR Hospital's specialists — covering heart health,
+            <p class="hero-sub">Trusted health articles written by MNR Hospital's specialists covering heart health,
                 women's wellness, child care, and much more.</p>
         </div>
     </div>
@@ -1674,8 +1674,8 @@
                         <span class="feat-dot"></span>
                         <span class="feat-read"><i data-lucide="clock"></i> 8 min read</span>
                     </div>
-                    <h2>10 Warning Signs Your Heart Is <em>Sending You</em> — And What to Do Next</h2>
-                    <p>Most heart conditions don't announce themselves dramatically. They speak in whispers — subtle
+                    <h2>10 Warning Signs Your Heart Is <em>Sending You</em> And What to Do Next</h2>
+                    <p>Most heart conditions don't announce themselves dramatically. They speak in whispers subtle
                         signals that are easy to dismiss as tiredness or indigestion. Our senior cardiologist Dr. Suresh
                         Kamath walks through the ten most overlooked cardiac warning signs and explains when to seek
                         immediate care.</p>
@@ -1853,7 +1853,7 @@
                             <span class="card-read-time"><i data-lucide="clock"></i> 5 min</span>
                         </div>
                         <h3>India's Immunisation Schedule Explained: What Every Parent Needs to Know</h3>
-                        <p>From birth to 15 years — a clear, parent-friendly guide to every vaccine your child needs and
+                        <p>From birth to 15 years a clear, parent-friendly guide to every vaccine your child needs and
                             exactly when to get them.</p>
                         <div class="card-footer">
                             <div class="card-author">
@@ -1881,7 +1881,7 @@
                             <span class="card-date"><i data-lucide="calendar"></i> Jan 12, 2026</span>
                             <span class="card-read-time"><i data-lucide="clock"></i> 6 min</span>
                         </div>
-                        <h3>Why Sleep Is the Most Underrated Medicine — and How to Get More of It</h3>
+                        <h3>Why Sleep Is the Most Underrated Medicine and How to Get More of It</h3>
                         <p>Poor sleep is linked to diabetes, obesity, heart disease, and depression. Dr. Shruthi Rao
                             shares science-backed strategies to reclaim your rest.</p>
                         <div class="card-footer">
@@ -1942,7 +1942,7 @@
                             <span class="card-read-time"><i data-lucide="clock"></i> 8 min</span>
                         </div>
                         <h3>High-Risk Pregnancy: What It Means and How to Stay Safe</h3>
-                        <p>Being labelled "high-risk" is frightening — but with the right care and monitoring, most
+                        <p>Being labelled "high-risk" is frightening but with the right care and monitoring, most
                             high-risk pregnancies result in healthy outcomes.</p>
                         <div class="card-footer">
                             <div class="card-author">
@@ -1972,7 +1972,7 @@
                             <span class="card-read-time"><i data-lucide="clock"></i> 6 min</span>
                         </div>
                         <h3>Pre-Diabetes: The Silent Warning You Can Still Reverse</h3>
-                        <p>75 million Indians are pre-diabetic — and most don't know it. Here's what to eat, move, and
+                        <p>75 million Indians are pre-diabetic and most don't know it. Here's what to eat, move, and
                             monitor to pull yourself back from the edge.</p>
                         <div class="card-footer">
                             <div class="card-author">
@@ -2209,13 +2209,13 @@
     </style>
     <script type="text/javascript">
         /* ════════════════════════════════════════════════════
-           GOOGLE TRANSLATE — COOKIE-BASED APPROACH
+           GOOGLE TRANSLATE COOKIE-BASED APPROACH
            
            How Google Translate actually works:
            It reads a cookie called "googtrans" with the format
            "/en/TARGET_LANG" e.g. "/en/hi" for Hindi.
            Setting this cookie + reloading the page is the ONLY
-           100% reliable way to trigger translation — it works
+           100% reliable way to trigger translation it works
            identically on desktop and mobile with no race conditions.
         ════════════════════════════════════════════════════ */
 
@@ -2231,7 +2231,7 @@
         /* ── Helper: set the googtrans cookie on current domain + / ── */
         function setGoogTransCookie(lang) {
             var value = lang ? '/en/' + lang : '/en/en';
-            /* Set on domain root — required for Google Translate to pick it up */
+            /* Set on domain root required for Google Translate to pick it up */
             document.cookie = 'googtrans=' + value + '; path=/';
             document.cookie = 'googtrans=' + value + '; path=/; domain=' + location.hostname;
         }
@@ -2281,13 +2281,13 @@
                     setGoogTransCookie(lang);
                 }
 
-                /* Reload — Google Translate reads the cookie on load */
+                /* Reload Google Translate reads the cookie on load */
                 location.reload();
             });
         });
     </script>
 
-    <!-- Google Translate script — loads asynchronously -->
+    <!-- Google Translate script loads asynchronously -->
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
     </script>

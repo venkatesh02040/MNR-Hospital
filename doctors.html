@@ -24,7 +24,7 @@
         .goog-te-gadget span { display: none !important; }
         .goog-te-gadget { font-size: 0 !important; }
 
-        /* The real Google widget is invisible — it sits off-screen,
+        /* The real Google widget is invisible it sits off-screen,
            we only use it programmatically */
         #google_translate_element {
             position: absolute;
@@ -1225,7 +1225,7 @@
         <a href="contact.html" class="mob-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
     </div>
 
-    <!-- Hidden Google Translate anchor — lives outside nav so it always renders -->
+    <!-- Hidden Google Translate anchor lives outside nav so it always renders -->
     <div id="google_translate_element" aria-hidden="true"></div>
 
     <!-- PAGE HERO -->
@@ -1237,7 +1237,7 @@
                 <span>Our Doctors</span>
             </div>
             <h1>Meet Our Panel of <em>Expert Specialists</em></h1>
-            <p class="hero-sub">50+ senior doctors across 7 departments — trained at India's finest institutions,
+            <p class="hero-sub">50+ senior doctors across 7 departments trained at India's finest institutions,
                 committed to delivering world-class care right here in Coastal Karnataka.</p>
         </div>
     </div>
@@ -1499,7 +1499,7 @@
             <div style="position:relative;z-index:2">
                 <h2>Not Sure Which Doctor to See?</h2>
                 <p>Our care coordinators will listen to your symptoms and connect you directly with the right specialist
-                    — quickly and without the confusion. Available 6 days a week.</p>
+                    quickly and without the confusion. Available 6 days a week.</p>
             </div>
             <div class="cta-btns">
                 <a href="contact.html" class="btn-white"><i data-lucide="calendar-check"></i> Book Appointment</a>
@@ -1760,13 +1760,13 @@
 
     <script type="text/javascript">
         /* ════════════════════════════════════════════════════
-           GOOGLE TRANSLATE — COOKIE-BASED APPROACH
+           GOOGLE TRANSLATE COOKIE-BASED APPROACH
            
            How Google Translate actually works:
            It reads a cookie called "googtrans" with the format
            "/en/TARGET_LANG" e.g. "/en/hi" for Hindi.
            Setting this cookie + reloading the page is the ONLY
-           100% reliable way to trigger translation — it works
+           100% reliable way to trigger translation it works
            identically on desktop and mobile with no race conditions.
         ════════════════════════════════════════════════════ */
 
@@ -1782,7 +1782,7 @@
         /* ── Helper: set the googtrans cookie on current domain + / ── */
         function setGoogTransCookie(lang) {
             var value = lang ? '/en/' + lang : '/en/en';
-            /* Set on domain root — required for Google Translate to pick it up */
+            /* Set on domain root required for Google Translate to pick it up */
             document.cookie = 'googtrans=' + value + '; path=/';
             document.cookie = 'googtrans=' + value + '; path=/; domain=' + location.hostname;
         }
@@ -1832,13 +1832,13 @@
                     setGoogTransCookie(lang);
                 }
 
-                /* Reload — Google Translate reads the cookie on load */
+                /* Reload Google Translate reads the cookie on load */
                 location.reload();
             });
         });
     </script>
 
-    <!-- Google Translate script — loads asynchronously -->
+    <!-- Google Translate script loads asynchronously -->
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
     </script>

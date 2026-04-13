@@ -23,7 +23,7 @@
         .goog-te-gadget span { display: none !important; }
         .goog-te-gadget { font-size: 0 !important; }
 
-        /* The real Google widget is invisible — it sits off-screen,
+        /* The real Google widget is invisible it sits off-screen,
            we only use it programmatically */
         #google_translate_element {
             position: absolute;
@@ -1495,7 +1495,7 @@
                 </div>
                 <h1>Department of<br><em>Pathology</em></h1>
                 <p>NABL-accredited laboratory offering haematology, biochemistry, microbiology, immunology, cytology,
-                    and histopathology — with rapid, accurate, clinically contextualised reporting.</p>
+                    and histopathology with rapid, accurate, clinically contextualised reporting.</p>
                 <div class="hero-chips">
                     <div class="hero-chip"><i data-lucide="test-tube"></i> Clinical Laboratory</div>
                     <div class="hero-chip"><i data-lucide="activity"></i> Haematology</div>
@@ -1528,8 +1528,8 @@
                     <span class="s-tag">About the Department</span>
                     <h2>Diagnosis Starts in <em>the Laboratory</em></h2>
                     <p>Pathology is the medical specialty that forms the diagnostic foundation of modern medicine.
-                        Approximately 70% of all clinical decisions — including which diagnosis to make, which treatment
-                        to prescribe, and whether a patient is responding to therapy — are informed by laboratory test
+                        Approximately 70% of all clinical decisions including which diagnosis to make, which treatment
+                        to prescribe, and whether a patient is responding to therapy are informed by laboratory test
                         results. Clinical pathology encompasses the full range of laboratory disciplines: clinical
                         biochemistry for metabolic and organ function tests, haematology for blood disorders,
                         microbiology for infection diagnosis, immunology and serology for autoimmune and infectious
@@ -1538,7 +1538,7 @@
                         severely compromised.</p>
                     <div class="section-divider"></div>
                     <h2>Pathology at <em>MNR Hospital</em></h2>
-                    <p>MNR Hospital's Pathology and Laboratory Medicine Department is NABL-accredited — the national
+                    <p>MNR Hospital's Pathology and Laboratory Medicine Department is NABL-accredited the national
                         accreditation benchmark for diagnostic laboratory quality. We operate an automated,
                         high-throughput core laboratory for routine biochemistry, haematology, coagulation, and urine
                         analysis with turnaround times of under 2 hours for most tests. Our microbiology section
@@ -1549,7 +1549,7 @@
                         broad autoimmune serology panel including ANAs, ANCA, and complement studies.</p>
                     <div class="section-divider"></div>
                     <h2>Quality, Speed, and <em>Clinical Context</em></h2>
-                    <p>Our philosophy is that a laboratory report is not a number on a page — it is a clinical message.
+                    <p>Our philosophy is that a laboratory report is not a number on a page it is a clinical message.
                         Our pathologists actively engage with clinicians to provide interpretive comments, flag critical
                         values immediately, and participate in multidisciplinary team meetings for oncology and complex
                         medical cases. This integration of laboratory expertise with bedside clinical thinking is what
@@ -1883,13 +1883,13 @@
     </style>
     <script type="text/javascript">
         /* ════════════════════════════════════════════════════
-           GOOGLE TRANSLATE — COOKIE-BASED APPROACH
+           GOOGLE TRANSLATE COOKIE-BASED APPROACH
            
            How Google Translate actually works:
            It reads a cookie called "googtrans" with the format
            "/en/TARGET_LANG" e.g. "/en/hi" for Hindi.
            Setting this cookie + reloading the page is the ONLY
-           100% reliable way to trigger translation — it works
+           100% reliable way to trigger translation it works
            identically on desktop and mobile with no race conditions.
         ════════════════════════════════════════════════════ */
 
@@ -1905,7 +1905,7 @@
         /* ── Helper: set the googtrans cookie on current domain + / ── */
         function setGoogTransCookie(lang) {
             var value = lang ? '/en/' + lang : '/en/en';
-            /* Set on domain root — required for Google Translate to pick it up */
+            /* Set on domain root required for Google Translate to pick it up */
             document.cookie = 'googtrans=' + value + '; path=/';
             document.cookie = 'googtrans=' + value + '; path=/; domain=' + location.hostname;
         }
@@ -1955,13 +1955,13 @@
                     setGoogTransCookie(lang);
                 }
 
-                /* Reload — Google Translate reads the cookie on load */
+                /* Reload Google Translate reads the cookie on load */
                 location.reload();
             });
         });
     </script>
 
-    <!-- Google Translate script — loads asynchronously -->
+    <!-- Google Translate script loads asynchronously -->
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
     </script>

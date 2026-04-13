@@ -23,7 +23,7 @@
         .goog-te-gadget span { display: none !important; }
         .goog-te-gadget { font-size: 0 !important; }
 
-        /* The real Google widget is invisible — it sits off-screen,
+        /* The real Google widget is invisible it sits off-screen,
            we only use it programmatically */
         #google_translate_element {
             position: absolute;
@@ -1526,12 +1526,12 @@
             <div class="content-grid">
                 <div class="prose fade-up">
                     <span class="s-tag">About the Department</span>
-                    <h2>Blood — <em>The Gift That Saves Lives</em></h2>
+                    <h2>Blood <em>The Gift That Saves Lives</em></h2>
                     <p>A safe, reliable blood supply is a fundamental infrastructure requirement for any hospital
                         providing surgical, obstetric, oncological, or trauma care. Blood transfusion can be the
                         difference between life and death in acute haemorrhage, post-surgical anaemia, haematological
                         malignancy, and haemolytic disease. Transfusion medicine has evolved dramatically beyond simple
-                        whole blood transfusion — modern blood banking involves complex immunohaematology, component
+                        whole blood transfusion modern blood banking involves complex immunohaematology, component
                         separation to maximise the benefit of each donation, rigorous infectious disease screening, and
                         evidence-based transfusion protocols to minimise both the risks of over-transfusion and the
                         waste of a precious, donor-dependent resource.</p>
@@ -1539,16 +1539,16 @@
                     <h2>Blood Bank at <em>MNR Hospital</em></h2>
                     <p>MNR Hospital operates a licensed, fully equipped blood bank that functions 24 hours a day, 7 days
                         a week. Our blood bank maintains a stock of all blood groups in packed red cells, fresh frozen
-                        plasma, platelet concentrates, and cryoprecipitate — enabling us to rapidly support surgical,
+                        plasma, platelet concentrates, and cryoprecipitate enabling us to rapidly support surgical,
                         obstetric, and haematological emergencies at any hour. All donated units undergo mandatory
                         testing for HIV, Hepatitis B, Hepatitis C, syphilis, and malaria before being cleared for issue.
                         We perform full ABO and Rh blood grouping, antibody screening, crossmatching, and direct and
                         indirect Coomb's testing. Our apheresis unit can collect single-donor platelets for
                         platelet-refractory patients and haematopoietic stem cells for transplant programmes.</p>
                     <div class="section-divider"></div>
-                    <h2>Voluntary Blood Donation — <em>Building a Safe Community Supply</em></h2>
+                    <h2>Voluntary Blood Donation <em>Building a Safe Community Supply</em></h2>
                     <p>MNR Hospital actively conducts voluntary blood donation camps in the community, at schools,
-                        colleges, and workplaces — because a sustainable blood supply depends on a culture of regular
+                        colleges, and workplaces because a sustainable blood supply depends on a culture of regular
                         voluntary donation. We provide a safe, comfortable environment for donors, with pre-donation
                         counselling, post-donation refreshments, and feedback on blood group and basic health
                         parameters. Every unit donated saves up to three lives through component separation.</p>
@@ -1868,13 +1868,13 @@
     </style>
     <script type="text/javascript">
         /* ════════════════════════════════════════════════════
-           GOOGLE TRANSLATE — COOKIE-BASED APPROACH
+           GOOGLE TRANSLATE COOKIE-BASED APPROACH
            
            How Google Translate actually works:
            It reads a cookie called "googtrans" with the format
            "/en/TARGET_LANG" e.g. "/en/hi" for Hindi.
            Setting this cookie + reloading the page is the ONLY
-           100% reliable way to trigger translation — it works
+           100% reliable way to trigger translation it works
            identically on desktop and mobile with no race conditions.
         ════════════════════════════════════════════════════ */
 
@@ -1890,7 +1890,7 @@
         /* ── Helper: set the googtrans cookie on current domain + / ── */
         function setGoogTransCookie(lang) {
             var value = lang ? '/en/' + lang : '/en/en';
-            /* Set on domain root — required for Google Translate to pick it up */
+            /* Set on domain root required for Google Translate to pick it up */
             document.cookie = 'googtrans=' + value + '; path=/';
             document.cookie = 'googtrans=' + value + '; path=/; domain=' + location.hostname;
         }
@@ -1940,13 +1940,13 @@
                     setGoogTransCookie(lang);
                 }
 
-                /* Reload — Google Translate reads the cookie on load */
+                /* Reload Google Translate reads the cookie on load */
                 location.reload();
             });
         });
     </script>
 
-    <!-- Google Translate script — loads asynchronously -->
+    <!-- Google Translate script loads asynchronously -->
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
     </script>

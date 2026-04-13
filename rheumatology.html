@@ -23,7 +23,7 @@
         .goog-te-gadget span { display: none !important; }
         .goog-te-gadget { font-size: 0 !important; }
 
-        /* The real Google widget is invisible — it sits off-screen,
+        /* The real Google widget is invisible it sits off-screen,
            we only use it programmatically */
         #google_translate_element {
             position: absolute;
@@ -1494,8 +1494,8 @@
                     <span>Rheumatology</span>
                 </div>
                 <h1>Department of<br><em>Rheumatology</em></h1>
-                <p>Specialist management of autoimmune and inflammatory diseases — rheumatoid arthritis, lupus,
-                    ankylosing spondylitis, and vasculitis — with targeted therapies to preserve function.</p>
+                <p>Specialist management of autoimmune and inflammatory diseases rheumatoid arthritis, lupus,
+                    ankylosing spondylitis, and vasculitis with targeted therapies to preserve function.</p>
                 <div class="hero-chips">
                     <div class="hero-chip"><i data-lucide="shield-plus"></i> Rheumatoid Arthritis</div>
                     <div class="hero-chip"><i data-lucide="activity"></i> Autoimmune Diseases</div>
@@ -1528,7 +1528,7 @@
                     <span class="s-tag">About the Department</span>
                     <h2>When the Immune System <em>Turns Inward</em></h2>
                     <p>Rheumatic diseases are a diverse group of conditions characterised by inflammation and
-                        dysfunction of the joints, muscles, and connective tissues — often driven by an overactive
+                        dysfunction of the joints, muscles, and connective tissues often driven by an overactive
                         immune system that attacks the body's own structures. Rheumatoid arthritis, the most common
                         autoimmune arthritis, affects 1% of the global population. Systemic lupus erythematosus,
                         ankylosing spondylitis, psoriatic arthritis, vasculitis, and myositis are among the other
@@ -1631,7 +1631,7 @@
                     <div class="cond-ico"><i data-lucide="scan-line"></i></div>
                     <div>
                         <h5>Vasculitis</h5>
-                        <p>Inflammation of blood vessel walls — with systemic consequences.</p>
+                        <p>Inflammation of blood vessel walls with systemic consequences.</p>
                     </div>
                 </div>
                 <div class="cond-card fade-up">
@@ -1870,13 +1870,13 @@
     </style>
     <script type="text/javascript">
         /* ════════════════════════════════════════════════════
-           GOOGLE TRANSLATE — COOKIE-BASED APPROACH
+           GOOGLE TRANSLATE COOKIE-BASED APPROACH
            
            How Google Translate actually works:
            It reads a cookie called "googtrans" with the format
            "/en/TARGET_LANG" e.g. "/en/hi" for Hindi.
            Setting this cookie + reloading the page is the ONLY
-           100% reliable way to trigger translation — it works
+           100% reliable way to trigger translation it works
            identically on desktop and mobile with no race conditions.
         ════════════════════════════════════════════════════ */
 
@@ -1892,7 +1892,7 @@
         /* ── Helper: set the googtrans cookie on current domain + / ── */
         function setGoogTransCookie(lang) {
             var value = lang ? '/en/' + lang : '/en/en';
-            /* Set on domain root — required for Google Translate to pick it up */
+            /* Set on domain root required for Google Translate to pick it up */
             document.cookie = 'googtrans=' + value + '; path=/';
             document.cookie = 'googtrans=' + value + '; path=/; domain=' + location.hostname;
         }
@@ -1942,13 +1942,13 @@
                     setGoogTransCookie(lang);
                 }
 
-                /* Reload — Google Translate reads the cookie on load */
+                /* Reload Google Translate reads the cookie on load */
                 location.reload();
             });
         });
     </script>
 
-    <!-- Google Translate script — loads asynchronously -->
+    <!-- Google Translate script loads asynchronously -->
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
     </script>
