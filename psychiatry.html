@@ -7,22 +7,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Psychiatry | MNR Hospital</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         /* ── Hide Google's default top banner ── */
         .goog-te-banner-frame,
         .goog-te-banner-frame.skiptranslate {
             display: none !important;
         }
-        body { top: 0 !important; }
+
+        body {
+            top: 0 !important;
+        }
 
         /* ── Hide Google branding & the real widget (we drive it via JS) ── */
         .goog-logo-link,
-        .goog-te-gadget span { display: none !important; }
-        .goog-te-gadget { font-size: 0 !important; }
+        .goog-te-gadget span {
+            display: none !important;
+        }
+
+        .goog-te-gadget {
+            font-size: 0 !important;
+        }
 
         /* The real Google widget is invisible it sits off-screen,
            we only use it programmatically */
@@ -42,7 +54,8 @@
         /* Floating globe button */
         .float-translate-btn {
             position: fixed;
-            bottom: 144px; /* stacked above whatsapp (86px) and scroll-top (26px) */
+            bottom: 144px;
+            /* stacked above whatsapp (86px) and scroll-top (26px) */
             right: 24px;
             z-index: 9998;
             width: 50px;
@@ -57,6 +70,7 @@
             justify-content: center;
             transition: transform 0.25s, box-shadow 0.25s;
         }
+
         .float-translate-btn svg {
             width: 22px;
             height: 22px;
@@ -80,6 +94,7 @@
             transform: translateY(10px);
             transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
         }
+
         .float-translate-panel.open {
             opacity: 1;
             visibility: visible;
@@ -101,6 +116,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
         .ftp-header svg {
             width: 14px;
             height: 14px;
@@ -130,11 +146,16 @@
             background-color: #f0f4f8;
             padding-right: 32px;
         }
+
         .ftp-select:focus {
             border-color: var(--teal, #10519f);
             background-color: #fff;
         }
-        .ftp-select option { color: #1a2d42; background: #fff; }
+
+        .ftp-select option {
+            color: #1a2d42;
+            background: #fff;
+        }
 
         /* Active language badge shown on the button when non-English */
         .float-translate-btn .lang-badge {
@@ -153,14 +174,22 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .float-translate-btn.active-lang .lang-badge { display: block; }
-        .float-translate-btn { position: fixed; } /* ensure badge absolute works */
+
+        .float-translate-btn.active-lang .lang-badge {
+            display: block;
+        }
+
+        .float-translate-btn {
+            position: fixed;
+        }
+
+        /* ensure badge absolute works */
     </style>
     <style>
-        
-        footer .nav-logo{
-                filter: brightness(0) invert(1);
+        footer .nav-logo {
+            filter: brightness(0) invert(1);
         }
+
         :root {
             --navy: #0a1f3c;
             --teal: #10519f;
@@ -1445,8 +1474,9 @@
                         <a href="blogs.html" class="drop-item"><i data-lucide="newspaper"></i> Blogs</a>
                         <a href="gallery.html" class="drop-item"><i data-lucide="image"></i> Gallery</a>
                         <a href="careers.html" class="drop-item"><i data-lucide="briefcase"></i> Careers</a>
-                         <!-- <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a> -->
-                        <a href="international-patients.html" class="drop-item"><i data-lucide="globe"></i> International Patients</a>
+                        <!-- <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a> -->
+                        <a href="international-patients.html" class="drop-item"><i data-lucide="globe"></i>
+                            International Patients</a>
                     </div>
                 </li>
                 <li><a href="contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
@@ -1478,7 +1508,8 @@
             <a href="gallery.html" class="mob-link"><i data-lucide="image"></i> Gallery</a>
             <a href="careers.html" class="mob-link"><i data-lucide="briefcase"></i> Careers</a>
             <!-- <a href="insurance.html" class="mob-link"><i data-lucide="shield-check"></i> Insurance</a> -->
-            <a href="international-patients.html" class="mob-link"><i data-lucide="globe"></i> International Patients</a>
+            <a href="international-patients.html" class="mob-link"><i data-lucide="globe"></i> International
+                Patients</a>
         </div>
         <a href="contact.html" class="mob-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
     </div>
@@ -1668,8 +1699,7 @@
 
                 <div class="doc-card fade-up">
                     <div class="doc-ph">
-                        <img src="./doctor-placeholder.jpeg"
-                            alt="Dr. Rahul D'Souza" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Rahul D'Souza" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1681,8 +1711,7 @@
                 </div>
                 <div class="doc-card fade-up">
                     <div class="doc-ph">
-                        <img src="./doctor-placeholder.jpeg"
-                            alt="Dr. Sindhu Rao" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Sindhu Rao" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
@@ -1782,22 +1811,22 @@
 
     <!-- ── FLOATING TRANSLATE BUTTON (desktop + mobile) ── -->
     <button class="float-translate-btn" id="floatTranslateBtn" aria-label="Translate page" title="Translate">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="2" y1="12" x2="22" y2="12"/>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="2" y1="12" x2="22" y2="12" />
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
         </svg>
         <span class="lang-badge" id="langBadge">EN</span>
     </button>
 
     <div class="float-translate-panel" id="floatTranslatePanel">
         <div class="ftp-header">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="2" y1="12" x2="22" y2="12"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
             </svg>
             Select Language
         </div>
@@ -1919,10 +1948,10 @@
 
         /* ── Floating button UI logic ── */
         document.addEventListener('DOMContentLoaded', function () {
-            var btn    = document.getElementById('floatTranslateBtn');
-            var panel  = document.getElementById('floatTranslatePanel');
+            var btn = document.getElementById('floatTranslateBtn');
+            var panel = document.getElementById('floatTranslatePanel');
             var select = document.getElementById('ftpSelect');
-            var badge  = document.getElementById('langBadge');
+            var badge = document.getElementById('langBadge');
 
             /* Restore badge state from cookie on page load */
             var currentLang = getGoogTransLang();
@@ -1963,8 +1992,7 @@
     </script>
 
     <!-- Google Translate script loads asynchronously -->
-    <script type="text/javascript"
-        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
     </script>
 
 </body>

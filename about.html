@@ -7,23 +7,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us | MNR Hospital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700&family=DM+Sans:wght@300;400;500;600&display=swap"
-        rel="stylesheet" />
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         /* ── Hide Google's default top banner ── */
         .goog-te-banner-frame,
         .goog-te-banner-frame.skiptranslate {
             display: none !important;
         }
-        body { top: 0 !important; }
+
+        body {
+            top: 0 !important;
+        }
 
         /* ── Hide Google branding & the real widget (we drive it via JS) ── */
         .goog-logo-link,
-        .goog-te-gadget span { display: none !important; }
-        .goog-te-gadget { font-size: 0 !important; }
+        .goog-te-gadget span {
+            display: none !important;
+        }
+
+        .goog-te-gadget {
+            font-size: 0 !important;
+        }
 
         /* The real Google widget is invisible it sits off-screen,
            we only use it programmatically */
@@ -43,7 +54,8 @@
         /* Floating globe button */
         .float-translate-btn {
             position: fixed;
-            bottom: 144px; /* stacked above whatsapp (86px) and scroll-top (26px) */
+            bottom: 144px;
+            /* stacked above whatsapp (86px) and scroll-top (26px) */
             right: 24px;
             z-index: 9998;
             width: 50px;
@@ -58,6 +70,7 @@
             justify-content: center;
             transition: transform 0.25s, box-shadow 0.25s;
         }
+
         .float-translate-btn svg {
             width: 22px;
             height: 22px;
@@ -81,6 +94,7 @@
             transform: translateY(10px);
             transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
         }
+
         .float-translate-panel.open {
             opacity: 1;
             visibility: visible;
@@ -102,6 +116,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
         .ftp-header svg {
             width: 14px;
             height: 14px;
@@ -131,11 +146,16 @@
             background-color: #f0f4f8;
             padding-right: 32px;
         }
+
         .ftp-select:focus {
             border-color: var(--teal, #10519f);
             background-color: #fff;
         }
-        .ftp-select option { color: #1a2d42; background: #fff; }
+
+        .ftp-select option {
+            color: #1a2d42;
+            background: #fff;
+        }
 
         /* Active language badge shown on the button when non-English */
         .float-translate-btn .lang-badge {
@@ -154,14 +174,22 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .float-translate-btn.active-lang .lang-badge { display: block; }
-        .float-translate-btn { position: fixed; } /* ensure badge absolute works */
+
+        .float-translate-btn.active-lang .lang-badge {
+            display: block;
+        }
+
+        .float-translate-btn {
+            position: fixed;
+        }
+
+        /* ensure badge absolute works */
     </style>
     <style>
-        
-        footer .nav-logo{
-                filter: brightness(0) invert(1);
+        footer .nav-logo {
+            filter: brightness(0) invert(1);
         }
+
         :root {
             --navy: #0a1f3c;
             --teal: #10519f;
@@ -1988,7 +2016,8 @@
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="about.html" class="nav-link active">About Us</a></li>
                 <li class="drop">
-                    <button style="font-family: 'Poppins', sans-serif;" class="drop-btn">Departments <i data-lucide="chevron-down"></i></button>
+                    <button style="font-family: 'Poppins', sans-serif;" class="drop-btn">Departments <i
+                            data-lucide="chevron-down"></i></button>
                     <div class="drop-menu">
                         <a href="cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i>
                             Cardiology</a>
@@ -2009,13 +2038,15 @@
                 <li><a href="doctors.html" class="nav-link">Doctors</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
                 <li class="drop">
-                    <button style="font-family: 'Poppins', sans-serif;" class="drop-btn">More <i data-lucide="chevron-down"></i></button>
+                    <button style="font-family: 'Poppins', sans-serif;" class="drop-btn">More <i
+                            data-lucide="chevron-down"></i></button>
                     <div class="drop-menu">
                         <a href="blogs.html" class="drop-item"><i data-lucide="newspaper"></i> Blogs</a>
                         <a href="gallery.html" class="drop-item"><i data-lucide="image"></i> Gallery</a>
                         <a href="careers.html" class="drop-item"><i data-lucide="briefcase"></i> Careers</a>
-                         <!-- <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a> -->
-                        <a href="international-patients.html" class="drop-item"><i data-lucide="globe"></i> International Patients</a>
+                        <!-- <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a> -->
+                        <a href="international-patients.html" class="drop-item"><i data-lucide="globe"></i>
+                            International Patients</a>
                     </div>
                 </li>
                 <li><a href="contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
@@ -2052,7 +2083,8 @@
             <a href="gallery.html" class="mob-link"><i data-lucide="image"></i> Gallery</a>
             <a href="careers.html" class="mob-link"><i data-lucide="briefcase"></i> Careers</a>
             <!-- <a href="insurance.html" class="mob-link"><i data-lucide="shield-check"></i> Insurance</a> -->
-            <a href="international-patients.html" class="mob-link"><i data-lucide="globe"></i> International Patients</a>
+            <a href="international-patients.html" class="mob-link"><i data-lucide="globe"></i> International
+                Patients</a>
         </div>
         <a href="contact.html" class="mob-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
     </div>
@@ -2067,7 +2099,8 @@
                 <span>About Us</span>
             </div>
             <h1>Built for <em>Today.</em><br>Designed for Every Patient.</h1>
-            <p style="color: #ffffffb8;line-height: 1.5;">MNR Hospital is a modern, full-scale multi-specialty hospital built with one
+            <p style="color: #ffffffb8;line-height: 1.5;">MNR Hospital is a modern, full-scale multi-specialty hospital
+                built with one
                 purpose to bring expert,
                 compassionate, and accessible healthcare to every family in Coastal Karnataka.</p>
         </div>
@@ -2101,8 +2134,7 @@
             <div class="intro-grid">
                 <div class="intro-img-wrap fade-up">
                     <div class="intro-img">
-                        <img src="./mnr-img.png"
-                            alt="MNR Hospital Hospital" />
+                        <img src="./mnr-img.png" alt="MNR Hospital Hospital" />
                     </div>
                     <div class="i-badge">
                         <div class="ib-ico"><i data-lucide="badge-check"></i></div>
@@ -2163,8 +2195,7 @@
             <div class="founder-grid">
                 <div class="founder-card fade-up">
                     <div class="founder-photo">
-                        <img src="./doctor-placeholder.jpeg"
-                            alt="CEO and Managing Director Founder, MNR Hospital" />
+                        <img src="./doctor-placeholder.jpeg" alt="CEO and Managing Director Founder, MNR Hospital" />
                     </div>
                     <div class="founder-card-info">
                         <h3>CEO and Managing Director</h3>
@@ -2181,7 +2212,8 @@
                     <h2 class="s-title">A Doctor's Dream,<br>Built for <em>Every Patient</em></h2>
                     <p class="pull-quote">"I have seen too many patients from our region travel hours to cities just to
                         get the care they deserve. MNR Hospital exists to change that permanently."</p>
-                    <p class="founder-bio">CEO and Managing Director is a respected physician with over three decades of clinical
+                    <p class="founder-bio">CEO and Managing Director is a respected physician with over three decades of
+                        clinical
                         practice across Coastal Karnataka. After years of witnessing the healthcare gap in the region
                         firsthand, he channelled his experience and conviction into founding MNR Hospital a hospital
                         that does not compromise on quality, technology, or compassion.</p>
@@ -2317,8 +2349,7 @@
             <div class="lead-grid">
                 <div class="lead-card fade-up">
                     <div class="lead-ph">
-                        <img src="./doctor-placeholder.jpeg"
-                            alt="Dr. Suresh Kamath" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Suresh Kamath" />
                         <div class="lead-overlay"></div>
                     </div>
                     <div class="lead-info">
@@ -2330,8 +2361,7 @@
                 </div>
                 <div class="lead-card fade-up">
                     <div class="lead-ph">
-                        <img src="./doctor-placeholder.jpeg"
-                            alt="Dr. Anitha Shetty" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Anitha Shetty" />
                         <div class="lead-overlay"></div>
                     </div>
                     <div class="lead-info">
@@ -2343,8 +2373,7 @@
                 </div>
                 <div class="lead-card fade-up">
                     <div class="lead-ph">
-                        <img src="./doctor-placeholder.jpeg"
-                            alt="Mr. Ravi Nayak" />
+                        <img src="./doctor-placeholder.jpeg" alt="Mr. Ravi Nayak" />
                         <div class="lead-overlay"></div>
                     </div>
                     <div class="lead-info">
@@ -2356,8 +2385,7 @@
                 </div>
                 <div class="lead-card fade-up">
                     <div class="lead-ph">
-                        <img src="./doctor-placeholder.jpeg"
-                            alt="Dr. Kavitha Bhat" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Kavitha Bhat" />
                         <div class="lead-overlay"></div>
                     </div>
                     <div class="lead-info">
@@ -2514,22 +2542,22 @@
 
     <!-- ── FLOATING TRANSLATE BUTTON (desktop + mobile) ── -->
     <button class="float-translate-btn" id="floatTranslateBtn" aria-label="Translate page" title="Translate">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="2" y1="12" x2="22" y2="12"/>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="2" y1="12" x2="22" y2="12" />
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
         </svg>
         <span class="lang-badge" id="langBadge">EN</span>
     </button>
 
     <div class="float-translate-panel" id="floatTranslatePanel">
         <div class="ftp-header">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="2" y1="12" x2="22" y2="12"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
             </svg>
             Select Language
         </div>
@@ -2676,10 +2704,10 @@
 
         /* ── Floating button UI logic ── */
         document.addEventListener('DOMContentLoaded', function () {
-            var btn    = document.getElementById('floatTranslateBtn');
-            var panel  = document.getElementById('floatTranslatePanel');
+            var btn = document.getElementById('floatTranslateBtn');
+            var panel = document.getElementById('floatTranslatePanel');
             var select = document.getElementById('ftpSelect');
-            var badge  = document.getElementById('langBadge');
+            var badge = document.getElementById('langBadge');
 
             /* Restore badge state from cookie on page load */
             var currentLang = getGoogTransLang();
@@ -2720,8 +2748,7 @@
     </script>
 
     <!-- Google Translate script loads asynchronously -->
-    <script type="text/javascript"
-        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
     </script>
 
 </body>
