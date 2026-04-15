@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* ── Hide Google's default top banner ── */
         .goog-te-banner-frame,
         .goog-te-banner-frame.skiptranslate {
             display: none !important;
@@ -23,7 +22,6 @@
             top: 0 !important;
         }
 
-        /* ── Hide Google branding & the real widget (we drive it via JS) ── */
         .goog-logo-link,
         .goog-te-gadget span {
             display: none !important;
@@ -33,8 +31,6 @@
             font-size: 0 !important;
         }
 
-        /* The real Google widget is invisible it sits off-screen,
-           we only use it programmatically */
         #google_translate_element {
             position: absolute;
             left: -9999px;
@@ -43,16 +39,9 @@
             pointer-events: none;
         }
 
-        /* ════════════════════════════════════════
-           FLOATING TRANSLATE BUTTON
-           Works on BOTH desktop & mobile
-        ════════════════════════════════════════ */
-
-        /* Floating globe button */
         .float-translate-btn {
             position: fixed;
             bottom: 144px;
-            /* stacked above whatsapp (86px) and scroll-top (26px) */
             right: 24px;
             z-index: 9998;
             width: 50px;
@@ -74,7 +63,6 @@
             pointer-events: none;
         }
 
-        /* Dropdown panel that opens above the button */
         .float-translate-panel {
             position: fixed;
             bottom: 204px;
@@ -98,7 +86,6 @@
             transform: translateY(0);
         }
 
-        /* Panel header */
         .ftp-header {
             display: flex;
             align-items: center;
@@ -120,7 +107,6 @@
             color: var(--teal, #10519f);
         }
 
-        /* The language select inside the panel */
         .ftp-select {
             width: 100%;
             padding: 9px 12px;
@@ -154,7 +140,6 @@
             background: #fff;
         }
 
-        /* Active language badge shown on the button when non-English */
         .float-translate-btn .lang-badge {
             position: absolute;
             top: -4px;
@@ -179,8 +164,6 @@
         .float-translate-btn {
             position: fixed;
         }
-
-        /* ensure badge absolute works */
     </style>
     <style>
         footer .nav-logo {
@@ -220,7 +203,6 @@
             overflow-x: hidden;
         }
 
-        /* ── NAVBAR ── */
         nav {
             position: fixed;
             top: 0;
@@ -524,7 +506,6 @@
             height: 17px;
         }
 
-        /* ── SHARED ── */
         .si {
             max-width: 1300px;
             margin: 0 auto;
@@ -591,7 +572,6 @@
             transition-delay: .28s
         }
 
-        /* ── PAGE HERO ── */
         .page-hero {
             margin-top: 72px;
             background: linear-gradient(135deg, #061529 0%, #0a2540 50%, #0d3d6b 100%);
@@ -688,7 +668,6 @@
             line-height: 1.75;
         }
 
-        /* ── QUICK CONTACT CARDS ── */
         .quick-sec {
             background: var(--navy);
             padding: 0 28px;
@@ -792,7 +771,6 @@
             color: inherit;
         }
 
-        /* ── MAIN CONTACT SECTION ── */
         .contact-sec {
             padding: 80px 28px 90px;
             background: var(--gray-light);
@@ -805,7 +783,6 @@
             align-items: start;
         }
 
-        /* ── CONTACT FORM ── */
         .form-wrap {
             background: #fff;
             border: 1.5px solid rgba(10, 31, 60, .05);
@@ -974,7 +951,6 @@
             transform: none;
         }
 
-        /* Success state */
         .form-success {
             display: none;
             text-align: center;
@@ -1034,7 +1010,23 @@
             background: rgba(14, 124, 123, .08);
         }
 
-        /* ── INFO PANEL ── */
+        .form-error-msg {
+            display: none;
+            background: rgba(231, 76, 60, .08);
+            border: 1.5px solid rgba(231, 76, 60, .25);
+            color: #c0392b;
+            border-radius: 12px;
+            padding: 14px 18px;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .form-error-msg.visible {
+            display: block;
+        }
+
         .info-panel {
             display: flex;
             flex-direction: column;
@@ -1129,7 +1121,6 @@
             color: var(--teal);
         }
 
-        /* OPD Hours table */
         .opd-table {
             width: 100%;
             border-collapse: collapse;
@@ -1209,7 +1200,6 @@
             }
         }
 
-        /* Social links */
         .social-links {
             display: flex;
             gap: 10px;
@@ -1281,7 +1271,6 @@
             color: #fff;
         }
 
-        /* ── MAP SECTION ── */
         .map-sec {
             background: #fff;
         }
@@ -1325,7 +1314,6 @@
             transform: translateY(-1px);
         }
 
-        /* ── FAQ SECTION ── */
         .faq-sec {
             padding: 80px 28px 90px;
             background: var(--cream);
@@ -1407,7 +1395,6 @@
             max-height: 300px;
         }
 
-        /* ── FOOTER ── */
         footer {
             background: var(--navy);
             padding: 66px 28px 0;
@@ -1530,8 +1517,6 @@
             color: var(--teal-light);
         }
 
-
-
         .scroll-top {
             position: fixed;
             bottom: 26px;
@@ -1547,7 +1532,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-
             opacity: 0;
             pointer-events: none;
             transition: all .3s;
@@ -1567,7 +1551,6 @@
             transform: translateY(-3px);
         }
 
-        /* ── RESPONSIVE ── */
         @media (max-width: 1400px) {
             .c-arrow {
                 display: none;
@@ -1575,7 +1558,6 @@
         }
 
         @media (max-width: 1100px) {
-
             .nav-links {
                 display: none;
             }
@@ -1661,7 +1643,6 @@
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-
         }
 
         @media (max-width:480px) {
@@ -1710,20 +1691,15 @@
                     <button style="font-family: 'Poppins', sans-serif;" class="drop-btn">Departments <i
                             data-lucide="chevron-down"></i></button>
                     <div class="drop-menu">
-                        <a href="cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i>
-                            Cardiology</a>
-                        <a href="pulmonology.html" class="drop-item"><i data-lucide="wind"></i>
-                            Pulmonology</a>
-                        <a href="gynecology.html" class="drop-item"><i data-lucide="baby"></i>
-                            Gynecology</a>
+                        <a href="cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i> Cardiology</a>
+                        <a href="pulmonology.html" class="drop-item"><i data-lucide="wind"></i> Pulmonology</a>
+                        <a href="gynecology.html" class="drop-item"><i data-lucide="baby"></i> Gynecology</a>
                         <a href="neurology.html" class="drop-item"><i data-lucide="brain"></i> Neurology</a>
                         <a href="urology.html" class="drop-item"><i data-lucide="activity"></i> Urology</a>
                         <a href="gastroenterology.html" class="drop-item"><i data-lucide="stethoscope"></i>
                             Gastroenterology</a>
-                        <a href="pediatrics.html" class="drop-item"><i data-lucide="smile"></i>
-                            Pediatrics</a>
-                        <a href="departments.html" class="drop-item"><i data-lucide="chevron-right"></i>
-                            View All</a>
+                        <a href="pediatrics.html" class="drop-item"><i data-lucide="smile"></i> Pediatrics</a>
+                        <a href="departments.html" class="drop-item"><i data-lucide="chevron-right"></i> View All</a>
                     </div>
                 </li>
                 <li><a href="doctors.html" class="nav-link">Doctors</a></li>
@@ -1735,7 +1711,6 @@
                         <a href="blogs.html" class="drop-item"><i data-lucide="newspaper"></i> Blogs</a>
                         <a href="gallery.html" class="drop-item"><i data-lucide="image"></i> Gallery</a>
                         <a href="careers.html" class="drop-item"><i data-lucide="briefcase"></i> Careers</a>
-                        <!-- <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a> -->
                         <a href="international-patients.html" class="drop-item"><i data-lucide="globe"></i>
                             International Patients</a>
                     </div>
@@ -1761,8 +1736,7 @@
             <a href="gynecology.html" class="mob-link"><i data-lucide="baby"></i> Gynecology</a>
             <a href="neurology.html" class="mob-link"><i data-lucide="brain"></i> Neurology</a>
             <a href="urology.html" class="mob-link"><i data-lucide="activity"></i> Urology</a>
-            <a href="gastroenterology.html" class="mob-link"><i data-lucide="stethoscope"></i>
-                Gastroenterology</a>
+            <a href="gastroenterology.html" class="mob-link"><i data-lucide="stethoscope"></i> Gastroenterology</a>
             <a href="pediatrics.html" class="mob-link"><i data-lucide="smile"></i> Pediatrics</a>
             <a href="departments.html" class="mob-link"><i data-lucide="chevron-right"></i> View All</a>
         </div>
@@ -1773,7 +1747,6 @@
             <a href="blogs.html" class="mob-link"><i data-lucide="newspaper"></i> Blogs</a>
             <a href="gallery.html" class="mob-link"><i data-lucide="image"></i> Gallery</a>
             <a href="careers.html" class="mob-link"><i data-lucide="briefcase"></i> Careers</a>
-            <!-- <a href="insurance.html" class="mob-link"><i data-lucide="shield-check"></i> Insurance</a> -->
             <a href="international-patients.html" class="mob-link"><i data-lucide="globe"></i> International
                 Patients</a>
         </div>
@@ -1790,7 +1763,7 @@
             </div>
             <h1>We're Here<br>Whenever You <em>Need Us</em></h1>
             <p class="hero-sub">Whether it's booking an appointment, finding the right specialist, or simply asking a
-                question our team is ready to help you every step of the way.</p>
+                question — our team is ready to help you every step of the way.</p>
         </div>
     </div>
 
@@ -1800,7 +1773,7 @@
             <div class="q-card fade-up">
                 <div class="q-ico"><i data-lucide="phone-call"></i></div>
                 <div class="q-label">Call Us</div>
-                <div class="q-val"><a href="tel:9876543210">+91 9876543210</a></div>
+                <div class="q-val"><a href="tel:9945000037">+91 9945000037</a></div>
                 <div class="q-sub">24/7 Services</div>
             </div>
             <div class="q-card fade-up">
@@ -1810,22 +1783,16 @@
                 <div class="q-sub">Reply within 24 hours</div>
             </div>
             <a style="text-decoration: none;" href="https://maps.app.goo.gl/PgNGSG4DAPqkmZ1C6" class="q-card fade-up"
-                target="_blank" rel="noopener"
-                aria-label="Visit MNR Medicity Campus, Kolambe, Behind Bajpe, Karnataka on Google Maps">
-
-                <div class="q-ico">
-                    <i data-lucide="map-pin" aria-hidden="true"></i>
-                </div>
-
+                target="_blank" rel="noopener" aria-label="Visit MNR Medicity Campus on Google Maps">
+                <div class="q-ico"><i data-lucide="map-pin" aria-hidden="true"></i></div>
                 <div class="q-label">Visit Us</div>
                 <div class="q-val">MNR Medicity Campus</div>
                 <div class="q-sub">Kolambe, Behind Bajpe, Karnataka 574142</div>
-
             </a>
             <div class="q-card fade-up">
                 <div class="q-ico"><i data-lucide="siren"></i></div>
                 <div class="q-label">Emergency</div>
-                <div class="q-val"><a href="tel:9876543210">24 / 7 Always Open</a></div>
+                <div class="q-val"><a href="tel:9945000037">24 / 7 Always Open</a></div>
                 <div class="q-sub">Emergency & Trauma Care</div>
             </div>
         </div>
@@ -1846,18 +1813,24 @@
                                 during working hours.</p>
                         </div>
 
+                        <!-- ═══════════════════════════════════════════════════
+                             FORMSPREE INTEGRATION
+                             Replace YOUR_FORMSPREE_ID below with your actual
+                             Formspree form ID (e.g. xbjnjkpz).
+                             Get one free at https://formspree.io
+                        ════════════════════════════════════════════════════ -->
                         <form id="contactForm" novalidate>
 
                             <!-- Name row -->
                             <div class="form-row">
                                 <div class="form-group no-mb">
                                     <label>First Name <span class="req">*</span></label>
-                                    <input type="text" id="firstName" placeholder="first name" />
+                                    <input type="text" id="firstName" name="first_name" placeholder="first name" />
                                     <span class="err-msg">Please enter your first name</span>
                                 </div>
                                 <div class="form-group no-mb">
                                     <label>Last Name <span class="req">*</span></label>
-                                    <input type="text" id="lastName" placeholder="last name" />
+                                    <input type="text" id="lastName" name="last_name" placeholder="last name" />
                                     <span class="err-msg">Please enter your last name</span>
                                 </div>
                             </div>
@@ -1866,12 +1839,12 @@
                             <div class="form-row" style="margin-top:18px">
                                 <div class="form-group no-mb">
                                     <label>Phone Number <span class="req">*</span></label>
-                                    <input type="tel" id="phone" placeholder="+91 98765 43210" />
+                                    <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" />
                                     <span class="err-msg">Please enter a valid phone number</span>
                                 </div>
                                 <div class="form-group no-mb">
                                     <label>Email Address</label>
-                                    <input type="email" id="email" placeholder="you@example.com" />
+                                    <input type="email" id="email" name="email" placeholder="you@example.com" />
                                     <span class="err-msg">Please enter a valid email</span>
                                 </div>
                             </div>
@@ -1879,13 +1852,18 @@
                             <!-- Message -->
                             <div class="form-group">
                                 <label>Describe Your Concern</label>
-                                <textarea id="message"
+                                <textarea id="message" name="message"
                                     placeholder="Briefly describe your symptoms or reason for the visit…"></textarea>
                             </div>
 
-                            <span class="err-msg" id="consentErr"
-                                style="display:none;font-size:11px;color:#e74c3c;margin-top:6px;">You must agree to
-                                continue</span>
+                            <!-- Formspree honeypot spam filter (keep hidden) -->
+                            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+                            <!-- Network / server error message -->
+                            <div class="form-error-msg" id="formErrorMsg">
+                                Something went wrong. Please try again or call us directly at <strong>+91
+                                    9945000037</strong>.
+                            </div>
 
                             <button type="submit" class="btn-submit" id="submitBtn">
                                 <i data-lucide="calendar-check"></i>Book Appointment<i data-lucide="arrow-right"></i>
@@ -1907,21 +1885,20 @@
                 <!-- INFO PANEL -->
                 <div class="info-panel">
 
-                    <!-- Contact details -->
                     <div class="info-block fade-up">
                         <h3><i data-lucide="info"></i> Contact Information</h3>
                         <div class="contact-row">
                             <div class="c-ico"><i data-lucide="phone-call"></i></div>
                             <div>
                                 <div class="c-label">Main Line</div>
-                                <div class="c-val"><a href="tel:9876543210">+91 9876543210</a></div>
+                                <div class="c-val"><a href="tel:9945000037">+91 9945000037</a></div>
                             </div>
                         </div>
                         <div class="contact-row">
                             <div class="c-ico"><i data-lucide="phone-forwarded"></i></div>
                             <div>
                                 <div class="c-label">Emergency / Casualty</div>
-                                <div class="c-val"><a href="tel:9876543210">+91 9876543210</a> &nbsp;·&nbsp; 24 / 7
+                                <div class="c-val"><a href="tel:9945000037">+91 9945000037</a> &nbsp;·&nbsp; 24 / 7
                                 </div>
                             </div>
                         </div>
@@ -1938,19 +1915,14 @@
                                 <div class="c-label">Address</div>
                                 <div class="c-val">
                                     <a href="https://maps.app.goo.gl/PgNGSG4DAPqkmZ1C6" target="_blank" rel="noopener"
-                                        aria-label="Open MNR Medicity Campus location in Google Maps"
                                         style="text-decoration:none; color:inherit;">
-
-                                        MNR Medicity Campus Kolambe,<br>
-                                        Behind Bajpe Proper, Karnataka 574142
-
+                                        MNR Medicity Campus Kolambe,<br>Behind Bajpe Proper, Karnataka 574142
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Social -->
                     <div class="info-block fade-up">
                         <h3><i data-lucide="share-2"></i> Follow Us</h3>
                         <p style="font-size:13px;color:var(--gray-mid);margin-bottom:16px;line-height:1.65">Stay
@@ -1963,7 +1935,7 @@
                         </div>
                     </div>
 
-                </div><!-- /info-panel -->
+                </div>
             </div>
         </div>
     </section>
@@ -2045,7 +2017,7 @@
                     </div>
                     <div class="faq-a">
                         <p>Our emergency and casualty department is reachable 24 hours a day, 7 days a week at
-                            9876543210. We are equipped for cardiac emergencies, trauma, and critical care round the
+                            9945000037. We are equipped for cardiac emergencies, trauma, and critical care round the
                             clock.</p>
                     </div>
                 </div>
@@ -2072,9 +2044,7 @@
 
             <div class="f-brand">
                 <a href="index.html" class="nav-logo" style="text-decoration:none">
-                    <div>
-                        <img width="250px" src="./MNR-logo-white.png" alt="logo">
-                    </div>
+                    <div><img width="250px" src="./MNR-logo-white.png" alt="logo"></div>
                 </a>
                 <p>MNR Hospital is committed to delivering compassionate, expert, and affordable healthcare to every
                     patient across Mangalore and Coastal Karnataka.</p>
@@ -2121,7 +2091,7 @@
                 </a>
                 <div class="f-cr">
                     <i data-lucide="phone"></i>
-                    <p><a href="tel:9876543210">+91 9876543210</a></p>
+                    <p><a href="tel:9945000037">+91 9945000037</a></p>
                 </div>
                 <div class="f-cr"><i data-lucide="mail"></i>
                     <p><a href="mailto:info@mnrhospital.com">info@mnrhospital.com</a></p>
@@ -2139,16 +2109,14 @@
             <span>&copy;
                 <script>document.write(new Date().getFullYear())</script> MNR Hospital. All rights reserved.
             </span>
-            <span class="f-blinks">
-                Designed and Developed by <a href="http://thinkb.agency/" target="_blank" style="font-weight: 800;">
-                    thinkB</a>
-            </span>
+            <span class="f-blinks">Designed and Developed by <a href="http://thinkb.agency/" target="_blank"
+                    style="font-weight: 800;">thinkB</a></span>
         </div>
     </footer>
 
     <button class="scroll-top" id="scrollTop"><i data-lucide="chevron-up"></i></button>
 
-    <!-- ── FLOATING TRANSLATE BUTTON (desktop + mobile) ── -->
+    <!-- FLOATING TRANSLATE BUTTON -->
     <button class="float-translate-btn" id="floatTranslateBtn" aria-label="Translate page" title="Translate">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round">
@@ -2194,6 +2162,45 @@
         </select>
     </div>
 
+    <a href="https://wa.me/919945000037?text=Hello%20MNR%20Hospital,%20I%20need%20assistance." class="wa-float"
+        target="_blank" aria-label="WhatsApp Chat">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <style>
+        .wa-float {
+            position: fixed;
+            bottom: 86px;
+            right: 24px;
+            width: 50px;
+            height: 50px;
+            background: #25D366;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 30px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+            z-index: 9999;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .wa-float {
+                width: 50px;
+                height: 50px;
+                bottom: 86px;
+                right: 24px;
+                font-size: 28px;
+            }
+        }
+    </style>
+
+    <!-- Hidden Google Translate widget -->
+    <div id="google_translate_element"></div>
+
     <script>
         lucide.createIcons();
 
@@ -2238,12 +2245,11 @@
         }, { threshold: 0.08 });
         document.querySelectorAll('.fade-up').forEach(function (el) { obs.observe(el); });
 
-        // Set min date to today
-        var dateInput = document.getElementById('apptDate');
-        var today = new Date().toISOString().split('T')[0];
-        dateInput.setAttribute('min', today);
+        // ══════════════════════════════════════════════════
+        //  FORMSPREE SUBMIT
+        // ══════════════════════════════════════════════════
+        var FORMSPREE_ENDPOINT = 'https://formspree.io/f/xeevobwv';
 
-        // ── FORM VALIDATION & SUBMIT ──
         document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
             var valid = true;
@@ -2259,110 +2265,71 @@
 
             validate('firstName', document.getElementById('firstName').value.trim().length > 0);
             validate('lastName', document.getElementById('lastName').value.trim().length > 0);
-            var ph = document.getElementById('phone').value.trim();
-            validate('phone', ph.length >= 10);
-
-            // Dept check
-            var deptVal = document.querySelector('input[name="dept"]:checked');
-            var deptErr = document.getElementById('deptErr');
-            if (!deptVal) { deptErr.style.display = 'block'; valid = false; }
-            else { deptErr.style.display = 'none'; }
-
-            // Date check
-            validate('apptDate', document.getElementById('apptDate').value !== '');
-
-            // Consent
-            var consent = document.getElementById('consent');
-            var consentErr = document.getElementById('consentErr');
-            if (!consent.checked) { consentErr.style.display = 'block'; valid = false; }
-            else { consentErr.style.display = 'none'; }
+            validate('phone', document.getElementById('phone').value.trim().length >= 10);
 
             if (!valid) return;
 
-            // Simulate submit
+            // Hide any previous error banner
+            document.getElementById('formErrorMsg').classList.remove('visible');
+
+            // Disable button & show loading state
             var btn = document.getElementById('submitBtn');
             btn.disabled = true;
             btn.innerHTML = '<i data-lucide="loader"></i> Sending…';
             lucide.createIcons();
 
-            setTimeout(function () {
-                document.getElementById('formContent').style.display = 'none';
-                document.getElementById('formSuccess').style.display = 'block';
-                lucide.createIcons();
-            }, 1400);
+            // Build form data
+            var data = {
+                first_name: document.getElementById('firstName').value.trim(),
+                last_name: document.getElementById('lastName').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                message: document.getElementById('message').value.trim()
+            };
+
+            // POST to Formspree
+            fetch(FORMSPREE_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(data)
+            })
+                .then(function (res) {
+                    if (res.ok) {
+                        // Success
+                        document.getElementById('formContent').style.display = 'none';
+                        document.getElementById('formSuccess').style.display = 'block';
+                        lucide.createIcons();
+                    } else {
+                        // Server returned an error (e.g. 422 validation)
+                        return res.json().then(function (json) {
+                            throw new Error(json.error || 'Submission failed');
+                        });
+                    }
+                })
+                .catch(function () {
+                    // Network error or server error — show inline error message
+                    btn.disabled = false;
+                    btn.innerHTML = '<i data-lucide="calendar-check"></i> Book Appointment <i data-lucide="arrow-right"></i>';
+                    lucide.createIcons();
+                    document.getElementById('formErrorMsg').classList.add('visible');
+                });
         });
 
         // Reset form
         document.getElementById('resetBtn').addEventListener('click', function () {
             document.getElementById('contactForm').reset();
             document.getElementById('submitBtn').disabled = false;
-            document.getElementById('submitBtn').innerHTML = '<i data-lucide="calendar-check"></i> Send Appointment Request <i data-lucide="arrow-right"></i>';
+            document.getElementById('submitBtn').innerHTML = '<i data-lucide="calendar-check"></i> Book Appointment <i data-lucide="arrow-right"></i>';
             document.getElementById('formSuccess').style.display = 'none';
             document.getElementById('formContent').style.display = 'block';
+            document.getElementById('formErrorMsg').classList.remove('visible');
             document.querySelectorAll('.has-error').forEach(function (el) { el.classList.remove('has-error'); });
             document.querySelectorAll('.error').forEach(function (el) { el.classList.remove('error'); });
             lucide.createIcons();
         });
-
-        // // FAQ accordion
-        // document.querySelectorAll('.faq-item').forEach(function (item) {
-        //     item.querySelector('.faq-q').addEventListener('click', function () {
-        //         var isOpen = item.classList.contains('open');
-        //         document.querySelectorAll('.faq-item.open').forEach(function (o) { o.classList.remove('open'); });
-        //         if (!isOpen) item.classList.add('open');
-        //     });
-        // });
     </script>
 
-
-    <a href="https://wa.me/919876543210?text=Hello%20MNR%20Hospital,%20I%20need%20assistance." class="wa-float"
-        target="_blank" aria-label="WhatsApp Chat">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-    <style>
-        .wa-float {
-            position: fixed;
-            bottom: 86px;
-            right: 24px;
-            width: 50px;
-            height: 50px;
-            background: #25D366;
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 30px;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
-            z-index: 9999;
-            transition: all 0.3s ease;
-        }
-
-
-        @media (max-width: 768px) {
-            .wa-float {
-                width: 50px;
-                height: 50px;
-                bottom: 86px;
-                right: 24px;
-                font-size: 28px;
-            }
-        }
-    </style>
     <script type="text/javascript">
-        /* ════════════════════════════════════════════════════
-           GOOGLE TRANSLATE COOKIE-BASED APPROACH
-           
-           How Google Translate actually works:
-           It reads a cookie called "googtrans" with the format
-           "/en/TARGET_LANG" e.g. "/en/hi" for Hindi.
-           Setting this cookie + reloading the page is the ONLY
-           100% reliable way to trigger translation it works
-           identically on desktop and mobile with no race conditions.
-        ════════════════════════════════════════════════════ */
-
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'en',
@@ -2371,91 +2338,54 @@
                 autoDisplay: false
             }, 'google_translate_element');
         }
-
-        /* ── Helper: set the googtrans cookie on current domain + / ── */
         function setGoogTransCookie(lang) {
             var value = lang ? '/en/' + lang : '/en/en';
-            /* Set on domain root required for Google Translate to pick it up */
             document.cookie = 'googtrans=' + value + '; path=/';
             document.cookie = 'googtrans=' + value + '; path=/; domain=' + location.hostname;
         }
-
-        /* ── Helper: read current googtrans cookie ── */
         function getGoogTransLang() {
             var match = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/([^;]+)/);
             return match ? match[1] : '';
         }
-
-        /* ── Floating button UI logic ── */
         document.addEventListener('DOMContentLoaded', function () {
             var btn = document.getElementById('floatTranslateBtn');
             var panel = document.getElementById('floatTranslatePanel');
             var select = document.getElementById('ftpSelect');
             var badge = document.getElementById('langBadge');
-
-            /* Restore badge state from cookie on page load */
             var currentLang = getGoogTransLang();
             if (currentLang && currentLang !== 'en') {
                 btn.classList.add('active-lang');
                 badge.textContent = currentLang.toUpperCase().slice(0, 2);
                 select.value = currentLang;
             }
-
-            /* Toggle panel */
-            btn.addEventListener('click', function (e) {
-                e.stopPropagation();
-                panel.classList.toggle('open');
-            });
-
-            /* Close on outside click */
-            document.addEventListener('click', function () {
-                panel.classList.remove('open');
-            });
+            btn.addEventListener('click', function (e) { e.stopPropagation(); panel.classList.toggle('open'); });
+            document.addEventListener('click', function () { panel.classList.remove('open'); });
             panel.addEventListener('click', function (e) { e.stopPropagation(); });
-
-            /* ── Language change: set cookie → reload ── */
             select.addEventListener('change', function () {
                 var lang = select.value;
-
                 if (!lang || lang === 'en') {
-                    /* Reset to English: clear the cookie */
                     document.cookie = 'googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
                     document.cookie = 'googtrans=; path=/; domain=' + location.hostname + '; expires=Thu, 01 Jan 1970 00:00:00 GMT';
                 } else {
                     setGoogTransCookie(lang);
                 }
-
-                /* Reload Google Translate reads the cookie on load */
                 location.reload();
             });
         });
     </script>
-
-    <!-- Google Translate script loads asynchronously -->
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-    </script>
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
-        // FAQ Accordion - Fixed & Improved
+        // FAQ Accordion
         document.addEventListener('DOMContentLoaded', function () {
-            const faqItems = document.querySelectorAll('.faq-item');
-
-            faqItems.forEach(function (item) {
-                const question = item.querySelector('.faq-q');
-
+            document.querySelectorAll('.faq-item').forEach(function (item) {
+                var question = item.querySelector('.faq-q');
                 if (question) {
                     question.addEventListener('click', function () {
-                        const isCurrentlyOpen = item.classList.contains('open');
-
-                        // Close all other open FAQs (accordion behavior)
-                        faqItems.forEach(function (otherItem) {
-                            otherItem.classList.remove('open');
-                        });
-
-                        // Toggle current one
-                        if (!isCurrentlyOpen) {
-                            item.classList.add('open');
-                        }
+                        var isOpen = item.classList.contains('open');
+                        document.querySelectorAll('.faq-item.open').forEach(function (o) { o.classList.remove('open'); });
+                        if (!isOpen) item.classList.add('open');
                     });
                 }
             });
