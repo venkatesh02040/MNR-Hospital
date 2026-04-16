@@ -12,23 +12,26 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* ── Hide Google's default top banner ── */
         .goog-te-banner-frame,
         .goog-te-banner-frame.skiptranslate {
             display: none !important;
         }
-        body { top: 0 !important; }
 
-        /* ── Hide Google branding & the real widget (we drive it via JS) ── */
+        body {
+            top: 0 !important;
+        }
+
         .goog-logo-link,
-        .goog-te-gadget span { display: none !important; }
-        .goog-te-gadget { font-size: 0 !important; }
+        .goog-te-gadget span {
+            display: none !important;
+        }
 
-        /* The real Google widget is invisible it sits off-screen,
-           we only use it programmatically */
+        .goog-te-gadget {
+            font-size: 0 !important;
+        }
+
         #google_translate_element {
             position: absolute;
             left: -9999px;
@@ -37,15 +40,9 @@
             pointer-events: none;
         }
 
-        /* ════════════════════════════════════════
-           FLOATING TRANSLATE BUTTON
-           Works on BOTH desktop & mobile
-        ════════════════════════════════════════ */
-
-        /* Floating globe button */
         .float-translate-btn {
             position: fixed;
-            bottom: 144px; /* stacked above whatsapp (86px) and scroll-top (26px) */
+            bottom: 144px;
             right: 24px;
             z-index: 9998;
             width: 50px;
@@ -60,13 +57,13 @@
             justify-content: center;
             transition: transform 0.25s, box-shadow 0.25s;
         }
+
         .float-translate-btn svg {
             width: 22px;
             height: 22px;
             pointer-events: none;
         }
 
-        /* Dropdown panel that opens above the button */
         .float-translate-panel {
             position: fixed;
             bottom: 204px;
@@ -83,13 +80,13 @@
             transform: translateY(10px);
             transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
         }
+
         .float-translate-panel.open {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
 
-        /* Panel header */
         .ftp-header {
             display: flex;
             align-items: center;
@@ -104,13 +101,13 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
         .ftp-header svg {
             width: 14px;
             height: 14px;
             color: var(--teal, #10519f);
         }
 
-        /* The language select inside the panel */
         .ftp-select {
             width: 100%;
             padding: 9px 12px;
@@ -133,13 +130,17 @@
             background-color: #f0f4f8;
             padding-right: 32px;
         }
+
         .ftp-select:focus {
             border-color: var(--teal, #10519f);
             background-color: #fff;
         }
-        .ftp-select option { color: #1a2d42; background: #fff; }
 
-        /* Active language badge shown on the button when non-English */
+        .ftp-select option {
+            color: #1a2d42;
+            background: #fff;
+        }
+
         .float-translate-btn .lang-badge {
             position: absolute;
             top: -4px;
@@ -156,14 +157,20 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .float-translate-btn.active-lang .lang-badge { display: block; }
-        .float-translate-btn { position: fixed; } /* ensure badge absolute works */
+
+        .float-translate-btn.active-lang .lang-badge {
+            display: block;
+        }
+
+        .float-translate-btn {
+            position: fixed;
+        }
     </style>
     <style>
-        
-        footer .nav-logo{
-                filter: brightness(0) invert(1);
+        footer .nav-logo {
+            filter: brightness(0) invert(1);
         }
+
         :root {
             --navy: #0a1f3c;
             --teal: #10519f;
@@ -183,18 +190,18 @@
         *::after {
             box-sizing: border-box;
             margin: 0;
-            padding: 0
+            padding: 0;
         }
 
         html {
-            scroll-behavior: smooth
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             color: var(--text);
             background: #fff;
-            overflow-x: hidden
+            overflow-x: hidden;
         }
 
         nav {
@@ -207,12 +214,12 @@
             backdrop-filter: blur(14px);
             border-bottom: 1px solid rgba(10, 31, 60, .08);
             box-shadow: 0 2px 20px rgba(10, 31, 60, .08);
-            transition: all .35s
+            transition: all .35s;
         }
 
         nav.scrolled {
             background: rgba(255, 255, 255, .97);
-            border-bottom-color: transparent
+            border-bottom-color: transparent;
         }
 
         nav.scrolled .logo-name,
@@ -222,7 +229,7 @@
         }
 
         nav.scrolled .logo-sub {
-            color: var(--teal-light) !important
+            color: var(--teal-light) !important;
         }
 
         nav.scrolled .hamburger span {
@@ -236,31 +243,14 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 28px;
-            height: 72px
+            height: 72px;
         }
 
         .nav-logo {
             display: flex;
             align-items: center;
             gap: 11px;
-            text-decoration: none
-        }
-
-        .logo-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 11px;
-            background: linear-gradient(135deg, var(--teal), var(--navy));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0
-        }
-
-        .logo-icon svg {
-            color: #fff;
-            width: 22px;
-            height: 22px
+            text-decoration: none;
         }
 
         .logo-name {
@@ -268,7 +258,7 @@
             font-size: 21px;
             font-weight: 700;
             color: var(--navy);
-            line-height: 1.1
+            line-height: 1.1;
         }
 
         .logo-sub {
@@ -276,14 +266,14 @@
             color: var(--teal);
             letter-spacing: 2px;
             text-transform: uppercase;
-            font-weight: 500
+            font-weight: 500;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
             gap: 2px;
-            list-style: none
+            list-style: none;
         }
 
         .nav-link {
@@ -293,16 +283,16 @@
             padding: 8px 13px;
             border-radius: 8px;
             text-decoration: none;
-            transition: all .2s
+            transition: all .2s;
         }
 
         .nav-link:hover,
         .nav-link.active {
-            color: var(--teal)
+            color: var(--teal);
         }
 
         .drop {
-            position: relative
+            position: relative;
         }
 
         .drop-btn {
@@ -318,25 +308,25 @@
             border: none;
             cursor: pointer;
             transition: all .2s;
-            user-select: none
+            user-select: none;
         }
 
         .drop-btn svg {
             width: 13px;
             height: 13px;
-            transition: transform .3s
+            transition: transform .3s;
         }
 
         .drop.open .drop-btn {
-            color: var(--teal)
+            color: var(--teal);
         }
 
         .drop.open .drop-btn svg {
-            transform: rotate(180deg)
+            transform: rotate(180deg);
         }
 
         nav.scrolled .drop.open .drop-btn {
-            color: var(--teal-light) !important
+            color: var(--teal-light) !important;
         }
 
         .drop-menu::before {
@@ -345,7 +335,7 @@
             top: -16px;
             left: 0;
             right: 0;
-            height: 16px
+            height: 16px;
         }
 
         .drop-menu {
@@ -363,14 +353,14 @@
             pointer-events: none;
             transition: opacity .22s, transform .22s, visibility .22s;
             border: 1px solid rgba(10, 31, 60, .08);
-            z-index: 200
+            z-index: 200;
         }
 
         .drop.open .drop-menu {
             opacity: 1;
             visibility: visible;
             pointer-events: all;
-            transform: translateX(-50%) translateY(0)
+            transform: translateX(-50%) translateY(0);
         }
 
         .drop-item {
@@ -383,19 +373,19 @@
             font-size: 14px;
             text-decoration: none;
             transition: all .18s;
-            white-space: nowrap
+            white-space: nowrap;
         }
 
         .drop-item svg {
             width: 16px;
             height: 16px;
             color: var(--teal);
-            flex-shrink: 0
+            flex-shrink: 0;
         }
 
         .drop-item:hover {
             background: var(--gray-light);
-            color: var(--teal)
+            color: var(--teal);
         }
 
         .nav-cta {
@@ -409,14 +399,14 @@
             font-size: 14px;
             font-weight: 600;
             text-decoration: none;
-            transition: all .25s
+            transition: all .25s;
         }
 
         .nav-cta svg {
             width: 15px;
-            height: 15px
+            height: 15px;
         }
-        
+
         .hamburger {
             display: none;
             flex-direction: column;
@@ -424,17 +414,16 @@
             cursor: pointer;
             background: none;
             border: none;
-            padding: 6px
+            padding: 6px;
         }
 
         .hamburger span {
-            background: #1a2d42;
             width: 24px;
             height: 2px;
             background: var(--navy);
             border-radius: 2px;
             transition: all .3s;
-            display: block
+            display: block;
         }
 
         .mob-nav {
@@ -446,11 +435,11 @@
             padding: 118px 28px 40px;
             transform: translateX(100%);
             transition: transform .38s cubic-bezier(.77, 0, .175, 1);
-            overflow-y: auto
+            overflow-y: auto;
         }
 
         .mob-nav.open {
-            transform: translateX(0)
+            transform: translateX(0);
         }
 
         .mob-link {
@@ -462,22 +451,22 @@
             font-weight: 500;
             padding: 15px 0;
             border-bottom: 1px solid rgba(255, 255, 255, .08);
-            text-decoration: none
+            text-decoration: none;
         }
 
         .mob-link svg {
             width: 18px;
             height: 18px;
-            color: var(--teal-light)
+            color: var(--teal-light);
         }
 
         .mob-sub {
-            padding-left: 28px
+            padding-left: 28px;
         }
 
         .mob-sub .mob-link {
             font-size: 15px;
-            color: rgba(255, 255, 255, .68)
+            color: rgba(255, 255, 255, .68);
         }
 
         .mob-cta {
@@ -492,12 +481,12 @@
             border-radius: 50px;
             font-weight: 600;
             font-size: 15px;
-            text-decoration: none
+            text-decoration: none;
         }
 
         .si {
             max-width: 1300px;
-            margin: 0 auto
+            margin: 0 auto;
         }
 
         .s-tag {
@@ -509,7 +498,7 @@
             letter-spacing: 2.5px;
             text-transform: uppercase;
             color: var(--teal);
-            margin-bottom: 12px
+            margin-bottom: 12px;
         }
 
         .s-tag::before {
@@ -517,43 +506,42 @@
             width: 22px;
             height: 2px;
             background: var(--teal);
-            border-radius: 2px
+            border-radius: 2px;
         }
 
         .fade-up {
             opacity: 0;
             transform: translateY(24px);
-            transition: all .6s cubic-bezier(.25, .46, .45, .94)
+            transition: all .6s cubic-bezier(.25, .46, .45, .94);
         }
 
         .fade-up.in {
             opacity: 1;
-            transform: translateY(0)
+            transform: translateY(0);
         }
 
         .fade-up:nth-child(2) {
-            transition-delay: .08s
+            transition-delay: .08s;
         }
 
         .fade-up:nth-child(3) {
-            transition-delay: .14s
+            transition-delay: .14s;
         }
 
         .fade-up:nth-child(4) {
-            transition-delay: .21s
+            transition-delay: .21s;
         }
 
         .fade-up:nth-child(5) {
-            transition-delay: .28s
+            transition-delay: .28s;
         }
 
-        /* HERO */
         .page-hero {
             margin-top: 72px;
             background: linear-gradient(135deg, #061529 0%, #0a2540 50%, #0d3d6b 100%);
             padding: 90px 28px 50px;
             position: relative;
-            overflow: hidden
+            overflow: hidden;
         }
 
         .page-hero::before {
@@ -565,7 +553,7 @@
             height: 600px;
             border-radius: 50%;
             background: radial-gradient(circle, rgba(14, 124, 123, .22) 0%, transparent 70%);
-            pointer-events: none
+            pointer-events: none;
         }
 
         .page-hero::after {
@@ -577,7 +565,7 @@
             height: 400px;
             border-radius: 50%;
             background: radial-gradient(circle, rgba(200, 153, 42, .10) 0%, transparent 70%);
-            pointer-events: none
+            pointer-events: none;
         }
 
         .hero-grid {
@@ -586,14 +574,14 @@
             opacity: .035;
             pointer-events: none;
             background-image: linear-gradient(rgba(255, 255, 255, .6) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .6) 1px, transparent 1px);
-            background-size: 55px 55px
+            background-size: 55px 55px;
         }
 
         .hero-inner {
             max-width: 1300px;
             margin: 0 auto;
             position: relative;
-            z-index: 2
+            z-index: 2;
         }
 
         .breadcrumb {
@@ -602,26 +590,26 @@
             gap: 8px;
             font-size: 13px;
             color: rgba(255, 255, 255, .50);
-            margin-bottom: 22px
+            margin-bottom: 22px;
         }
 
         .breadcrumb a {
             color: rgba(255, 255, 255, .50);
             text-decoration: none;
-            transition: color .2s
+            transition: color .2s;
         }
 
         .breadcrumb a:hover {
-            color: var(--teal-light)
+            color: var(--teal-light);
         }
 
         .breadcrumb svg {
             width: 13px;
-            height: 13px
+            height: 13px;
         }
 
         .breadcrumb span {
-            color: rgba(255, 255, 255, .9)
+            color: rgba(255, 255, 255, .9);
         }
 
         .page-hero h1 {
@@ -635,7 +623,7 @@
 
         .page-hero h1 em {
             font-style: normal;
-            color: var(--gold-light)
+            color: var(--gold-light);
         }
 
         .hero-sub {
@@ -644,17 +632,16 @@
             line-height: 1.75;
         }
 
-        /* WHY JOIN */
         .why-sec {
             padding: 80px 28px;
-            background: #fff
+            background: #fff;
         }
 
         .why-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 24px;
-            margin-top: 48px
+            margin-top: 48px;
         }
 
         .why-card {
@@ -662,7 +649,7 @@
             border-radius: 20px;
             padding: 28px 24px;
             text-align: center;
-            transition: all .35s
+            transition: all .35s;
         }
 
         .why-ico {
@@ -673,32 +660,31 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 16px
+            margin: 0 auto 16px;
         }
 
         .why-ico svg {
             width: 24px;
             height: 24px;
-            color: #fff
+            color: #fff;
         }
 
         .why-card h4 {
             font-family: 'Poppins', sans-serif;
             font-size: 16px;
             color: var(--navy);
-            margin-bottom: 8px
+            margin-bottom: 8px;
         }
 
         .why-card p {
             font-size: 13px;
             color: var(--gray-mid);
-            line-height: 1.7
+            line-height: 1.7;
         }
 
-        /* JOBS SECTION */
         .jobs-sec {
             padding: 0 28px 90px;
-            background: #fff
+            background: #fff;
         }
 
         .jobs-header {
@@ -707,22 +693,22 @@
             justify-content: space-between;
             margin-bottom: 36px;
             flex-wrap: wrap;
-            gap: 16px
+            gap: 16px;
         }
 
         .jobs-count {
             font-size: 13px;
-            color: var(--gray-mid)
+            color: var(--gray-mid);
         }
 
         .jobs-count strong {
-            color: var(--teal)
+            color: var(--teal);
         }
 
         .jobs-list {
             display: flex;
             flex-direction: column;
-            gap: 20px
+            gap: 20px;
         }
 
         .job-card {
@@ -731,7 +717,7 @@
             border-radius: 22px;
             padding: 0;
             overflow: hidden;
-            transition: all .35s
+            transition: all .35s;
         }
 
         .job-head {
@@ -740,7 +726,7 @@
             gap: 20px;
             padding: 28px 32px 24px;
             align-items: start;
-            cursor: pointer
+            cursor: pointer;
         }
 
         .job-dept-badge {
@@ -754,7 +740,7 @@
             padding: 5px 13px;
             border-radius: 50px;
             color: #fff;
-            margin-bottom: 10px
+            margin-bottom: 10px;
         }
 
         .job-head h3 {
@@ -762,13 +748,13 @@
             font-size: 20px;
             color: var(--navy);
             margin-bottom: 8px;
-            line-height: 1.25
+            line-height: 1.25;
         }
 
         .job-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px
+            gap: 8px;
         }
 
         .job-tag {
@@ -779,13 +765,13 @@
             color: var(--gray-mid);
             background: var(--gray-light);
             padding: 5px 12px;
-            border-radius: 50px
+            border-radius: 50px;
         }
 
         .job-tag svg {
             width: 12px;
             height: 12px;
-            color: var(--teal)
+            color: var(--teal);
         }
 
         .job-right {
@@ -793,7 +779,7 @@
             flex-direction: column;
             align-items: flex-end;
             gap: 12px;
-            flex-shrink: 0
+            flex-shrink: 0;
         }
 
         .salary-badge {
@@ -801,7 +787,7 @@
             border: 1px solid rgba(14, 124, 123, .20);
             border-radius: 12px;
             padding: 10px 16px;
-            text-align: right
+            text-align: right;
         }
 
         .salary-badge .sal-label {
@@ -810,7 +796,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
-            margin-bottom: 2px
+            margin-bottom: 2px;
         }
 
         .salary-badge .sal-val {
@@ -834,23 +820,22 @@
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
             transition: all .3s;
-            white-space: nowrap
+            white-space: nowrap;
         }
 
         .btn-apply svg {
             width: 14px;
-            height: 14px
+            height: 14px;
         }
 
-        /* Expandable job details */
         .job-details {
             max-height: 0;
             overflow: hidden;
-            transition: max-height .4s ease, padding .4s ease
+            transition: max-height .4s ease, padding .4s ease;
         }
 
         .job-details.open {
-            max-height: 500px
+            max-height: 500px;
         }
 
         .job-details-inner {
@@ -858,7 +843,7 @@
             padding: 28px 32px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 32px
+            gap: 32px;
         }
 
         .jd-block h5 {
@@ -867,14 +852,14 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--gray-mid);
-            margin-bottom: 12px
+            margin-bottom: 12px;
         }
 
         .jd-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 8px
+            gap: 8px;
         }
 
         .jd-list li {
@@ -883,7 +868,7 @@
             gap: 8px;
             font-size: 14px;
             color: #4a5d70;
-            line-height: 1.6
+            line-height: 1.6;
         }
 
         .jd-list li svg {
@@ -891,10 +876,10 @@
             height: 14px;
             color: var(--teal);
             flex-shrink: 0;
-            margin-top: 3px
+            margin-top: 3px;
         }
 
-        /* APPLY MODAL */
+        /* ── MODAL ── */
         .modal-backdrop {
             position: fixed;
             inset: 0;
@@ -907,12 +892,13 @@
             padding: 20px;
             opacity: 0;
             pointer-events: none;
-            transition: opacity .3s
+            transition: opacity .3s;
+            overflow-y: auto;
         }
 
         .modal-backdrop.open {
             opacity: 1;
-            pointer-events: all
+            pointer-events: all;
         }
 
         .modal {
@@ -924,11 +910,12 @@
             position: relative;
             box-shadow: 0 30px 80px rgba(0, 0, 0, .3);
             transform: translateY(20px);
-            transition: transform .3s
+            transition: transform .3s;
+            margin: auto;
         }
 
         .modal-backdrop.open .modal {
-            transform: translateY(0)
+            transform: translateY(0);
         }
 
         .modal-close {
@@ -944,43 +931,43 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all .2s
+            transition: all .2s;
         }
 
         .modal-close:hover {
             background: #e74c3c;
-            color: #fff
+            color: #fff;
         }
 
         .modal-close svg {
             width: 16px;
             height: 16px;
-            color: var(--text)
+            color: var(--text);
         }
 
         .modal-close:hover svg {
-            color: #fff
+            color: #fff;
         }
 
         .modal h3 {
             font-family: 'Poppins', sans-serif;
             font-size: 22px;
             color: var(--navy);
-            margin-bottom: 4px
+            margin-bottom: 4px;
         }
 
         .modal-role {
             font-size: 13px;
             color: var(--teal);
             font-weight: 600;
-            margin-bottom: 24px
+            margin-bottom: 24px;
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
             gap: 6px;
-            margin-bottom: 16px
+            margin-bottom: 16px;
         }
 
         .form-group label {
@@ -988,16 +975,17 @@
             font-weight: 700;
             color: var(--navy);
             text-transform: uppercase;
-            letter-spacing: 1px
+            letter-spacing: 1px;
         }
 
         .form-group label .req {
             color: var(--teal);
-            margin-left: 2px
+            margin-left: 2px;
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             font-family: 'Poppins', sans-serif;
             font-size: 14px;
             color: var(--text);
@@ -1007,33 +995,50 @@
             padding: 13px 16px;
             outline: none;
             transition: all .22s;
-            width: 100%
+            width: 100%;
         }
 
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             border-color: var(--teal);
             background: #fff;
-            box-shadow: 0 0 0 4px rgba(14, 124, 123, .08)
+            box-shadow: 0 0 0 4px rgba(14, 124, 123, .08);
         }
 
         .form-group input.error,
         .form-group textarea.error {
-            border-color: #e74c3c
+            border-color: #e74c3c;
         }
 
         .form-group textarea {
             resize: vertical;
             min-height: 100px;
-            line-height: 1.65
+            line-height: 1.65;
         }
 
         .form-group input::placeholder,
         .form-group textarea::placeholder {
-            color: var(--gray-mid)
+            color: var(--gray-mid);
         }
 
-        /* File upload */
+        /* Free-tier resume note box */
+        .resume-note {
+            background: rgba(16, 81, 159, 0.07);
+            border: 1.5px solid rgba(16, 81, 159, 0.18);
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-size: 13px;
+            color: #1a2d42;
+            line-height: 1.65;
+            margin-bottom: 16px;
+        }
+
+        .resume-note strong {
+            color: var(--teal);
+        }
+
+        /* If using paid Formspree — file upload area */
         .file-upload {
             position: relative;
             border: 2px dashed rgba(10, 31, 60, .15);
@@ -1042,13 +1047,13 @@
             text-align: center;
             cursor: pointer;
             transition: all .25s;
-            background: var(--gray-light)
+            background: var(--gray-light);
         }
 
         .file-upload:hover,
         .file-upload.has-file {
             border-color: var(--teal);
-            background: rgba(14, 124, 123, .04)
+            background: rgba(14, 124, 123, .04);
         }
 
         .file-upload input[type="file"] {
@@ -1057,7 +1062,7 @@
             opacity: 0;
             cursor: pointer;
             width: 100%;
-            height: 100%
+            height: 100%;
         }
 
         .file-upload-ico {
@@ -1068,24 +1073,24 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 10px
+            margin: 0 auto 10px;
         }
 
         .file-upload-ico svg {
             width: 18px;
             height: 18px;
-            color: var(--teal)
+            color: var(--teal);
         }
 
         .file-upload p {
             font-size: 13px;
             color: var(--gray-mid);
-            margin-bottom: 3px
+            margin-bottom: 3px;
         }
 
         .file-upload span {
             font-size: 11px;
-            color: var(--gray-mid)
+            color: var(--gray-mid);
         }
 
         .file-name {
@@ -1093,13 +1098,13 @@
             color: var(--teal);
             font-weight: 600;
             margin-top: 6px;
-            display: none
+            display: none;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 14px
+            gap: 14px;
         }
 
         .btn-submit-modal {
@@ -1116,27 +1121,44 @@
             font-weight: 700;
             border: none;
             cursor: pointer;
-            box-shadow: 0 6px 22px rgba(14, 124, 123, .40);
             transition: all .3s;
             width: 100%;
-            margin-top: 8px
+            margin-top: 8px;
+        }
+
+        .btn-submit-modal:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none;
         }
 
         .btn-submit-modal svg {
             width: 16px;
-            height: 16px
+            height: 16px;
         }
 
-        .btn-submit-modal:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(14, 124, 123, .50)
+        .modal-submit-error {
+            display: none;
+            background: rgba(231, 76, 60, .08);
+            border: 1.5px solid rgba(231, 76, 60, .25);
+            color: #c0392b;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 13px;
+            margin-top: 12px;
+            text-align: center;
+            line-height: 1.6;
         }
 
-        /* Modal success */
+        .modal-submit-error.visible {
+            display: block;
+        }
+
         .modal-success {
             display: none;
             text-align: center;
-            padding: 20px 0
+            padding: 20px 0;
         }
 
         .modal-success-ico {
@@ -1148,20 +1170,19 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 18px;
-            box-shadow: 0 8px 24px rgba(14, 124, 123, .35)
         }
 
         .modal-success-ico svg {
             width: 28px;
             height: 28px;
-            color: #fff
+            color: #fff;
         }
 
         .modal-success h3 {
             font-family: 'Poppins', sans-serif;
             font-size: 22px;
             color: var(--navy);
-            margin-bottom: 10px
+            margin-bottom: 10px;
         }
 
         .modal-success p {
@@ -1169,13 +1190,12 @@
             color: var(--gray-mid);
             line-height: 1.72;
             max-width: 320px;
-            margin: 0 auto
+            margin: 0 auto;
         }
 
-        /* CTA */
         .cta-sec {
             padding: 80px 28px;
-            background: var(--cream)
+            background: var(--cream);
         }
 
         .cta-box {
@@ -1189,7 +1209,7 @@
             gap: 40px;
             align-items: center;
             position: relative;
-            overflow: hidden
+            overflow: hidden;
         }
 
         .cta-box::before {
@@ -1201,21 +1221,21 @@
             height: 280px;
             border-radius: 50%;
             background: rgba(255, 255, 255, .08);
-            pointer-events: none
+            pointer-events: none;
         }
 
         .cta-box h2 {
             font-family: 'Poppins', sans-serif;
             font-size: clamp(20px, 2.8vw, 34px);
             color: #fff;
-            margin-bottom: 10px
+            margin-bottom: 10px;
         }
 
         .cta-box>div:first-child p {
             font-size: 15px;
             color: rgba(255, 255, 255, .80);
             line-height: 1.72;
-            max-width: 460px
+            max-width: 460px;
         }
 
         .cta-btns {
@@ -1224,7 +1244,7 @@
             gap: 12px;
             flex-shrink: 0;
             position: relative;
-            z-index: 2
+            z-index: 2;
         }
 
         .btn-white {
@@ -1240,17 +1260,19 @@
             font-size: 14px;
             text-decoration: none;
             box-shadow: 0 6px 18px rgba(0, 0, 0, .15);
-            transition: all .3s
+            transition: all .3s;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
         }
 
         .btn-white svg {
             width: 16px;
-            height: 16px
+            height: 16px;
         }
 
         .btn-white:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 28px rgba(0, 0, 0, .22)
+            box-shadow: 0 10px 28px rgba(0, 0, 0, .22);
         }
 
         .btn-ghost-w {
@@ -1264,22 +1286,22 @@
             font-weight: 500;
             font-size: 14px;
             text-decoration: none;
-            transition: all .3s
+            transition: all .3s;
         }
 
         .btn-ghost-w svg {
             width: 16px;
-            height: 16px
+            height: 16px;
         }
 
         .btn-ghost-w:hover {
             border-color: #fff;
-            background: rgba(255, 255, 255, .10)
+            background: rgba(255, 255, 255, .10);
         }
 
         footer {
             background: var(--navy);
-            padding: 66px 28px 0
+            padding: 66px 28px 0;
         }
 
         .f-grid {
@@ -1288,19 +1310,19 @@
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1.5fr;
             gap: 46px;
-            padding-bottom: 50px
+            padding-bottom: 50px;
         }
 
         .f-brand p {
             font-size: 14px;
             line-height: 1.8;
             color: rgba(255, 255, 255, .52);
-            margin: 17px 0 20px
+            margin: 17px 0 20px;
         }
 
         .f-socials {
             display: flex;
-            gap: 9px
+            gap: 9px;
         }
 
         .f-socials a {
@@ -1313,48 +1335,48 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: all .2s
+            transition: all .2s;
         }
 
         .f-socials a:hover {
             background: var(--teal);
-            color: #fff
+            color: #fff;
         }
 
         .f-socials a svg {
             width: 15px;
-            height: 15px
+            height: 15px;
         }
 
         .f-col h4 {
             color: #fff;
             font-size: 15px;
             font-weight: 600;
-            margin-bottom: 17px
+            margin-bottom: 17px;
         }
 
         .f-col ul {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 9px
+            gap: 9px;
         }
 
         .f-col ul a {
             color: rgba(255, 255, 255, .52);
             text-decoration: none;
             font-size: 14px;
-            transition: color .2s
+            transition: color .2s;
         }
 
         .f-col ul a:hover {
-            color: var(--teal-light)
+            color: var(--teal-light);
         }
 
         .f-cr {
             display: flex;
             gap: 11px;
-            margin-bottom: 13px
+            margin-bottom: 13px;
         }
 
         .f-cr svg {
@@ -1362,18 +1384,18 @@
             height: 15px;
             color: var(--teal-light);
             margin-top: 2px;
-            flex-shrink: 0
+            flex-shrink: 0;
         }
 
         .f-cr p {
             font-size: 13px;
             color: rgba(255, 255, 255, .52);
-            line-height: 1.65
+            line-height: 1.65;
         }
 
         .f-cr a {
             color: inherit;
-            text-decoration: none
+            text-decoration: none;
         }
 
         .f-bottom {
@@ -1387,16 +1409,16 @@
             flex-wrap: wrap;
             gap: 12px;
             font-size: 13px;
-            color: rgba(255, 255, 255, .32)
+            color: rgba(255, 255, 255, .32);
         }
 
         .f-bottom a {
             color: rgba(255, 255, 255, .42);
-            text-decoration: none
+            text-decoration: none;
         }
 
         .f-bottom a:hover {
-            color: var(--teal-light)
+            color: var(--teal-light);
         }
 
         .scroll-top {
@@ -1414,34 +1436,60 @@
             display: flex;
             align-items: center;
             justify-content: center;
-
             opacity: 0;
             pointer-events: none;
-            transition: all .3s
+            transition: all .3s;
         }
 
         .scroll-top svg {
             width: 18px;
-            height: 18px
+            height: 18px;
         }
 
         .scroll-top.visible {
             opacity: 1;
-            pointer-events: all
+            pointer-events: all;
         }
 
         .scroll-top:hover {
-            transform: translateY(-3px)
+            transform: translateY(-3px);
         }
 
-        @media (max-width: 1400px) {
-            .c-arrow {
+        @media(max-width:1100px) {
+            .nav-links {
                 display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mob-nav {
+                display: block;
             }
         }
 
-        @media (max-width: 1100px) {
+        @media(max-width:1024px) {
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
 
+            .f-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cta-box {
+                grid-template-columns: 1fr;
+                padding: 44px 36px;
+            }
+
+            .cta-btns {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media(max-width:800px) {
             .nav-links {
                 display: none;
             }
@@ -1454,78 +1502,40 @@
                 display: block;
             }
 
-            .c-arrow {
-                display: none;
-            }
-        }
-
-        @media(max-width:1024px) {
-            .why-grid {
-                grid-template-columns: repeat(2, 1fr)
-            }
-
-            .f-grid {
-                grid-template-columns: 1fr 1fr
-            }
-
-            .cta-box {
-                grid-template-columns: 1fr;
-                padding: 44px 36px
-            }
-
-            .cta-btns {
-                flex-direction: row;
-                flex-wrap: wrap
-            }
-        }
-
-        @media(max-width:800px) {
-            .nav-links {
-                display: none
-            }
-
-            .hamburger {
-                display: flex
-            }
-
-            .mob-nav {
-                display: block
-            }
-
             .why-sec,
             .jobs-sec,
             .cta-sec {
                 padding-left: 20px;
-                padding-right: 20px
+                padding-right: 20px;
             }
 
             .job-head {
-                grid-template-columns: 1fr
+                grid-template-columns: 1fr;
             }
 
             .job-right {
-                align-items: flex-start
+                align-items: flex-start;
             }
 
             .job-details-inner {
-                grid-template-columns: 1fr
+                grid-template-columns: 1fr;
             }
 
             .modal {
-                padding: 32px 24px
+                padding: 32px 24px;
             }
 
             .form-row {
-                grid-template-columns: 1fr
+                grid-template-columns: 1fr;
             }
 
             .f-grid {
                 grid-template-columns: 1fr;
-                gap: 30px
+                gap: 30px;
             }
 
             .cta-box {
-                padding: 36px 24px
+                padding: 36px 24px;
             }
         }
 
@@ -1539,7 +1549,7 @@
             }
         }
 
-        @media (max-width:350px) {
+        @media(max-width:350px) {
             .nav-wrap img {
                 width: 200px;
             }
@@ -1552,16 +1562,14 @@
     <nav style="padding: 16px;" id="navbar">
         <div class="nav-wrap">
             <a href="index.html" class="nav-logo">
-                <div>
-                    <img width="250px" src="./MNR-logo.png" alt="logo">
-                </div>
+                <div><img width="250px" src="./MNR-logo.png" alt="logo"></div>
             </a>
-
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="about.html" class="nav-link">About Us</a></li>
                 <li class="drop">
-                    <button style="font-family: 'Poppins', sans-serif;" class="drop-btn">Departments <i data-lucide="chevron-down"></i></button>
+                    <button style="font-family:'Poppins',sans-serif;" class="drop-btn">Departments <i
+                            data-lucide="chevron-down"></i></button>
                     <div class="drop-menu">
                         <a href="departments/cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i>
                             Cardiology</a>
@@ -1575,32 +1583,29 @@
                             Gastroenterology</a>
                         <a href="departments/pediatrics.html" class="drop-item"><i data-lucide="smile"></i>
                             Pediatrics</a>
-                        <a href="departments.html" class="drop-item"><i data-lucide="chevron-right"></i>
-                            View All</a>
+                        <a href="departments.html" class="drop-item"><i data-lucide="chevron-right"></i> View All</a>
                     </div>
                 </li>
                 <li><a href="doctors.html" class="nav-link">Doctors</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
                 <li class="drop">
-                    <button style="font-family: 'Poppins', sans-serif;" class="drop-btn">More <i data-lucide="chevron-down"></i></button>
+                    <button style="font-family:'Poppins',sans-serif;" class="drop-btn">More <i
+                            data-lucide="chevron-down"></i></button>
                     <div class="drop-menu">
                         <a href="blogs.html" class="drop-item"><i data-lucide="newspaper"></i> Blogs</a>
                         <a href="gallery.html" class="drop-item"><i data-lucide="image"></i> Gallery</a>
                         <a href="careers.html" class="drop-item"><i data-lucide="briefcase"></i> Careers</a>
-                         <!-- <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a> -->
-                        <a href="international-patients.html" class="drop-item"><i data-lucide="globe"></i> International Patients</a>
+                        <a href="international-patients.html" class="drop-item"><i data-lucide="globe"></i>
+                            International Patients</a>
                     </div>
                 </li>
                 <li><a href="contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
                 </li>
             </ul>
-
-            <button class="hamburger" id="hamburger">
-                <span></span><span></span><span></span>
-            </button>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
         </div>
     </nav>
-    <!-- Mobile Nav -->
+
     <div class="mob-nav" id="mobNav">
         <a href="index.html" class="mob-link"><i data-lucide="home"></i> Home</a>
         <a href="about.html" class="mob-link"><i data-lucide="info"></i> About Us</a>
@@ -1623,13 +1628,12 @@
             <a href="blogs.html" class="mob-link"><i data-lucide="newspaper"></i> Blogs</a>
             <a href="gallery.html" class="mob-link"><i data-lucide="image"></i> Gallery</a>
             <a href="careers.html" class="mob-link"><i data-lucide="briefcase"></i> Careers</a>
-            <!-- <a href="insurance.html" class="mob-link"><i data-lucide="shield-check"></i> Insurance</a> -->
-            <a href="international-patients.html" class="mob-link"><i data-lucide="globe"></i> International Patients</a>
+            <a href="international-patients.html" class="mob-link"><i data-lucide="globe"></i> International
+                Patients</a>
         </div>
         <a href="contact.html" class="mob-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
     </div>
 
-    <!-- HERO -->
     <div class="page-hero">
         <div class="hero-grid"></div>
         <div class="hero-inner">
@@ -1641,16 +1645,15 @@
         </div>
     </div>
 
-    <!-- WHY JOIN US -->
     <section class="why-sec">
         <div class="si">
             <div style="text-align:center;max-width:580px;margin:0 auto">
                 <span class="s-tag">Why MNR Hospital</span>
                 <h2
-                    style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.2vw,40px);color:var(--navy);margin-bottom:14px">
+                    style="font-family:'Poppins',sans-serif;font-size:clamp(26px,3.2vw,40px);color:var(--navy);margin-bottom:14px">
                     A Place Where <em style="color:var(--teal);font-style:normal">Careers Thrive</em></h2>
                 <p style="font-size:15px;color:var(--gray-mid);line-height:1.75">We invest in our people the same way we
-                    invest in our patients with dedication, resources, and genuine care.</p>
+                    invest in our patients — with dedication, resources, and genuine care.</p>
             </div>
             <div class="why-grid">
                 <div class="why-card fade-up">
@@ -1681,38 +1684,34 @@
         </div>
     </section>
 
-    <!-- JOB LISTINGS -->
     <section class="jobs-sec">
         <div class="si">
             <div class="jobs-header">
                 <div>
                     <span class="s-tag">Open Positions</span>
-                    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,36px);color:var(--navy)">
+                    <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(24px,3vw,36px);color:var(--navy)">
                         Current <em style="color:var(--teal);font-style:normal">Vacancies</em></h2>
                 </div>
                 <div class="jobs-count"><strong>7 positions</strong> currently open</div>
             </div>
             <div class="jobs-list">
 
-                <!-- JOB 1 -->
                 <div class="job-card fade-up">
                     <div class="job-head" onclick="toggleJob(this)">
                         <div>
                             <div class="job-dept-badge" style="background:linear-gradient(135deg,#c0392b,#e74c3c)"><i
                                     data-lucide="heart-pulse"></i> Cardiology</div>
                             <h3>Consultant Interventional Cardiologist</h3>
-                            <div class="job-tags">
-                                <span class="job-tag"><i data-lucide="map-pin"></i> Kolambe, Mangalore</span>
-                                <span class="job-tag"><i data-lucide="clock"></i> Full-Time</span>
-                                <span class="job-tag"><i data-lucide="briefcase"></i> 5–10 Years Experience</span>
-                            </div>
+                            <div class="job-tags"><span class="job-tag"><i data-lucide="map-pin"></i> Kolambe,
+                                    Mangalore</span><span class="job-tag"><i data-lucide="clock"></i>
+                                    Full-Time</span><span class="job-tag"><i data-lucide="briefcase"></i> 5–10 Years
+                                    Experience</span></div>
                         </div>
                         <div class="job-right">
                             <div class="salary-badge">
                                 <div class="sal-label">CTC Offered</div>
                                 <div class="sal-val">₹25–40 LPA</div>
-                            </div>
-                            <button class="btn-apply"
+                            </div><button class="btn-apply"
                                 onclick="event.stopPropagation();openModal('Consultant Interventional Cardiologist')"><i
                                     data-lucide="send"></i> Apply Now</button>
                         </div>
@@ -1745,25 +1744,22 @@
                     </div>
                 </div>
 
-                <!-- JOB 2 -->
                 <div class="job-card fade-up">
                     <div class="job-head" onclick="toggleJob(this)">
                         <div>
                             <div class="job-dept-badge" style="background:linear-gradient(135deg,#1d8348,#27ae60)"><i
                                     data-lucide="smile"></i> Pediatrics</div>
                             <h3>Senior Consultant Pediatrician</h3>
-                            <div class="job-tags">
-                                <span class="job-tag"><i data-lucide="map-pin"></i> Kolambe, Mangalore</span>
-                                <span class="job-tag"><i data-lucide="clock"></i> Full-Time</span>
-                                <span class="job-tag"><i data-lucide="briefcase"></i> 3–8 Years Experience</span>
-                            </div>
+                            <div class="job-tags"><span class="job-tag"><i data-lucide="map-pin"></i> Kolambe,
+                                    Mangalore</span><span class="job-tag"><i data-lucide="clock"></i>
+                                    Full-Time</span><span class="job-tag"><i data-lucide="briefcase"></i> 3–8 Years
+                                    Experience</span></div>
                         </div>
                         <div class="job-right">
                             <div class="salary-badge">
                                 <div class="sal-label">CTC Offered</div>
                                 <div class="sal-val">₹18–30 LPA</div>
-                            </div>
-                            <button class="btn-apply"
+                            </div><button class="btn-apply"
                                 onclick="event.stopPropagation();openModal('Senior Consultant Pediatrician')"><i
                                     data-lucide="send"></i> Apply Now</button>
                         </div>
@@ -1793,25 +1789,22 @@
                     </div>
                 </div>
 
-                <!-- JOB 3 -->
                 <div class="job-card fade-up">
                     <div class="job-head" onclick="toggleJob(this)">
                         <div>
                             <div class="job-dept-badge" style="background:linear-gradient(135deg,#2471a3,#3498db)"><i
                                     data-lucide="wind"></i> Pulmonology</div>
                             <h3>Staff Nurse – Pulmonology & ICU</h3>
-                            <div class="job-tags">
-                                <span class="job-tag"><i data-lucide="map-pin"></i> Kolambe, Mangalore</span>
-                                <span class="job-tag"><i data-lucide="clock"></i> Full-Time</span>
-                                <span class="job-tag"><i data-lucide="briefcase"></i> 2–5 Years Experience</span>
-                            </div>
+                            <div class="job-tags"><span class="job-tag"><i data-lucide="map-pin"></i> Kolambe,
+                                    Mangalore</span><span class="job-tag"><i data-lucide="clock"></i>
+                                    Full-Time</span><span class="job-tag"><i data-lucide="briefcase"></i> 2–5 Years
+                                    Experience</span></div>
                         </div>
                         <div class="job-right">
                             <div class="salary-badge">
                                 <div class="sal-label">CTC Offered</div>
                                 <div class="sal-val">₹3.5–6 LPA</div>
-                            </div>
-                            <button class="btn-apply"
+                            </div><button class="btn-apply"
                                 onclick="event.stopPropagation();openModal('Staff Nurse – Pulmonology & ICU')"><i
                                     data-lucide="send"></i> Apply Now</button>
                         </div>
@@ -1842,25 +1835,22 @@
                     </div>
                 </div>
 
-                <!-- JOB 4 -->
                 <div class="job-card fade-up">
                     <div class="job-head" onclick="toggleJob(this)">
                         <div>
                             <div class="job-dept-badge" style="background:linear-gradient(135deg,#7d3c98,#9b59b6)"><i
                                     data-lucide="brain"></i> Neurology</div>
                             <h3>Neurologist – Outpatient & Inpatient</h3>
-                            <div class="job-tags">
-                                <span class="job-tag"><i data-lucide="map-pin"></i> Kolambe, Mangalore</span>
-                                <span class="job-tag"><i data-lucide="clock"></i> Full-Time</span>
-                                <span class="job-tag"><i data-lucide="briefcase"></i> 4–10 Years Experience</span>
-                            </div>
+                            <div class="job-tags"><span class="job-tag"><i data-lucide="map-pin"></i> Kolambe,
+                                    Mangalore</span><span class="job-tag"><i data-lucide="clock"></i>
+                                    Full-Time</span><span class="job-tag"><i data-lucide="briefcase"></i> 4–10 Years
+                                    Experience</span></div>
                         </div>
                         <div class="job-right">
                             <div class="salary-badge">
                                 <div class="sal-label">CTC Offered</div>
                                 <div class="sal-val">₹20–35 LPA</div>
-                            </div>
-                            <button class="btn-apply"
+                            </div><button class="btn-apply"
                                 onclick="event.stopPropagation();openModal('Neurologist – Outpatient & Inpatient')"><i
                                     data-lucide="send"></i> Apply Now</button>
                         </div>
@@ -1889,25 +1879,22 @@
                     </div>
                 </div>
 
-                <!-- JOB 5 -->
                 <div class="job-card fade-up">
                     <div class="job-head" onclick="toggleJob(this)">
                         <div>
                             <div class="job-dept-badge" style="background:linear-gradient(135deg,#10519f,#10519f)"><i
                                     data-lucide="flask-conical"></i> Diagnostics</div>
                             <h3>Radiographer – MRI & CT Technician</h3>
-                            <div class="job-tags">
-                                <span class="job-tag"><i data-lucide="map-pin"></i> Kolambe, Mangalore</span>
-                                <span class="job-tag"><i data-lucide="clock"></i> Full-Time</span>
-                                <span class="job-tag"><i data-lucide="briefcase"></i> 2–6 Years Experience</span>
-                            </div>
+                            <div class="job-tags"><span class="job-tag"><i data-lucide="map-pin"></i> Kolambe,
+                                    Mangalore</span><span class="job-tag"><i data-lucide="clock"></i>
+                                    Full-Time</span><span class="job-tag"><i data-lucide="briefcase"></i> 2–6 Years
+                                    Experience</span></div>
                         </div>
                         <div class="job-right">
                             <div class="salary-badge">
                                 <div class="sal-label">CTC Offered</div>
                                 <div class="sal-val">₹3–5.5 LPA</div>
-                            </div>
-                            <button class="btn-apply"
+                            </div><button class="btn-apply"
                                 onclick="event.stopPropagation();openModal('Radiographer – MRI & CT Technician')"><i
                                     data-lucide="send"></i> Apply Now</button>
                         </div>
@@ -1938,7 +1925,6 @@
                     </div>
                 </div>
 
-                <!-- JOB 6 -->
                 <div class="job-card fade-up">
                     <div class="job-head" onclick="toggleJob(this)">
                         <div>
@@ -1946,18 +1932,16 @@
                                 style="background:linear-gradient(135deg,#c8992a,#e8b93e);color:#0a1f3c"><i
                                     data-lucide="users"></i> Administration</div>
                             <h3>Hospital Administrator / Operations Manager</h3>
-                            <div class="job-tags">
-                                <span class="job-tag"><i data-lucide="map-pin"></i> Kolambe, Mangalore</span>
-                                <span class="job-tag"><i data-lucide="clock"></i> Full-Time</span>
-                                <span class="job-tag"><i data-lucide="briefcase"></i> 5–12 Years Experience</span>
-                            </div>
+                            <div class="job-tags"><span class="job-tag"><i data-lucide="map-pin"></i> Kolambe,
+                                    Mangalore</span><span class="job-tag"><i data-lucide="clock"></i>
+                                    Full-Time</span><span class="job-tag"><i data-lucide="briefcase"></i> 5–12 Years
+                                    Experience</span></div>
                         </div>
                         <div class="job-right">
                             <div class="salary-badge">
                                 <div class="sal-label">CTC Offered</div>
                                 <div class="sal-val">₹10–18 LPA</div>
-                            </div>
-                            <button class="btn-apply"
+                            </div><button class="btn-apply"
                                 onclick="event.stopPropagation();openModal('Hospital Administrator / Operations Manager')"><i
                                     data-lucide="send"></i> Apply Now</button>
                         </div>
@@ -1989,25 +1973,22 @@
                     </div>
                 </div>
 
-                <!-- JOB 7 -->
                 <div class="job-card fade-up">
                     <div class="job-head" onclick="toggleJob(this)">
                         <div>
                             <div class="job-dept-badge" style="background:linear-gradient(135deg,#d4890a,#f0a500)"><i
                                     data-lucide="stethoscope"></i> Gastroenterology</div>
                             <h3>Gastroenterologist – Endoscopy & Hepatology</h3>
-                            <div class="job-tags">
-                                <span class="job-tag"><i data-lucide="map-pin"></i> Kolambe, Mangalore</span>
-                                <span class="job-tag"><i data-lucide="clock"></i> Full-Time</span>
-                                <span class="job-tag"><i data-lucide="briefcase"></i> 4–10 Years Experience</span>
-                            </div>
+                            <div class="job-tags"><span class="job-tag"><i data-lucide="map-pin"></i> Kolambe,
+                                    Mangalore</span><span class="job-tag"><i data-lucide="clock"></i>
+                                    Full-Time</span><span class="job-tag"><i data-lucide="briefcase"></i> 4–10 Years
+                                    Experience</span></div>
                         </div>
                         <div class="job-right">
                             <div class="salary-badge">
                                 <div class="sal-label">CTC Offered</div>
                                 <div class="sal-val">₹22–38 LPA</div>
-                            </div>
-                            <button class="btn-apply"
+                            </div><button class="btn-apply"
                                 onclick="event.stopPropagation();openModal('Gastroenterologist – Endoscopy & Hepatology')"><i
                                     data-lucide="send"></i> Apply Now</button>
                         </div>
@@ -2040,7 +2021,6 @@
         </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta-sec">
         <div class="cta-box fade-up">
             <div style="position:relative;z-index:2">
@@ -2056,15 +2036,11 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="f-grid">
-
             <div class="f-brand">
                 <a href="index.html" class="nav-logo" style="text-decoration:none">
-                    <div>
-                        <img width="250px" src="./MNR-logo-white.png" alt="logo">
-                    </div>
+                    <div><img width="250px" src="./MNR-logo-white.png" alt="logo"></div>
                 </a>
                 <p>MNR Hospital is committed to delivering compassionate, expert, and affordable healthcare to every
                     patient across Mangalore and Coastal Karnataka.</p>
@@ -2075,7 +2051,6 @@
                     <a href="#"><i class="fa-brands fa-youtube"></i></a>
                 </div>
             </div>
-
             <div class="f-col">
                 <h4>Quick Links</h4>
                 <ul>
@@ -2086,7 +2061,6 @@
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </div>
-
             <div class="f-col">
                 <h4>Departments</h4>
                 <ul>
@@ -2099,62 +2073,55 @@
                     <li><a href="departments/pediatrics.html">Pediatrics</a></li>
                 </ul>
             </div>
-
             <div class="f-col">
                 <h4>Contact Information</h4>
                 <a href="https://maps.app.goo.gl/PgNGSG4DAPqkmZ1C6" target="_blank"
-                    style="text-decoration: none; color: inherit;">
-                    <div class="f-cr">
-                        <i data-lucide="map-pin"></i>
+                    style="text-decoration:none;color:inherit;">
+                    <div class="f-cr"><i data-lucide="map-pin"></i>
                         <p>MNR medicity Campus Kolambe, Behind Bajpe Proper, Karnataka 574142</p>
                     </div>
                 </a>
-                <div class="f-cr">
-                    <i data-lucide="phone"></i>
+                <div class="f-cr"><i data-lucide="phone"></i>
                     <p><a href="tel:9945000037">+91 9945000037</a></p>
                 </div>
                 <div class="f-cr"><i data-lucide="mail"></i>
                     <p><a href="mailto:info@mnrhospital.com">info@mnrhospital.com</a></p>
                 </div>
-                <a href="contact.html" target="_blank" style="text-decoration: none; color: inherit;">
-                    <div class="f-cr">
-                        <i data-lucide="clock"></i>
+                <a href="contact.html" target="_blank" style="text-decoration:none;color:inherit;">
+                    <div class="f-cr"><i data-lucide="clock"></i>
                         <p>Emergency Services : 24/7</p>
                     </div>
                 </a>
             </div>
-
         </div>
         <div class="f-bottom">
             <span>&copy;
                 <script>document.write(new Date().getFullYear())</script> MNR Hospital. All rights reserved.
             </span>
-            <span class="f-blinks">
-                Designed and Developed by <a href="http://thinkb.agency/" target="_blank" style="font-weight: 800;">
-                    thinkB</a>
-            </span>
+            <span>Designed and Developed by <a href="http://thinkb.agency/" target="_blank"
+                    style="font-weight:800;">thinkB</a></span>
         </div>
     </footer>
+
     <button class="scroll-top" id="scrollTop"><i data-lucide="chevron-up"></i></button>
 
-    <!-- ── FLOATING TRANSLATE BUTTON (desktop + mobile) ── -->
+    <!-- FLOATING TRANSLATE BUTTON -->
     <button class="float-translate-btn" id="floatTranslateBtn" aria-label="Translate page" title="Translate">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="2" y1="12" x2="22" y2="12"/>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="2" y1="12" x2="22" y2="12" />
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
         </svg>
         <span class="lang-badge" id="langBadge">EN</span>
     </button>
-
     <div class="float-translate-panel" id="floatTranslatePanel">
         <div class="ftp-header">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="2" y1="12" x2="22" y2="12"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
             </svg>
             Select Language
         </div>
@@ -2183,38 +2150,91 @@
         </select>
     </div>
 
-    <!-- APPLY MODAL -->
+    <!-- ══════════════════════════════════════════════════════════
+         APPLY MODAL — connected to Formspree
+         Replace YOUR_CAREERS_FORMSPREE_ID with your Formspree ID.
+         Use a SEPARATE form from your contact page so HR emails
+         land in a different inbox / folder.
+         
+         FILE UPLOAD NOTE:
+         ─ FREE plan  → resume link field (current setup, works now)
+         ─ PAID plan  → swap the resume link <input> for the
+                        commented-out <div class="file-upload"> block
+                        AND add  enctype="multipart/form-data"  to
+                        the <form> tag below.
+    ══════════════════════════════════════════════════════════ -->
     <div class="modal-backdrop" id="applyModal">
         <div class="modal">
             <button class="modal-close" onclick="closeModal()"><i data-lucide="x"></i></button>
             <div id="modalForm">
                 <h3>Apply for Position</h3>
                 <div class="modal-role" id="modalRole"></div>
+
+                <!-- Hidden field: which role the person is applying for -->
+                <input type="hidden" id="hiddenRole" name="position" value="">
+
                 <div class="form-row">
-                    <div class="form-group"><label>Full Name <span class="req">*</span></label><input type="text"
-                            id="appName" placeholder="Your full name" /></div>
-                    <div class="form-group"><label>Phone <span class="req">*</span></label><input type="tel"
-                            id="appPhone" placeholder="+91 98765 43210" /></div>
+                    <div class="form-group">
+                        <label>Full Name <span class="req">*</span></label>
+                        <input type="text" id="appName" name="full_name" placeholder="Your full name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Phone <span class="req">*</span></label>
+                        <input type="tel" id="appPhone" name="phone" placeholder="+91 98765 43210" />
+                    </div>
                 </div>
-                <div class="form-group"><label>Email Address <span class="req">*</span></label><input type="email"
-                        id="appEmail" placeholder="you@example.com" /></div>
-                <div class="form-group"><label>Cover Letter</label><textarea id="appCover"
-                        placeholder="Tell us why you're a great fit for this role…"></textarea></div>
+
                 <div class="form-group">
-                    <label>Resume / CV <span class="req">*</span> <span
-                            style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gray-mid)">(PDF
-                            only, max 5MB)</span></label>
+                    <label>Email Address <span class="req">*</span></label>
+                    <input type="email" id="appEmail" name="email" placeholder="you@example.com" />
+                </div>
+
+                <div class="form-group">
+                    <label>Cover Letter</label>
+                    <textarea id="appCover" name="cover_letter"
+                        placeholder="Tell us why you're a great fit for this role…"></textarea>
+                </div>
+
+                <!-- FREE PLAN: Resume link field -->
+                <div class="form-group" id="resumeLinkGroup">
+                    <label>Resume / CV Link <span class="req">*</span></label>
+                    <div class="resume-note">
+                        Share a public link to your resume — <strong>Google Drive</strong><br>
+                        <span style="font-size:12px;color:var(--gray-mid)">Make sure the link is set to "Anyone with the
+                            link can view".</span>
+                    </div>
+                    <input type="url" id="appResumeLink" name="resume_link" placeholder="https://drive.google.com/…" />
+                </div>
+
+                <!--
+                ══ PAID PLAN: uncomment this block & remove the resumeLinkGroup above ══
+                <div class="form-group">
+                    <label>Resume / CV <span class="req">*</span>
+                        <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gray-mid)">(PDF only, max 5MB)</span>
+                    </label>
                     <div class="file-upload" id="fileUploadArea">
-                        <input type="file" id="appResume" accept=".pdf" onchange="handleFile(this)" />
+                        <input type="file" id="appResume" name="resume" accept=".pdf" onchange="handleFile(this)" />
                         <div class="file-upload-ico"><i data-lucide="upload"></i></div>
                         <p>Click to upload or drag & drop</p>
                         <span>PDF only · Max 5MB</span>
                         <div class="file-name" id="fileName"></div>
                     </div>
                 </div>
-                <button class="btn-submit-modal" onclick="submitApplication()"><i data-lucide="send"></i> Submit
-                    Application</button>
+                -->
+
+                <!-- Honeypot spam filter -->
+                <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+                <div class="modal-submit-error" id="modalSubmitError">
+                    Something went wrong. Please try again or email your CV directly to
+                    <strong>info@mnrhospital.com</strong>.
+                </div>
+
+                <button class="btn-submit-modal" id="modalSubmitBtn" onclick="submitApplication()">
+                    <i data-lucide="send"></i> Submit Application
+                </button>
             </div>
+
             <div class="modal-success" id="modalSuccess">
                 <div class="modal-success-ico"><i data-lucide="check"></i></div>
                 <h3>Application Submitted!</h3>
@@ -2224,64 +2244,10 @@
         </div>
     </div>
 
-    <script>
-        lucide.createIcons();
-        var navbar = document.getElementById('navbar'), scrollBtn = document.getElementById('scrollTop');
-        window.addEventListener('scroll', function () { navbar.classList.toggle('scrolled', window.scrollY > 60); scrollBtn.classList.toggle('visible', window.scrollY > 300); });
-        function closeAllDrops() { document.querySelectorAll('.drop.open').forEach(function (d) { d.classList.remove('open'); }); }
-        document.querySelectorAll('.drop-btn').forEach(function (btn) { btn.addEventListener('click', function (e) { e.stopPropagation(); var drop = btn.closest('.drop'), open = drop.classList.contains('open'); closeAllDrops(); if (!open) drop.classList.add('open'); }); });
-        document.addEventListener('click', closeAllDrops);
-        document.querySelectorAll('.drop-menu').forEach(function (m) { m.addEventListener('click', function (e) { e.stopPropagation(); }); });
-        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
-        var ham = document.getElementById('hamburger'), mob = document.getElementById('mobNav');
-        ham.addEventListener('click', function () { mob.classList.toggle('open'); document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : ''; });
-        mob.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { mob.classList.remove('open'); document.body.style.overflow = ''; }); });
-        scrollBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-        var obs = new IntersectionObserver(function (entries) { entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } }); }, { threshold: 0.08 });
-        document.querySelectorAll('.fade-up').forEach(function (el) { obs.observe(el); });
-
-        function toggleJob(head) { var details = head.closest('.job-card').querySelector('.job-details'); details.classList.toggle('open'); }
-
-        function openModal(role) {
-            document.getElementById('modalRole').textContent = role;
-            document.getElementById('modalForm').style.display = 'block';
-            document.getElementById('modalSuccess').style.display = 'none';
-            document.getElementById('applyModal').classList.add('open');
-            document.body.style.overflow = 'hidden';
-            lucide.createIcons();
-        }
-        function closeModal() { document.getElementById('applyModal').classList.remove('open'); document.body.style.overflow = ''; }
-        document.getElementById('applyModal').addEventListener('click', function (e) { if (e.target === this) closeModal(); });
-
-        function handleFile(input) {
-            var fn = document.getElementById('fileName'), area = document.getElementById('fileUploadArea');
-            if (input.files && input.files[0]) {
-                var f = input.files[0];
-                if (f.type !== 'application/pdf') { alert('Please upload a PDF file only.'); input.value = ''; fn.style.display = 'none'; area.classList.remove('has-file'); return; }
-                if (f.size > 5 * 1024 * 1024) { alert('File size must be under 5MB.'); input.value = ''; fn.style.display = 'none'; area.classList.remove('has-file'); return; }
-                fn.textContent = '✓ ' + f.name; fn.style.display = 'block'; area.classList.add('has-file');
-            }
-        }
-        function submitApplication() {
-            var name = document.getElementById('appName').value.trim();
-            var phone = document.getElementById('appPhone').value.trim();
-            var email = document.getElementById('appEmail').value.trim();
-            var resume = document.getElementById('appResume').files[0];
-            if (!name || !phone || !email) { alert('Please fill in all required fields.'); return; }
-            if (!email.includes('@')) { alert('Please enter a valid email address.'); return; }
-            if (!resume) { alert('Please upload your Resume / CV (PDF only).'); return; }
-            document.getElementById('modalForm').style.display = 'none';
-            document.getElementById('modalSuccess').style.display = 'block';
-            lucide.createIcons();
-        }
-    </script>
-
-
     <a href="https://wa.me/919945000037?text=Hello%20MNR%20Hospital,%20I%20need%20assistance." class="wa-float"
         target="_blank" aria-label="WhatsApp Chat">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
-
     <style>
         .wa-float {
             position: fixed;
@@ -2302,8 +2268,7 @@
             transition: all 0.3s ease;
         }
 
-
-        @media (max-width: 768px) {
+        @media(max-width:768px) {
             .wa-float {
                 width: 50px;
                 height: 50px;
@@ -2313,90 +2278,149 @@
             }
         }
     </style>
-    <script type="text/javascript">
-        /* ════════════════════════════════════════════════════
-           GOOGLE TRANSLATE COOKIE-BASED APPROACH
-           
-           How Google Translate actually works:
-           It reads a cookie called "googtrans" with the format
-           "/en/TARGET_LANG" e.g. "/en/hi" for Hindi.
-           Setting this cookie + reloading the page is the ONLY
-           100% reliable way to trigger translation it works
-           identically on desktop and mobile with no race conditions.
-        ════════════════════════════════════════════════════ */
 
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'ar,hi,kn,ml,ta,te,fr,de,zh-CN,ja,ko,ru,es,pt,it,nl,pl,tr,ms,id',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false
-            }, 'google_translate_element');
+    <div id="google_translate_element"></div>
+
+    <script>
+        lucide.createIcons();
+
+        var navbar = document.getElementById('navbar'), scrollBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', function () { navbar.classList.toggle('scrolled', window.scrollY > 60); scrollBtn.classList.toggle('visible', window.scrollY > 300); });
+
+        function closeAllDrops() { document.querySelectorAll('.drop.open').forEach(function (d) { d.classList.remove('open'); }); }
+        document.querySelectorAll('.drop-btn').forEach(function (btn) { btn.addEventListener('click', function (e) { e.stopPropagation(); var drop = btn.closest('.drop'), open = drop.classList.contains('open'); closeAllDrops(); if (!open) drop.classList.add('open'); }); });
+        document.addEventListener('click', closeAllDrops);
+        document.querySelectorAll('.drop-menu').forEach(function (m) { m.addEventListener('click', function (e) { e.stopPropagation(); }); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+        var ham = document.getElementById('hamburger'), mob = document.getElementById('mobNav');
+        ham.addEventListener('click', function () { mob.classList.toggle('open'); document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : ''; });
+        mob.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { mob.classList.remove('open'); document.body.style.overflow = ''; }); });
+
+        scrollBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        var obs = new IntersectionObserver(function (entries) { entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } }); }, { threshold: 0.08 });
+        document.querySelectorAll('.fade-up').forEach(function (el) { obs.observe(el); });
+
+        function toggleJob(head) { var details = head.closest('.job-card').querySelector('.job-details'); details.classList.toggle('open'); }
+
+        // ══════════════════════════════════════════════════════
+        //  FORMSPREE — CAREERS FORM
+        // ══════════════════════════════════════════════════════
+        var CAREERS_FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdayavrr';
+
+        function openModal(role) {
+            document.getElementById('modalRole').textContent = role;
+            document.getElementById('hiddenRole').value = role;
+            document.getElementById('modalForm').style.display = 'block';
+            document.getElementById('modalSuccess').style.display = 'none';
+            document.getElementById('modalSubmitError').classList.remove('visible');
+            document.getElementById('modalSubmitBtn').disabled = false;
+            document.getElementById('modalSubmitBtn').innerHTML = '<i data-lucide="send"></i> Submit Application';
+            // Clear fields
+            ['appName', 'appPhone', 'appEmail', 'appCover', 'appResumeLink'].forEach(function (id) {
+                var el = document.getElementById(id);
+                if (el) el.value = '';
+            });
+            document.getElementById('applyModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
         }
 
-        /* ── Helper: set the googtrans cookie on current domain + / ── */
-        function setGoogTransCookie(lang) {
-            var value = lang ? '/en/' + lang : '/en/en';
-            /* Set on domain root required for Google Translate to pick it up */
-            document.cookie = 'googtrans=' + value + '; path=/';
-            document.cookie = 'googtrans=' + value + '; path=/; domain=' + location.hostname;
+        function closeModal() {
+            document.getElementById('applyModal').classList.remove('open');
+            document.body.style.overflow = '';
         }
 
-        /* ── Helper: read current googtrans cookie ── */
-        function getGoogTransLang() {
-            var match = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/([^;]+)/);
-            return match ? match[1] : '';
-        }
+        document.getElementById('applyModal').addEventListener('click', function (e) { if (e.target === this) closeModal(); });
 
-        /* ── Floating button UI logic ── */
-        document.addEventListener('DOMContentLoaded', function () {
-            var btn    = document.getElementById('floatTranslateBtn');
-            var panel  = document.getElementById('floatTranslatePanel');
-            var select = document.getElementById('ftpSelect');
-            var badge  = document.getElementById('langBadge');
-
-            /* Restore badge state from cookie on page load */
-            var currentLang = getGoogTransLang();
-            if (currentLang && currentLang !== 'en') {
-                btn.classList.add('active-lang');
-                badge.textContent = currentLang.toUpperCase().slice(0, 2);
-                select.value = currentLang;
+        // Paid plan file handler (uncomment if upgrading)
+        function handleFile(input) {
+            var fn = document.getElementById('fileName'), area = document.getElementById('fileUploadArea');
+            if (input.files && input.files[0]) {
+                var f = input.files[0];
+                if (f.type !== 'application/pdf') { alert('Please upload a PDF file only.'); input.value = ''; fn.style.display = 'none'; area.classList.remove('has-file'); return; }
+                if (f.size > 5 * 1024 * 1024) { alert('File size must be under 5MB.'); input.value = ''; fn.style.display = 'none'; area.classList.remove('has-file'); return; }
+                fn.textContent = '✓ ' + f.name; fn.style.display = 'block'; area.classList.add('has-file');
             }
+        }
 
-            /* Toggle panel */
-            btn.addEventListener('click', function (e) {
-                e.stopPropagation();
-                panel.classList.toggle('open');
-            });
+        function submitApplication() {
+            var name = document.getElementById('appName').value.trim();
+            var phone = document.getElementById('appPhone').value.trim();
+            var email = document.getElementById('appEmail').value.trim();
+            var cover = document.getElementById('appCover').value.trim();
+            var resumeLink = document.getElementById('appResumeLink').value.trim();
+            var role = document.getElementById('hiddenRole').value;
 
-            /* Close on outside click */
-            document.addEventListener('click', function () {
-                panel.classList.remove('open');
-            });
+            // Basic validation
+            if (!name || !phone || !email) { alert('Please fill in all required fields.'); return; }
+            if (!email.includes('@')) { alert('Please enter a valid email address.'); return; }
+            if (!resumeLink) { alert('Please provide a link to your Resume / CV.'); return; }
+
+            var errorBox = document.getElementById('modalSubmitError');
+            errorBox.classList.remove('visible');
+
+            var btn = document.getElementById('modalSubmitBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i data-lucide="loader"></i> Sending…';
+            lucide.createIcons();
+
+            var payload = {
+                position: role,
+                full_name: name,
+                phone: phone,
+                email: email,
+                cover_letter: cover || '(not provided)',
+                resume_link: resumeLink
+            };
+
+            fetch(CAREERS_FORMSPREE_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+                .then(function (res) {
+                    if (res.ok) {
+                        document.getElementById('modalForm').style.display = 'none';
+                        document.getElementById('modalSuccess').style.display = 'block';
+                        lucide.createIcons();
+                    } else {
+                        return res.json().then(function (json) { throw new Error(json.error || 'failed'); });
+                    }
+                })
+                .catch(function () {
+                    btn.disabled = false;
+                    btn.innerHTML = '<i data-lucide="send"></i> Submit Application';
+                    lucide.createIcons();
+                    errorBox.classList.add('visible');
+                });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'ar,hi,kn,ml,ta,te,fr,de,zh-CN,ja,ko,ru,es,pt,it,nl,pl,tr,ms,id', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false }, 'google_translate_element');
+        }
+        function setGoogTransCookie(lang) { var value = lang ? '/en/' + lang : '/en/en'; document.cookie = 'googtrans=' + value + '; path=/'; document.cookie = 'googtrans=' + value + '; path=/; domain=' + location.hostname; }
+        function getGoogTransLang() { var match = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/([^;]+)/); return match ? match[1] : ''; }
+        document.addEventListener('DOMContentLoaded', function () {
+            var btn = document.getElementById('floatTranslateBtn'), panel = document.getElementById('floatTranslatePanel'), select = document.getElementById('ftpSelect'), badge = document.getElementById('langBadge');
+            var currentLang = getGoogTransLang();
+            if (currentLang && currentLang !== 'en') { btn.classList.add('active-lang'); badge.textContent = currentLang.toUpperCase().slice(0, 2); select.value = currentLang; }
+            btn.addEventListener('click', function (e) { e.stopPropagation(); panel.classList.toggle('open'); });
+            document.addEventListener('click', function () { panel.classList.remove('open'); });
             panel.addEventListener('click', function (e) { e.stopPropagation(); });
-
-            /* ── Language change: set cookie → reload ── */
             select.addEventListener('change', function () {
                 var lang = select.value;
-
-                if (!lang || lang === 'en') {
-                    /* Reset to English: clear the cookie */
-                    document.cookie = 'googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-                    document.cookie = 'googtrans=; path=/; domain=' + location.hostname + '; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-                } else {
-                    setGoogTransCookie(lang);
-                }
-
-                /* Reload Google Translate reads the cookie on load */
+                if (!lang || lang === 'en') { document.cookie = 'googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT'; document.cookie = 'googtrans=; path=/; domain=' + location.hostname + '; expires=Thu, 01 Jan 1970 00:00:00 GMT'; }
+                else { setGoogTransCookie(lang); }
                 location.reload();
             });
         });
     </script>
-
-    <!-- Google Translate script loads asynchronously -->
     <script type="text/javascript"
-        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-    </script>
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 
