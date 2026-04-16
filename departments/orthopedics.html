@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orthopedics | MNR Hospital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* ── Hide Google's default top banner ── */
+        .goog-te-banner-frame,
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        }
+        body { top: 0 !important; }
+
+        /* ── Hide Google branding & the real widget (we drive it via JS) ── */
+        .goog-logo-link,
+        .goog-te-gadget span { display: none !important; }
+        .goog-te-gadget { font-size: 0 !important; }
+
+        /* The real Google widget is invisible it sits off-screen,
+           we only use it programmatically */
+        #google_translate_element {
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* ════════════════════════════════════════
+           FLOATING TRANSLATE BUTTON
+           Works on BOTH desktop & mobile
+        ════════════════════════════════════════ */
+
+        /* Floating globe button */
+        .float-translate-btn {
+            position: fixed;
+            bottom: 144px; /* stacked above whatsapp (86px) and scroll-top (26px) */
+            right: 24px;
+            z-index: 9998;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--teal, #10519f);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .float-translate-btn svg {
+            width: 22px;
+            height: 22px;
+            pointer-events: none;
+        }
+
+        /* Dropdown panel that opens above the button */
+        .float-translate-panel {
+            position: fixed;
+            bottom: 204px;
+            right: 20px;
+            z-index: 9997;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(10, 31, 60, 0.18);
+            border: 1px solid rgba(10, 31, 60, 0.08);
+            padding: 10px;
+            width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+        }
+        .float-translate-panel.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Panel header */
+        .ftp-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 8px 10px;
+            border-bottom: 1px solid rgba(10, 31, 60, 0.07);
+            margin-bottom: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--navy, #0a1f3c);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .ftp-header svg {
+            width: 14px;
+            height: 14px;
+            color: var(--teal, #10519f);
+        }
+
+        /* The language select inside the panel */
+        .ftp-select {
+            width: 100%;
+            padding: 9px 12px;
+            border-radius: 10px;
+            border: 1.5px solid rgba(10, 31, 60, 0.12);
+            background: #f0f4f8;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: #1a2d42;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%230b79aa' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-color: #f0f4f8;
+            padding-right: 32px;
+        }
+        .ftp-select:focus {
+            border-color: var(--teal, #10519f);
+            background-color: #fff;
+        }
+        .ftp-select option { color: #1a2d42; background: #fff; }
+
+        /* Active language badge shown on the button when non-English */
+        .float-translate-btn .lang-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--gold, #c8992a);
+            color: #fff;
+            font-size: 8px;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            padding: 2px 5px;
+            border-radius: 20px;
+            line-height: 1;
+            display: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .float-translate-btn.active-lang .lang-badge { display: block; }
+        .float-translate-btn { position: fixed; } /* ensure badge absolute works */
+    </style>
+    <style>
+        
+        footer .nav-logo{
+                filter: brightness(0) invert(1);
+        }
+        :root {
+            --navy: #0a1f3c;
+            --teal: #10519f;
+            --teal-light: #10519f;
+            --gold: #c8992a;
+            --gold-light: #e8b93e;
+            --cream: #f8f4ee;
+            --gray-light: #f0f4f8;
+            --gray-mid: #8094a8;
+            --text: #1a2d42;
+            --dept-color: #e67e22;
+            --dept-light: #f39c12;
+            --shadow: 0 8px 40px rgba(10, 31, 60, .10);
+            --shadow-strong: 0 16px 60px rgba(10, 31, 60, .18);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            background: #fff;
+            overflow-x: hidden
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, .97);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(10, 31, 60, .08);
+            box-shadow: 0 2px 20px rgba(10, 31, 60, .08);
+            transition: all .35s ease
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, .97);
+            border-bottom-color: transparent
+        }
+
+        nav.scrolled .logo-name,
+        nav.scrolled .nav-link,
+        nav.scrolled .drop-btn {
+            color: var(--navy)
+        }
+
+        nav.scrolled .logo-sub {
+            color: var(--teal-light) !important
+        }
+
+        nav.scrolled .hamburger span {
+            background: #1a2d42
+        }
+
+        .nav-wrap {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            height: 72px
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            text-decoration: none
+        }
+
+        .logo-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.1
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            color: var(--teal);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            list-style: none
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 13px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all .2s
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--teal)
+        }
+
+        .drop {
+            position: relative
+        }
+
+        .drop-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 13px;
+            border-radius: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all .2s;
+            user-select: none
+        }
+
+        .drop-btn svg {
+            width: 13px;
+            height: 13px;
+            transition: transform .3s
+        }
+
+        .drop.open .drop-btn {
+            color: var(--teal)
+        }
+
+        .drop.open .drop-btn svg {
+            transform: rotate(180deg)
+        }
+
+        .drop-menu::before {
+            content: '';
+            position: absolute;
+            top: -16px;
+            left: 0;
+            right: 0;
+            height: 16px
+        }
+
+        .drop-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%) translateY(6px);
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: var(--shadow-strong);
+            padding: 8px;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity .22s ease, transform .22s ease, visibility .22s;
+            border: 1px solid rgba(10, 31, 60, .08);
+            z-index: 200
+        }
+
+        .drop.open .drop-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0)
+        }
+
+        .drop-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 9px;
+            color: var(--text);
+            font-size: 14px;
+            text-decoration: none;
+            transition: all .18s;
+            white-space: nowrap
+        }
+
+        .drop-item svg {
+            width: 16px;
+            height: 16px;
+            color: var(--teal);
+            flex-shrink: 0
+        }
+
+        .drop-item:hover {
+            background: var(--gray-light);
+            color: var(--teal)
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            color: #fff !important;
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all .25s
+        }
+
+        .nav-cta svg {
+            width: 15px;
+            height: 15px
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 6px
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--navy);
+            border-radius: 2px;
+            transition: all .3s;
+            display: block
+        }
+
+        .mob-nav {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 998;
+            background: var(--navy);
+            padding: 118px 28px 40px;
+            transform: translateX(100%);
+            transition: transform .38s cubic-bezier(.77, 0, .175, 1);
+            overflow-y: auto
+        }
+
+        .mob-nav.open {
+            transform: translateX(0)
+        }
+
+        .mob-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            font-size: 17px;
+            font-weight: 500;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            text-decoration: none
+        }
+
+        .mob-link svg {
+            width: 18px;
+            height: 18px;
+            color: var(--teal-light)
+        }
+
+        .mob-sub {
+            padding-left: 28px
+        }
+
+        .mob-sub .mob-link {
+            font-size: 15px;
+            color: rgba(255, 255, 255, .68)
+        }
+
+        .mob-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            margin-top: 28px;
+            background: var(--teal);
+            color: #fff;
+            padding: 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none
+        }
+
+        .mob-cta svg {
+            width: 17px;
+            height: 17px
+        }
+
+        .si {
+            max-width: 1300px;
+            margin: 0 auto
+        }
+
+        .s-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 12px
+        }
+
+        .s-tag::before {
+            content: '';
+            width: 22px;
+            height: 2px;
+            background: var(--teal);
+            border-radius: 2px
+        }
+
+        .s-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(26px, 3.6vw, 42px);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 14px
+        }
+
+        .s-title em {
+            font-style: normal;
+            color: var(--teal)
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: all .65s cubic-bezier(.25, .46, .45, .94)
+        }
+
+        .fade-up.in {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        .fade-up:nth-child(2) {
+            transition-delay: .08s
+        }
+
+        .fade-up:nth-child(3) {
+            transition-delay: .16s
+        }
+
+        .fade-up:nth-child(4) {
+            transition-delay: .24s
+        }
+
+        .fade-up:nth-child(5) {
+            transition-delay: .32s
+        }
+
+        .page-hero {
+            margin-top: 72px;
+            background: linear-gradient(135deg, #1a0a05 0%, #2d1509 50%, #5a2d0a 100%);
+            padding: 80px 28px 50px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -8%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(var(--hero-glow), 0.25) 0%, transparent 70%);
+            pointer-events: none
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(200, 153, 42, .10) 0%, transparent 70%);
+            pointer-events: none
+        }
+
+        .hero-grid-overlay {
+            position: absolute;
+            inset: 0;
+            opacity: .035;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(255, 255, 255, .6) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .6) 1px, transparent 1px);
+            background-size: 55px 55px
+        }
+
+        .page-hero-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: center
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, .50);
+            margin-bottom: 20px
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, .50);
+            text-decoration: none;
+            transition: color .2s
+        }
+
+        .breadcrumb a:hover {
+            color: var(--dept-light)
+        }
+
+        .breadcrumb svg {
+            width: 13px;
+            height: 13px
+        }
+
+        .breadcrumb span {
+            color: rgba(255, 255, 255, .9)
+        }
+
+        .hero-left h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(32px, 4.5vw, 58px);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.12;
+            margin-bottom: 16px
+        }
+
+        .hero-left h1 em {
+            font-style: normal;
+            color: var(--dept-light)
+        }
+
+        .hero-left p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, .68);
+            line-height: 1.75;
+            max-width: 520px;
+            margin-bottom: 28px
+        }
+
+        .hero-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px
+        }
+
+        .hero-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, .10);
+            border: 1px solid rgba(255, 255, 255, .18);
+            backdrop-filter: blur(6px);
+            border-radius: 50px;
+            padding: 7px 15px;
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, .88)
+        }
+
+        .hero-chip svg {
+            width: 13px;
+            height: 13px;
+            color: var(--dept-light)
+        }
+
+        .hero-badge {
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 24px;
+            padding: 28px 32px;
+            text-align: center;
+            backdrop-filter: blur(10px)
+        }
+
+        .hero-badge-ico {
+            width: 72px;
+            height: 72px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--dept-color), var(--dept-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px
+        }
+
+        .hero-badge-ico svg {
+            width: 34px;
+            height: 34px;
+            color: #fff
+        }
+
+        .hero-badge h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 4px
+        }
+
+        .hero-badge p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .50)
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, .10)
+        }
+
+        .h-stat .n {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff
+        }
+
+        .h-stat .n span {
+            color: var(--dept-light)
+        }
+
+        .h-stat small {
+            font-size: 11px;
+            color: rgba(255, 255, 255, .45);
+            display: block
+        }
+
+        .dept-content {
+            padding: 80px 28px;
+            background: #fff
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 72px;
+            align-items: start
+        }
+
+        .prose h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(22px, 2.5vw, 32px);
+            color: var(--navy);
+            margin-bottom: 16px;
+            line-height: 1.25
+        }
+
+        .prose h2 em {
+            font-style: normal;
+            color: var(--teal)
+        }
+
+        .prose p {
+            font-size: 15px;
+            color: #4a5d70;
+            line-height: 1.85;
+            margin-bottom: 20px
+        }
+
+        .prose p:last-child {
+            margin-bottom: 0
+        }
+
+        .section-divider {
+            width: 48px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--dept-color), var(--dept-light));
+            border-radius: 2px;
+            margin: 32px 0
+        }
+
+        .dept-sidebar {
+            position: sticky;
+            top: 100px
+        }
+
+        .sidebar-card {
+            background: var(--gray-light);
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 20px
+        }
+
+        .sidebar-card h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 17px;
+            color: var(--navy);
+            margin-bottom: 18px
+        }
+
+        .service-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 11px
+        }
+
+        .service-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--text)
+        }
+
+        .service-list li svg {
+            width: 15px;
+            height: 15px;
+            color: var(--dept-color);
+            flex-shrink: 0
+        }
+
+        .appt-card {
+            background: linear-gradient(135deg, var(--dept-color), var(--dept-light));
+            border-radius: 20px;
+            padding: 28px;
+            text-align: center
+        }
+
+        .appt-card h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 8px
+        }
+
+        .appt-card p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .78);
+            margin-bottom: 20px;
+            line-height: 1.6
+        }
+
+        .btn-white-dept {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            color: var(--dept-color);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .15);
+            transition: all .3s;
+            width: 100%;
+            justify-content: center
+        }
+
+        .btn-white-dept svg {
+            width: 15px;
+            height: 15px
+        }
+
+        .btn-white-dept:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .2)
+        }
+
+        .btn-call {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1.5px solid rgba(255, 255, 255, .5);
+            color: #fff;
+            padding: 11px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all .3s;
+            width: 100%;
+            justify-content: center;
+            margin-top: 10px
+        }
+
+        .btn-call:hover {
+            background: rgba(255, 255, 255, .12);
+            border-color: #fff
+        }
+
+        .btn-call svg {
+            width: 15px;
+            height: 15px
+        }
+
+        .conditions-sec {
+            padding: 70px 28px;
+            background: var(--cream)
+        }
+
+        .cond-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 40px
+        }
+
+        .cond-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 22px 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            box-shadow: 0 2px 14px rgba(10, 31, 60, .08);
+            transition: all .3s;
+            border-left: 3px solid transparent
+        }
+
+        .cond-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-left-color: var(--dept-color)
+        }
+
+        .cond-ico {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--dept-color), var(--dept-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0
+        }
+
+        .cond-ico svg {
+            width: 18px;
+            height: 18px;
+            color: #fff
+        }
+
+        .cond-card h5 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 4px
+        }
+
+        .cond-card p {
+            font-size: 12px;
+            color: var(--gray-mid);
+            line-height: 1.55
+        }
+
+        .doctors-sec {
+            padding: 80px 28px;
+            background: #fff
+        }
+
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 26px;
+            margin-top: 48px
+        }
+
+        .doc-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all .3s;
+            border: 1.5px solid rgba(10, 31, 60, .05)
+        }
+
+        .doc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow)
+        }
+
+        .doc-ph {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+            background: var(--gray-light)
+        }
+
+        .doc-ph img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform .4s ease
+        }
+
+        .doc-card:hover .doc-ph img {
+            transform: scale(1.08)
+        }
+
+        .doc-ph-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 55%, rgba(10, 31, 60, .20) 100%)
+        }
+
+        .doc-info {
+            padding: 18px 20px 24px;
+            text-align: center
+        }
+
+        .doc-info h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 17px;
+            color: var(--navy);
+            margin-bottom: 4px
+        }
+
+        .doc-spec {
+            font-size: 13px;
+            color: var(--teal);
+            font-weight: 600;
+            margin-bottom: 5px
+        }
+
+        .doc-exp {
+            font-size: 12px;
+            color: var(--gray-mid);
+            margin-bottom: 14px
+        }
+
+        .btn-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none
+        }
+
+        .btn-sm svg {
+            width: 13px;
+            height: 13px
+        }
+
+        .dept-cta-sec {
+            padding: 80px 28px;
+            background: var(--cream)
+        }
+
+        .dept-cta-box {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
+            border-radius: 28px;
+            padding: 64px 60px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .dept-cta-box::before {
+            content: '';
+            position: absolute;
+            right: -60px;
+            top: -60px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .08);
+            pointer-events: none
+        }
+
+        .dept-cta-box h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(22px, 3vw, 36px);
+            color: #fff;
+            margin-bottom: 12px
+        }
+
+        .dept-cta-box>div:first-child p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, .80);
+            line-height: 1.75;
+            max-width: 480px
+        }
+
+        .cta-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2
+        }
+
+        .btn-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: #fff;
+            color: var(--teal);
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .15);
+            transition: all .3s
+        }
+
+        .btn-white svg {
+            width: 16px;
+            height: 16px
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, .22)
+        }
+
+        .btn-ghost-w {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            border: 1.5px solid rgba(255, 255, 255, .45);
+            color: #fff;
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all .3s
+        }
+
+        .btn-ghost-w svg {
+            width: 16px;
+            height: 16px
+        }
+
+        .btn-ghost-w:hover {
+            border-color: #fff;
+            background: rgba(255, 255, 255, .10)
+        }
+
+        footer {
+            background: var(--navy);
+            padding: 66px 28px 0
+        }
+
+        .f-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 46px;
+            padding-bottom: 50px
+        }
+
+        .f-brand p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, .52);
+            margin: 17px 0 20px
+        }
+
+        .f-socials {
+            display: flex;
+            gap: 9px
+        }
+
+        .f-socials a {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: rgba(255, 255, 255, .08);
+            color: rgba(255, 255, 255, .60);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all .2s
+        }
+
+        .f-socials a:hover {
+            background: var(--teal);
+            color: #fff
+        }
+
+        .f-socials a svg {
+            width: 15px;
+            height: 15px
+        }
+
+        .f-col h4 {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 17px
+        }
+
+        .f-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 9px
+        }
+
+        .f-col ul a {
+            color: rgba(255, 255, 255, .52);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color .2s
+        }
+
+        .f-col ul a:hover {
+            color: var(--teal-light)
+        }
+
+        .f-cr {
+            display: flex;
+            gap: 11px;
+            margin-bottom: 13px
+        }
+
+        .f-cr svg {
+            width: 15px;
+            height: 15px;
+            color: var(--teal-light);
+            margin-top: 2px;
+            flex-shrink: 0
+        }
+
+        .f-cr p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .52);
+            line-height: 1.65
+        }
+
+        .f-cr a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        .f-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            padding: 22px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, .32)
+        }
+
+        .f-bottom a {
+            color: rgba(255, 255, 255, .42);
+            text-decoration: none
+        }
+
+        .f-bottom a:hover {
+            color: var(--teal-light)
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 26px;
+            right: 26px;
+            z-index: 999;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--teal);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all .3s
+        }
+
+        .scroll-top svg {
+            width: 18px;
+            height: 18px
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px)
+        }
+
+        @media(max-width:1100px) {
+            .nav-links {
+                display: none
+            }
+
+            .hamburger {
+                display: flex
+            }
+
+            .mob-nav {
+                display: block
+            }
+        }
+
+        @media(max-width:1024px) {
+            .content-grid {
+                grid-template-columns: 1fr
+            }
+
+            .dept-sidebar {
+                position: static
+            }
+
+            .page-hero-inner {
+                grid-template-columns: 1fr
+            }
+
+            .hero-badge {
+                display: none
+            }
+
+            .f-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .dept-cta-box {
+                grid-template-columns: 1fr;
+                padding: 44px 36px
+            }
+
+            .cta-btns {
+                flex-direction: row;
+                flex-wrap: wrap
+            }
+        }
+
+        @media(max-width:800px) {
+            .nav-links {
+                display: none
+            }
+
+            .hamburger {
+                display: flex
+            }
+
+            .mob-nav {
+                display: block
+            }
+
+            .page-hero {
+                padding: 56px 20px 70px
+            }
+
+            .dept-content,
+            .conditions-sec,
+            .doctors-sec,
+            .dept-cta-sec {
+                padding: 56px 20px
+            }
+
+            .doc-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .f-grid {
+                grid-template-columns: 1fr;
+                gap: 30px
+            }
+
+            .dept-cta-box {
+                padding: 36px 24px
+            }
+        }
+
+        @media(max-width:500px) {
+            .doc-grid {
+                grid-template-columns: 1fr
+            }
+
+            .nav-wrap {
+                padding: 0px
+            }
+        }
+
+        @media (max-width:350px) {
+            .nav-wrap img {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav style="padding: 16px;" id="navbar">
+        <div class="nav-wrap">
+            <a href="../index.html" class="nav-logo">
+                <div><img width="250px" src="../MNR-logo.png" alt="logo"></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../about.html" class="nav-link">About Us</a></li>
+                <li class="drop">
+                    <button style="font-family: 'Poppins', sans-serif;" class="drop-btn">Departments <i
+                            data-lucide="chevron-down"></i></button>
+                    <div class="drop-menu">
+                        <a href="../departments/cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i>
+                            Cardiology</a>
+                        <a href="../departments/pulmonology.html" class="drop-item"><i data-lucide="wind"></i>
+                            Pulmonology</a>
+                        <a href="../departments/gynecology.html" class="drop-item"><i data-lucide="baby"></i>
+                            Gynecology</a>
+                        <a href="../departments/neurology.html" class="drop-item"><i data-lucide="brain"></i>
+                            Neurology</a>
+                        <a href="../departments/urology.html" class="drop-item"><i data-lucide="activity"></i>
+                            Urology</a>
+                        <a href="../departments/gastroenterology.html" class="drop-item"><i
+                                data-lucide="stethoscope"></i>
+                            Gastroenterology</a>
+                        <a href="../departments/pediatrics.html" class="drop-item"><i data-lucide="smile"></i>
+                            Pediatrics</a>
+                        <a href="../departments.html" class="drop-item"><i data-lucide="chevron-right"></i> View All</a>
+                    </div>
+                </li>
+                <li><a href="../doctors.html" class="nav-link">Doctors</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+                <li class="drop">
+                    <button style="font-family: 'Poppins', sans-serif;" class="drop-btn">More <i
+                            data-lucide="chevron-down"></i></button>
+                    <div class="drop-menu">
+                        <a href="../blogs.html" class="drop-item"><i data-lucide="newspaper"></i> Blogs</a>
+                        <a href="../gallery.html" class="drop-item"><i data-lucide="image"></i> Gallery</a>
+                        <a href="../careers.html" class="drop-item"><i data-lucide="briefcase"></i> Careers</a>
+                        <!-- <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a> -->
+                        <a href="../international-patients.html" class="drop-item"><i data-lucide="globe"></i>
+                            International Patients</a>
+                    </div>
+                </li>
+                <li><a href="../contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
+                </li>
+            </ul>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <div class="mob-nav" id="mobNav">
+        <a href="../index.html" class="mob-link"><i data-lucide="home"></i> Home</a>
+        <a href="../about.html" class="mob-link"><i data-lucide="info"></i> About Us</a>
+        <span class="mob-link" style="cursor:pointer"><i data-lucide="layout-grid"></i> Departments</span>
+        <div class="mob-sub">
+            <a href="../departments/cardiology.html" class="mob-link"><i data-lucide="heart-pulse"></i> Cardiology</a>
+            <a href="../departments/pulmonology.html" class="mob-link"><i data-lucide="wind"></i> Pulmonology</a>
+            <a href="../departments/gynecology.html" class="mob-link"><i data-lucide="baby"></i> Gynecology</a>
+            <a href="../departments/neurology.html" class="mob-link"><i data-lucide="brain"></i> Neurology</a>
+            <a href="../departments/urology.html" class="mob-link"><i data-lucide="activity"></i> Urology</a>
+            <a href="../departments/gastroenterology.html" class="mob-link"><i data-lucide="stethoscope"></i>
+                Gastroenterology</a>
+            <a href="../departments/pediatrics.html" class="mob-link"><i data-lucide="smile"></i> Pediatrics</a>
+            <a href="../departments.html" class="mob-link"><i data-lucide="chevron-right"></i> View All</a>
+        </div>
+        <a href="../doctors.html" class="mob-link"><i data-lucide="user-round"></i> Doctors</a>
+        <a href="../contact.html" class="mob-link"><i data-lucide="phone"></i> Contact Us</a>
+        <span class="mob-link" style="cursor:pointer"><i data-lucide="more-horizontal"></i> More</span>
+        <div class="mob-sub">
+            <a href="../blogs.html" class="mob-link"><i data-lucide="newspaper"></i> Blogs</a>
+            <a href="../gallery.html" class="mob-link"><i data-lucide="image"></i> Gallery</a>
+            <a href="../careers.html" class="mob-link"><i data-lucide="briefcase"></i> Careers</a>
+            <!-- <a href="insurance.html" class="mob-link"><i data-lucide="shield-check"></i> Insurance</a> -->
+            <a href="../international-patients.html" class="mob-link"><i data-lucide="globe"></i> International
+                Patients</a>
+        </div>
+        <a href="../contact.html" class="mob-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
+    </div>
+
+
+    <!-- HERO -->
+    <div class="page-hero" style="background:linear-gradient(135deg,#1a0a05 0%,#2d1509 50%,#5a2d0a 100%)">
+        <div class="hero-grid-overlay"></div>
+        <div class="page-hero-inner">
+            <div class="hero-left">
+                <div class="breadcrumb">
+                    <a href="../index.html">Home</a><i data-lucide="chevron-right"></i>
+                    <a href="../departments.html">Departments</a><i data-lucide="chevron-right"></i>
+                    <span>Orthopedics</span>
+                </div>
+                <h1>Department of<br><em>Orthopedics</em></h1>
+                <p>Advanced bone, joint, and spine care from fracture management and arthritis treatment to total knee
+                    and hip replacement surgery and sports injury rehabilitation.</p>
+                <div class="hero-chips">
+                    <div class="hero-chip"><i data-lucide="bone"></i> Joint Replacement</div>
+                    <div class="hero-chip"><i data-lucide="activity"></i> Sports Medicine</div>
+                    <div class="hero-chip"><i data-lucide="shield-check"></i> Spine Surgery</div>
+                    <div class="hero-chip"><i data-lucide="users"></i> 8 Specialists</div>
+
+                </div>
+            </div>
+            <div class="hero-badge">
+                <div class="hero-badge-ico"><i data-lucide="bone"></i></div>
+                <h3>Orthopedics & Joint Replacement</h3>
+                <p>Bone, Joint & Spine Care</p>
+                <div class="hero-stats">
+                    <div class="h-stat">
+                        <div class="n">8+</div><small>Orthopedicians</small>
+                    </div>
+                    <div class="h-stat">
+                        <div class="n">24/7</div><small>Trauma Care</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <section class="dept-content">
+        <div class="si">
+            <div class="content-grid">
+                <div class="prose fade-up">
+                    <span class="s-tag">About the Department</span>
+                    <h2>The Science of <em>Movement & Mobility</em></h2>
+                    <p>Orthopedics is the medical specialty devoted to the diagnosis, treatment, and rehabilitation of
+                        conditions affecting the musculoskeletal system bones, joints, ligaments, tendons, muscles,
+                        and nerves. From a fractured wrist in a child to a severely arthritic hip in an elderly patient,
+                        orthopedic conditions span every age group and profoundly affect a person's independence and
+                        quality of life. Advances in joint replacement technology, minimally invasive arthroscopy, and
+                        biological therapies have transformed orthopedic outcomes in recent decades, making procedures
+                        faster, safer, and more durable than ever before.</p>
+                    <div class="section-divider"></div>
+                    <h2>Orthopedics at <em>MNR Hospital</em></h2>
+                    <p>MNR Hospital's Orthopedics and Joint Replacement Department is equipped with a dedicated
+                        orthopedic theatre, image intensifier for intra-operative imaging, and a fully staffed
+                        physiotherapy and rehabilitation unit. Our panel of orthopedic surgeons includes specialists in
+                        joint arthroplasty, spine surgery, trauma and fracture management, and sports medicine. We
+                        perform primary and revision hip and knee replacements, shoulder arthroplasty, arthroscopic
+                        procedures, and complex spinal fusions. Our trauma unit manages all types of fractures —
+                        including peri-articular and poly-trauma cases with round-the-clock surgical availability.</p>
+                    <div class="section-divider"></div>
+                    <h2>Rehabilitation Where <em>Recovery Begins</em></h2>
+                    <p>Surgery is only half the journey in orthopedics. Our dedicated physiotherapy and rehabilitation
+                        team works with every patient from the day after surgery, designing progressive mobility and
+                        strengthening programmes that optimise outcomes and return patients to active life as quickly
+                        and safely as possible. Pre-operative rehabilitation, pain management, and patient education are
+                        integral parts of our care pathway.</p>
+                </div>
+                <div class="dept-sidebar">
+                    <div class="sidebar-card fade-up">
+                        <h4>Services & Procedures</h4>
+                        <ul class="service-list">
+                            <li><i data-lucide="check-circle"></i> Total Knee & Hip Replacement</li>
+                            <li><i data-lucide="check-circle"></i> Shoulder & Elbow Arthroplasty</li>
+                            <li><i data-lucide="check-circle"></i> Arthroscopic Surgery</li>
+                            <li><i data-lucide="check-circle"></i> Spine Surgery & Fusion</li>
+                            <li><i data-lucide="check-circle"></i> Fracture Management</li>
+                            <li><i data-lucide="check-circle"></i> Sports Injury Treatment</li>
+                            <li><i data-lucide="check-circle"></i> Limb Deformity Correction</li>
+                            <li><i data-lucide="check-circle"></i> Paediatric Orthopaedics</li>
+                            <li><i data-lucide="check-circle"></i> Bone Tumour Management</li>
+
+                        </ul>
+                    </div>
+                    <div class="appt-card fade-up">
+                        <h4>Book an Orthopaedic Consultation</h4>
+                        <p>Walk-in and scheduled appointments available. Urgent fracture and trauma cases seen same day.
+                        </p>
+                        <a href="../contact.html" class="btn-white-dept"><i data-lucide="calendar-check"></i> Book
+                            Appointment</a>
+                        <a href="tel:9945000037" class="btn-call"><i data-lucide="phone-call"></i> Call 9945000037</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONDITIONS -->
+    <section class="conditions-sec">
+        <div class="si">
+            <div style="text-align:center">
+                <span class="s-tag">Conditions We Treat</span>
+                <h2 class="s-title" style="margin:0 auto">Common <em>Orthopedics</em> Conditions</h2>
+            </div>
+            <div class="cond-grid">
+
+                <div class="cond-card fade-up">
+                    <div class="cond-ico"><i data-lucide="bone"></i></div>
+                    <div>
+                        <h5>Fractures & Trauma</h5>
+                        <p>Acute and complex fractures managed surgically and conservatively.</p>
+                    </div>
+                </div>
+                <div class="cond-card fade-up">
+                    <div class="cond-ico"><i data-lucide="activity"></i></div>
+                    <div>
+                        <h5>Knee Osteoarthritis</h5>
+                        <p>Degenerative joint disease requiring medical or surgical intervention.</p>
+                    </div>
+                </div>
+                <div class="cond-card fade-up">
+                    <div class="cond-ico"><i data-lucide="shield-alert"></i></div>
+                    <div>
+                        <h5>Hip Arthritis</h5>
+                        <p>Painful hip joint disease managed with replacement or resurfacing.</p>
+                    </div>
+                </div>
+                <div class="cond-card fade-up">
+                    <div class="cond-ico"><i data-lucide="zap"></i></div>
+                    <div>
+                        <h5>Spine Disorders</h5>
+                        <p>Disc prolapse, spondylosis, stenosis, and deformity.</p>
+                    </div>
+                </div>
+                <div class="cond-card fade-up">
+                    <div class="cond-ico"><i data-lucide="trending-up"></i></div>
+                    <div>
+                        <h5>Sports Injuries</h5>
+                        <p>Ligament tears, rotator cuff injuries, and cartilage damage.</p>
+                    </div>
+                </div>
+                <div class="cond-card fade-up">
+                    <div class="cond-ico"><i data-lucide="scan-line"></i></div>
+                    <div>
+                        <h5>Osteoporosis</h5>
+                        <p>Bone density loss leading to fragility fractures.</p>
+                    </div>
+                </div>
+                <div class="cond-card fade-up">
+                    <div class="cond-ico"><i data-lucide="heart-handshake"></i></div>
+                    <div>
+                        <h5>Tendon & Ligament Injuries</h5>
+                        <p>ACL, PCL, Achilles and other soft-tissue injuries.</p>
+                    </div>
+                </div>
+                <div class="cond-card fade-up">
+                    <div class="cond-ico"><i data-lucide="users"></i></div>
+                    <div>
+                        <h5>Paediatric Bone Disorders</h5>
+                        <p>Club foot, developmental dysplasia, and growth plate injuries.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOCTORS -->
+    <section class="doctors-sec">
+        <div class="si">
+            <div style="text-align:center">
+                <span class="s-tag">Our Orthopedics Specialists</span>
+                <h2 class="s-title" style="margin:0 auto">Meet the Team Behind <em>Your Orthopedics Care</em></h2>
+                <p style="font-size:15px;color:var(--gray-mid);margin:12px auto 0;max-width:500px;line-height:1.75">
+                    Each of our specialists brings deep clinical expertise and a patient-first approach to every
+                    consultation.
+                </p>
+            </div>
+            <div class="doc-grid">
+
+                <div class="doc-card fade-up">
+                    <div class="doc-ph">
+                        <img src="../doctor-placeholder.jpeg"
+                            alt="Dr. Sunil Bhat" />
+                        <div class="doc-ph-overlay"></div>
+                    </div>
+                    <div class="doc-info">
+                        <h3>Dr. Sunil Bhat</h3>
+                        <div class="doc-spec">Orthopedics</div>
+                        <div class="doc-exp">MS Ortho, Fellowship Joint Replacement · 16 Yrs</div>
+                        <a href="../doctors/doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
+                    </div>
+                </div>
+                <div class="doc-card fade-up">
+                    <div class="doc-ph">
+                        <img src="../doctor-placeholder.jpeg"
+                            alt="Dr. Ravi Shenoy" />
+                        <div class="doc-ph-overlay"></div>
+                    </div>
+                    <div class="doc-info">
+                        <h3>Dr. Ravi Shenoy</h3>
+                        <div class="doc-spec">Orthopedics</div>
+                        <div class="doc-exp">MS Ortho, MCh Spine Surgery · 14 Yrs</div>
+                        <a href="../doctors/doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
+                    </div>
+                </div>
+                <div class="doc-card fade-up">
+                    <div class="doc-ph">
+                        <img src="../doctor-placeholder.jpeg"
+                            alt="Dr. Anand Kamath" />
+                        <div class="doc-ph-overlay"></div>
+                    </div>
+                    <div class="doc-info">
+                        <h3>Dr. Anand Kamath</h3>
+                        <div class="doc-spec">Orthopedics</div>
+                        <div class="doc-exp">MS Ortho, Sports Medicine · 10 Yrs</div>
+                        <a href="../doctors/doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="dept-cta-sec">
+        <div class="dept-cta-box">
+            <div style="position:relative;z-index:2">
+                <h2>Reclaim Your Mobility at MNR Hospital</h2>
+                <p>Whether it's a joint replacement, sports injury, or spine concern our orthopaedic team delivers
+                    precision surgical care and expert rehabilitation to get you moving again.</p>
+            </div>
+            <div class="cta-btns">
+                <a href="../contact.html" class="btn-white"><i data-lucide="calendar-check"></i> Book Appointment</a>
+                <a href="tel:9945000037" class="btn-ghost-w"><i data-lucide="phone-call"></i> Call 9945000037</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="f-grid">
+            <div class="f-brand">
+                <a href="../index.html" class="nav-logo" style="text-decoration:none">
+                    <div><img width="250px" src="../MNR-logo-white.png" alt="logo"></div>
+                </a>
+                <p>MNR Hospital is committed to delivering compassionate, expert, and affordable healthcare to every
+                    patient across Mangalore and Coastal Karnataka.</p>
+                <div class="f-socials">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="f-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About Us</a></li>
+                    <li><a href="../doctors.html">Our Doctors</a></li>
+                    <li><a href="../departments.html">Departments</a></li>
+                    <li><a href="../contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="f-col">
+                <h4>Departments</h4>
+                <ul>
+                    <li><a href="../departments/cardiology.html">Cardiology</a></li>
+                    <li><a href="../departments/pulmonology.html">Pulmonology</a></li>
+                    <li><a href="../departments/gynecology.html">Gynecology</a></li>
+                    <li><a href="../departments/neurology.html">Neurology</a></li>
+                    <li><a href="../departments/urology.html">Urology</a></li>
+                    <li><a href="../departments/gastroenterology.html">Gastroenterology</a></li>
+                    <li><a href="../departments/pediatrics.html">Pediatrics</a></li>
+                </ul>
+            </div>
+            <div class="f-col">
+                <h4>Contact Information</h4>
+                <a href="https://maps.app.goo.gl/PgNGSG4DAPqkmZ1C6" target="_blank"
+                    style="text-decoration:none;color:inherit;">
+                    <div class="f-cr"><i data-lucide="map-pin"></i>
+                        <p>MNR medicity Campus Kolambe, Behind Bajpe Proper, Karnataka 574142</p>
+                    </div>
+                </a>
+                <div class="f-cr"><i data-lucide="phone"></i>
+                    <p><a href="tel:9945000037">+91 9945000037</a></p>
+                </div>
+                <div class="f-cr"><i data-lucide="mail"></i>
+                    <p><a href="mailto:info@mnrhospital.com">info@mnrhospital.com</a></p>
+                </div>
+                <a href="../contact.html" target="_blank" style="text-decoration:none;color:inherit;">
+                    <div class="f-cr"><i data-lucide="clock"></i>
+                        <p>Emergency Services : 24/7</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="f-bottom">
+            <span>&copy;
+                <script>document.write(new Date().getFullYear())</script> MNR Hospital. All rights reserved.
+            </span>
+            <span class="f-blinks">Designed and Developed by <a href="http://thinkb.agency/" target="_blank"
+                    style="font-weight:800;">thinkB</a></span>
+        </div>
+    </footer>
+    <button class="scroll-top" id="scrollTop"><i data-lucide="chevron-up"></i></button>
+
+    <!-- ── FLOATING TRANSLATE BUTTON (desktop + mobile) ── -->
+    <button class="float-translate-btn" id="floatTranslateBtn" aria-label="Translate page" title="Translate">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        <span class="lang-badge" id="langBadge">EN</span>
+    </button>
+
+    <div class="float-translate-panel" id="floatTranslatePanel">
+        <div class="ftp-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            Select Language
+        </div>
+        <select class="ftp-select" id="ftpSelect" aria-label="Choose language">
+            <option value="">🌐 English (Default)</option>
+            <option value="ar">🇸🇦 Arabic</option>
+            <option value="hi">🇮🇳 Hindi</option>
+            <option value="kn">🇮🇳 Kannada</option>
+            <option value="ml">🇮🇳 Malayalam</option>
+            <option value="ta">🇮🇳 Tamil</option>
+            <option value="te">🇮🇳 Telugu</option>
+            <option value="fr">🇫🇷 French</option>
+            <option value="de">🇩🇪 German</option>
+            <option value="zh-CN">🇨🇳 Chinese</option>
+            <option value="ja">🇯🇵 Japanese</option>
+            <option value="ko">🇰🇷 Korean</option>
+            <option value="ru">🇷🇺 Russian</option>
+            <option value="es">🇪🇸 Spanish</option>
+            <option value="pt">🇵🇹 Portuguese</option>
+            <option value="it">🇮🇹 Italian</option>
+            <option value="nl">🇳🇱 Dutch</option>
+            <option value="pl">🇵🇱 Polish</option>
+            <option value="tr">🇹🇷 Turkish</option>
+            <option value="ms">🇲🇾 Malay</option>
+            <option value="id">🇮🇩 Indonesian</option>
+        </select>
+    </div>
+
+
+    <script>
+        lucide.createIcons();
+        var navbar = document.getElementById('navbar'), scrollBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', function () { navbar.classList.toggle('scrolled', window.scrollY > 60); scrollBtn.classList.toggle('visible', window.scrollY > 300); });
+        function closeAllDrops() { document.querySelectorAll('.drop.open').forEach(function (d) { d.classList.remove('open'); }); }
+        document.querySelectorAll('.drop-btn').forEach(function (btn) { btn.addEventListener('click', function (e) { e.stopPropagation(); var drop = btn.closest('.drop'), open = drop.classList.contains('open'); closeAllDrops(); if (!open) drop.classList.add('open'); }); });
+        document.addEventListener('click', closeAllDrops);
+        document.querySelectorAll('.drop-menu').forEach(function (m) { m.addEventListener('click', function (e) { e.stopPropagation(); }); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAllDrops(); });
+        var ham = document.getElementById('hamburger'), mob = document.getElementById('mobNav');
+        ham.addEventListener('click', function () { mob.classList.toggle('open'); document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : ''; });
+        mob.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { mob.classList.remove('open'); document.body.style.overflow = ''; }); });
+        scrollBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        var obs = new IntersectionObserver(function (entries) { entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } }); }, { threshold: 0.10 });
+        document.querySelectorAll('.fade-up').forEach(function (el) { obs.observe(el); });
+    </script>
+
+
+
+    <a href="https://wa.me/919945000037?text=Hello%20MNR%20Hospital,%20I%20need%20assistance." class="wa-float"
+        target="_blank" aria-label="WhatsApp Chat">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <style>
+        .wa-float {
+            position: fixed;
+            bottom: 86px;
+            right: 24px;
+            width: 50px;
+            height: 50px;
+            background: #25D366;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 30px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+            z-index: 9999;
+            transition: all 0.3s ease;
+        }
+
+
+        @media (max-width: 768px) {
+            .wa-float {
+                width: 50px;
+                height: 50px;
+                bottom: 86px;
+                right: 24px;
+                font-size: 28px;
+            }
+        }
+    </style>
+    <script type="text/javascript">
+        /* ════════════════════════════════════════════════════
+           GOOGLE TRANSLATE COOKIE-BASED APPROACH
+           
+           How Google Translate actually works:
+           It reads a cookie called "googtrans" with the format
+           "/en/TARGET_LANG" e.g. "/en/hi" for Hindi.
+           Setting this cookie + reloading the page is the ONLY
+           100% reliable way to trigger translation it works
+           identically on desktop and mobile with no race conditions.
+        ════════════════════════════════════════════════════ */
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'ar,hi,kn,ml,ta,te,fr,de,zh-CN,ja,ko,ru,es,pt,it,nl,pl,tr,ms,id',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        /* ── Helper: set the googtrans cookie on current domain + / ── */
+        function setGoogTransCookie(lang) {
+            var value = lang ? '/en/' + lang : '/en/en';
+            /* Set on domain root required for Google Translate to pick it up */
+            document.cookie = 'googtrans=' + value + '; path=/';
+            document.cookie = 'googtrans=' + value + '; path=/; domain=' + location.hostname;
+        }
+
+        /* ── Helper: read current googtrans cookie ── */
+        function getGoogTransLang() {
+            var match = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/([^;]+)/);
+            return match ? match[1] : '';
+        }
+
+        /* ── Floating button UI logic ── */
+        document.addEventListener('DOMContentLoaded', function () {
+            var btn    = document.getElementById('floatTranslateBtn');
+            var panel  = document.getElementById('floatTranslatePanel');
+            var select = document.getElementById('ftpSelect');
+            var badge  = document.getElementById('langBadge');
+
+            /* Restore badge state from cookie on page load */
+            var currentLang = getGoogTransLang();
+            if (currentLang && currentLang !== 'en') {
+                btn.classList.add('active-lang');
+                badge.textContent = currentLang.toUpperCase().slice(0, 2);
+                select.value = currentLang;
+            }
+
+            /* Toggle panel */
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                panel.classList.toggle('open');
+            });
+
+            /* Close on outside click */
+            document.addEventListener('click', function () {
+                panel.classList.remove('open');
+            });
+            panel.addEventListener('click', function (e) { e.stopPropagation(); });
+
+            /* ── Language change: set cookie → reload ── */
+            select.addEventListener('change', function () {
+                var lang = select.value;
+
+                if (!lang || lang === 'en') {
+                    /* Reset to English: clear the cookie */
+                    document.cookie = 'googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+                    document.cookie = 'googtrans=; path=/; domain=' + location.hostname + '; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+                } else {
+                    setGoogTransCookie(lang);
+                }
+
+                /* Reload Google Translate reads the cookie on load */
+                location.reload();
+            });
+        });
+    </script>
+
+    <!-- Google Translate script loads asynchronously -->
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    </script>
+
+</body>
+
+</html>
