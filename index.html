@@ -13,19 +13,27 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         /* ── Hide Google's default top banner ── */
         .goog-te-banner-frame,
         .goog-te-banner-frame.skiptranslate {
             display: none !important;
         }
-        body { top: 0 !important; }
+
+        body {
+            top: 0 !important;
+        }
 
         /* ── Hide Google branding & the real widget (we drive it via JS) ── */
         .goog-logo-link,
-        .goog-te-gadget span { display: none !important; }
-        .goog-te-gadget { font-size: 0 !important; }
+        .goog-te-gadget span {
+            display: none !important;
+        }
+
+        .goog-te-gadget {
+            font-size: 0 !important;
+        }
 
         /* The real Google widget is invisible it sits off-screen,
            we only use it programmatically */
@@ -45,7 +53,8 @@
         /* Floating globe button */
         .float-translate-btn {
             position: fixed;
-            bottom: 144px; /* stacked above whatsapp (86px) and scroll-top (26px) */
+            bottom: 144px;
+            /* stacked above whatsapp (86px) and scroll-top (26px) */
             right: 24px;
             z-index: 9998;
             width: 50px;
@@ -60,6 +69,7 @@
             justify-content: center;
             transition: transform 0.25s, box-shadow 0.25s;
         }
+
         .float-translate-btn svg {
             width: 22px;
             height: 22px;
@@ -83,6 +93,7 @@
             transform: translateY(10px);
             transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
         }
+
         .float-translate-panel.open {
             opacity: 1;
             visibility: visible;
@@ -104,6 +115,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
         .ftp-header svg {
             width: 14px;
             height: 14px;
@@ -133,11 +145,16 @@
             background-color: #f0f4f8;
             padding-right: 32px;
         }
+
         .ftp-select:focus {
             border-color: var(--teal, #10519f);
             background-color: #fff;
         }
-        .ftp-select option { color: #1a2d42; background: #fff; }
+
+        .ftp-select option {
+            color: #1a2d42;
+            background: #fff;
+        }
 
         /* Active language badge shown on the button when non-English */
         .float-translate-btn .lang-badge {
@@ -156,14 +173,22 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .float-translate-btn.active-lang .lang-badge { display: block; }
-        .float-translate-btn { position: fixed; } /* ensure badge absolute works */
+
+        .float-translate-btn.active-lang .lang-badge {
+            display: block;
+        }
+
+        .float-translate-btn {
+            position: fixed;
+        }
+
+        /* ensure badge absolute works */
     </style>
     <style>
-        
-        footer .nav-logo{
-                filter: brightness(0) invert(1);
+        footer .nav-logo {
+            filter: brightness(0) invert(1);
         }
+
         /* ═══════════════════════════════════
    ROOT & RESET
 ═══════════════════════════════════ */
@@ -2165,6 +2190,10 @@
                 padding: 52px 20px 70px;
             }
 
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
         }
 
         @media (max-width: 768px) {
@@ -2263,14 +2292,14 @@
                     <button style="font-family: 'Poppins', sans-serif;" class="drop-btn">Departments <i
                             data-lucide="chevron-down"></i></button>
                     <div class="drop-menu">
-                        <a href="cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i> Cardiology</a>
-                        <a href="pulmonology.html" class="drop-item"><i data-lucide="wind"></i> Pulmonology</a>
-                        <a href="gynecology.html" class="drop-item"><i data-lucide="baby"></i> Gynecology</a>
-                        <a href="neurology.html" class="drop-item"><i data-lucide="brain"></i> Neurology</a>
-                        <a href="urology.html" class="drop-item"><i data-lucide="activity"></i> Urology</a>
-                        <a href="gastroenterology.html" class="drop-item"><i data-lucide="stethoscope"></i>
+                        <a href="departments/cardiology.html" class="drop-item"><i data-lucide="heart-pulse"></i> Cardiology</a>
+                        <a href="departments/pulmonology.html" class="drop-item"><i data-lucide="wind"></i> Pulmonology</a>
+                        <a href="departments/gynecology.html" class="drop-item"><i data-lucide="baby"></i> Gynecology</a>
+                        <a href="departments/neurology.html" class="drop-item"><i data-lucide="brain"></i> Neurology</a>
+                        <a href="departments/urology.html" class="drop-item"><i data-lucide="activity"></i> Urology</a>
+                        <a href="departments/gastroenterology.html" class="drop-item"><i data-lucide="stethoscope"></i>
                             Gastroenterology</a>
-                        <a href="pediatrics.html" class="drop-item"><i data-lucide="smile"></i> Pediatrics</a>
+                        <a href="departments/pediatrics.html" class="drop-item"><i data-lucide="smile"></i> Pediatrics</a>
                         <a href="departments.html" class="drop-item"><i data-lucide="chevron-right"></i> View All</a>
                     </div>
                 </li>
@@ -2283,8 +2312,9 @@
                         <a href="blogs.html" class="drop-item"><i data-lucide="newspaper"></i> Blogs</a>
                         <a href="gallery.html" class="drop-item"><i data-lucide="image"></i> Gallery</a>
                         <a href="careers.html" class="drop-item"><i data-lucide="briefcase"></i> Careers</a>
-                         <!-- <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a> -->
-                        <a href="international-patients.html" class="drop-item"><i data-lucide="globe"></i> International Patients</a>
+                        <!-- <a href="insurance.html" class="drop-item"><i data-lucide="shield-check"></i> Insurance</a> -->
+                        <a href="international-patients.html" class="drop-item"><i data-lucide="globe"></i>
+                            International Patients</a>
                     </div>
                 </li>
                 <li><a href="contact.html" class="nav-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
@@ -2300,13 +2330,13 @@
         <a href="about.html" class="mob-link"><i data-lucide="info"></i> About Us</a>
         <span class="mob-link" style="cursor:pointer"><i data-lucide="layout-grid"></i> Departments</span>
         <div class="mob-sub">
-            <a href="cardiology.html" class="mob-link"><i data-lucide="heart-pulse"></i> Cardiology</a>
-            <a href="pulmonology.html" class="mob-link"><i data-lucide="wind"></i> Pulmonology</a>
-            <a href="gynecology.html" class="mob-link"><i data-lucide="baby"></i> Gynecology</a>
-            <a href="neurology.html" class="mob-link"><i data-lucide="brain"></i> Neurology</a>
-            <a href="urology.html" class="mob-link"><i data-lucide="activity"></i> Urology</a>
-            <a href="gastroenterology.html" class="mob-link"><i data-lucide="stethoscope"></i> Gastroenterology</a>
-            <a href="pediatrics.html" class="mob-link"><i data-lucide="smile"></i> Pediatrics</a>
+            <a href="departments/cardiology.html" class="mob-link"><i data-lucide="heart-pulse"></i> Cardiology</a>
+            <a href="departments/pulmonology.html" class="mob-link"><i data-lucide="wind"></i> Pulmonology</a>
+            <a href="departments/gynecology.html" class="mob-link"><i data-lucide="baby"></i> Gynecology</a>
+            <a href="departments/neurology.html" class="mob-link"><i data-lucide="brain"></i> Neurology</a>
+            <a href="departments/urology.html" class="mob-link"><i data-lucide="activity"></i> Urology</a>
+            <a href="departments/gastroenterology.html" class="mob-link"><i data-lucide="stethoscope"></i> Gastroenterology</a>
+            <a href="departments/pediatrics.html" class="mob-link"><i data-lucide="smile"></i> Pediatrics</a>
             <a href="departments.html" class="mob-link"><i data-lucide="chevron-right"></i> View All</a>
         </div>
         <a href="doctors.html" class="mob-link"><i data-lucide="user-round"></i> Doctors</a>
@@ -2317,7 +2347,8 @@
             <a href="gallery.html" class="mob-link"><i data-lucide="image"></i> Gallery</a>
             <a href="careers.html" class="mob-link"><i data-lucide="briefcase"></i> Careers</a>
             <!-- <a href="insurance.html" class="mob-link"><i data-lucide="shield-check"></i> Insurance</a> -->
-            <a href="international-patients.html" class="mob-link"><i data-lucide="globe"></i> International Patients</a>
+            <a href="international-patients.html" class="mob-link"><i data-lucide="globe"></i> International
+                Patients</a>
         </div>
         <a href="contact.html" class="mob-cta"><i data-lucide="calendar-check"></i> Book Appointment</a>
     </div>
@@ -2374,7 +2405,7 @@
                     <p class="slide-desc">Our Cardiology department offers comprehensive heart health services from
                         advanced diagnostics to interventional procedures and cardiac rehabilitation programs.</p>
                     <div class="slide-actions">
-                        <a href="cardiology.html" class="btn-primary"><i data-lucide="arrow-right"></i> Explore
+                        <a href="departments/cardiology.html" class="btn-primary"><i data-lucide="arrow-right"></i> Explore
                             Cardiology</a>
                         <a href="contact.html" class="btn-outline-w"><i data-lucide="calendar-check"></i> Book
                             Appointment</a>
@@ -2407,9 +2438,9 @@
                     <p class="slide-desc">Dedicated maternity suites, a Level III NICU, and compassionate pediatric care
                         all under one roof, designed to give your family the best start possible.</p>
                     <div class="slide-actions">
-                        <a href="gynecology.html" class="btn-primary"><i data-lucide="arrow-right"></i> Maternity
+                        <a href="departments/gynecology.html" class="btn-primary"><i data-lucide="arrow-right"></i> Maternity
                             Services</a>
-                        <a href="pediatrics.html" class="btn-outline-w"><i data-lucide="smile"></i> Pediatric Care</a>
+                        <a href="departments/pediatrics.html" class="btn-outline-w"><i data-lucide="smile"></i> Pediatric Care</a>
                     </div>
                     <!-- <div class="slide-stats">
                         <div class="s-stat">
@@ -2594,53 +2625,53 @@
                     View All</a>
             </div>
             <div class="dept-grid">
-                <a href="cardiology.html" class="dept-card fade-up">
+                <a href="departments/cardiology.html" class="dept-card fade-up">
                     <div class="d-ico"><i data-lucide="heart-pulse"></i></div>
                     <h3>Cardiology</h3>
                     <p>Comprehensive heart care from diagnostics to advanced interventional cardiology and cardiac
                         surgery.</p>
                     <div class="d-more">Learn More <i data-lucide="arrow-right"></i></div>
                 </a>
-                <a href="pulmonology.html" class="dept-card fade-up">
+                <a href="departments/pulmonology.html" class="dept-card fade-up">
                     <div class="d-ico"><i data-lucide="wind"></i></div>
                     <h3>Pulmonology</h3>
                     <p>Expert diagnosis and management of respiratory conditions including asthma, COPD, and sleep
                         disorders.</p>
                     <div class="d-more">Learn More <i data-lucide="arrow-right"></i></div>
                 </a>
-                <a href="gynecology.html" class="dept-card fade-up">
+                <a href="departments/gynecology.html" class="dept-card fade-up">
                     <div class="d-ico"><i data-lucide="baby"></i></div>
                     <h3>Gynecology</h3>
                     <p>Dedicated women's health prenatal care, high-risk pregnancy, laparoscopic surgery, and more.
                     </p>
                     <div class="d-more">Learn More <i data-lucide="arrow-right"></i></div>
                 </a>
-                <a href="neurology.html" class="dept-card fade-up">
+                <a href="departments/neurology.html" class="dept-card fade-up">
                     <div class="d-ico"><i data-lucide="brain"></i></div>
                     <h3>Neurology</h3>
                     <p>Advanced treatment for stroke, epilepsy, Parkinson's, and complex neurological disorders.</p>
                     <div class="d-more">Learn More <i data-lucide="arrow-right"></i></div>
                 </a>
-                <a href="urology.html" class="dept-card fade-up">
+                <a href="departments/urology.html" class="dept-card fade-up">
                     <div class="d-ico"><i data-lucide="activity"></i></div>
                     <h3>Urology</h3>
                     <p>Minimally invasive urological procedures including kidney stone management and prostate care.</p>
                     <div class="d-more">Learn More <i data-lucide="arrow-right"></i></div>
                 </a>
-                <a href="gastroenterology.html" class="dept-card fade-up">
+                <a href="departments/gastroenterology.html" class="dept-card fade-up">
                     <div class="d-ico"><i data-lucide="stethoscope"></i></div>
                     <h3>Gastroenterology</h3>
                     <p>Specialized care for digestive disorders, liver diseases, endoscopy, and gastrointestinal
                         cancers.</p>
                     <div class="d-more">Learn More <i data-lucide="arrow-right"></i></div>
                 </a>
-                <a href="pediatrics.html" class="dept-card fade-up">
+                <a href="departments/pediatrics.html" class="dept-card fade-up">
                     <div class="d-ico"><i data-lucide="smile"></i></div>
                     <h3>Pediatrics</h3>
                     <p>Compassionate expert care for children from newborns to adolescents, with a dedicated NICU.</p>
                     <div class="d-more">Learn More <i data-lucide="arrow-right"></i></div>
                 </a>
-                <a href="orthopedics.html" class="dept-card fade-up">
+                <a href="departments/orthopedics.html" class="dept-card fade-up">
                     <div class="d-ico"><i data-lucide="bone"></i></div>
                     <h3>Orthopedics</h3>
                     <p>Advanced care for bones, joints, and spine from fractures to joint replacement and rehab.</p>
@@ -2664,54 +2695,50 @@
             <div class="doc-grid">
                 <div class="doc-card fade-up">
                     <div class="doc-ph">
-                        <img src="./doctor-placeholder.jpeg"
-                            alt="Dr. Rajesh Sharma" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Rajesh Sharma" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
                         <h3>Dr. Rajesh Sharma</h3>
                         <div class="doc-spec">Cardiology</div>
                         <div class="doc-exp">MD, DM Cardiology &middot; 18 Yrs Exp.</div>
-                        <a href="doctors.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
+                        <a href="doctors/doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
                 <div class="doc-card fade-up">
                     <div class="doc-ph">
-                        <img src="./doctor-placeholder.jpeg"
-                            alt="Dr. Priya Menon" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Priya Menon" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
                         <h3>Dr. Priya Menon</h3>
                         <div class="doc-spec">Gynecology &amp; Obstetrics</div>
                         <div class="doc-exp">MS OBG &middot; 14 Yrs Exp.</div>
-                        <a href="doctors.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
+                        <a href="doctors/doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
                 <div class="doc-card fade-up">
                     <div class="doc-ph">
-                        <img src="./doctor-placeholder.jpeg"
-                            alt="Dr. Arvind Kumar" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Arvind Kumar" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
                         <h3>Dr. Arvind Kumar</h3>
                         <div class="doc-spec">Neurology</div>
                         <div class="doc-exp">MD, DM Neurology &middot; 20 Yrs Exp.</div>
-                        <a href="doctors.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
+                        <a href="doctors/doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
                 <div class="doc-card fade-up">
                     <div class="doc-ph">
-                        <img src="./doctor-placeholder.jpeg"
-                            alt="Dr. Sneha Nair" />
+                        <img src="./doctor-placeholder.jpeg" alt="Dr. Sneha Nair" />
                         <div class="doc-ph-overlay"></div>
                     </div>
                     <div class="doc-info">
                         <h3>Dr. Sneha Nair</h3>
                         <div class="doc-spec">Pediatrics</div>
                         <div class="doc-exp">MD Pediatrics &middot; 12 Yrs Exp.</div>
-                        <a href="doctors.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
+                        <a href="doctors/doctor-detail.html" class="btn-sm"><i data-lucide="user-round"></i> View Profile</a>
                     </div>
                 </div>
             </div>
@@ -2983,7 +3010,7 @@
             <div class="home-blog-grid">
 
                 <!-- Blog 1 -->
-                <a href="heart-warning-signs.html" class="hb-card fade-up">
+                <a href="blogs/heart-warning-signs.html" class="hb-card fade-up">
                     <div class="hb-img">
                         <img src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=600&h=350&fit=crop"
                             alt="Heart Warning Signs" />
@@ -3012,7 +3039,7 @@
                 </a>
 
                 <!-- Blog 2 -->
-                <a href="stroke-fast.html" class="hb-card fade-up">
+                <a href="blogs/stroke-fast.html" class="hb-card fade-up">
                     <div class="hb-img">
                         <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&h=350&fit=crop"
                             alt="Stroke FAST" />
@@ -3040,7 +3067,7 @@
                 </a>
 
                 <!-- Blog 3 -->
-                <a href="high-risk-pregnancy.html" class="hb-card fade-up">
+                <a href="blogs/high-risk-pregnancy.html" class="hb-card fade-up">
                     <div class="hb-img">
                         <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=600&h=350&fit=crop"
                             alt="High Risk Pregnancy" />
@@ -3103,13 +3130,13 @@
             <div class="f-col">
                 <h4>Departments</h4>
                 <ul>
-                    <li><a href="cardiology.html">Cardiology</a></li>
-                    <li><a href="pulmonology.html">Pulmonology</a></li>
-                    <li><a href="gynecology.html">Gynecology</a></li>
-                    <li><a href="neurology.html">Neurology</a></li>
-                    <li><a href="urology.html">Urology</a></li>
-                    <li><a href="gastroenterology.html">Gastroenterology</a></li>
-                    <li><a href="pediatrics.html">Pediatrics</a></li>
+                    <li><a href="departments/cardiology.html">Cardiology</a></li>
+                    <li><a href="departments/pulmonology.html">Pulmonology</a></li>
+                    <li><a href="departments/gynecology.html">Gynecology</a></li>
+                    <li><a href="departments/neurology.html">Neurology</a></li>
+                    <li><a href="departments/urology.html">Urology</a></li>
+                    <li><a href="departments/gastroenterology.html">Gastroenterology</a></li>
+                    <li><a href="departments/pediatrics.html">Pediatrics</a></li>
                 </ul>
             </div>
             <div class="f-col">
@@ -3147,22 +3174,22 @@
 
     <!-- ── FLOATING TRANSLATE BUTTON (desktop + mobile) ── -->
     <button class="float-translate-btn" id="floatTranslateBtn" aria-label="Translate page" title="Translate">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="2" y1="12" x2="22" y2="12"/>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="2" y1="12" x2="22" y2="12" />
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
         </svg>
         <span class="lang-badge" id="langBadge">EN</span>
     </button>
 
     <div class="float-translate-panel" id="floatTranslatePanel">
         <div class="ftp-header">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="2" y1="12" x2="22" y2="12"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
             </svg>
             Select Language
         </div>
@@ -3401,10 +3428,10 @@
 
         /* ── Floating button UI logic ── */
         document.addEventListener('DOMContentLoaded', function () {
-            var btn    = document.getElementById('floatTranslateBtn');
-            var panel  = document.getElementById('floatTranslatePanel');
+            var btn = document.getElementById('floatTranslateBtn');
+            var panel = document.getElementById('floatTranslatePanel');
             var select = document.getElementById('ftpSelect');
-            var badge  = document.getElementById('langBadge');
+            var badge = document.getElementById('langBadge');
 
             /* Restore badge state from cookie on page load */
             var currentLang = getGoogTransLang();
@@ -3445,8 +3472,7 @@
     </script>
 
     <!-- Google Translate script loads asynchronously -->
-    <script type="text/javascript"
-        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
     </script>
 
 </body>
